@@ -1,0 +1,14 @@
+// Classe qui permet de faire un style sur tous les boutons
+.btn {
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+// Style pécifique à la cette classe de bouton
+.btn-log {
+    padding: 5px 25px;
+    background-color: white;
+    border: 1px solid white;
+    color: black;
+    font-weight: bold;
+}
