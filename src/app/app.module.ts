@@ -11,8 +11,8 @@ import { CardItemComponent } from './shared/components/card-item/card-item.compo
 import { HomeTestComponent } from './shared/components/home-test/home-test.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import {UserModule} from "./modules/users/user.module";
-
 import { CarrouselComponent } from './shared/components/carrousel/carrousel.component';
+import { HomePageComponent } from './modules/users/pages/home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +25,7 @@ import { CarrouselComponent } from './shared/components/carrousel/carrousel.comp
     CardItemComponent,
     HomeTestComponent,
     CarrouselComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
