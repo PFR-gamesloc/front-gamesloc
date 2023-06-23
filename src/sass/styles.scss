@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+@import "mixins";
 
 // Permet de ne pas avoir les bordures sur les côtés du site
 * {
@@ -15,4 +15,4 @@
     --accent: #e5546d;
     --lightgray: #ddd;
     --text-regular: #444;
-  }
+}

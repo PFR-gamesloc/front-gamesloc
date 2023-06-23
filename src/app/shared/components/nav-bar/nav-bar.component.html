@@ -1,16 +1,25 @@
 <div class="nav-bar">
     <div class="logo">
-        <p>GamesLOC</p>
+        <a routerLink="/">GamesLOC</a>
     </div>
-    <div class="input">
-        <input type="text" placeholder="jeux">
-    </div>
-    <div class="select">
+    <!-- <div class="select">
         <p>Products</p>
     </div>
     <div class="select">
         <p>Categories</p>
+    </div> -->
+    <!-- <app-btn-component [classBtn]="classBtn" [textBtn]="textBtn"></app-btn-component> -->
+    <div class="icons">
+        <a routerLink="/user" class="icon"><i class="fa-solid fa-user"></i></a>
+        <div class="icon column">
+            <a routerLink="/card"><i class="fa-solid fa-cart-shopping"></i></a>
+            <span class="dis-card">Panier</span>
+        </div>
     </div>
-    <app-btn-component [classBtn]="classBtn" [textBtn]="textBtn"></app-btn-component>
-    <i class="fa-solid fa-cart-shopping"></i>
+
+</div>
+
+<div class="input">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" placeholder="jeux">
 </div>
