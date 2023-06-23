@@ -1,0 +1,23 @@
+@mixin bk-tablette {
+    @media (min-width: 480px) {
+        @content;
+    }
+}
+
+@mixin bk-laptopS {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin bk-desktop {
+    @media (min-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin bk-desktopXL {
+    @media (min-width: 1200px) {
+        @content;
+    }
+}
