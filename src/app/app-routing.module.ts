@@ -6,15 +6,11 @@ import { HomeTestComponent } from './shared/components/home-test/home-test.compo
 
 const routes: Routes = [
 {
-  path: '',
-  component: NavBarComponent
-},
-{
   path:'card',
   component: CardItemComponent
 },
 {
-  path:'hometest',
+  path:'',
   component: HomeTestComponent
 },
 ];
