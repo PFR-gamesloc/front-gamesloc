@@ -1,0 +1,45 @@
+footer {
+    background-color: var(--blue-primary);
+    color: white;
+    padding: 20px;
+}
+
+section {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.textLinks {
+    ul {
+        display: flex;
+        margin: auto;
+        li {
+            margin: 0 10px;
+        }
+    }
+}
+
+.iconLinks {
+    div {
+        margin: auto;
+            i {
+                padding: 5px;
+            }
+    }
+}
+
+.separator {
+    width: 50%;
+    height: 1px;
+    background-color: white;
+    margin: auto;
+}
+
+.rights {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    i {
+        margin-right: 10px;
+    }
+}
