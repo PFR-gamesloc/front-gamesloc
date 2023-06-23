@@ -1,3 +1,5 @@
+@use '../../../../sass/mixins' as m;
+
 // Classe qui permet de faire un style sur tous les boutons
 .btn {
     border-radius: 20px;
@@ -11,4 +13,12 @@
     border: 1px solid white;
     color: black;
     font-weight: bold;
+}
+
+.btn-dekstop {
+    visibility: hidden; 
+
+    @include m.bk-tablette {
+        visibility: visible;
+    }
 }

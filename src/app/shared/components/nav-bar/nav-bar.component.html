@@ -1,23 +1,24 @@
-<div class="nav-bar">
-    <div class="logo">
-        <a routerLink="/">GamesLOC</a>
-    </div>
-    <!-- <div class="select">
-        <p>Products</p>
-    </div>
-    <div class="select">
-        <p>Categories</p>
-    </div> -->
-    <!-- <app-btn-component [classBtn]="classBtn" [textBtn]="textBtn"></app-btn-component> -->
-    <div class="icons">
-        <a routerLink="/user" class="icon"><i class="fa-solid fa-user"></i></a>
-        <div class="icon column">
-            <a routerLink="/card"><i class="fa-solid fa-cart-shopping"></i></a>
-            <span class="dis-card">Panier</span>
+<header>
+    <div class="nav-bar">
+        <div class="logo">
+            <a routerLink="/">GamesLOC</a>
         </div>
-    </div>
+        <div class="input bk-tab">
+            <i class="fa-solid fa-magnifying-glass search"></i>
+            <input type="text" placeholder="jeux">
+        </div>
 
-</div>
+        <div class="icons">
+            <a routerLink="/user" class="icon"><i class="fa-solid fa-user"></i></a>
+            <!-- <app-btn-component [classBtn]="classBtn" [textBtn]="textBtn"></app-btn-component> -->
+            <div routerLink="/card" class="icon column">
+                <a><i class="fa-solid fa-cart-shopping"></i></a>
+                <span class="dis-card">Panier</span>
+            </div>
+        </div>
+
+    </div>
+</header>
 
 <div class="input">
     <i class="fa-solid fa-magnifying-glass"></i>
