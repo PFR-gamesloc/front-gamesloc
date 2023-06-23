@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-
 // Permet de ne pas avoir les bordures sur les côtés du site
 * {
     box-sizing: border-box;
@@ -15,4 +14,14 @@
     --accent: #e5546d;
     --lightgray: #ddd;
     --text-regular: #444;
+
+    //Typography
+    --small:12rem;
+    --medium:16rem;
+    --large:20rem;
+
+    --font-raleway:'Raleway', sans-serif;
+    --font-rosario:'Rosario', sans-serif;
+
+
   }
