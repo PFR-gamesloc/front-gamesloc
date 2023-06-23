@@ -1,1 +1,6 @@
-<p>home-page works!</p>
+<app-carrousel [images]="images"></app-carrousel>
+<div class="flexCard">
+  <div *ngFor="let number of Count">
+    <app-card-item></app-card-item>
+  </div>
+</div>
