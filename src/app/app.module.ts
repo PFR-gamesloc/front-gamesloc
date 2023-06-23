@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {InputComponent} from "./shared/components/input/input.component";
 import {BtnComponent} from "./shared/components/btn/btn.component";
 import { ProductPageComponent } from './modules/users/pages/product-page/product-page.component';
+import {UserModule} from "./modules/users/user.module";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ProductPageComponent } from './modules/users/pages/product-page/product
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
