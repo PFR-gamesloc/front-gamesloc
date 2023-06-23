@@ -14,7 +14,6 @@
     a {
         text-decoration: none;
         color: white;
-        cursor: pointer;
 
     }
 
@@ -26,6 +25,7 @@
         .icon {
             border-spacing: 0;
             padding: 15px 25px;
+            cursor: pointer;
 
         }
 
@@ -58,9 +58,9 @@
             .dis-card {
                 display: none;
 
-            @include m.bk-tablette {
-                display: contents;
-            }
+                @include m.bk-tablette {
+                    display: block;
+                }
 
             }
         }
@@ -76,10 +76,31 @@
     border: 1.3px solid var(--blue-primary);
     border-radius: 10px;
 
+    @include m.bk-tablette {
+        visibility: hidden;
+    }
+
     input {
         padding: 5px 25px;
         width: 100%;
         border: none;
+    }
+
+}
+
+.bk-tab {
+    visibility: hidden;
+
+    @include m.bk-tablette {
+        visibility: visible;
+        background-color: white;
+        border: white;
+        width: 45%;
+
+        .search {
+            color: black;
+        }
+
     }
 
 }

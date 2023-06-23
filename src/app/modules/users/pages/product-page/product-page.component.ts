@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./product-page.component.scss']
 })
 export class ProductPageComponent {
-
+  title:string =  " The mysterious"
 }

@@ -14,8 +14,7 @@
     p {
       padding-top: 2rem;
       font-size: 1rem;
-      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      font-family: var(--font-raleway);
     }
     p:nth-last-child(1) {
       padding-bottom: 1rem;

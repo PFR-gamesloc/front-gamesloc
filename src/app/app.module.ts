@@ -10,6 +10,9 @@ import { ProductPageComponent } from './modules/users/pages/product-page/product
 import { CardItemComponent } from './shared/components/card-item/card-item.component';
 import { HomeTestComponent } from './shared/components/home-test/home-test.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import {UserModule} from "./modules/users/user.module";
+
+import { CarrouselComponent } from './shared/components/carrousel/carrousel.component';
 
 @NgModule({
   declarations: [
@@ -21,10 +24,12 @@ import { FooterComponent } from './shared/components/footer/footer.component';
     ProductPageComponent,
     CardItemComponent,
     HomeTestComponent,
+    CarrouselComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-// import { faCoffee } from '@fortawesome/'; 
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,6 +7,5 @@ import { Component } from '@angular/core';
 })
 export class NavBarComponent {
   textBtn: string = 'Connexion'; 
-  classBtn: string = 'btn btn-log'; 
-  // faCoffee = faCoffee; 
+  classBtn: string = 'btn btn-log btn-dekstop';  
 }
