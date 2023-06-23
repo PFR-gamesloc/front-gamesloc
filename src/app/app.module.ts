@@ -12,6 +12,7 @@ import { HomeTestComponent } from './shared/components/home-test/home-test.compo
 import { FooterComponent } from './shared/components/footer/footer.component';
 import {UserModule} from "./modules/users/user.module";
 
+import { CarrouselComponent } from './shared/components/carrousel/carrousel.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {UserModule} from "./modules/users/user.module";
     ProductPageComponent,
     CardItemComponent,
     HomeTestComponent,
+    CarrouselComponent,
   ],
   imports: [
     BrowserModule,
