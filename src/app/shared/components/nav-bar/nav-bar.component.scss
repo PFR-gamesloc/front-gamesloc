@@ -76,10 +76,6 @@
     border: 1.3px solid var(--blue-primary);
     border-radius: 10px;
 
-    @include m.bk-tablette {
-        visibility: hidden;
-    }
-
     input {
         padding: 5px 25px;
         width: 100%;
@@ -88,7 +84,7 @@
 
 }
 
-.bk-tab {
+.sh-nav {
     visibility: hidden;
 
     @include m.bk-tablette {
@@ -103,4 +99,11 @@
 
     }
 
+}
+
+.sh-mobile {
+
+    @include m.bk-tablette {
+        display: none;
+    }
 }
