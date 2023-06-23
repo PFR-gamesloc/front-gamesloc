@@ -1,0 +1,16 @@
+.nav-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--primary);
+    font-weight: bold;
+    color: white;
+    height: 80px;
+
+    // Class Input à récupérer pour mettre dans un component
+    .input input {
+        border: 1px solid white;
+        border-radius: 20px;
+        padding: 5px 25px;
+    }
+}
