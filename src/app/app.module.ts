@@ -4,9 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
 import { AppRoutingModule } from './app-routing.module';
-import {InputComponent} from "./shared/components/input/input.component";
-import {BtnComponent} from "./shared/components/btn/btn.component";
+import { InputComponent } from "./shared/components/input/input.component";
+import { BtnComponent } from "./shared/components/btn/btn.component";
 import { ProductPageComponent } from './modules/users/pages/product-page/product-page.component';
+import { CardItemComponent } from './shared/components/card-item/card-item.component';
+import { HomeTestComponent } from './shared/components/home-test/home-test.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { ProductPageComponent } from './modules/users/pages/product-page/product
     InputComponent,
     BtnComponent,
     ProductPageComponent,
+    CardItemComponent,
+    HomeTestComponent,
   ],
   imports: [
     BrowserModule,
