@@ -5,14 +5,14 @@
         <i class="fa-solid fa-chevron-left"></i>
       </a>
     </button>
-    <h1>{{title}}</h1>
+    <h1>{{ game?.game_name }}</h1>
   </div>
   <div >
     <div class="imgDiv">
-      <img src="../../../../../assets/exempleImg.webp" height="700" width="700" alt="exemple d'un jeu de société"/>
+      <img src="{{ game?.image }}" height="700" width="700" alt="exemple d'un jeu de société"/>
     </div>
     <div class="textDiv">
-      <p>8€/semaine</p>
+      <p>{{ game?.game_price }}</p>
       <p>Disponible a partir du 01/08/2023</p>
       <p>
         <i class="fa-regular fa-star"></i>
@@ -29,13 +29,13 @@
       <h2>Description</h2>
     </div>
     <div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus alias deleniti eaque eligendi iusto molestias mollitia ratione vel! Dolorum ducimus harum illum natus nobis provident rerum tempore velit vitae!</p>
+      <p>{{ game?.game_description }}</p>
     </div>
   </div>
   <div>
     <h2>Caractéristiques</h2>
-    <p>Age (à partir de) : 8 ans</p>
-    <p>Nombre de joueur(s): 2 à 4</p>
+    <p>Age (à partir de) : {{ game?.min_age }} ans</p>
+    <p>Nombre de joueur(s): {{ game?.min_player}} à {{ game?.max_player }}</p>
     <p>Éditeur: Hasbro</p>
   </div>
   <div>
