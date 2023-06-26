@@ -13,6 +13,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import {UserModule} from "./modules/users/user.module";
 import { CarrouselComponent } from './shared/components/carrousel/carrousel.component';
 import { HomePageComponent } from './modules/users/pages/home-page/home-page.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { HomePageComponent } from './modules/users/pages/home-page/home-page.com
   imports: [
     BrowserModule,
     AppRoutingModule,
-    UserModule
+    UserModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
