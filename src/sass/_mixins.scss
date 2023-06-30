@@ -27,3 +27,9 @@
         @content;
     }
 }
+
+@mixin bk-tablette-max-M {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
