@@ -1,0 +1,46 @@
+{
+  "games": [
+    { "game_id": 1,
+      "game_name": "Petit chevaux",
+      "game_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, auctor id justo a, luctus finibus erat. In sem tellus, eleifend non finibus ut, laoreet sit amet erat. Donec id ex non ante fermentum accumsan. Morbi hendrerit elit velit, vitae efficitur sapien tempor ac. Nunc non sem vel tortor sagittis facilisis. Praesent varius finibus varius. Donec sodales nec nunc et ullamcorper. Donec dictum ullamcorper nisl, at imperdiet mi elementum at. Pellentesque vel venenatis dolor, id gravida massa. Vivamus cursus velit orci, id mattis elit laoreet non. Donec mattis, sapien in malesuada aliquam, quam ipsum efficitur purus, mollis aliquam lacus massa non mi. Nulla euismod ultrices neque, a posuere libero laoreet quis.\n\nNullam sit amet nibh eu nibh egestas blandit. Maecenas ornare id nunc vitae venenatis. Proin vitae sapien orci. Donec fermentum vehicula interdum. Morbi aliquet id ante quis venenatis. In hac habitasse platea dictumst. Ut in facilisis elit. Etiam rhoncus ullamcorper accumsan.",
+      "stock": 3,
+      "game_price": 37.99,
+      "image": "assets/exempleImg.webp",
+      "min_player": 1,
+      "max_player": 4,
+      "min_age": 3},
+    {
+      "game_id": 2,
+      "game_name": "Monopoly",
+      "game_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, auctor id justo a, luctus finibus erat. In sem tellus, eleifend non finibus ut, laoreet sit amet erat. Donec id ex non ante fermentum accumsan. Morbi hendrerit elit velit, vitae efficitur sapien tempor ac. Nunc non sem vel tortor sagittis facilisis. Praesent varius finibus varius. Donec sodales nec nunc et ullamcorper. Donec dictum ullamcorper nisl, at imperdiet mi elementum at. Pellentesque vel venenatis dolor, id gravida massa. Vivamus cursus velit orci, id mattis elit laoreet non. Donec mattis, sapien in malesuada aliquam, quam ipsum efficitur purus, mollis aliquam lacus massa non mi. Nulla euismod ultrices neque, a posuere libero laoreet quis.\n\nNullam sit amet nibh eu nibh egestas blandit. Maecenas ornare id nunc vitae venenatis. Proin vitae sapien orci. Donec fermentum vehicula interdum. Morbi aliquet id ante quis venenatis. In hac habitasse platea dictumst. Ut in facilisis elit. Etiam rhoncus ullamcorper accumsan.",
+      "stock": 3,
+      "game_price": 37.99,
+      "image": "assets/exempleImg.webp",
+      "min_player": 1,
+      "max_player": 4,
+      "min_age": 3
+    },
+    {
+      "game_id": 3,
+      "game_name": "Cluedo",
+      "game_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, auctor id justo a, luctus finibus erat. In sem tellus, eleifend non finibus ut, laoreet sit amet erat. Donec id ex non ante fermentum accumsan. Morbi hendrerit elit velit, vitae efficitur sapien tempor ac. Nunc non sem vel tortor sagittis facilisis. Praesent varius finibus varius. Donec sodales nec nunc et ullamcorper. Donec dictum ullamcorper nisl, at imperdiet mi elementum at. Pellentesque vel venenatis dolor, id gravida massa. Vivamus cursus velit orci, id mattis elit laoreet non. Donec mattis, sapien in malesuada aliquam, quam ipsum efficitur purus, mollis aliquam lacus massa non mi. Nulla euismod ultrices neque, a posuere libero laoreet quis.\n\nNullam sit amet nibh eu nibh egestas blandit. Maecenas ornare id nunc vitae venenatis. Proin vitae sapien orci. Donec fermentum vehicula interdum. Morbi aliquet id ante quis venenatis. In hac habitasse platea dictumst. Ut in facilisis elit. Etiam rhoncus ullamcorper accumsan.",
+      "stock": 3,
+      "game_price": 37.99,
+      "image": "assets/exempleImg.webp",
+      "min_player": 1,
+      "max_player": 4,
+      "min_age": 3
+    },
+    {
+      "game_id": 4,
+      "game_name": "Risk",
+      "game_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, auctor id justo a, luctus finibus erat. In sem tellus, eleifend non finibus ut, laoreet sit amet erat. Donec id ex non ante fermentum accumsan. Morbi hendrerit elit velit, vitae efficitur sapien tempor ac. Nunc non sem vel tortor sagittis facilisis. Praesent varius finibus varius. Donec sodales nec nunc et ullamcorper. Donec dictum ullamcorper nisl, at imperdiet mi elementum at. Pellentesque vel venenatis dolor, id gravida massa. Vivamus cursus velit orci, id mattis elit laoreet non. Donec mattis, sapien in malesuada aliquam, quam ipsum efficitur purus, mollis aliquam lacus massa non mi. Nulla euismod ultrices neque, a posuere libero laoreet quis.\n\nNullam sit amet nibh eu nibh egestas blandit. Maecenas ornare id nunc vitae venenatis. Proin vitae sapien orci. Donec fermentum vehicula interdum. Morbi aliquet id ante quis venenatis. In hac habitasse platea dictumst. Ut in facilisis elit. Etiam rhoncus ullamcorper accumsan.",
+      "stock": 3,
+      "game_price": 37.99,
+      "image": "assets/exempleImg.webp",
+      "min_player": 1,
+      "max_player": 4,
+      "min_age": 3
+    }
+  ]
+}

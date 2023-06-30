@@ -8,8 +8,8 @@ import {Observable} from "rxjs";
 })
 export class GameService {
 
+  private url:string = "/assets/datas/game.json"
   constructor(private httpclient:HttpClient) { }
-  private url:string = "/assets/game.json"
   getGame():Observable<Game>{
     return this.httpclient.get<Game>(this.url);
   }
