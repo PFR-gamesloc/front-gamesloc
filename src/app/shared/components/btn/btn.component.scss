@@ -2,23 +2,42 @@
 
 // Classe qui permet de faire un style sur tous les boutons
 .btn {
-    border-radius: 20px;
     cursor: pointer;
 }
 
-// Style pécifique à la cette classe de bouton
+// Button Dekstop Navbar
 .btn-log {
     padding: 5px 25px;
+    border-radius: 20px;
     background-color: white;
     border: 1px solid white;
     color: black;
     font-weight: bold;
 }
 
+// Button Dekstop Navbar media queries 
 .btn-dekstop {
     visibility: hidden; 
 
     @include m.bk-tablette {
         visibility: visible;
     }
+}
+
+// Button Submit connexion
+.btn-submit {
+    margin-top: 30px; 
+    width: 100%;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 6px;
+    border: 3px solid var(--secondary);
+    height: 50px;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: var(--blue-secondary);
+    border: 3px solid var(--blue-secondary);
+    opacity: 0.90;
 }
