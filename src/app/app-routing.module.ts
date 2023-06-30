@@ -5,6 +5,7 @@ import { HomePageComponent } from './modules/users/pages/home-page/home-page.com
 import { ProductPageComponent } from './modules/users/pages/product-page/product-page.component';
 import { CartPageComponent } from './modules/users/pages/cart-page/cart-page.component';
 import { DashboardPageComponent } from './modules/users/pages/dashboard-page/dashboard-page.component';
+import {InscriptionPageComponent} from "./modules/users/pages/inscription-page/inscription-page.component";
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'test',
     component: HomeTestComponent
+  },
+  {
+    path: 'inscription',
+    component: InscriptionPageComponent
   }
 ];
 

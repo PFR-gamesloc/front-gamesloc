@@ -14,6 +14,7 @@ import {UserModule} from "./modules/users/user.module";
 import { CarrouselComponent } from './shared/components/carrousel/carrousel.component';
 import { HomePageComponent } from './modules/users/pages/home-page/home-page.component';
 import {HttpClientModule} from "@angular/common/http";
+import {InscriptionPageComponent} from "./modules/users/pages/inscription-page/inscription-page.component";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {HttpClientModule} from "@angular/common/http";
     CardItemComponent,
     HomeTestComponent,
     CarrouselComponent,
-    HomePageComponent
+    HomePageComponent,
+    InscriptionPageComponent
   ],
   imports: [
     BrowserModule,

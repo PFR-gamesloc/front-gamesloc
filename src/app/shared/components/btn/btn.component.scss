@@ -2,21 +2,30 @@
 
 // Classe qui permet de faire un style sur tous les boutons
 .btn {
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
+    padding: 5px 25px;
 }
 
 // Style pécifique à la cette classe de bouton
 .btn-log {
-    padding: 5px 25px;
     background-color: white;
     border: 1px solid white;
     color: black;
     font-weight: bold;
 }
+.btn-connexionPage{
+  background-color: #D4B483;
+  color: white;
+  border: 2px solid #E4DFDA;
+  width: 100%;
+  @include m.bk-desktop{
+    height: 50px;
+  }
+}
 
 .btn-dekstop {
-    visibility: hidden; 
+    visibility: hidden;
 
     @include m.bk-tablette {
         visibility: visible;

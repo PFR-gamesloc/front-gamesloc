@@ -1,7 +1,8 @@
+@use '../../../../sass/mixins' as m;
 .container {
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 100%;
 }
 
 label {
@@ -22,4 +23,12 @@ input {
   border: 0.5px solid #19647e;
   border-radius: 10px;
   padding: 5px 10px;
+}
+
+@include m.bk-desktop{
+  .container{
+    input{
+      padding: 15px 10px;
+    }
+  }
 }
