@@ -9,9 +9,13 @@
         </div>
 
         <div class="icons">
-            <a routerLink="/user" class="icon"><i class="fa-solid fa-user"></i></a>
-            <!-- <app-btn-component [classBtn]="classBtn" [textBtn]="textBtn"></app-btn-component> -->
-            <div routerLink="/card" class="icon column">
+            <div class="icon">
+                <a routerLink="/user" class="display-connexion"><i class="fa-solid fa-user"></i></a>
+            </div>
+            <div class="icon">
+                <app-btn-component [classBtn]="classBtn" [textBtn]="textBtn"></app-btn-component>
+            </div>
+            <div routerLink="/cart" class="icon column">
                 <a><i class="fa-solid fa-cart-shopping"></i></a>
                 <span class="dis-card">Panier</span>
             </div>
