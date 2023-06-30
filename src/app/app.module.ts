@@ -15,6 +15,7 @@ import { CarrouselComponent } from './shared/components/carrousel/carrousel.comp
 import { HomePageComponent } from './modules/users/pages/home-page/home-page.component';
 import {HttpClientModule} from "@angular/common/http";
 import {InscriptionPageComponent} from "./modules/users/pages/inscription-page/inscription-page.component";
+import { ConnexionPageComponent } from './modules/users/pages/connexion-page/connexion-page.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {InscriptionPageComponent} from "./modules/users/pages/inscription-page/i
     HomeTestComponent,
     CarrouselComponent,
     HomePageComponent,
-    InscriptionPageComponent
+    InscriptionPageComponent,
+    ConnexionPageComponent
   ],
   imports: [
     BrowserModule,

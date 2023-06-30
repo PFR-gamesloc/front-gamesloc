@@ -6,6 +6,7 @@ import { ProductPageComponent } from './modules/users/pages/product-page/product
 import { CartPageComponent } from './modules/users/pages/cart-page/cart-page.component';
 import { DashboardPageComponent } from './modules/users/pages/dashboard-page/dashboard-page.component';
 import {InscriptionPageComponent} from "./modules/users/pages/inscription-page/inscription-page.component";
+import { ConnexionPageComponent } from './modules/users/pages/connexion-page/connexion-page.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'inscription',
     component: InscriptionPageComponent
+  }, 
+  {
+    path: 'connexion', 
+    component: ConnexionPageComponent
   }
 ];
 
