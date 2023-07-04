@@ -11,7 +11,7 @@ export class InputComponent implements OnInit{
   @Input() textLabel: string | undefined;
   @Input() typeInput: string | undefined;
   @Input() placeholderInput: string | undefined;
-  
+
   form!: FormGroup;
   constructor(private rootFormGroup : FormGroupDirective) {
     this.forInput = '';
@@ -19,6 +19,10 @@ export class InputComponent implements OnInit{
 
   ngOnInit(){
     this.form = this.rootFormGroup.control;
+  }
+
+  get errors(){
+    return this.form.get(this.forInput)?.errors;
   }
 
   checkValidity(){
