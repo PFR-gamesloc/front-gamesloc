@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./connexion-page.component.scss']
 })
 export class ConnexionPageComponent {
-
+  
 }

@@ -16,6 +16,10 @@
 
     }
 
+    app-search-bar {
+        width: 45%;
+    }
+
     .icons {
         display: flex;
         justify-content: space-around;
@@ -36,19 +40,20 @@
             border-right: 1px solid white;
 
             @include m.bk-laptop {
-                display: none; 
+                display: none;
                 border-right: none;
             }
 
         }
 
         .icon:nth-child(2) {
-            display: none; 
+            display: none;
 
             @include m.bk-laptop {
                 display: inline;
             }
         }
+
         .icon:nth-child(3) {
             border-left: 1px solid white;
 
@@ -76,50 +81,5 @@
             }
         }
 
-    }
-}
-
-// Class Input à récupérer pour mettre dans un component
-.input {
-    display: flex;
-    align-items: center;
-    padding: 4px;
-    margin: 20px;
-    border: 1.3px solid var(--blue-primary);
-    border-radius: 10px;
-    overflow: hidden;
-
-    input {
-        padding: 10px;
-        width: 100%;
-        border: none;
-    }
-
-    .search {
-        padding: 5px;
-    }
-}
-
-.sh-nav {
-    visibility: hidden;
-
-    @include m.bk-tablette {
-        visibility: visible;
-        background-color: white;
-        border: white;
-        width: 45%;
-
-        .search {
-            color: black;
-        }
-
-    }
-
-}
-
-.sh-mobile {
-
-    @include m.bk-tablette {
-        display: none;
     }
 }

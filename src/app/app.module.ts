@@ -17,6 +17,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {InscriptionPageComponent} from "./modules/users/pages/inscription-page/inscription-page.component";
 import { ConnexionPageComponent } from './modules/users/pages/connexion-page/connexion-page.component';
 import { CommentaryComponent } from './shared/components/commentary/commentary.component';
+import { SearchBarComponent } from './shared/components/search-bar/search-bar.component';
+import { InputPasswordComponent } from './shared/components/input-password/input-password.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { CommentaryComponent } from './shared/components/commentary/commentary.c
     HomePageComponent,
     InscriptionPageComponent,
     ConnexionPageComponent,
-    CommentaryComponent
+    CommentaryComponent, 
+    SearchBarComponent, 
+    InputPasswordComponent
   ],
   imports: [
     BrowserModule,
