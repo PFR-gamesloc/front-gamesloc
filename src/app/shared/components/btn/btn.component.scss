@@ -53,3 +53,14 @@
     border: 3px solid var(--blue-secondary);
     opacity: 0.90;
 }
+.btn-add {
+    background-color: var(--primary) ;
+    height: 30px;
+    width: 150px;
+
+    @include m.bk-tablette {
+        height: 50px;
+        width: 160px;
+        font-size: 1.1rem;    
+    }
+}

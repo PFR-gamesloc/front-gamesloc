@@ -1,17 +1,17 @@
-<div class="container">
-  <div class="titleDiv">
+<div class="container-product">
+  <div class="title-product">
     <button>
       <a>
-        <i class="fa-solid fa-chevron-left"></i>
+        <i class="fa-solid fa-chevron-left center"></i>
       </a>
     </button>
     <h1>{{ game?.game_name }}</h1>
   </div>
-  <div >
-    <div class="imgDiv">
-      <img src="{{ game?.image }}" height="700" width="700" alt="exemple d'un jeu de société"/>
+  <div class="img-product">
+    <div class="img-size">
+      <img src="{{ game?.image }}" alt="exemple d'un jeu de société" />
     </div>
-    <div class="textDiv">
+    <div class="text-product">
       <p>{{ game?.game_price }}</p>
       <p>Disponible a partir du 01/08/2023</p>
       <p>
@@ -20,25 +20,24 @@
         <i class="fa-regular fa-star"></i>
         <i class="fa-regular fa-star"></i>
         <i class="fa-regular fa-star"></i>
-        <span>(26 avis)</span>
+        <span class="notice">(26 avis)</span>
       </p>
+        <app-btn-component classBtn="btn btn-add" textBtn="Ajouter au panier"></app-btn-component>
     </div>
   </div>
-  <div>
-    <div>
-      <h2>Description</h2>
-    </div>
-    <div>
-      <p>{{ game?.game_description }}</p>
-    </div>
-  </div>
-  <div>
-    <h2>Caractéristiques</h2>
-    <p>Age (à partir de) : {{ game?.min_age }} ans</p>
-    <p>Nombre de joueur(s): {{ game?.min_player}} à {{ game?.max_player }}</p>
-    <p>Éditeur: Hasbro</p>
-  </div>
-  <div>
-    <app-btn-component textBtn="Ajouter au panier"></app-btn-component>
-  </div>
+  <h2>Description</h2>
+  <p [ngClass]="input ? 'clamp' : 'text'">
+    {{ game?.game_description }}
+   
+  </p>
+ <span class="more">
+      <a (click)="more()">Voir plus...</a>
+    </span>
+  <h2>Caractéristiques</h2>
+  <p>Age (à partir de) : {{ game?.min_age }} ans</p>
+  <p>Nombre de joueur(s): {{ game?.min_player }} à {{ game?.max_player }}</p>
+  <p>Éditeur: Hasbro</p>
+
+  <h2>Commentaire (2)</h2>
+  <p>Commponent commentaire</p>
 </div>
