@@ -1,5 +1,9 @@
 @use "../../../../../sass/mixins" as m;
 
+p{
+  font-family: var(--font-rosario);
+}
+
 .container-product {
   display: flex;
   flex-direction: column;
@@ -11,6 +15,7 @@
 
     @include m.bk-laptop {
       padding: 0rem 1rem;
+      font-size: 2rem;
     }
 
     h1 {
@@ -50,21 +55,21 @@
       }
 
       @include m.bk-desktop {
-        width: 100%;
+        width: 90%;
       }
     }
 
     img {
-      width: 300px;
-      width: 300px;
+      width: 80%;
+      
 
       @include m.bk-laptop {
-        width: 400px;
-        height: 400px;
+        width: 100%;
       }
 
       @include m.bk-desktop {
-        width: 700px;
+        width: 80%;
+        height: 90%;
       }
     }
 
@@ -74,18 +79,21 @@
       @include m.bk-laptop {
         display: flex;
         flex-direction: column;
-        text-align: center;
-        justify-content: center;
+        text-align: center;  
         width: 50%;
-        gap: 2rem;
+        justify-content: space-evenly
       }
 
       p {
         margin: 1rem;
         text-align: center;
+        
+        @include m.bk-tablette {
+          font-size: 1.5rem;
+        }
 
-        @include m.bk-laptop {
-          font-size: 1.3rem;
+        @include m.bk-desktop {
+          font-size: 2rem;
         }
       }
       .notice {
@@ -97,9 +105,10 @@
     margin: 0rem 2rem;
     color: #19647e;
     border-bottom: 1px solid #19647e;
+    font-family: var(--font-raleway);
   }
 
-  p {
+  p,.clamp {
     margin: 1rem 2rem;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -111,6 +120,10 @@
       display: block;
       text-align: center;
     }
+  }
+  .text{
+    margin: 1rem 2rem;
+    display: block; 
   }
 
   .more {
