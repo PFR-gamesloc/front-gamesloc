@@ -10,4 +10,5 @@ export class InputComponent {
   @Input() textLabel: string | undefined;
   @Input() typeInput: string | undefined;
   @Input() placeholderInput: string | undefined;
+  @Input() formControlName: string | undefined;
 }
