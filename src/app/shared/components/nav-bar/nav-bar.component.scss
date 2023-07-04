@@ -17,6 +17,10 @@
 
     }
 
+    app-search-bar {
+        width: 45%;
+    }
+
     .icons {
         display: flex;
         justify-content: space-around;
@@ -78,61 +82,5 @@
             }
         }
 
-    }
-}
-
-// Class Input à récupérer pour mettre dans un component
-.input {
-    display: flex;
-    align-items: center;
-    position: relative;
-    border-radius: 10px;
-    padding: 10px;
-    
-    @include m.bk-tablette {
-        padding: 0;
-    }
-
-    input {
-        border: 1.3px solid var(--blue-primary);
-        border-radius: 10px;
-        padding: 13px;
-        width: 100%;
-        position: relative;
-    }
-
-    i {
-        padding: 5px;
-        position: absolute;
-        right: 15px;
-        color: black;
-
-        @include m.bk-tablette {
-            right: 10px;
-        }
-    }
-}
-
-.sh-nav {
-    visibility: hidden;
-
-    @include m.bk-tablette {
-        visibility: visible;
-        background-color: white;
-        border: white;
-        width: 45%;
-
-        .search {
-            color: black;
-        }
-
-    }
-
-}
-
-.sh-mobile {
-
-    @include m.bk-tablette {
-        display: none;
     }
 }

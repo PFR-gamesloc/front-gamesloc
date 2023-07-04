@@ -3,10 +3,7 @@
         <div class="logo">
             <a routerLink="/">GamesLOC</a>
         </div>
-        <div class="input sh-nav">
-            <input type="text" placeholder="jeux">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
+        <app-search-bar classSchBar="input sh-nav" placeholderSchBar="jeux"></app-search-bar>
         <div class="icons">
             <div class="icon">
                 <a routerLink="/user" class="display-connexion"><i class="fa-solid fa-user"></i></a>
@@ -23,7 +20,4 @@
     </div>
 </header>
 
-<div class="input sh-mobile">
-    <input type="text" placeholder="jeux">
-    <i class="fa-solid fa-magnifying-glass"></i>
-</div>
+<app-search-bar classSchBar="input sh-mobile" placeholderSchBar="jeux"></app-search-bar>
