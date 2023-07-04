@@ -37,19 +37,20 @@
             border-right: 1px solid white;
 
             @include m.bk-laptop {
-                display: none; 
+                display: none;
                 border-right: none;
             }
 
         }
 
         .icon:nth-child(2) {
-            display: none; 
+            display: none;
 
             @include m.bk-laptop {
                 display: inline;
             }
         }
+
         .icon:nth-child(3) {
             border-left: 1px solid white;
 
@@ -84,20 +85,31 @@
 .input {
     display: flex;
     align-items: center;
-    padding: 4px;
-    margin: 20px;
-    border: 1.3px solid var(--blue-primary);
+    position: relative;
     border-radius: 10px;
-    overflow: hidden;
-
-    input {
-        padding: 10px;
-        width: 100%;
-        border: none;
+    padding: 10px;
+    
+    @include m.bk-tablette {
+        padding: 0;
     }
 
-    .search {
+    input {
+        border: 1.3px solid var(--blue-primary);
+        border-radius: 10px;
+        padding: 13px;
+        width: 100%;
+        position: relative;
+    }
+
+    i {
         padding: 5px;
+        position: absolute;
+        right: 15px;
+        color: black;
+
+        @include m.bk-tablette {
+            right: 10px;
+        }
     }
 }
 

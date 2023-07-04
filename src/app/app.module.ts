@@ -16,6 +16,8 @@ import { HomePageComponent } from './modules/users/pages/home-page/home-page.com
 import {HttpClientModule} from "@angular/common/http";
 import {InscriptionPageComponent} from "./modules/users/pages/inscription-page/inscription-page.component";
 import { ConnexionPageComponent } from './modules/users/pages/connexion-page/connexion-page.component';
+import { InputPasswordComponent } from './shared/components/input-password/input-password.component';
+import { SearchBarComponent } from './shared/components/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ConnexionPageComponent } from './modules/users/pages/connexion-page/con
     CarrouselComponent,
     HomePageComponent,
     InscriptionPageComponent,
-    ConnexionPageComponent
+    ConnexionPageComponent,
+    InputPasswordComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
