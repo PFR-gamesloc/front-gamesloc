@@ -47,7 +47,9 @@ p{
       display: flex;
     }
     .img-size {
-      width: 100%;
+      width: 50%;
+      display: block;
+      margin: auto;
 
       @include m.bk-laptop {
         width: 50%;
@@ -87,12 +89,8 @@ p{
       p {
         margin: 1rem;
         text-align: center;
-        
-        @include m.bk-tablette {
-          font-size: 1.5rem;
-        }
 
-        @include m.bk-desktop {
+        @include m.bk-laptop {
           font-size: 2rem;
         }
       }

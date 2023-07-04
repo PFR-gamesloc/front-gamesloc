@@ -1,0 +1,37 @@
+.commentary {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  padding: 1rem 0rem 1rem 1rem;
+  gap: 10px;
+  box-shadow: 0px 16px 50px 5px rgba(0, 0, 0, 0.1);
+
+  .nameCommentary {
+    color: var(--blue-primary);
+    font-family: var(--font-rosario);
+    font-size: 1.2rem;
+    padding-bottom: 5px;
+
+  }
+
+  .ratingCommentary {
+    display: flex;
+    flex-direction: row;
+
+    .rating {
+      padding-right: 10px;
+    }
+
+    .notice{
+        padding-left: 5px;
+    }
+
+    .ratingDate {
+      color: red;
+    }
+  }
+
+  .contentCommentary {
+    font-family: var(--font-raleway);
+  }
+}
