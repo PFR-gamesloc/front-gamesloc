@@ -3,7 +3,7 @@
         <div class="logo">
             <a routerLink="/">GamesLOC</a>
         </div>
-        <app-search-bar classSchBar="input sh-nav" placeholderSchBar="jeux"></app-search-bar>
+        <app-search-bar classSchBar="input sh-nav" placeholderSchBar="jeux" *ngIf="showSearchBar"></app-search-bar>
         <div class="icons">
             <div class="icon">
                 <a routerLink="/user" class="display-connexion"><i class="fa-solid fa-user"></i></a>
@@ -20,4 +20,4 @@
     </div>
 </header>
 
-<app-search-bar classSchBar="input sh-mobile" placeholderSchBar="jeux"></app-search-bar>
+<app-search-bar classSchBar="input sh-mobile" placeholderSchBar="jeux" *ngIf="showSearchBar"></app-search-bar>
