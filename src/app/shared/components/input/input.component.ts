@@ -11,6 +11,7 @@ export class InputComponent implements OnInit{
   @Input() textLabel: string | undefined;
   @Input() typeInput: string | undefined;
   @Input() placeholderInput: string | undefined;
+  @Input() regex: RegExp | undefined;
 
   form!: FormGroup;
   constructor(private rootFormGroup : FormGroupDirective) {

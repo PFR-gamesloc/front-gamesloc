@@ -20,7 +20,9 @@ export class ErrorMessageComponent implements OnInit{
           if(this.errors['minlength']){
             this.errorMessage = " Champs trop court"
           }
+          if(this.errors['pattern']){
+            this.errorMessage = "Format incorrect"
+          }
         }
-
     }
 } 

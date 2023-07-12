@@ -17,16 +17,16 @@
       <div class="formDivH1">
         <h1>Nous rejoindre</h1>
       </div>
-      <form>
+      <form (ngSubmit)="submit()" [formGroup]="form">
         <div class="nameSurname">
           <app-input forInput="lastname" textLabel="Nom" typeInput="text" placeholderInput="Dupont" id="lastname"></app-input>
           <app-input forInput="firstname" textLabel="Prénom" typeInput="text" placeholderInput="Jean"></app-input>
         </div>
         <app-input forInput="password" textLabel="Mot de passe" typeInput="password" placeholderInput="*****"></app-input>
         <app-input forInput="email" textLabel="E-mail" typeInput="email" placeholderInput="jean-dupont@gmail.com"></app-input>
-        <app-input forInput="phoneNumber" textLabel="Téléphone" typeInput="phone" placeholderInput="+33606060606"></app-input>
-        <app-input forInput="address" textLabel="Addresse" typeInput="select" placeholderInput="1 rue Dupont"></app-input>
-        <app-btn-component classBtn="btn-connexionPage btn" textBtn="Inscription"></app-btn-component>
+        <app-input forInput="phoneNumber" textLabel="Téléphone" typeInput="text" placeholderInput="+33606060606"></app-input>
+        <app-input forInput="address" textLabel="Adresse" typeInput="select" placeholderInput="1 rue Dupont"></app-input>
+        <app-btn-component classBtn="btn-connexionPage btn" textBtn="Inscription" disa></app-btn-component>
       </form>
     </div>
   </div>

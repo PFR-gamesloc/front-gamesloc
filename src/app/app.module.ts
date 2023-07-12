@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
@@ -16,6 +17,7 @@ import { HomePageComponent } from './modules/users/pages/home-page/home-page.com
 import {HttpClientModule} from "@angular/common/http";
 import {InscriptionPageComponent} from "./modules/users/pages/inscription-page/inscription-page.component";
 import { ConnexionPageComponent } from './modules/users/pages/connexion-page/connexion-page.component';
+import { ErrorMessageComponent } from './shared/components/error-message/error-message.component';
 
 @NgModule({
   declarations: [
@@ -30,13 +32,15 @@ import { ConnexionPageComponent } from './modules/users/pages/connexion-page/con
     CarrouselComponent,
     HomePageComponent,
     InscriptionPageComponent,
-    ConnexionPageComponent
+    ConnexionPageComponent,
+    ErrorMessageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     UserModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
