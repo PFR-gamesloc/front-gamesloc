@@ -21,7 +21,7 @@
       <div class="formDivH1">
         <h1>Nous rejoindre</h1>
       </div>
-      <form>
+      <form (ngSubmit)="submit()" [formGroup]="form">
         <div class="nameSurname">
           <app-input forInput="lastname" textLabel="Nom" typeInput="text" placeholderInput="Dupont"
             id="lastname"></app-input>

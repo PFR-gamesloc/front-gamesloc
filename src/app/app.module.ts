@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
@@ -19,6 +20,7 @@ import { ConnexionPageComponent } from './modules/users/pages/connexion-page/con
 import { CommentaryComponent } from './shared/components/commentary/commentary.component';
 import { SearchBarComponent } from './shared/components/search-bar/search-bar.component';
 import { InputPasswordComponent } from './shared/components/input-password/input-password.component';
+import { ErrorMessageComponent } from './shared/components/error-message/error-message.component';
 
 @NgModule({
   declarations: [
@@ -36,13 +38,15 @@ import { InputPasswordComponent } from './shared/components/input-password/input
     ConnexionPageComponent,
     CommentaryComponent, 
     SearchBarComponent, 
-    InputPasswordComponent
+    InputPasswordComponent,
+    ErrorMessageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     UserModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
