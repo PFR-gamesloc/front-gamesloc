@@ -21,6 +21,7 @@ import { CommentaryComponent } from './shared/components/commentary/commentary.c
 import { SearchBarComponent } from './shared/components/search-bar/search-bar.component';
 import { InputPasswordComponent } from './shared/components/input-password/input-password.component';
 import { ErrorMessageComponent } from './shared/components/error-message/error-message.component';
+import { UserPageComponent } from './modules/users/pages/user-page/user-page.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ErrorMessageComponent } from './shared/components/error-message/error-m
     CommentaryComponent, 
     SearchBarComponent, 
     InputPasswordComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    UserPageComponent
   ],
   imports: [
     BrowserModule,
