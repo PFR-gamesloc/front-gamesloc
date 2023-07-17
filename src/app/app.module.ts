@@ -19,6 +19,7 @@ import { ConnexionPageComponent } from './modules/users/pages/connexion-page/con
 import { CommentaryComponent } from './shared/components/commentary/commentary.component';
 import { SearchBarComponent } from './shared/components/search-bar/search-bar.component';
 import { InputPasswordComponent } from './shared/components/input-password/input-password.component';
+import { UserPageComponent } from './modules/users/pages/user-page/user-page.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { InputPasswordComponent } from './shared/components/input-password/input
     ConnexionPageComponent,
     CommentaryComponent, 
     SearchBarComponent, 
-    InputPasswordComponent
+    InputPasswordComponent, UserPageComponent
   ],
   imports: [
     BrowserModule,
