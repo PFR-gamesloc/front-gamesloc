@@ -5,6 +5,7 @@ import {ConnexionPageComponent} from "./pages/connexion-page/connexion-page.comp
 import {InscriptionPageComponent} from "./pages/inscription-page/inscription-page.component";
 import {SharedModule} from "../../shared/shared.module";
 import {FormGroupDirective, ReactiveFormsModule} from "@angular/forms";
+import {InputPasswordComponent} from "../../shared/components/input-password/input-password.component";
 
 
 

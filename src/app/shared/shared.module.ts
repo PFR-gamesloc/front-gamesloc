@@ -6,13 +6,15 @@ import {BtnComponent} from "./components/btn/btn.component";
 import {FooterComponent} from "./components/footer/footer.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {CardItemComponent} from "./components/card-item/card-item.component";
-import {CarrouselComponent} from "../modules/home/components/carrousel/carrousel.component";
 import {HomeTestComponent} from "./components/home-test/home-test.component";
 import {SelectComponent} from "./components/select/select.component";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatInputModule} from "@angular/material/input";
 import {RouterLink} from "@angular/router";
+import {InputPasswordComponent} from "./components/input-password/input-password.component";
+import {CommentaryComponent} from "./components/commentary/commentary.component";
+import {ErrorMessageComponent} from "./components/error-message/error-message.component";
+import {SearchBarComponent} from "./components/search-bar/search-bar.component";
 
 
 
@@ -24,7 +26,11 @@ import {RouterLink} from "@angular/router";
     FooterComponent,
     CardItemComponent,
     HomeTestComponent,
-    SelectComponent
+    SelectComponent,
+    InputPasswordComponent,
+    CommentaryComponent,
+    ErrorMessageComponent,
+    SearchBarComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +47,9 @@ import {RouterLink} from "@angular/router";
     FooterComponent,
     CardItemComponent,
     HomeTestComponent,
-    SelectComponent
+    SelectComponent,
+    InputPasswordComponent,
+    CommentaryComponent
   ]
 })
 export class SharedModule { }

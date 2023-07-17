@@ -21,23 +21,19 @@
       <div class="formDivH1">
         <h1>Nous rejoindre</h1>
       </div>
-<<<<<<< HEAD:src/app/modules/users/pages/inscription-page/inscription-page.component.html
-      <form (ngSubmit)="submit()" [formGroup]="form">
-=======
-      <form [formGroup]="formGroup">
->>>>>>> feat_select_autocomplete:src/app/modules/auth/pages/inscription-page/inscription-page.component.html
+      <form [formGroup]="form" (ngSubmit)="submit()">
         <div class="nameSurname">
           <app-input forInput="lastname" textLabel="Nom" typeInput="text" placeholderInput="Dupont"
-            id="lastname"></app-input>
+                     id="lastname"></app-input>
           <app-input forInput="firstname" textLabel="Prénom" typeInput="text" placeholderInput="Jean"></app-input>
         </div>
         <app-input forInput="email" textLabel="E-mail" typeInput="email"
-          placeholderInput="jean-dupont@gmail.com"></app-input>
+                   placeholderInput="jean-dupont@gmail.com"></app-input>
         <app-input-password></app-input-password>
         <app-input forInput="phoneNumber" textLabel="Téléphone" typeInput="phone"
-          placeholderInput="+33606060606"></app-input>
+                   placeholderInput="+33606060606"></app-input>
         <app-input forInput="address" textLabel="Addresse" typeInput="select"
-          placeholderInput="1 rue Dupont"></app-input>
+                   placeholderInput="1 rue Dupont"></app-input>
         <div class="btn-subscribe">
           <app-btn-component classBtn="btn-connexionPage btn" textBtn="Inscription"></app-btn-component>
         </div>

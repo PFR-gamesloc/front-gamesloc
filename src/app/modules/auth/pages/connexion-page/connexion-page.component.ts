@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-connexion-page',
@@ -7,12 +7,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./connexion-page.component.scss']
 })
 export class ConnexionPageComponent {
-<<<<<<< HEAD:src/app/modules/users/pages/connexion-page/connexion-page.component.ts
-  
-=======
+
   public formGroup:FormGroup = new FormGroup({
     mail: new FormControl(''),
     password: new FormControl('')
   });
->>>>>>> feat_select_autocomplete:src/app/modules/auth/pages/connexion-page/connexion-page.component.ts
 }
