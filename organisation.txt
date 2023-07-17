@@ -1,0 +1,60 @@
+https://github.com/rajaramtt/angular6-realworld-highly-scalable-application/tree/master/angular/src/app/shared/components
+modules
+    admin
+        pages
+            CRUD sur toute les tables
+    user
+        pages
+            dashboard
+            signup
+
+    auth
+        pages
+            forbidden
+            forgot-password
+            login
+            not-found
+            reset-password
+
+    Cart
+      pages
+          cartPreview
+          cartPayment
+      cart.module
+      cart-routing.module
+
+    Product
+       components
+          allProducts
+          oneProduct
+          commentaries
+          notes
+       product.module
+Core
+    Authentication
+        authentication.service.ts
+    Guards
+         admin-guard
+         user-guard
+         no-auth-guard
+    http
+        tout les services de requêtes à l'api
+    layout
+
+    core.module
+Shared
+    models
+    components
+        footer
+        header
+        search bar
+
+
+
+class coreModule{
+  constructor(private core:CoreModule){
+    if(core)
+      throw new Error(coreModule has already been loaded. Import this module in the AppModule only.`);
+  }
+
+}

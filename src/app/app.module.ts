@@ -1,54 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
-
 import { AppComponent } from './app.component';
-import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
-import { AppRoutingModule } from './app-routing.module';
-import { InputComponent } from "./shared/components/input/input.component";
-import { BtnComponent } from "./shared/components/btn/btn.component";
-import { ProductPageComponent } from './modules/users/pages/product-page/product-page.component';
-import { CardItemComponent } from './shared/components/card-item/card-item.component';
-import { HomeTestComponent } from './shared/components/home-test/home-test.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
-import {UserModule} from "./modules/users/user.module";
-import { CarrouselComponent } from './shared/components/carrousel/carrousel.component';
-import { HomePageComponent } from './modules/users/pages/home-page/home-page.component';
-import {HttpClientModule} from "@angular/common/http";
-import {InscriptionPageComponent} from "./modules/users/pages/inscription-page/inscription-page.component";
-import { ConnexionPageComponent } from './modules/users/pages/connexion-page/connexion-page.component';
-import { CommentaryComponent } from './shared/components/commentary/commentary.component';
-import { SearchBarComponent } from './shared/components/search-bar/search-bar.component';
-import { InputPasswordComponent } from './shared/components/input-password/input-password.component';
-import { ErrorMessageComponent } from './shared/components/error-message/error-message.component';
-import { UserPageComponent } from './modules/users/pages/user-page/user-page.component';
+import {CoreModule} from "./core/core.module";
+import {SharedModule} from "./shared/shared.module";
+import {CommonModule} from "@angular/common";
+import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavBarComponent,
-    InputComponent,
-    BtnComponent,
-    FooterComponent,
-    ProductPageComponent,
-    CardItemComponent,
-    HomeTestComponent,
-    CarrouselComponent,
-    HomePageComponent,
-    InscriptionPageComponent,
-    ConnexionPageComponent,
-    CommentaryComponent, 
-    SearchBarComponent, 
-    InputPasswordComponent,
-    ErrorMessageComponent,
-    UserPageComponent
+    AppComponent
   ],
   imports: [
-    BrowserModule,
+    CoreModule,
+    SharedModule,
     AppRoutingModule,
-    UserModule,
-    HttpClientModule,
-    ReactiveFormsModule
+    BrowserModule,
+    CommonModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,15 +1,15 @@
 <header>
     <div class="nav-bar">
         <div class="logo">
-            <a routerLink="/">GamesLOC</a>
+            <a routerLink="">GamesLOC</a>
         </div>
         <app-search-bar classSchBar="input sh-nav" placeholderSchBar="jeux" *ngIf="showSearchBar"></app-search-bar>
         <div class="icons">
             <div class="icon">
-                <a routerLink="/user" class="display-connexion"><i class="fa-solid fa-user"></i></a>
+                <a routerLink="/auth/login" class="display-connexion"><i class="fa-solid fa-user"></i></a>
             </div>
             <div class="icon">
-                <app-btn-component [classBtn]="classBtn" [textBtn]="textBtn"></app-btn-component>
+                <app-btn-component [classBtn]="classBtn" [textBtn]="textBtn" routerLink="/auth/login"></app-btn-component>
             </div>
             <div routerLink="/cart" class="icon column">
                 <a><i class="fa-solid fa-cart-shopping"></i></a>
@@ -20,4 +20,11 @@
     </div>
 </header>
 
+<<<<<<< HEAD
 <app-search-bar classSchBar="input sh-mobile" placeholderSchBar="jeux" *ngIf="showSearchBar"></app-search-bar>
+=======
+<div class="input sh-mobile">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" placeholder="jeux">
+</div>
+>>>>>>> feat_select_autocomplete
