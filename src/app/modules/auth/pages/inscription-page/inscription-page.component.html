@@ -1,0 +1,33 @@
+<div class="hugeContainer">
+  <div class="container">
+    <div class="welcomeTexte">
+      <div class="welcomeTexteH1">
+        <h1>Bienvenue sur GamesLoc</h1>
+      </div>
+      <div class="welcomeTexteP">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus at, culpa cumque earum excepturi, fuga illo
+          ipsum labore modi odit, qui repudiandae sunt totam. Accusamus deleniti ipsa quia similique Lorem ipsum dolor sit
+          amet, consectetur adipisicing elit. Assumenda commodi dolor facere, fuga illo itaque minima nemo non perferendis,
+          quibusdam repellat, sit vero voluptas! Ab consequatur dolores ex molestia Lorem ipsum dolor sit amet, consectetur
+          adipisicing elit. Accusantium beatae commodi exercitationem fugiat in incidunt iure laudantium maiores modi
+          molestias nihil, officiis provident, quidem quod ratione recusandae totam veritatis voluptatibus?</p>
+      </div>
+    </div>
+    <div class="formDiv">
+      <div class="formDivH1">
+        <h1>Nous rejoindre</h1>
+      </div>
+      <form [formGroup]="formGroup">
+        <div class="nameSurname">
+          <app-input forInput="lastname" textLabel="Nom" typeInput="text" placeholderInput="Dupont" id="lastname"></app-input>
+          <app-input forInput="firstname" textLabel="Prénom" typeInput="text" placeholderInput="Jean"></app-input>
+        </div>
+        <app-input forInput="password" textLabel="Mot de passe" typeInput="password" placeholderInput="*****"></app-input>
+        <app-input forInput="email" textLabel="E-mail" typeInput="email" placeholderInput="jean-dupont@gmail.com"></app-input>
+        <app-input forInput="phoneNumber" textLabel="Téléphone" typeInput="phone" placeholderInput="+33606060606"></app-input>
+        <app-input forInput="address" textLabel="Addresse" typeInput="select" placeholderInput="1 rue Dupont"></app-input>
+        <app-btn-component classBtn="btn-connexionPage btn" textBtn="Inscription"></app-btn-component>
+      </form>
+    </div>
+  </div>
+</div>

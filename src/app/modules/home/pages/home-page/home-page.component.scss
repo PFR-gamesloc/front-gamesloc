@@ -1,0 +1,16 @@
+@use "../../../../../sass/mixins" as m;
+
+.flexCard {
+  justify-content: space-around;
+  flex-wrap: wrap;
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  padding-top: 1rem;
+
+  @include m.bk-tablette-max-M {  
+    height: 500px;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+}

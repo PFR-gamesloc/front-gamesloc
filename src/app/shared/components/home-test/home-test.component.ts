@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-home-test',
@@ -6,4 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-test.component.scss']
 })
 export class HomeTestComponent {
+  formgroup = new FormGroup({
+    lastname :new FormControl('', [Validators.minLength(10), Validators.required,Validators.maxLength(25)])
+  });
 }

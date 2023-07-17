@@ -1,14 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {UserRootingModule} from "./user-rooting.module";
+import {UserRoutingModule} from "./user-routing.module";
+import {SharedModule} from "../../shared/shared.module";
+import {DashboardPageComponent} from "./pages/dashboard-page/dashboard-page.component";
+import {HomePageComponent} from "../home/pages/home-page/home-page.component";
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    DashboardPageComponent,
+  ],
   imports: [
     CommonModule,
-    UserRootingModule
+    UserRoutingModule,
+    SharedModule
   ]
 })
 export class UserModule { }

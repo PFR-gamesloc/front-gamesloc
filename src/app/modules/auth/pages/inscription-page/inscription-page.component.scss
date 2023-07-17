@@ -1,0 +1,105 @@
+@use '../../../../../sass/mixins' as m;
+form{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+.formDiv {
+  text-align: center;
+}
+app-btn-component{
+  width: 80%;
+  text-align: center;
+  margin: 1em;
+}
+app-input{
+  width: 80%;
+}
+.welcomeTexte{
+  display: none;
+  background-color: var(--primary);
+}
+.nameSurname {
+  border: 2px black;
+  width: 80%;
+}
+@include m.bk-desktop{
+  .hugeContainer {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+  }
+  .container {
+    overflow: hidden;
+    display: flex;
+    width: 75vw;
+    height: 75%;
+    border-radius: 7px;
+    margin: auto;
+    align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  }
+  .formDiv{
+    display: flex;
+    flex-direction:column ;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+  }
+  .formDivH1{
+    display: flex;
+    align-items: center;
+    height: 25%;
+    width: 100%;
+    justify-content: center;
+    font-size: 1em;
+    padding: 1em;
+  }
+  .welcomeTexte{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+  }
+  .welcomeTexteH1{
+    display: flex;
+    align-items: center;
+    height: 25%;
+    width: 100%;
+    justify-content: center;
+    font-size: 1em;
+    padding: 1em;
+  }
+  .welcomeTexteP{
+    display: flex;
+    align-items: flex-start;
+    height: 75%;
+    width: 100%;
+    justify-content: space-around;
+    padding: 1em;
+    text-align: justify ;
+    font-size: 1.2em;
+  }
+  .nameSurname{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    gap: 5px;
+  }
+
+}
+
+@include m.bk-desktopXL {
+  .welcomeTexteP{
+    font-size: 1.3em;
+  }
+  .welcomeTexteH1,.formDivH1{
+    font-size: 1.5em;
+  }
+  .nameSurname{
+    width: 80%;
+  }
+}
+

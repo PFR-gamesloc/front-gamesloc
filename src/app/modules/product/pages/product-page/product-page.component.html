@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="titleDiv">
+    <button>
+      <a>
+        <i class="fa-solid fa-chevron-left"></i>
+      </a>
+    </button>
+    <h1>{{ game?.game_name }}</h1>
+  </div>
+  <div >
+    <div class="imgDiv">
+      <img src="{{ game?.image }}" height="700" width="700" alt="exemple d'un jeu de société"/>
+    </div>
+    <div class="textDiv">
+      <p>{{ game?.game_price }}</p>
+      <p>Disponible a partir du 01/08/2023</p>
+      <p>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <span>(26 avis)</span>
+      </p>
+    </div>
+  </div>
+  <div>
+    <div>
+      <h2>Description</h2>
+    </div>
+    <div>
+      <p>{{ game?.game_description }}</p>
+    </div>
+  </div>
+  <div>
+    <h2>Caractéristiques</h2>
+    <p>Age (à partir de) : {{ game?.min_age }} ans</p>
+    <p>Nombre de joueur(s): {{ game?.min_player}} à {{ game?.max_player }}</p>
+    <p>Éditeur: Hasbro</p>
+  </div>
+  <div>
+    <app-btn-component textBtn="Ajouter au panier"></app-btn-component>
+  </div>
+</div>

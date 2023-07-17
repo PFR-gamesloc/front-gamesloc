@@ -1,6 +1,6 @@
 export interface City {
     city_id: number,
-    postal_code: string,
+    code_postal: string,
     country_name: string,
     city_name: string
 }
