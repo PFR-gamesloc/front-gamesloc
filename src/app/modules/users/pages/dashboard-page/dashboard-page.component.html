@@ -1,1 +1,42 @@
-<p>dashboard-page works!</p>
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Mes informations
+            </mat-panel-title>
+            <mat-panel-description>
+                
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-list>
+            <mat-list-item>
+                Nom :
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                {{ user?.last_name }}
+            </mat-list-item>
+            <mat-list-item>
+                Prenom :
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                {{ user?.first_name }}
+            </mat-list-item>
+            <mat-list-item>
+                E-mail :
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                {{ user?.email }}
+            </mat-list-item>
+            <mat-list-item>
+                Telephone :
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                {{ user?.phone_number }}
+            </mat-list-item>
+        </mat-list>
+    </mat-expansion-panel>
+</mat-accordion>
