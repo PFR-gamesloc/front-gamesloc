@@ -7,14 +7,14 @@ pipeline {
     stages {
         stage('Clean workspace') {
             steps {
-                dir('/var/jenkins_home/workspace/front_gamesloc'){
+                dir('/var/jenkins_home/workspace/'){
                     deleteDir()
                 }
             }
         }
         stage('Checkout') {
             steps {
-                dir('/var/jenkins_home/workspace/front_gamesloc'){
+                dir('/var/jenkins_home/workspace/'){
                     withCredentials([sshUserPrivateKey(credentialsId: "${SSH_KEY_ID}", keyFileVariable: 'SSH_KEY')]) {
                         sh 'git clone git@github.com:PFR-gamesloc/front-gamesloc.git'
                     }
@@ -24,7 +24,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                dir('/var/jenkins_home/workspace/front_gamesloc/') {
+                dir('/var/jenkins_home/workspace/') {
                  // Étape de build du projet Angular (vous pouvez ajuster ces commandes selon votre configuration)
                     sh 'npm install'
                     sh 'npm install -g @angular/cli'
