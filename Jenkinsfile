@@ -5,6 +5,11 @@ pipeline {
             SSH_KEY_ID = '01627792-08fd-4cf9-9734-000103d8095e'
         }
     stages {
+        stage('Clean workspace') {
+            steps {
+                deleteDir()
+            }
+        }
         stage('Checkout') {
             steps {
                 // Cette étape permet de cloner le projet à partir de GitHub
