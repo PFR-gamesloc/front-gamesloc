@@ -1,11 +1,16 @@
 pipeline {
     agent any
-
+    environment {
+            // Définir l'identifiant de la clé privée que vous avez configurée dans Jenkins
+            SSH_KEY_ID = '01627792-08fd-4cf9-9734-000103d8095e'
+        }
     stages {
         stage('Checkout') {
             steps {
                 // Cette étape permet de cloner le projet à partir de GitHub
-                git 'git@github.com:PFR-gamesloc/front-gamesloc.git'
+                withCredentials([sshUserPrivateKey(credentialsId: "${SSH_KEY_ID}", keyFileVariable: 'SSH_KEY')]) {
+                    sh 'git clone git@github.com:PFR-gamesloc/front-gamesloc.git'
+                }
             }
         }
 
