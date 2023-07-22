@@ -7,27 +7,29 @@ pipeline {
     stages {
         stage('Clean workspace') {
             steps {
-                deleteDir()
+                dir('/var/jenkins_home/workspace/front_gamesloc'){
+                    deleteDir()
+                }
             }
         }
         stage('Checkout') {
             steps {
-                // Cette étape permet de cloner le projet à partir de GitHub
-                withCredentials([sshUserPrivateKey(credentialsId: "${SSH_KEY_ID}", keyFileVariable: 'SSH_KEY')]) {
-                    sh 'git clone git@github.com:PFR-gamesloc/front-gamesloc.git'
+                dir('/var/jenkins_home/workspace/front_gamesloc'){
+                    withCredentials([sshUserPrivateKey(credentialsId: "${SSH_KEY_ID}", keyFileVariable: 'SSH_KEY')]) {
+                        sh 'git clone git@github.com:PFR-gamesloc/front-gamesloc.git'
+                    }
                 }
             }
         }
 
         stage('Build') {
             steps {
-                dir('/var/jenkins_home/workspace/front_gamesloc/front_gamesloc') {
+                dir('/var/jenkins_home/workspace/front_gamesloc/') {
                  // Étape de build du projet Angular (vous pouvez ajuster ces commandes selon votre configuration)
                     sh 'npm install'
                     sh 'npm install -g @angular/cli'
                     sh 'ng build'
                 }
-
             }
         }
 
