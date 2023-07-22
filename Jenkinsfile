@@ -22,7 +22,7 @@ pipeline {
                 scannerHome = tool 'SonarQubeScanner'
             }
             steps {
-                withSonarQubeEnv('installationName: 'SonarQube') {
+                withSonarQubeEnv('installationName: 'SonarQube'') {
                     sh 'sonar-scanner'
                 }
             }
