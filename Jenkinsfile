@@ -21,11 +21,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                // Étape de build du projet Angular (vous pouvez ajuster ces commandes selon votre configuration)
-                sh 'cd /var/jenkins_home/workspace/front_gamesloc/front-gamesloc'
-                sh 'npm install'
-                sh 'npm install -g @angular/cli'
-                sh 'ng build'
+                dir('/var/jenkins_home/workspace/front_gamesloc/front_gamesloc') {
+                 // Étape de build du projet Angular (vous pouvez ajuster ces commandes selon votre configuration)
+                    sh 'npm install'
+                    sh 'npm install -g @angular/cli'
+                    sh 'ng build'
+                }
+
             }
         }
 
