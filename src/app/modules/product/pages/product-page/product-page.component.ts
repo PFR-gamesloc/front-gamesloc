@@ -1,7 +1,3 @@
-
-
-
-
 import {Component, OnInit} from '@angular/core';
 import {GameService} from "../../../../core/http/game.service";
 import {Observable} from "rxjs";
