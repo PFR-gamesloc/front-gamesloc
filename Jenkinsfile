@@ -14,7 +14,7 @@ pipeline {
             steps {
                 // Cette étape permet de cloner le projet à partir de GitHub
                 withCredentials([sshUserPrivateKey(credentialsId: "${SSH_KEY_ID}", keyFileVariable: 'SSH_KEY')]) {
-                    sh 'git git@github.com:PFR-gamesloc/front-gamesloc.git'
+                    sh 'git clone git@github.com:PFR-gamesloc/front-gamesloc.git'
                 }
             }
         }
