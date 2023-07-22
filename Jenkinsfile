@@ -23,7 +23,8 @@ pipeline {
             steps {
                 // Étape de build du projet Angular (vous pouvez ajuster ces commandes selon votre configuration)
                 sh 'npm install'
-                sh 'npm run build'
+                sh 'npm install -g @angular/cli'
+                sh 'ng build'
             }
         }
 
