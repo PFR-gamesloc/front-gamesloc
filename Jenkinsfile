@@ -24,7 +24,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                dir('/var/jenkins_home/workspace/') {
+                dir('/var/jenkins_home/workspace/front-gamesloc') {
                  // Étape de build du projet Angular (vous pouvez ajuster ces commandes selon votre configuration)
                     sh 'npm install'
                     sh 'npm install -g @angular/cli'
