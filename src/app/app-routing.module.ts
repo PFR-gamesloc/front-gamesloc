@@ -1,5 +1,6 @@
 import { NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
+import * as path from "path";
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'user',
     loadChildren: () => import('./modules/users/user.module').then(m => m.UserModule)
+  },
+  {
+    path:'**',
+    redirectTo: ''
   }
 ]
 @NgModule({
