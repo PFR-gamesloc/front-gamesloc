@@ -38,7 +38,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv(installationName: 'SonarQube') {
-                    sh '${scannerHome}/bin/sonar-scanner'
+                    sh '${scannerHome}/bin/sonar-scanner -D sonar.projectKey=Angular'
                 }
             }
         }
