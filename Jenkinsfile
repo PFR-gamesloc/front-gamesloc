@@ -37,7 +37,7 @@ pipeline {
                 def scannerHome = tool 'SonarQubeScanner'
             }
             steps {
-                dir('/var/jenkins_home/workspace/front_gamesloc') {
+                dir('/var/jenkins_home/workspace/front-gamesloc') {
                     withSonarQubeEnv(installationName: 'SonarQube') {
                         sh '${scannerHome}/bin/sonar-scanner -D sonar.projectKey=Angular'
                     }
