@@ -5,20 +5,24 @@
 
 // Base
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-rosario);
 }
 
 ul {
-    list-style: none;
+  list-style: none;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
-h1{
+
+h1,
+h2,
+h3 {
   font-family: var(--font-raleway);
   font-weight: lighter;
 }
@@ -26,24 +30,31 @@ h1{
 // Variables
 
 :root {
-    --font-family: "Roboto", sans-serif;
-    --primary: #D4B483;
-    --secondary: #e4dfda;
-    --blue-primary: #19647e;
-    --blue-secondary: #3a506b;
-    --accent: #e5546d;
-    --lightgray: #ddd;
-    --text-regular: #444;
-    //Typography
-    --small:12rem;
-    --medium:16rem;
-    --large:20rem;
+  --font-family: "Roboto", sans-serif;
+  --primary: #D4B483;
+  --secondary: #e4dfda;
+  --blue-primary: #19647e;
+  --blue-secondary: #3a506b;
+  --accent: #e5546d;
+  --lightgray: #ddd;
+  --text-regular: #444;
+  //Typography
+  --small: 12rem;
+  --medium: 16rem;
+  --large: 20rem;
 
-    --font-raleway:'Raleway', sans-serif;
-    --font-rosario:'Rosario', sans-serif;
+  --font-raleway: 'Raleway', sans-serif;
+  --font-rosario: 'Rosario', sans-serif;
 
 
-  }
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

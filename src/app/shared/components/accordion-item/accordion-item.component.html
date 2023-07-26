@@ -1,0 +1,28 @@
+<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            {{ panelTitle }}
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+        <app-accordion-list-item [itemList]="itemList"></app-accordion-list-item>
+        <!-- <mat-list-item>
+            <div class="blueTitle">
+                Code Postal :
+            </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            59000
+        </mat-list-item>
+        <mat-list-item>
+            <div class="blueTitle">
+                Ville :
+            </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            Lille
+        </mat-list-item> -->
+    </mat-list>
+</mat-expansion-panel>

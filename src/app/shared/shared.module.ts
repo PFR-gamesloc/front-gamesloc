@@ -15,6 +15,11 @@ import {InputPasswordComponent} from "./components/input-password/input-password
 import {CommentaryComponent} from "./components/commentary/commentary.component";
 import {ErrorMessageComponent} from "./components/error-message/error-message.component";
 import {SearchBarComponent} from "./components/search-bar/search-bar.component";
+import { AccordionListItemComponent } from './components/accordion-list-item/accordion-list-item.component';
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatListModule } from "@angular/material/list"
+import { MatDividerModule } from "@angular/material/divider";
+import { AccordionItemComponent } from './components/accordion-item/accordion-item.component'
 
 
 
@@ -30,7 +35,9 @@ import {SearchBarComponent} from "./components/search-bar/search-bar.component";
     InputPasswordComponent,
     CommentaryComponent,
     ErrorMessageComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    AccordionListItemComponent,
+    AccordionItemComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +45,10 @@ import {SearchBarComponent} from "./components/search-bar/search-bar.component";
     // BrowserAnimationsModule,
     MatAutocompleteModule,
     MatInputModule,
-    RouterLink
+    RouterLink, 
+    MatExpansionModule,
+    MatListModule,
+    MatDividerModule
   ],
   exports:[
     NavBarComponent,
@@ -49,7 +59,9 @@ import {SearchBarComponent} from "./components/search-bar/search-bar.component";
     HomeTestComponent,
     SelectComponent,
     InputPasswordComponent,
-    CommentaryComponent
+    CommentaryComponent,  
+    AccordionListItemComponent, 
+    AccordionItemComponent
   ]
 })
 export class SharedModule { }

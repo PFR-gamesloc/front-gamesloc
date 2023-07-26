@@ -1,37 +1,43 @@
+<h1>Mon compte</h1>
 <mat-accordion>
     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
             <mat-panel-title>
                 Mes informations
             </mat-panel-title>
-            <mat-panel-description>
-                
-            </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-list>
             <mat-list-item>
-                Nom :
+                <div class="blueTitle">
+                    Nom :
+                </div>
             </mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item>
                 {{ user?.last_name }}
             </mat-list-item>
             <mat-list-item>
-                Prenom :
+                <div class="blueTitle">
+                    Prenom :
+                </div>
             </mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item>
                 {{ user?.first_name }}
             </mat-list-item>
             <mat-list-item>
-                E-mail :
+                <div class="blueTitle">
+                    E-mail :
+                </div>
             </mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item>
                 {{ user?.email }}
             </mat-list-item>
             <mat-list-item>
-                Telephone :
+                <div class="blueTitle">
+                    Telephone :
+                </div>
             </mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item>
@@ -39,4 +45,140 @@
             </mat-list-item>
         </mat-list>
     </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Addresse de livraision
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list>
+            <mat-list-item>
+                <div class="blueTitle">
+                    Adresse : 
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                4 Rue de la Légion
+            </mat-list-item>
+            <mat-list-item>
+                <div class="blueTitle">
+                    Complément d'adresse :
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                Appartement 8
+            </mat-list-item>
+            <mat-list-item>
+                <div class="blueTitle">
+                    Code Postal :
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                59000
+            </mat-list-item>
+            <mat-list-item>
+                <div class="blueTitle">
+                    Ville :
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                Lille
+            </mat-list-item>
+        </mat-list>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Mes commandes
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list>
+            <mat-list-item>
+                <div class="blueTitle">
+                    Commande n°1 : 
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                Un lien ou un truc du genre ?
+            </mat-list-item>
+            <mat-list-item>
+                <div class="blueTitle">
+                    Commande n°2 : 
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                Appartement 8
+            </mat-list-item>
+            <mat-list-item>
+                <div class="blueTitle">
+                    Commande n°3 : 
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                59000
+            </mat-list-item>
+            <mat-list-item>
+                <div class="blueTitle">
+                    Commande n°4 : 
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                Lille
+            </mat-list-item>
+        </mat-list>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Addresse de livraision
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list>
+            <mat-list-item>
+                <div class="blueTitle">
+                    Adresse : 
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                4 Rue de la Légion
+            </mat-list-item>
+            <mat-list-item>
+                <div class="blueTitle">
+                    Complément d'adresse :
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                Appartement 8
+            </mat-list-item>
+            <mat-list-item>
+                <div class="blueTitle">
+                    Code Postal :
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                59000
+            </mat-list-item>
+            <mat-list-item>
+                <div class="blueTitle">
+                    Ville :
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                Lille
+            </mat-list-item>
+        </mat-list>
+    </mat-expansion-panel>
+    <app-accordion-item [panelTitle]="panelTitle" [itemList]="itemList"></app-accordion-item>
 </mat-accordion>

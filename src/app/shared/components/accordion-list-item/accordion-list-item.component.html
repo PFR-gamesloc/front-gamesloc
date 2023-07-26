@@ -1,0 +1,13 @@
+<div *ngIf="itemList && itemList.length > 0">
+    <div *ngFor="let item of itemList">
+        <mat-list-item>
+            <div class="blueTitle">
+                {{ item?.title }} 
+            </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            {{ item?.describe }}
+        </mat-list-item>
+    </div>
+</div>

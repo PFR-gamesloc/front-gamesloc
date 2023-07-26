@@ -11,6 +11,15 @@ export class DashboardPageComponent {
   panelOpenState = false; 
 
   user: User | undefined; 
+  panelTitle: string = "Test"; 
+  itemList: any[] = [{
+    title: "Maman :", 
+    describe: "Sonia"
+  }, 
+  {
+    title: "Papa :", 
+    describe: "Alain"
+  }]; 
 
   constructor(private userService: UserService) {}
 
