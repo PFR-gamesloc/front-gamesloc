@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-home-page',
@@ -28,5 +29,6 @@ export class HomePageComponent {
       imageAlt: 'person2',
     },
 ]
-Count:number[] = [0, 1, 2, 3, 4,5,6,7,8,9,10];
+Count:number = 6;
+ 
 }
