@@ -53,7 +53,7 @@ export class SelectComponent implements OnInit{
   private handlePostalCode(cities : City[]):void{
     const distinctCodes : Set<string> = new Set<string>();
     for (let city of cities)
-        distinctCodes.add(city.code_postal);
+        distinctCodes.add(city.postal_code);
 
     this.postalCodes = Array.from(distinctCodes);
   }

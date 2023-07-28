@@ -8,6 +8,6 @@ import { Component, Input } from '@angular/core';
 export class AccordionItemComponent {
   panelOpenState = false; 
 
-  @Input() panelTitle: string | undefined;  
+  @Input() panelTitle: string | undefined; 
   @Input() itemList: any[] = [];
 }

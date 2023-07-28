@@ -1,5 +1,10 @@
+import { City } from "./city";
+
 export interface Address {
     address_id: number,
-    street_address: string,
-    complementary_adrress: string
+    number_address: number, 
+    complementary_number: string, 
+    street_name: string, 
+    complementary_address: string, 
+    city: City
 }

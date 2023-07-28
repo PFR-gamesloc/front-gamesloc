@@ -1,0 +1,18 @@
+<div class="cards">
+    <div *ngIf="orders$ | async as orders">
+        <div class="card" *ngFor="let order of orders">
+            <div class="header">Commande n° {{ order.order_id }}</div>
+            <div class="body">
+                <div class="line">
+                    <p>{{ order.order_date }}</p>
+                </div>
+                <div class="line">
+                    <p>{{ order.price }} €</p>
+                </div>
+                <div class="line">
+                    <p>{{ order.return_date }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

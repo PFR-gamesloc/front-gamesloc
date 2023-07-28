@@ -6,11 +6,19 @@ import { DashboardPageComponent } from "./pages/dashboard-page/dashboard-page.co
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatListModule } from "@angular/material/list";
 import { MatDividerModule } from "@angular/material/divider";
+import { AccordionItemComponent } from './components/accordion-item/accordion-item.component';
+import { UserAccordionComponent } from './components/user-accordion/user-accordion.component';
+import { UserAddressAccordionComponent } from './components/user-address-accordion/user-address-accordion.component';
+import { OrdersAccordionComponent } from './components/orders-accordion/orders-accordion.component';
 
 
 @NgModule({
   declarations: [
     DashboardPageComponent,
+    AccordionItemComponent,
+    UserAccordionComponent,
+    UserAddressAccordionComponent,
+    OrdersAccordionComponent
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { UserService } from 'src/app/core/http/user.service';
-import { User } from 'src/app/shared/entities/user';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -8,24 +6,5 @@ import { User } from 'src/app/shared/entities/user';
   styleUrls: ['./dashboard-page.component.scss']
 })
 export class DashboardPageComponent {
-  panelOpenState = false; 
 
-  user: User | undefined; 
-  panelTitle: string = "Test"; 
-  itemList: any[] = [{
-    title: "Maman :", 
-    describe: "Sonia"
-  }, 
-  {
-    title: "Papa :", 
-    describe: "Alain"
-  }]; 
-
-  constructor(private userService: UserService) {}
-
-  ngOnInit() {
-    this.userService.getCustomer().subscribe({
-      next: value => {this.user = value}
-    })
-  }
 }

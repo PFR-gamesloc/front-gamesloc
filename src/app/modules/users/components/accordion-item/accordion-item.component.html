@@ -1,0 +1,16 @@
+<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <!-- Titre -->
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            {{ panelTitle }}
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <!-- Datas -->
+    <mat-list>
+
+        <ng-content></ng-content>
+
+    </mat-list>
+
+</mat-expansion-panel>
