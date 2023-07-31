@@ -1,0 +1,66 @@
+<mat-list-item>
+    <strong>
+        Faire un appel pour récupérer ses informations
+    </strong>
+</mat-list-item>
+<mat-list-item>
+    <div class="blueTitle">
+        Numéro :
+    </div>
+</mat-list-item>
+<mat-divider></mat-divider>
+<mat-list-item>
+    {{ userAddress?.number_address }}
+</mat-list-item>
+
+<div *ngIf="userAddress?.complementary_number !== null">
+    <mat-list-item>
+        <div class="blueTitle">
+            Complément de numéro :
+        </div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+        {{ userAddress?.complementary_number }}
+    </mat-list-item>
+</div>
+
+<mat-list-item>
+    <div class="blueTitle">
+        Adresse :
+    </div>
+</mat-list-item>
+<mat-divider></mat-divider>
+<mat-list-item>
+    {{ userAddress?.street_name }}
+</mat-list-item>
+<mat-list-item>
+    <div class="blueTitle">
+        Code postal :
+    </div>
+</mat-list-item>
+<mat-divider></mat-divider>
+<mat-list-item>
+    {{ userAddress?.city?.postal_code }}
+</mat-list-item>
+<mat-list-item>
+    <div class="blueTitle">
+        Ville :
+    </div>
+</mat-list-item>
+<mat-divider></mat-divider>
+<mat-list-item>
+    {{ userAddress?.city?.city_name }}
+</mat-list-item>
+
+<div *ngIf="userAddress?.complementary_address !== null">
+    <mat-list-item>
+        <div class="blueTitle">
+            Complément d'adresse :
+        </div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+        {{ userAddress?.complementary_address }}
+    </mat-list-item>
+</div>

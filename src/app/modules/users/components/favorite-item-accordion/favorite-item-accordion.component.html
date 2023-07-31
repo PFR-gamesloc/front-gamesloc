@@ -1,0 +1,16 @@
+<div class="fav-card">
+    <ng-container *ngIf="favoriteGames$ | async as games">
+        <div class="card" *ngFor="let game of games">
+            <img src="/assets/testArticle.jpg" alt="{{ game?.image }}" />
+            <div class="infos">
+                <div class="game">
+                    <p class="title"><strong>{{ game?.gameName }}</strong></p>
+                    <p class="price">{{ game?.gamePrice }}</p>
+                </div>
+                <div class="type">
+                    <p>{{ game?.type?.name }}</p>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

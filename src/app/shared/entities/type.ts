@@ -1,4 +1,4 @@
 export interface Type {
-    type_id: number,
+    typeId: number,
     name: string
 }

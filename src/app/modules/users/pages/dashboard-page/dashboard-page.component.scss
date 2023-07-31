@@ -1,0 +1,13 @@
+h1 {
+    text-align: center;
+    color: var(--blue-primary);
+    margin: 15px;
+}
+
+.accordion {
+    margin: 10px;
+
+    app-accordion-item {
+        margin: 5px;
+    }
+}

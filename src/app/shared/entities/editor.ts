@@ -1,4 +1,4 @@
 export interface Editor {
-    editor_id: number,
+    editorId: number,
     name: string
 }

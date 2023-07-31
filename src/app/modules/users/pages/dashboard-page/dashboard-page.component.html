@@ -1,1 +1,36 @@
-<p>dashboard-page works!</p>
+<h1>Mon compte</h1>
+
+<div class="accordion">
+    <mat-accordion>
+
+        <!-- Mes informations -->
+        <app-accordion-item panelTitle="Mes informations">
+
+            <app-user-accordion></app-user-accordion>
+
+        </app-accordion-item>
+
+        <!-- Mon adresse de livraison -->
+        <app-accordion-item panelTitle="Mon adresse de livraison">
+
+            <app-user-address-accordion></app-user-address-accordion>
+
+        </app-accordion-item>
+
+        <!-- Mes commandes -->
+        <app-accordion-item panelTitle="Mes commandes">
+
+            <app-orders-accordion></app-orders-accordion>
+
+        </app-accordion-item>
+
+        <!-- Mes favoris -->
+        <app-accordion-item panelTitle="Mes favoris">
+
+            <app-favorite-item-accordion></app-favorite-item-accordion>
+
+        </app-accordion-item>
+
+
+    </mat-accordion>
+</div>

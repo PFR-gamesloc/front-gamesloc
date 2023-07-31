@@ -1,0 +1,41 @@
+@use '../../../../../sass/mixins' as m; 
+
+.cards {
+    display: flex; 
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+
+    @include m.bk-tablette-max-M {
+        flex-direction: column;
+    }
+
+    .card {
+        margin: 10px;
+        width: 22%;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+
+        @include m.bk-tablette-max-M {
+            width: 95%;
+        }
+
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .body {
+            padding: 20px;
+        }
+
+        .line {
+            align-items: center;
+            margin-bottom: 20px;
+        }
+    }
+}
