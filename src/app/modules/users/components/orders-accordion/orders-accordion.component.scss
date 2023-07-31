@@ -4,7 +4,7 @@
     display: flex; 
     flex-wrap: wrap;
     text-align: center;
-    justify-content: center;
+    align-items: center;
 
     @include m.bk-tablette-max-M {
         flex-direction: column;
@@ -18,7 +18,7 @@
         overflow: hidden;
 
         @include m.bk-tablette-max-M {
-            width: 100%;
+            width: 95%;
         }
 
         .header {

@@ -5,14 +5,14 @@
         <i class="fa-solid fa-chevron-left center"></i>
       </a>
     </button>
-    <h1>{{ game?.game_name }}</h1>
+    <h1>{{ game?.gameName }}</h1>
   </div>
   <div class="img-product">
     <div class="img-size">
       <img src="{{ game?.image }}" alt="exemple d'un jeu de société" />
     </div>
     <div class="text-product">
-      <p>{{ game?.game_price }}</p>
+      <p>{{ game?.gamePrice }}</p>
       <p>Disponible a partir du 01/08/2023</p>
       <p>
         <i class="fa-regular fa-star"></i>
@@ -30,14 +30,14 @@
   </div>
   <h2>Description</h2>
   <p [ngClass]="input ? 'clamp' : 'text'">
-    {{ game?.game_description }}
+    {{ game?.gameDescription }}
   </p>
   <span class="more">
     <a (click)="more()">Voir plus...</a>
   </span>
   <h2>Caractéristiques</h2>
-  <p>Age (à partir de) : {{ game?.min_age }} ans</p>
-  <p>Nombre de joueur(s): {{ game?.min_player }} à {{ game?.max_player }}</p>
+  <p>Age (à partir de) : {{ game?.minAge }} ans</p>
+  <p>Nombre de joueur(s): {{ game?.minPlayer }} à {{ game?.maxPlayer }}</p>
   <p>Éditeur: Hasbro</p>
 
   <h2>Commentaire (2)</h2>

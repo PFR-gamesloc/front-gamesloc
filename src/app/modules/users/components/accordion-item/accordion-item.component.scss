@@ -1,3 +1,15 @@
-.blueTitle {
-    color: red;
+mat-expansion-panel {
+
+    mat-expansion-panel-header {
+        background-color: var(--primary);
+    }
+
+    mat-expansion-panel-header:hover {
+        background-color: inherit;
+    }
+
+    mat-panel-title {
+        // color: white;
+        font-weight: bolder;
+    }
 }

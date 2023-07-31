@@ -1,27 +1,36 @@
 <h1>Mon compte</h1>
-<mat-accordion>
 
-    <!-- Mes informations -->
-    <app-accordion-item panelTitle="Mes informations">
+<div class="accordion">
+    <mat-accordion>
 
-        <app-user-accordion></app-user-accordion>
+        <!-- Mes informations -->
+        <app-accordion-item panelTitle="Mes informations">
 
-    </app-accordion-item>
+            <app-user-accordion></app-user-accordion>
 
-    <!-- Mon adresse de livraison -->
-    <app-accordion-item panelTitle="Mon adresse de livraison">
+        </app-accordion-item>
 
-        <app-user-address-accordion></app-user-address-accordion>
+        <!-- Mon adresse de livraison -->
+        <app-accordion-item panelTitle="Mon adresse de livraison">
 
-    </app-accordion-item>
+            <app-user-address-accordion></app-user-address-accordion>
 
-    <!-- Mes commandes -->
-    <app-accordion-item panelTitle="Mes commandes">
+        </app-accordion-item>
 
-        <app-orders-accordion></app-orders-accordion>
+        <!-- Mes commandes -->
+        <app-accordion-item panelTitle="Mes commandes">
 
-    </app-accordion-item>
+            <app-orders-accordion></app-orders-accordion>
+
+        </app-accordion-item>
+
+        <!-- Mes favoris -->
+        <app-accordion-item panelTitle="Mes favoris">
+
+            <app-favorite-item-accordion></app-favorite-item-accordion>
+
+        </app-accordion-item>
 
 
-
-</mat-accordion>
+    </mat-accordion>
+</div>
