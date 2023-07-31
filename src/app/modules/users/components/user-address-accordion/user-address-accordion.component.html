@@ -10,10 +10,10 @@
 </mat-list-item>
 <mat-divider></mat-divider>
 <mat-list-item>
-    {{ userAddress?.number_address }}
+    {{ userAddress?.numberAddress }}
 </mat-list-item>
 
-<div *ngIf="userAddress?.complementary_number !== null">
+<div *ngIf="userAddress?.complementaryNumber !== null">
     <mat-list-item>
         <div class="blueTitle">
             Complément de numéro :
@@ -21,7 +21,7 @@
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item>
-        {{ userAddress?.complementary_number }}
+        {{ userAddress?.complementaryNumber }}
     </mat-list-item>
 </div>
 
@@ -32,7 +32,7 @@
 </mat-list-item>
 <mat-divider></mat-divider>
 <mat-list-item>
-    {{ userAddress?.street_name }}
+    {{ userAddress?.streetName }}
 </mat-list-item>
 <mat-list-item>
     <div class="blueTitle">
@@ -41,7 +41,7 @@
 </mat-list-item>
 <mat-divider></mat-divider>
 <mat-list-item>
-    {{ userAddress?.city?.postal_code }}
+    {{ userAddress?.city?.postalCode }}
 </mat-list-item>
 <mat-list-item>
     <div class="blueTitle">
@@ -50,10 +50,10 @@
 </mat-list-item>
 <mat-divider></mat-divider>
 <mat-list-item>
-    {{ userAddress?.city?.city_name }}
+    {{ userAddress?.city?.cityName }}
 </mat-list-item>
 
-<div *ngIf="userAddress?.complementary_address !== null">
+<div *ngIf="userAddress?.complementaryAddress !== null">
     <mat-list-item>
         <div class="blueTitle">
             Complément d'adresse :
@@ -61,6 +61,6 @@
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item>
-        {{ userAddress?.complementary_address }}
+        {{ userAddress?.complementaryAddress }}
     </mat-list-item>
 </div>
