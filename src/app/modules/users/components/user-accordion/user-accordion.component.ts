@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { User } from '../../../../shared/entities/user';
-import { UserService } from 'src/app/core/http/user.service';
+import { Customer } from '../../../../shared/entities/customer';
+import { CustomerService } from 'src/app/core/http/customer.service';
 
 @Component({
   selector: 'app-user-accordion',
@@ -8,13 +8,13 @@ import { UserService } from 'src/app/core/http/user.service';
   styleUrls: ['./user-accordion.component.scss']
 })
 export class UserAccordionComponent {
-  user: User | undefined; 
+  customer: Customer | undefined; 
 
-  constructor(private userService: UserService) {}
+  constructor(private customerService: CustomerService) {}
 
   ngOnInit() {
-    this.userService.getCustomer().subscribe({
-      next: value => {this.user = value}
+    this.customerService.getCustomer().subscribe({
+      next: value => {this.customer = value}
     })
   }
 }

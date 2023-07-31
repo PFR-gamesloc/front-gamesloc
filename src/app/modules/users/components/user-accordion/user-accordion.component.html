@@ -5,7 +5,7 @@
 </mat-list-item>
 <mat-divider></mat-divider>
 <mat-list-item>
-    {{ user?.last_name }}
+    {{ customer?.lastName }}
 </mat-list-item>
 <mat-list-item>
     <div class="blueTitle">
@@ -14,16 +14,7 @@
 </mat-list-item>
 <mat-divider></mat-divider>
 <mat-list-item>
-    {{ user?.first_name }}
-</mat-list-item>
-<mat-list-item>
-    <div class="blueTitle">
-        E-mail :
-    </div>
-</mat-list-item>
-<mat-divider></mat-divider>
-<mat-list-item>
-    {{ user?.email }}
+    {{ customer?.firstName }}
 </mat-list-item>
 <mat-list-item>
     <div class="blueTitle">
@@ -32,5 +23,28 @@
 </mat-list-item>
 <mat-divider></mat-divider>
 <mat-list-item>
-    {{ user?.phone_number }}
+    {{ customer?.phoneNumber }}
+</mat-list-item>
+<mat-list-item>
+    <strong>
+        Détails de connexion
+    </strong>
+</mat-list-item>
+<mat-list-item>
+    <div class="blueTitle">
+        E-mail :
+    </div>
+</mat-list-item>
+<mat-divider></mat-divider>
+<mat-list-item>
+    {{ customer?.email }}
+</mat-list-item>
+<mat-list-item>
+    <div class="blueTitle">
+        Mot de passe :
+    </div>
+</mat-list-item>
+<mat-divider></mat-divider>
+<mat-list-item>
+    *****
 </mat-list-item>

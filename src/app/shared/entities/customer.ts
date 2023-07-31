@@ -1,9 +1,11 @@
+import { Address } from "./address";
+
 export interface Customer {
-    customer_id: number,
-    first_name: string,
-    last_name: string,
-    password: string,
-    email: string,
-    phone_number: string,
-    address_id: number
+    customerId: number,
+    firstName: string,
+    lastName: string, 
+    password: string, 
+    email: string, 
+    phoneNumber: string, 
+    addressId: Address
 }

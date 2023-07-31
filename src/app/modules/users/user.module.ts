@@ -10,6 +10,7 @@ import { AccordionItemComponent } from './components/accordion-item/accordion-it
 import { UserAccordionComponent } from './components/user-accordion/user-accordion.component';
 import { UserAddressAccordionComponent } from './components/user-address-accordion/user-address-accordion.component';
 import { OrdersAccordionComponent } from './components/orders-accordion/orders-accordion.component';
+import { FavoriteItemAccordionComponent } from './components/favorite-item-accordion/favorite-item-accordion.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { OrdersAccordionComponent } from './components/orders-accordion/orders-a
     AccordionItemComponent,
     UserAccordionComponent,
     UserAddressAccordionComponent,
-    OrdersAccordionComponent
+    OrdersAccordionComponent,
+    FavoriteItemAccordionComponent
   ],
   imports: [
     CommonModule,

@@ -7,7 +7,7 @@ import { Order } from 'src/app/shared/entities/order';
   providedIn: 'root'
 })
 export class OrdersService {
-  private url: string = "/assets/datas/orders.json"; 
+  private url: string = "http://localhost:8080/customer/1/orders"; 
 
   constructor(private httpClient: HttpClient) { }
 
