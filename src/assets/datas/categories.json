@@ -1,19 +1,19 @@
 {
   "categories": [
     {
-      "type_id": 1,
+      "typeId": 1,
       "name": "RPG"
     },
     {
-      "type_id": 2,
+      "typeId": 2,
       "name": "Plateau"
     },
     {
-      "type_id": 3,
+      "typeId": 3,
       "name": "Stratégie"
     },
     {
-      "type_id": 4,
+      "typeId": 4,
       "name": "Jeu de rôle"
     }
   ]

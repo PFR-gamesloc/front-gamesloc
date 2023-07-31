@@ -13,7 +13,8 @@ export class CardItemComponent implements OnInit {
   constructor(private gameService: GameService) { }
   ngOnInit() {
     this.gameService.getGame().subscribe({
-      next: value => { this.game = value; }
+      next: value => { this.game = value; 
+      }
     }
     );
   }
