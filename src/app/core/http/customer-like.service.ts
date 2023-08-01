@@ -7,11 +7,13 @@ import { CustomerLike } from 'src/app/shared/entities/customerLike';
   providedIn: 'root'
 })
 export class CustomerLikeService {
-  private url: string = "http://localhost:8080/customer/1/favs";
+
+  private baseUrl: string = "http://localhost:8080/customer"; 
 
   constructor(private httpClient: HttpClient) { }
 
-  getFavoriteGames(): Observable<CustomerLike[]> {
-    return this.httpClient.get<CustomerLike[]>(this.url);
+  public getFavoriteItems(userId : number): Observable<CustomerLike[]> {
+    const url = `${this.baseUrl}/${userId}/favs`; 
+    return this.httpClient.get<CustomerLike[]>(url)
   }
 }

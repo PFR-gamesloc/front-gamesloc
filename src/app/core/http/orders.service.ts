@@ -7,11 +7,12 @@ import { Order } from 'src/app/shared/entities/order';
   providedIn: 'root'
 })
 export class OrdersService {
-  private url: string = "http://localhost:8080/customer/1/orders"; 
+  private baseUrl: string = "http://localhost:8080/customer"; 
 
   constructor(private httpClient: HttpClient) { }
 
-  getOrders(): Observable<Order[]> {
-    return this.httpClient.get<Order[]>(this.url)
+  public getOrders(userId : number): Observable<Order[]> {
+    const url = `${this.baseUrl}/${userId}/orders`; 
+    return this.httpClient.get<Order[]>(url)
   }
 }

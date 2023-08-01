@@ -5,7 +5,7 @@
             <div class="body">
                 <div class="line">
                     <p><strong>Date de commande</strong></p>
-                    <p>{{ order.orderDate }}</p>
+                    <p>{{ order.orderDate | date: 'dd/MM/yyyy' }}</p>
                 </div>
                 <div class="line">
                     <p><strong>Prix</strong></p>
@@ -13,7 +13,7 @@
                 </div>
                 <div class="line">
                     <p><strong>Date de retour</strong></p>
-                    <p>{{ order.returnDate }}</p>
+                    <p>{{ order.returnDate | date: 'dd/MM/yyyy' }}</p>
                 </div>
             </div>
         </div>

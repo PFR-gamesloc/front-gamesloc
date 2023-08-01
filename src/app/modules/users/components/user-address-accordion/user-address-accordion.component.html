@@ -1,9 +1,4 @@
 <mat-list-item>
-    <strong>
-        Faire un appel pour récupérer ses informations
-    </strong>
-</mat-list-item>
-<mat-list-item>
     <div class="blueTitle">
         Numéro :
     </div>
@@ -53,7 +48,7 @@
     {{ userAddress?.city?.cityName }}
 </mat-list-item>
 
-<div *ngIf="userAddress?.complementaryAddress !== null">
+<div *ngIf="userAddress?.complementaryAddress; else emptyComplementaryAddress">
     <mat-list-item>
         <div class="blueTitle">
             Complément d'adresse :
@@ -64,3 +59,4 @@
         {{ userAddress?.complementaryAddress }}
     </mat-list-item>
 </div>
+<ng-template #emptyComplementaryAddress></ng-template>

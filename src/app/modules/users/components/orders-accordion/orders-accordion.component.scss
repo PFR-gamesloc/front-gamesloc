@@ -5,6 +5,7 @@
     flex-wrap: wrap;
     text-align: center;
     align-items: center;
+    justify-content: center;
 
     @include m.bk-tablette-max-M {
         flex-direction: column;

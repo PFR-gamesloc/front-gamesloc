@@ -7,11 +7,12 @@ import { Address } from 'src/app/shared/entities/address';
   providedIn: 'root'
 })
 export class UserAddressService {
-  private url: string = "/assets/datas/user-address.json"; 
+  private baseUrl: string = "http://localhost:8080/customer"; 
 
   constructor(private httpClient: HttpClient) {}
 
-  getUserAddress(): Observable<Address>{
-    return this.httpClient.get<Address>(this.url); 
+  public getUserAddress(userId : number): Observable<Address>{
+    const url = `${this.baseUrl}/${userId}/address`; 
+    return this.httpClient.get<Address>(url); 
   }
 }
