@@ -1,3 +1,5 @@
+<app-btn-edit [routerLink]="['/user', customerAddress?.customerId, 'edit', 'address']"></app-btn-edit>
+
 <mat-list-item>
     <div class="blueTitle">
         Numéro :
@@ -5,10 +7,10 @@
 </mat-list-item>
 <mat-divider></mat-divider>
 <mat-list-item>
-    {{ userAddress?.numberAddress }}
+    {{ customerAddress?.address?.numberAddress }}
 </mat-list-item>
 
-<div *ngIf="userAddress?.complementaryNumber !== null">
+<div *ngIf="customerAddress?.address?.complementaryNumber !== null">
     <mat-list-item>
         <div class="blueTitle">
             Complément de numéro :
@@ -16,7 +18,7 @@
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item>
-        {{ userAddress?.complementaryNumber }}
+        {{ customerAddress?.address?.complementaryNumber }}
     </mat-list-item>
 </div>
 
@@ -27,8 +29,20 @@
 </mat-list-item>
 <mat-divider></mat-divider>
 <mat-list-item>
-    {{ userAddress?.streetName }}
+    {{ customerAddress?.address?.streetName }}
 </mat-list-item>
+<div *ngIf="customerAddress?.address?.complementaryAddress; else emptyComplementaryAddress">
+    <mat-list-item>
+        <div class="blueTitle">
+            Complément d'adresse :
+        </div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+        {{ customerAddress?.address?.complementaryAddress }}
+    </mat-list-item>
+</div>
+<ng-template #emptyComplementaryAddress></ng-template>
 <mat-list-item>
     <div class="blueTitle">
         Code postal :
@@ -36,7 +50,7 @@
 </mat-list-item>
 <mat-divider></mat-divider>
 <mat-list-item>
-    {{ userAddress?.city?.postalCode }}
+    {{ customerAddress?.address?.city?.postalCode }}
 </mat-list-item>
 <mat-list-item>
     <div class="blueTitle">
@@ -45,18 +59,5 @@
 </mat-list-item>
 <mat-divider></mat-divider>
 <mat-list-item>
-    {{ userAddress?.city?.cityName }}
+    {{ customerAddress?.address?.city?.cityName }}
 </mat-list-item>
-
-<div *ngIf="userAddress?.complementaryAddress; else emptyComplementaryAddress">
-    <mat-list-item>
-        <div class="blueTitle">
-            Complément d'adresse :
-        </div>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>
-        {{ userAddress?.complementaryAddress }}
-    </mat-list-item>
-</div>
-<ng-template #emptyComplementaryAddress></ng-template>

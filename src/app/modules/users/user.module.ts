@@ -11,6 +11,12 @@ import { UserAccordionComponent } from './components/user-accordion/user-accordi
 import { UserAddressAccordionComponent } from './components/user-address-accordion/user-address-accordion.component';
 import { OrdersAccordionComponent } from './components/orders-accordion/orders-accordion.component';
 import { FavoriteItemAccordionComponent } from './components/favorite-item-accordion/favorite-item-accordion.component';
+import { ModifyUserOptionComponent } from './pages/modify-user-option/modify-user-option.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgIconsModule } from '@ng-icons/core';
+import { bootstrapPenFill } from '@ng-icons/bootstrap-icons';
+import { BtnEditComponent } from './components/btn-edit/btn-edit.component';
+import { ModifyUserAddressOptionComponent } from './pages/modify-user-address-option/modify-user-address-option.component';
 
 
 @NgModule({
@@ -20,7 +26,10 @@ import { FavoriteItemAccordionComponent } from './components/favorite-item-accor
     UserAccordionComponent,
     UserAddressAccordionComponent,
     OrdersAccordionComponent,
-    FavoriteItemAccordionComponent
+    FavoriteItemAccordionComponent,
+    ModifyUserOptionComponent,
+    BtnEditComponent,
+    ModifyUserAddressOptionComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +37,11 @@ import { FavoriteItemAccordionComponent } from './components/favorite-item-accor
     SharedModule,
     MatExpansionModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule, 
+    ReactiveFormsModule, 
+    NgIconsModule.withIcons({
+      bootstrapPenFill
+    })
   ]
 })
 export class UserModule { }

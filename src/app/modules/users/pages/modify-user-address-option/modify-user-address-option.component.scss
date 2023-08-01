@@ -1,0 +1,28 @@
+@use "../../../../../sass/mixins" as m;
+
+.container {
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+
+    .modifyForm {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        @include m.bk-laptop {
+
+            .twice {
+                display: flex;
+                justify-content: space-between;
+                padding: 3px;
+
+                app-input {
+                    width: 49%;
+                }
+            }
+
+        }
+
+    }
+}

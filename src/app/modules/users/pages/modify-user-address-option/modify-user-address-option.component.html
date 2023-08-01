@@ -1,0 +1,20 @@
+<div class="container">
+    <h1>Modifier mes informations</h1>
+
+    <form action="" class="modifyForm" (ngSubmit)="saveCustomer()" [formGroup]="customerForm">
+        <div class="twice">
+            <app-input forInput="numberAddress" textLabel="Numéro" typeInput="Number" id="numberAddress"></app-input>
+            <app-input forInput="complementaryNumber" textLabel="Complément de numéro" typeInput="text" id="complementaryNumber"></app-input>
+        </div>
+        <div class="twice">
+            <app-input forInput="streetName" textLabel="Adresse" typeInput="text" id="streetName"></app-input>
+            <app-input forInput="complementaryAddress" textLabel="Complément d'Adresse" typeInput="text" id="complementaryAddress"></app-input>
+        </div>
+        <div class="twice">
+            <app-input forInput="postalCode" textLabel="Code Postal" typeInput="text" id="postalCode"></app-input>
+            <app-input forInput="cityName" textLabel="Ville" typeInput="text" id="cityName"></app-input>
+        </div>
+        <app-select></app-select>
+        <app-btn-component classBtn="btn btn-submit" textBtn="Modifier"></app-btn-component>
+    </form>
+</div>

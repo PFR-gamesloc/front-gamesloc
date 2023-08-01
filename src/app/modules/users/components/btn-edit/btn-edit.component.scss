@@ -1,0 +1,23 @@
+.bootstrapPenFill {
+    display: flex;
+    justify-content: end;
+    padding-right: 5px;
+    cursor: pointer;
+
+    .icon {
+        border: none;
+        border-radius: 50%;
+        height: 35px;
+        width: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--blue-secondary);
+        color: white;
+        transition: 0.2s;
+    }
+    .icon:hover {
+        background-color: var(--primary);
+    }
+    
+}

@@ -7,5 +7,5 @@ export interface Customer {
     password: string, 
     email: string, 
     phoneNumber: string, 
-    addressId: Address
+    address: Address
 }

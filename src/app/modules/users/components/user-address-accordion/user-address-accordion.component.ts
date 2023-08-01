@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserAddressService } from 'src/app/core/http/user-address.service';
-import { Address } from 'src/app/shared/entities/address';
+import { CustomerService } from 'src/app/core/http/customer.service';
+import { CustomerAddress } from 'src/app/shared/entities/customerAddress';
 
 @Component({
   selector: 'app-user-address-accordion',
   templateUrl: './user-address-accordion.component.html',
   styleUrls: ['./user-address-accordion.component.scss']
 })
-export class UserAddressAccordionComponent {
-  userAddress: Address | undefined;
+export class UserAddressAccordionComponent {  
+  customerAddress: CustomerAddress | undefined;
 
   constructor(
-    private userAddressService: UserAddressService,
+    private customerAddressService: CustomerService,
     private route: ActivatedRoute ) { 
     }
 
@@ -24,9 +24,11 @@ export class UserAddressAccordionComponent {
   }
 
   private getAddressByUserId(id: number) : void {
-    this.userAddressService.getUserAddress(id).subscribe({
-      next: value => {
-        this.userAddress = value
+    this.customerAddressService.getAddressCustomer(id).subscribe({
+      next: value => { 
+        this.customerAddress = value; 
+        console.log(this.customerAddress);
+        
       }
     })
   }
