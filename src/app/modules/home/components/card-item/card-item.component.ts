@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { GameService } from 'src/app/core/http/game.service';
-import { Game } from '../../../../shared/entities/game';
+import { Component, Input, OnInit } from '@angular/core';
+import { GameService } from 'src/app/core/http/games.service';
+import { GameList } from '../../../../shared/entities/gameList';
+import { HomePageComponent } from '../../pages/home-page/home-page.component';
 
 @Component({
   selector: 'app-card-item',
@@ -8,14 +9,11 @@ import { Game } from '../../../../shared/entities/game';
   styleUrls: ['./card-item.component.scss']
 })
 export class CardItemComponent implements OnInit {
-  title: string = " The mysterious"
-  game: Game | undefined
-  constructor(private gameService: GameService) { }
-  ngOnInit() {
-    this.gameService.getGame().subscribe({
-      next: value => { this.game = value; 
-      }
-    }
-    );
+
+ @Input() game: GameList| undefined
+
+  constructor(private parent: HomePageComponent) { }
+  ngOnInit() {  
+      console.log(this.parent);  
   }
 }

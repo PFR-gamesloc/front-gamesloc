@@ -1,21 +1,21 @@
 <div class="articleCard">
   <div class="articleImage">
-    <img src="{{ game?.image }}" alt="exemple d'un jeu de société" />
+    <img src="./assets/Predator_Wallpaper_02_3840x2400.jpg" alt="exemple d'un jeu de société" />
   </div>
 
   <div class="articleDescription">
     <h3>Description</h3>
-    <p>{{ game?.gameDescription }}</p>
+    <p>{{ game?.gameDescr }}</p>
   </div>
 
   <div class="articleEnd">
     <div class="content">
       <h4>Editor</h4>
-      <p>My Editor</p>
+      <p>{{game?.editor?.name}}</p>
     </div>
     <div class="content">
       <h4>My category</h4>
-      <p>Category</p>
+      <p>{{game?.type?.name}}</p>
     </div>
     <div class="content">
       <h4>Price</h4>

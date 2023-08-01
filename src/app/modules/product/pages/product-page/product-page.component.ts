@@ -1,12 +1,7 @@
-
-
-
-
 import {Component, OnInit} from '@angular/core';
-import {GameService} from "../../../../core/http/game.service";
-import {Observable} from "rxjs";
-import {Game} from "../../../../shared/entities/game";
-
+import {ActivatedRoute, RouterModule, Routes} from "@angular/router";
+import {GameService} from "../../../../core/http/games.service";
+import { GameDetail } from 'src/app/shared/entities/gameDetail';
 
 @Component({
   selector: 'app-product-page',
@@ -17,18 +12,24 @@ import {Game} from "../../../../shared/entities/game";
 
 export class ProductPageComponent implements OnInit {
 
+  game: GameDetail | undefined;
   input: boolean = true;
   more() {
     this.input = !this.input;
   }
-  title: string = " The mysterious"
-  game: Game | undefined
-  constructor(private gameService: GameService) { }
+  constructor(private gameService: GameService, private route: ActivatedRoute) { }
   ngOnInit() {
-    this.gameService.getGame().subscribe({
-      next: value => { this.game = value; }
-    }
-    );
+   this.route.params.subscribe(params =>{
+    const gameId = +params['id'];
+    this.gameService.getGameDetail(gameId).subscribe({
+      next:( gameDetail) => {
+        this.game = gameDetail
+      },
+      error: (error) => {
+        console.log("Erreur lors de la récupération du produit : ", error);
+      }
+   } );
+   });
   }
-
 }
+
