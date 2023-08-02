@@ -1,138 +1,155 @@
 @use "../../../../../sass/mixins" as m;
 
-p{
+p {
   font-family: var(--font-rosario);
 }
 
 .container-product {
+  margin: auto;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  max-width: 80%;
 
-  .title-product {
-    display: flex;
-    justify-content: center;
-
-    @include m.bk-laptop {
-      padding: 0rem 1rem;
-      font-size: 2rem;
-    }
-
-    h1 {
-      margin-top: 0px;
-      margin-right: auto;
-
-      @include m.bk-laptop {
-        width: 100%;
-        text-align: center;
-      }
-    }
-
-    button {
-      width: 25px;
-      margin-right: auto;
-
-      @include m.bk-laptop {
-        visibility: hidden;
-        display: none;
-      }
-    }
+  @include m.bk-tablette-max-M {
+    max-width: 100%;
+    margin: 0 2rem;
   }
 
-  .img-product {
-    margin-top: 1rem;
-    text-align: center;
+  h2 {
+    color: var(--blue-primary);
+    border-bottom: 2px solid var(--blue-primary);
+  }
 
-    @include m.bk-laptop {
-      display: flex;
-    }
-    .img-size {
-      width: 50%;
-      display: block;
-      margin: auto;
+  .product-flex {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
 
-      @include m.bk-laptop {
-        width: 50%;
-        margin-left: 2rem;
-      }
-
-      @include m.bk-desktop {
-        width: 90%;
-      }
+    @include m.bk-tablette-max-M {
+      flex-direction: column;
+      align-items: center;
     }
 
     img {
-      width: 80%;
-      
-
-      @include m.bk-laptop {
-        width: 100%;
-      }
-
-      @include m.bk-desktop {
-        width: 80%;
-        height: 90%;
-      }
-    }
-
-    .text-product {
+      width: 50%;
       margin: 1rem;
+    }
+    .detail-product {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
 
-      @include m.bk-laptop {
-        display: flex;
-        flex-direction: column;
-        text-align: center;  
-        width: 50%;
-        justify-content: space-evenly
+      @include m.bk-tablette-max-M {
+        gap: 1rem;
+      }
+
+      h1 {
+        font-size: 3rem; /* Taille par défaut */
+      }
+
+      .price {
+        font-size: 1.6rem; /* Taille par défaut */
+      }
+      .notice,
+      p {
+        font-size: 1rem;
+      }
+
+      .stock {
+        p {
+          font-size: 1.4rem; /* Taille par défaut */
+        }
       }
 
       p {
-        margin: 1rem;
-        text-align: center;
-
-        @include m.bk-laptop {
-          font-size: 2rem;
+        font-size: 1.4rem; /* Taille par défaut */
+      }
+      @include m.bk-tablette-max-M {
+        .price,
+        .notice,
+        .stock p,
+        p {
+          font-size: 1rem;
         }
       }
-      .notice {
-        margin-left: 10px;
+    }
+  }
+  .description {
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .flex-feature {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+
+    @include m.bk-tablette-max {
+      flex-direction: column;
+      align-items:center
+    }
+
+    .feature-right,
+    .feature-left {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+
+        @include m.bk-tablette-max {
+          margin-top: 1rem;
+          text-align: center;
+          align-items: center;
+        }
       }
     }
-  }
-  h2 {
-    margin: 0rem 2rem;
-    color: #19647e;
-    border-bottom: 1px solid #19647e;
-    font-family: var(--font-raleway);
+  
+
+  .in-stock {
+    color: green;
   }
 
-  p,.clamp {
-    margin: 1rem 2rem;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 8;
-    overflow: hidden;
+  .low-stock {
+    color: orange;
+  }
 
-    @include m.bk-laptop {
-      font-size: 1.3rem;
-      display: block;
-      text-align: center;
+  .out-of-stock {
+    color: red;
+  }
+
+  .bold-feature {
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-bottom: 2px solid black;
+
+    @include m.bk-tablette-max-M {
+      font-size: 1rem;
     }
   }
-  .text{
-    margin: 1rem 2rem;
-    display: block; 
+
+  .content-feature {
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+    @include m.bk-tablette-max-M {
+      font-size: 1rem;
+    }
   }
 
-  .more {
-    display: block;
-    text-align: right;
-    color: #19647e;
-    margin-right: 2rem;
-    font-size: 15px;
+  .head-mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem;
+    margin: 0 1rem;
 
-    @include m.bk-laptop {
-      visibility: hidden;
+    .title-product {
+      text-align: center;
+      flex: 1;
+      border-color: red;
     }
   }
 }

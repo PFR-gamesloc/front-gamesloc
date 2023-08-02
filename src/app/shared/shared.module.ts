@@ -14,7 +14,7 @@ import {InputPasswordComponent} from "./components/input-password/input-password
 import {ErrorMessageComponent} from "./components/error-message/error-message.component";
 import {SearchBarComponent} from "./components/search-bar/search-bar.component";
 import { NgIconsModule } from '@ng-icons/core';
-import { bootstrapFacebook ,bootstrapTwitter,bootstrapTiktok,bootstrapInstagram,bootstrapCart,bootstrapPersonCircle} from '@ng-icons/bootstrap-icons'
+import { bootstrapFacebook ,bootstrapTwitter,bootstrapTiktok,bootstrapInstagram,bootstrapCart,bootstrapPersonCircle,bootstrapStar,bootstrapArrowReturnLeft} from '@ng-icons/bootstrap-icons'
 @NgModule({
   declarations: [
     NavBarComponent,
@@ -33,7 +33,7 @@ import { bootstrapFacebook ,bootstrapTwitter,bootstrapTiktok,bootstrapInstagram,
     MatAutocompleteModule,
     MatInputModule,
     RouterLink,
-    NgIconsModule.withIcons({bootstrapFacebook,bootstrapTwitter,bootstrapTiktok,bootstrapInstagram,bootstrapCart,bootstrapPersonCircle})
+    NgIconsModule.withIcons({bootstrapFacebook,bootstrapTwitter,bootstrapTiktok,bootstrapInstagram,bootstrapCart,bootstrapPersonCircle,bootstrapStar,bootstrapArrowReturnLeft})
   ],
   exports:[
     NavBarComponent,

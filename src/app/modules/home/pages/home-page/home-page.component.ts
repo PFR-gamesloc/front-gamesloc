@@ -46,8 +46,10 @@ ngOnInit() {
     );*/
   };
 
-  navigateToGameDetails(id: number) {
-    this.router.navigate(['game', id]);
+  navigateToGameDetails(gameId:number, gameName: string) {
+    this.gameService.setSelectedGameId(gameId);
+
+    this.router.navigate(['game', gameName]);
   }
 }
  

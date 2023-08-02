@@ -1,8 +1,8 @@
  <app-carrousel [images]="images"></app-carrousel>
 <div class="flexCard">
-     <div *ngFor="let game of games$ | async" (click)="navigateToGameDetails(game.gameId)" class="clickable-card">
+     <div *ngFor="let game of games$ | async" (click)="navigateToGameDetails(game.gameId,game.gameName)" class="clickable-card">
        <app-card-item class="cardItem" [game]="game"></app-card-item>
      </div>
-   </div>
+</div>
 
 

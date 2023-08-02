@@ -12,6 +12,7 @@ export interface GameDetail {
     minPlayer: number,
     maxPlayer: number,
     minAge:number,
+    stock : number,
     editor: Editor,
     languages: Language[]
     type: Type,
