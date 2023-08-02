@@ -1,34 +1,35 @@
 @use '../../../../sass/mixins' as m;
+
 .container {
   display: flex;
   flex-direction: column;
   width: 100%;
+
+  label {
+    display: flex;
+    position: relative;
+
+    div {
+      background-color: white;
+      color: #19647e;
+      position: relative;
+      top: 8px;
+      left: 15px;
+      padding: 0 5px;
+
+    }
+  }
+
+  input {
+    border: 0.5px solid #19647e;
+    border-radius: 10px;
+    padding: 5px 10px;
+  }
 }
 
-label {
-  display: flex;
-  position: relative;
-}
-
-label div {
-  background-color: white;
-  color: #19647e;
-  position: relative;
-  top: 8px;
-  left: 15px;
-  padding: 0 5px;
-
-}
-
-input {
-  border: 0.5px solid #19647e;
-  border-radius: 10px;
-  padding: 5px 10px;
-}
-
-@include m.bk-desktop{
-  .container{
-    input{
+@include m.bk-desktop {
+  .container {
+    input {
       padding: 15px 10px;
     }
   }

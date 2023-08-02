@@ -1,20 +1,30 @@
 <form class="example-form">
-  <div>
-    <label>Number</label>
-    <input type="text"
-           placeholder="Pick one"
-           aria-label="Number"
-           matInput
-           [formControl]="myControl"
-           [matAutocomplete]="auto"
-    >
-    <mat-autocomplete #auto="matAutocomplete">
+  <div class="container">
+    <label>
+      <div>
+        Code Postal
+      </div>
+    </label>
+    <input type="text" placeholder="Pick one" aria-label="Code Postal" matInput [formControl]="myControlZipCode"
+      [matAutocomplete]="autoZipCode" #zipCodeInput>
+    <mat-autocomplete #autoZipCode="matAutocomplete">
       <mat-option *ngFor="let postalCode of filteredPostalCodes" [value]="postalCode">
         {{postalCode}}
       </mat-option>
     </mat-autocomplete>
   </div>
-  <ng-container *ngIf="checkvalidity()">
-    <p>blbl</p>
-  </ng-container>
+  <div class="container">
+    <label>
+      <div>
+        Ville
+      </div>
+    </label>
+    <input type="text" placeholder="Pick one" aria-label="Ville" matInput [formControl]="myControlName"
+      [matAutocomplete]="autoCityName" (click)="filterCityNames()">
+    <mat-autocomplete #autoCityName="matAutocomplete">
+      <mat-option *ngFor="let cityName of filteredCityNames" [value]="cityName">
+        {{cityName}}
+      </mat-option>
+    </mat-autocomplete>
+  </div>
 </form>
