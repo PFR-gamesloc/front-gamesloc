@@ -6,8 +6,6 @@
     padding: 20px;
 
     .modifyForm {
-        display: flex;
-        flex-direction: column;
         justify-content: center;
 
         @include m.bk-laptop {

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { City } from "../../entities/city";
 import { CitiesService } from "../../../core/http/cities.service";
 import { Observable, debounceTime, distinctUntilChanged, filter, map, of, switchMap } from 'rxjs';
+import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 
 @Component({
@@ -12,6 +13,8 @@ import { Observable, debounceTime, distinctUntilChanged, filter, map, of, switch
 })
 
 export class SelectComponent implements OnInit {
+  @ViewChild('autoCityName') autoCityName: MatAutocomplete | undefined;
+
   myControlZipCode: FormControl<string | null> = new FormControl('', Validators.required);
   myControlName: FormControl<string | null> = new FormControl('', Validators.required);
   options: City[];
@@ -20,8 +23,13 @@ export class SelectComponent implements OnInit {
   filteredPostalCodes: string[];
   filteredCityNames: string[];
 
+  formZipCode! : FormGroup; 
 
-  constructor(private citiesService: CitiesService) {
+
+  constructor(
+    private citiesService: CitiesService, 
+    private rootFormGroup: FormGroupDirective) {
+
     this.options = [];
     this.filteredPostalCodes = [];
     this.filteredCityNames = [];
@@ -37,6 +45,8 @@ export class SelectComponent implements OnInit {
         this.handleCityName(res);
       }
     });
+
+    this.formZipCode = this.rootFormGroup.control; 
 
     this.myControlZipCode.valueChanges.subscribe(
       value => {
@@ -60,7 +70,8 @@ export class SelectComponent implements OnInit {
           this.filteredCityNames = [];
         }
       }
-    )
+    ); 
+
   }
 
   private _filter(value: string): string[] {
@@ -89,10 +100,6 @@ export class SelectComponent implements OnInit {
     }
     this.cityNames = Array.from(distinctNames);
     this.options = cities;
-  }
-
-  checkvalidity() {
-    return this.myControlZipCode.touched;
   }
 
   public filterCityNames(): void {
