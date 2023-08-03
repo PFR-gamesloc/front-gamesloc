@@ -1,84 +1,82 @@
 @use "../../../../../sass/mixins" as m;
 
 .container {
-    margin: auto;
-    text-align: center;
-    padding: 20px;
-    font-family: var(--font-rosario);
+  padding-bottom: 2rem;
+  h1,
+  h4 {
+    font-family: var(--font-raleway);
+    font-weight: lighter;
+  }
 
-    h1,
-    h4 {
-        padding: 5px;
-        font-family: var(--font-raleway);
-        font-weight: lighter;
+  .cardConnection {
+    border-radius: 7px;
+    width: 50%;
+    margin: auto;
+    margin-top: 25px;
+    padding: 15px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    app-input {
+      margin: 1rem;
+    }
+    .check {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      @include m.bk-tablette-max-M {
+        flex-direction: column;
+      }
+
+      .remind-me {
+        display: flex;
+        align-items: center;
+        padding-bottom: 15px;
+
+        input {
+          margin-right: 10px;
+        }
+      }
     }
 
-    .cardConnection {
-        app-input {
-            margin: 20px;
-        }
-        .check {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: auto;
-            padding-top: 15px;
-            align-items: center;
+    .link {
+      color: var(--blue-primary);
+    }
 
-            @include m.bk-tablette {
-                flex-direction: row;
-            }
+    .subscribe {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 30px;
 
-            .remind-me {
-                display: flex;
-                align-items: center;
-                padding-bottom: 15px;
+      @include m.bk-tablette {
+        flex-direction: row;
+        align-items: center;
+      }
 
-                input {
-                    margin-right: 10px;
-                }
-            }
-        }
-
-        .link {
-            color: var(--blue-primary);
-        }
-
-        .subscribe {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding-top: 30px;
-
-            @include m.bk-tablette {
-                flex-direction: row;
-            }
-
-            p {
-                padding-bottom: 15px;
-
-                @include m.bk-tablette {
-                    padding-bottom: 0px;
-                }
-            }
-
-            .link {
-                @include m.bk-tablette {
-                    padding-left: 10px;
-                }
-            }
-        }
+      p {
+        padding-bottom: 15px;
 
         @include m.bk-tablette {
-            border-radius: 7px;
-            width: 40%;
-            margin: auto;
-            margin-top: 25px;
-            padding: 15px;
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+          padding-bottom: 0px;
         }
+      }
 
+      .link {
+        @include m.bk-tablette {
+          padding-left: 10px;
+        }
+      }
     }
 
-
+    @include m.bk-tablette-max-M {
+      width: 80%;
+      margin-top: 1rem;
+      padding: 1rem;
+    }
+  }
+  @include m.bk-tablette-max-M {
+    width: 80%;
+    margin: auto;
+  }
 }

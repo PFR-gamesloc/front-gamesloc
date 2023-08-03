@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { Component, Input } from '@angular/core';
+import { Observable, tap } from 'rxjs';
+import { GameService } from 'src/app/core/http/games.service';
+import { GameList } from 'src/app/shared/entities/gameList'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -29,6 +32,24 @@ export class HomePageComponent {
       imageAlt: 'person2',
     },
 ]
-Count:number = 6;
- 
+
+games$: Observable<GameList[]> =new Observable<GameList[]> ;
+@Input() game : GameList | undefined;
+
+
+constructor(private gameService: GameService, private router:Router){}
+
+ngOnInit() {
+  this.games$ = this.gameService.getGames()
+   /* this.games$ = this.gameService.getGames().pipe(
+      tap(games => console.log(games))
+    );*/
+  };
+
+  navigateToGameDetails(gameId:number, gameName: string) {
+    this.gameService.setSelectedGameId(gameId);
+
+    this.router.navigate(['game', gameName]);
+  }
 }
+ 

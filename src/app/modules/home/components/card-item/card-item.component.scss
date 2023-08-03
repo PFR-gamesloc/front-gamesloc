@@ -4,21 +4,18 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   justify-content: center;
   border-radius: 5px;
-  width: 90%;
-  margin: auto;
+  align-items: center;
+  margin: 1rem 2rem;
   align-items: center;
 
   @include m.bk-tablette-max-M {
-    width: 100%;
   }
-
   .articleImage {
-    // border-right: solid 2px var(--primary);
     text-align: center;
     width: 30%;
 
     @include m.bk-tablette-max-M {
-      width: 70%;
+      min-width: 50%;
     }
     img {
       padding: 1rem;
@@ -32,7 +29,6 @@
   .articleDescription {
     padding: 1rem;
     width: 40%;
-    //border-right: solid 2px var(--primary);
 
     @include m.bk-tablette-max-M {
       display: none;
@@ -52,20 +48,28 @@
   }
   .articleEnd {
     text-align: center;
-    width: 30%;
+    width: 50%;
     padding-top: 1rem;
 
     @include m.bk-tablette-max-M {
       width: 50%;
+      padding-top: 0rem;
     }
     .content {
       display: flex;
+      align-items: center;
+      text-align: center;
+
       p,
       h4 {
-        display: inline-block;
-        width: 40%;
-        margin: 1rem;
-        text-align: center;    
+        display: block;
+        width: 45%;
+        margin: 6px 0rem;
+        text-align: center;
+        @include m.bk-tablette-max {
+          margin: 2px;
+          font-size: 12px;
+        }
       }
     }
   }

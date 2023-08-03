@@ -1,48 +1,56 @@
+@use "../../../../sass/mixins" as m;
+
 footer {
-    background-color: var(--blue-primary);
-    color: white;
-    padding: 20px;
+  background-color: var(--blue-primary);
+  color: white;
+  padding: 20px;
+  width: 100%;
+  flex: 0 0 100px;
+
+  bottom: 0;
 }
 
 section {
-    display: flex;
-    margin-bottom: 30px;
+  display: flex;
+  margin-bottom: 1rem;
 }
 
 .textLinks {
-    ul {
-        display: flex;
-        margin: auto;
-        li {
-            margin: 0 10px;
-        }
+  ul {
+    display: flex;
+    margin: auto;
+    li {
+      margin: 0 1rem;
     }
+  }
 }
 
 .iconLinks {
-    div {
-        margin: auto;
-            i {
-                padding: 5px;
-            }
+  div {
+    margin: auto;
+    i {
+      padding: 5px;
     }
-    a{
-        padding-left: 1rem;
-    }
+  }
+  a {
+    padding-left: 1rem;
+  }
 }
 
 .separator {
-    width: 50%;
-    height: 1px;
-    background-color: white;
-    margin: auto;
+  width: 50%;
+  height: 1px;
+  background-color: white;
+  margin: auto;
 }
 
 .rights {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    i {
-        margin-right: 10px;
-    }
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  align-items: center;
+
+  span {
+    margin-right: 5px;
+  }
 }
