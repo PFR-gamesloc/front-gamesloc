@@ -1,0 +1,30 @@
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+        <div *ngFor="let data of tableData">
+            <!-- Column -->
+            <ng-container [matColumnDef]="data.matColumnDef">
+                <th mat-header-cell *matHeaderCellDef>{{ data.matHeaderCellDef }}</th>
+                <td mat-cell *matCellDef="let element"> 
+                    <!-- <div *ngIf="isTimestamp(element[data.matElement])">
+                        {{ element[data.matElement] | date: 'dd/MM/yyyy'}} 
+                    </div> -->
+                    <div *ngIf="element[data.matElement]?.length >= 2; else condition">
+                        <span *ngFor="let game of element[data.matElement]">
+                            {{ game.gameName }}
+                        </span>
+                    </div>
+                    <ng-template #condition>
+                        {{ element[data.matElement] }} 
+                    </ng-template>
+                </td>
+            </ng-container>
+        </div>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+        aria-label="Select page of periodic elements">
+    </mat-paginator>
+</div>

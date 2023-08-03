@@ -22,4 +22,9 @@ export class CustomerService {
     const url = `${this.baseUrl}/${userId}`
     return this.httpClient.get<CustomerAddress>(url);
   }
+
+  public getCustomers() : Observable<Customer[]> {
+    const url = `${this.baseUrl}/all`
+    return this.httpClient.get<Customer[]>(url);
+  }
 }
