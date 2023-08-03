@@ -21,8 +21,7 @@ export class ProductPageComponent implements OnInit {
 
   constructor(private gameService: GameService, private route: ActivatedRoute, private router:Router) { }
   ngOnInit() {
-
-    const gameId = this.gameService.getSelectedGameId();
+   const gameId = this.gameService.getSelectedGameId();
    this.currentWindowWidth = window.innerWidth;
     if (gameId ) { 
       this.gameService.getGameDetail(gameId).subscribe({

@@ -1,7 +1,7 @@
 <div class="container-product">
   <div *ngIf="currentWindowWidth! < 768" class="head-mobile">
-    <a routerLink="">
-      <ng-icon size="25" name="bootstrapArrowReturnLeft"></ng-icon>
+    <a routerLink="" class="head-icon">
+      <ng-icon size="20" name="bootstrapArrowReturnLeft"></ng-icon>
     </a>
     <h1 class="title-product">{{ game?.gameName }}</h1>
   </div>
@@ -70,7 +70,9 @@
         {{ game?.minPlayer }} à {{ game?.maxPlayer }}
       </p>
       <p [ngClass]="'bold-feature'">Éditeur :</p>
-      <p [ngClass]="'content-feature'">{{ game?.editor?.name }}</p>
+      <p [ngClass]="'content-feature'">
+        <span>{{ game?.editor?.name }}</span>
+      </p>
     </div>
     <div class="feature-right">
       <p [ngClass]="'bold-feature'">Type :</p>

@@ -18,6 +18,13 @@ p {
   h2 {
     color: var(--blue-primary);
     border-bottom: 2px solid var(--blue-primary);
+
+    @include m.bk-tablette-max-M {
+      margin-top: 1rem;
+      font-size: 1.3rem;
+      font-weight: bold;
+      border-bottom: 1px solid var(--blue-primary);
+    }
   }
 
   .product-flex {
@@ -31,7 +38,7 @@ p {
     }
 
     img {
-      width: 50%;
+      width: 60%;
       margin: 1rem;
     }
     .detail-product {
@@ -45,12 +52,17 @@ p {
         gap: 1rem;
       }
 
+      .notice {
+        display: flex;
+        align-items: center;
+      }
+
       h1 {
-        font-size: 3rem; /* Taille par défaut */
+        font-size: 3rem;
       }
 
       .price {
-        font-size: 1.6rem; /* Taille par défaut */
+        font-size: 1.6rem;
       }
       .notice,
       p {
@@ -59,97 +71,104 @@ p {
 
       .stock {
         p {
-          font-size: 1.4rem; /* Taille par défaut */
+          font-size: 1.4rem;
         }
       }
 
       p {
-        font-size: 1.4rem; /* Taille par défaut */
+        font-size: 1.4rem;
       }
       @include m.bk-tablette-max-M {
         .price,
         .notice,
         .stock p,
         p {
-          font-size: 1rem;
+          font-size: 1.2rem;
+          margin: 0;
         }
       }
     }
   }
   .description {
-    margin-top: 1rem;
     text-align: center;
   }
 
   .flex-feature {
     display: flex;
-    justify-content: center;
     margin: 1rem;
+    justify-content: space-between;
 
-    @include m.bk-tablette-max {
-      flex-direction: column;
-      align-items:center
+    @include m.bk-tablette-max-M {
+      margin: 0;
+    }
+
+    p,
+    span {
+      margin: 1rem 0;
+
+      @include m.bk-tablette-max-M {
+        margin: 8px;
+        font-size: 1rem;
+      }
     }
 
     .feature-right,
     .feature-left {
-      width: 50%;
+      width: 45%;
       display: flex;
+      justify-content: space-between;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 1rem;
-
-        @include m.bk-tablette-max {
-          margin-top: 1rem;
-          text-align: center;
-          align-items: center;
-        }
-      }
-    }
-  
-
-  .in-stock {
-    color: green;
-  }
-
-  .low-stock {
-    color: orange;
-  }
-
-  .out-of-stock {
-    color: red;
-  }
-
-  .bold-feature {
-    font-weight: bold;
-    font-size: 1.2rem;
-    border-bottom: 2px solid black;
-
-    @include m.bk-tablette-max-M {
-      font-size: 1rem;
     }
   }
+}
 
-  .content-feature {
-    letter-spacing: 1px;
-    font-size: 1.2rem;
-    @include m.bk-tablette-max-M {
-      font-size: 1rem;
-    }
+.in-stock {
+  color: green;
+}
+
+.low-stock {
+  color: orange;
+}
+
+.out-of-stock {
+  color: red;
+}
+
+.bold-feature {
+  font-weight: bold;
+  font-size: 1.2rem;
+
+  @include m.bk-tablette-max {
+    font-size: 0.8rem;
+    font-weight: bolder;
+    border: none;
+    margin: 0;
   }
+}
 
-  .head-mobile {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 4rem;
-    margin: 0 1rem;
+.content-feature {
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+  @include m.bk-tablette-max-M {
+    font-size: 1rem;
+  }
+}
 
-    .title-product {
-      text-align: center;
-      flex: 1;
-      border-color: red;
-    }
+.head-mobile {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+
+  .head-icon {
+    margin-right: 1rem;
+  }
+  .title-product {
+    text-align: center;
+    flex: 1;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
