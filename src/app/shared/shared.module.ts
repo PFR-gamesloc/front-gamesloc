@@ -14,7 +14,8 @@ import {InputPasswordComponent} from "./components/input-password/input-password
 import {ErrorMessageComponent} from "./components/error-message/error-message.component";
 import {SearchBarComponent} from "./components/search-bar/search-bar.component";
 import { NgIconsModule } from '@ng-icons/core';
-import { bootstrapFacebook ,bootstrapTwitter,bootstrapTiktok,bootstrapInstagram,bootstrapCart,bootstrapPersonCircle,bootstrapStar,bootstrapArrowReturnLeft} from '@ng-icons/bootstrap-icons'
+import {bootstrapTrash, bootstrapFacebook ,bootstrapTwitter,bootstrapTiktok,bootstrapInstagram,bootstrapCart,bootstrapPersonCircle,bootstrapStar,bootstrapArrowReturnLeft} from '@ng-icons/bootstrap-icons';
+import { CartItemComponent } from './components/cart-item/cart-item.component'
 @NgModule({
   declarations: [
     NavBarComponent,
@@ -25,7 +26,8 @@ import { bootstrapFacebook ,bootstrapTwitter,bootstrapTiktok,bootstrapInstagram,
     SelectComponent,
     InputPasswordComponent,
     ErrorMessageComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    CartItemComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,7 @@ import { bootstrapFacebook ,bootstrapTwitter,bootstrapTiktok,bootstrapInstagram,
     MatAutocompleteModule,
     MatInputModule,
     RouterLink,
-    NgIconsModule.withIcons({bootstrapFacebook,bootstrapTwitter,bootstrapTiktok,bootstrapInstagram,bootstrapCart,bootstrapPersonCircle,bootstrapStar,bootstrapArrowReturnLeft})
+    NgIconsModule.withIcons({bootstrapTrash,bootstrapFacebook,bootstrapTwitter,bootstrapTiktok,bootstrapInstagram,bootstrapCart,bootstrapPersonCircle,bootstrapStar,bootstrapArrowReturnLeft})
   ],
   exports:[
     NavBarComponent,
@@ -43,6 +45,7 @@ import { bootstrapFacebook ,bootstrapTwitter,bootstrapTiktok,bootstrapInstagram,
     HomeTestComponent,
     SelectComponent,
     InputPasswordComponent,
+    CartItemComponent
   ]
 })
 export class SharedModule { }
