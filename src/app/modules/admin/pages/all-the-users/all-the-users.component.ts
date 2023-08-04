@@ -38,7 +38,7 @@ export class AllTheUsersComponent {
     this.users$ = this.customerService.getCustomers().pipe(
       catchError((error) => {
         console.error('Error fetching orders:', error);
-        return of([]); // En cas d'erreur, renvoyer un Observable vide pour éviter les erreurs de typage.
+        return of([]);
       })
     );
 

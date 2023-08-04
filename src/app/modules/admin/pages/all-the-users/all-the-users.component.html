@@ -1,5 +1,5 @@
 <app-navbar-admin (onToggleSideNav)="onToggleSideNav($event)">
-    <h2><strong>Liste des utilisateurs</strong></h2>
+    <h2><strong>Nos utilisateurs</strong></h2>
 
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource">
@@ -38,7 +38,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
 
-        <mat-paginator [pageSizeOptions]="[10, 5, 20]" showFirstLastButtons
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
             aria-label="Select page of users">
         </mat-paginator>
     </div>

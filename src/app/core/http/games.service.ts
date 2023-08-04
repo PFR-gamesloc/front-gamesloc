@@ -9,9 +9,20 @@ import { Game } from "../../shared/entities/game";
 export class GamesService {
 
   private url: string = "/assets/data/games.json";
+  private baseUrl: string = "http://localhost:8080"; 
   constructor(private httpClient: HttpClient) { }
 
-  getGames(): Observable<Game[]> {
+  public getGames(): Observable<Game[]> {
     return this.httpClient.get<Game[]>(this.url);
+  }
+
+  public getGameById(gameId: Number): Observable<Game> {
+    const url = `${this.baseUrl}/game/${gameId}`; 
+    return this.httpClient.get<Game>(url); 
+  }
+
+  public getAdminGames() : Observable<Game[]> {
+    const url = `${this.baseUrl}/games`; 
+    return this.httpClient.get<Game[]>(url);
   }
 }
