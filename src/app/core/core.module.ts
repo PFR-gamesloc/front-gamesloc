@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {AddHeaderInterceptorService} from "./interceptor/add-header-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -9,6 +10,11 @@ import {HttpClientModule} from "@angular/common/http";
   imports: [
     HttpClientModule,
     CommonModule
+  ],
+  providers:[
+    { provide: HTTP_INTERCEPTORS, useClass: AddHeaderInterceptorService, multi: true },
+
+
   ]
 })
 export class CoreModule {

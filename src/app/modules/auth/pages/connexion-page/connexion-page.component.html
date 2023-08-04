@@ -8,12 +8,12 @@
         <app-input-password></app-input-password>
         <div class="check">
             <div class="remind-me">
-                <input type="checkbox" name="remind" id="remind">
+                <input type="checkbox" name="remind" id="remind" formControlName = "rememberMe">
                 <label for="remind">Se souvenir de moi</label>
             </div>
             <a routerLink="" class="link">Mot de passe oublié ?</a>
         </div>
-        <app-btn-component classBtn="btn btn-submit" textBtn="Connexion"></app-btn-component>
+        <app-btn-component classBtn="btn btn-submit" textBtn="Connexion" (click)="signin()" ></app-btn-component>
         <div class="subscribe">
             <p>Tu n'as pas de compte ?</p>
             <a routerLink="../signin" class="link">Enregistre toi ici</a>
