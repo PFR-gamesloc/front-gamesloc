@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable} from "rxjs";
 import { Game } from 'src/app/shared/entities/game';
 import { GameList } from 'src/app/shared/entities/gameList';
+import { GameDetail } from 'src/app/shared/entities/gameDetail';
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +11,16 @@ import { GameList } from 'src/app/shared/entities/gameList';
 export class GameService {
   private selectedGameIdKey = 'selectedGameId'
 
-  private url: string = "/assets/data/games.json";
   private baseUrl: string = "http://localhost:8080"; 
   constructor(private httpClient: HttpClient) { }
 
   public getGames(): Observable<GameList[]> {
-    return this.httpClient.get<GameList[]>(this.url);
+    return this.httpClient.get<GameList[]>(this.baseUrl+"/product/games");
   }
 
-  public getGameById(gameId: Number): Observable<Game> {
-    const url = `${this.baseUrl}/game/${gameId}`; 
-    return this.httpClient.get<Game>(url); 
+  public getGameById(gameId: Number): Observable<GameDetail> {
+    const url = `${this.baseUrl}/product/game/${gameId}`; 
+    return this.httpClient.get<GameDetail>(url); 
   }
 
   public getAdminGames() : Observable<GameList[]> {

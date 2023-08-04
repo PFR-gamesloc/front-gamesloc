@@ -16,7 +16,7 @@ registerLocaleData(localeFr, 'fr');
 
 export class ProductPageComponent implements OnInit {
 
-  game: Game | undefined;
+  game: GameDetail | undefined;
   input: boolean = true;
   currentWindowWidth!: number;
 
