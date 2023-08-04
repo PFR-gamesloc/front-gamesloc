@@ -4,6 +4,7 @@ import { GameService } from "../../../../core/http/games.service";
 import { GameDetail } from 'src/app/shared/entities/gameDetail';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { Game } from 'src/app/shared/entities/game';
 registerLocaleData(localeFr, 'fr');
 
 @Component({
@@ -15,7 +16,7 @@ registerLocaleData(localeFr, 'fr');
 
 export class ProductPageComponent implements OnInit {
 
-  game: GameDetail | undefined;
+  game: Game | undefined;
   input: boolean = true;
   currentWindowWidth!: number;
 
@@ -24,7 +25,7 @@ export class ProductPageComponent implements OnInit {
    const gameId = this.gameService.getSelectedGameId();
    this.currentWindowWidth = window.innerWidth;
     if (gameId ) { 
-      this.gameService.getGameDetail(gameId).subscribe({
+      this.gameService.getGameById(gameId).subscribe({
         next: (gameDetail) => {
           this.game = gameDetail;
         },

@@ -1,0 +1,21 @@
+<app-navbar-admin (onToggleSideNav)="onToggleSideNav($event)">
+    <div class="container">
+        <h1>Modifier mes informations</h1>
+    
+        <form action="" class="gameForm" [formGroup]="gameForm">
+            <div class="twice">
+                <app-input forInput="gameName" textLabel="Numéro" typeInput="Number" id="gameName"></app-input>
+                <app-input forInput="streetName" textLabel="Adresse" typeInput="text" id="streetName"></app-input>
+            </div>
+            <div class="twice">
+                <app-input forInput="complementaryNumber ? complementaryNumber : 'empty'" textLabel="Complément de numéro"
+                    typeInput="text" id="complementaryNumber" placeholderInput="Complément de numéro"></app-input>
+                <app-input forInput="complementaryAddress" textLabel="Complément d'Adresse" typeInput="text"
+                    id="complementaryAddress" placeholderInput="Complément d'adresse"></app-input>
+            </div>
+            <app-select></app-select>
+    
+            <app-btn-component classBtn="btn btn-submit" textBtn="Modifier"></app-btn-component>
+        </form>
+    </div>
+</app-navbar-admin>

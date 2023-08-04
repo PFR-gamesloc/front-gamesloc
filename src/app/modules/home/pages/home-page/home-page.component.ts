@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { GameService } from 'src/app/core/http/games.service';
 import { GameList } from 'src/app/shared/entities/gameList'; 
 import { Router } from '@angular/router';
@@ -33,7 +33,7 @@ export class HomePageComponent {
     },
 ]
 
-games$: Observable<GameList[]> =new Observable<GameList[]> ;
+games$: Observable<GameList[]> = new Observable<GameList[]> ;
 @Input() game : GameList | undefined;
 
 

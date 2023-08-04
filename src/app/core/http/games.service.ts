@@ -1,24 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { GameList } from "../../shared/entities/gameList";
 import { Observable} from "rxjs";
-import { GameDetail } from 'src/app/shared/entities/gameDetail';
+import { Game } from 'src/app/shared/entities/game';
+import { GameList } from 'src/app/shared/entities/gameList';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
-
   private selectedGameIdKey = 'selectedGameId'
 
-  private url: string = "http://localhost:8080/games"
-  constructor(private httpclient: HttpClient) { }
-  getGameDetail(id: number): Observable<GameDetail> {
-    const gameDetailUrl = `${this.url}/${id}`;
-    return this.httpclient.get<GameDetail>(gameDetailUrl);
+  private url: string = "/assets/data/games.json";
+  private baseUrl: string = "http://localhost:8080"; 
+  constructor(private httpClient: HttpClient) { }
+
+  public getGames(): Observable<GameList[]> {
+    return this.httpClient.get<GameList[]>(this.url);
   }
-  getGames(): Observable<GameList[]> {
-    return this.httpclient.get<GameList[]>(this.url);
+
+  public getGameById(gameId: Number): Observable<Game> {
+    const url = `${this.baseUrl}/game/${gameId}`; 
+    return this.httpClient.get<Game>(url); 
+  }
+
+  public getAdminGames() : Observable<GameList[]> {
+    const url = `${this.baseUrl}/games`; 
+    return this.httpClient.get<GameList[]>(url);
   }
 
   setSelectedGameId(gameId: number) {

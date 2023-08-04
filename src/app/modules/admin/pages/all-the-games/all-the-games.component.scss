@@ -1,0 +1,122 @@
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 50px;
+
+    .button-47 {
+        align-items: center;
+        background: var(--blue-primary);
+        border: none;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        box-sizing: border-box;
+        color: white;
+        display: inline-flex;
+        font-family: Inter, sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        height: 20px;
+        justify-content: center;
+        line-height: 24px;
+        overflow-wrap: break-word;
+        padding: 24px;
+        text-decoration: none;
+        width: auto;
+        border-radius: 8px;
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: baseline;
+        transition: all .2s cubic-bezier(.22, .61, .36, 1);
+    }
+
+    .button-47:hover {
+        background-color: var(--blue-secondary);
+        transform: translateY(-2px);
+    }
+}
+
+.btns {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+
+    input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .active .slider {
+        background-color: #2196F3;
+    }
+
+    input:focus+.slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    .active .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+}
+
+.bootstrapPenFill {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    background-color: var(--primary);
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    transition: all .2s;
+}
+
+.bootstrapPenFill:hover {
+    background-color: var(--secondary);
+    color: white;
+}

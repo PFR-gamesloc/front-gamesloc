@@ -27,8 +27,6 @@ export class UserAddressAccordionComponent {
     this.customerAddressService.getAddressCustomer(id).subscribe({
       next: value => { 
         this.customerAddress = value; 
-        console.log(this.customerAddress);
-        
       }
     })
   }

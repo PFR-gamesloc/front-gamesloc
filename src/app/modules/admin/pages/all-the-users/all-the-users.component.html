@@ -1,0 +1,45 @@
+<app-navbar-admin (onToggleSideNav)="onToggleSideNav($event)">
+    <h2><strong>Nos utilisateurs</strong></h2>
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+
+            <!-- idCustomer Column -->
+            <ng-container matColumnDef="idCustomer">
+                <th mat-header-cell *matHeaderCellDef>#idCustomer</th>
+                <td mat-cell *matCellDef="let element"> {{element.customerId}} </td>
+            </ng-container>
+
+            <!-- LastName Column -->
+            <ng-container matColumnDef="lastName">
+                <th mat-header-cell *matHeaderCellDef>Prénom</th>
+                <td mat-cell *matCellDef="let element">{{element.firstName}}</td>
+            </ng-container>
+
+            <!-- FirstName Column -->
+            <ng-container matColumnDef="firstName">
+                <th mat-header-cell *matHeaderCellDef>Nom</th>
+                <td mat-cell *matCellDef="let element">{{element.lastName}}</td>
+            </ng-container>
+
+            <!-- Email Column -->
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef>Email</th>
+                <td mat-cell *matCellDef="let element"> {{element.email}}</td>
+            </ng-container>
+
+            <!-- PhoneNumber Column -->
+            <ng-container matColumnDef="phoneNumber">
+                <th mat-header-cell *matHeaderCellDef>Téléphone</th>
+                <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+            aria-label="Select page of users">
+        </mat-paginator>
+    </div>
+</app-navbar-admin>

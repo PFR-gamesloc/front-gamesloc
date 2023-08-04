@@ -6,25 +6,20 @@
     <h1 class="title-product">{{ game?.gameName }}</h1>
   </div>
   <div class="product-flex">
-    <img
-      src="./assets/Predator_Wallpaper_02_3840x2400.jpg"
-      alt="exemple d'un jeu de société"
-    />
+    <img src="./assets/Predator_Wallpaper_02_3840x2400.jpg" alt="exemple d'un jeu de société" />
     <div class="detail-product">
       <h1 *ngIf="currentWindowWidth! > 768" title="title-product">
         {{ game?.gameName }}
       </h1>
       <span class="price">{{
         game?.gamePrice | currency : "EUR" : "symbol" : "2.2-2" : "fr"
-      }}</span>
+        }}</span>
       <ng-container class="stock" *ngIf="game?.stock">
-        <p
-          [ngClass]="{
+        <p [ngClass]="{
             'in-stock': game!.stock > 20,
             'low-stock': game!.stock <= 20,
             'out-of-stock': game!.stock <= 16
-          }"
-        >
+          }">
           Stock : <span> {{ game?.stock }}</span>
         </p>
       </ng-container>
@@ -36,22 +31,17 @@
         <ng-icon size="25" name="bootstrapStar"></ng-icon>
         <span class="total-notice">(26 avis)</span>
       </span>
-      <app-btn-component
-        classBtn="btn btn-add"
-        textBtn="Ajouter au panier"
-      ></app-btn-component>
+      <app-btn-component classBtn="btn btn-add" textBtn="Ajouter au panier"></app-btn-component>
     </div>
   </div>
 
   <h2>Description</h2>
-  <div class="description">
-    <p [ngClass]="input ? 'clamp' : 'text'">
-      {{ game?.gameDescr }}
-    </p>
-    <span class="more">
-      <a (click)="more()">Voir plus...</a>
-    </span>
-  </div>
+  <p [ngClass]="input ? 'clamp' : 'text'">
+    {{ game?.gameDescr }}
+  </p>
+  <span class="more">
+    <a (click)="more()">Voir plus...</a>
+  </span>
   <h2>Caractéristiques</h2>
   <div class="flex-feature">
     <div class="feature-left">
@@ -59,17 +49,17 @@
       <p [ngClass]="'content-feature'">{{ game?.minAge }} ans</p>
       <p [ngClass]="'bold-feature'">
         {{
-          game?.minPlayer
-            ? game!.minPlayer > 1
-              ? "Nombre de joueurs"
-              : "Nombre de joueur"
-            : "Nombre de joueur non spécifié"
+        game?.minPlayer
+        ? game!.minPlayer > 1
+        ? "Nombre de joueurs"
+        : "Nombre de joueur"
+        : "Nombre de joueur non spécifié"
         }}
       </p>
       <p [ngClass]="'content-feature'">
         {{ game?.minPlayer }} à {{ game?.maxPlayer }}
       </p>
-      <p [ngClass]="'bold-feature'">Éditeur :</p>
+      <!-- <p [ngClass]="'bold-feature'">Éditeur :</p>
       <p [ngClass]="'content-feature'">
         <span>{{ game?.editor?.name }}</span>
       </p>
@@ -82,10 +72,7 @@
           {{ (game?.languages)!.length > 1 ? "Langues" : "Langue" }} :
         </p>
         <p>
-          <span
-            [ngClass]="'content-feature'"
-            *ngFor="let language of game?.languages"
-          >
+          <span [ngClass]="'content-feature'" *ngFor="let language of game?.languages">
             {{ language.name }}
           </span>
         </p>
@@ -102,15 +89,9 @@
         </p>
       </ng-container>
     </div>
-  </div>
+  </div> -->
 
   <h2>Commentaire (2)</h2>
-  <app-commentary
-    classCommentary="commentary"
-    nameCommentary="nameCommentary"
-    ratingCommentary="ratingCommentary"
-    rating="rating"
-    ratingDate="ratingDate"
-    contentCommentary="contentCommentary"
-  ></app-commentary>
+  <app-commentary classCommentary="commentary" nameCommentary="nameCommentary" ratingCommentary="ratingCommentary"
+    rating="rating" ratingDate="ratingDate" contentCommentary="contentCommentary"></app-commentary>
 </div>

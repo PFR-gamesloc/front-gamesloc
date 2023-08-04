@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { City } from "../../entities/city";
 import { CitiesService } from "../../../core/http/cities.service";
@@ -13,8 +13,6 @@ import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material
 })
 
 export class SelectComponent implements OnInit {
-  @ViewChild('autoCityName') autoCityName: MatAutocomplete | undefined;
-
   myControlZipCode: FormControl<string | null> = new FormControl('', Validators.required);
   myControlName: FormControl<string | null> = new FormControl('', Validators.required);
   options: City[];
@@ -23,13 +21,9 @@ export class SelectComponent implements OnInit {
   filteredPostalCodes: string[];
   filteredCityNames: string[];
 
-  formZipCode! : FormGroup; 
+  formZipCode! : FormGroup;
 
-
-  constructor(
-    private citiesService: CitiesService, 
-    private rootFormGroup: FormGroupDirective) {
-
+  constructor(private citiesService: CitiesService, private rootFormGroup : FormGroupDirective) {
     this.options = [];
     this.filteredPostalCodes = [];
     this.filteredCityNames = [];
@@ -37,8 +31,9 @@ export class SelectComponent implements OnInit {
     this.cityNames = [];
   }
 
+  @ViewChild('autoCityName') autoCityName: MatAutocomplete | undefined;
+
   ngOnInit(): void {
-    // console.log(this.myControl)
     this.citiesService.getCities().subscribe({
       next: res => {
         this.handlePostalCode(res);
@@ -47,6 +42,7 @@ export class SelectComponent implements OnInit {
     });
 
     this.formZipCode = this.rootFormGroup.control; 
+
 
     this.myControlZipCode.valueChanges.subscribe(
       value => {
@@ -70,8 +66,7 @@ export class SelectComponent implements OnInit {
           this.filteredCityNames = [];
         }
       }
-    ); 
-
+    )
   }
 
   private _filter(value: string): string[] {
@@ -107,6 +102,17 @@ export class SelectComponent implements OnInit {
     const cityNameFilter = this.myControlName.value || '';
     if (zipCode) {
       this.filteredCityNames = this._filterCityNamesByPostalCode(zipCode, cityNameFilter);
+    }
+  }
+
+  public onCitySelected(event: MatAutocompleteSelectedEvent): void {
+    const selectedCity = event.option.value;
+    const city = this.options.find(option => option.cityName === selectedCity);
+    if (city) {
+      if(this.autoCityName !== undefined) {
+        this.myControlZipCode.setValue(city.postalCode);
+        this.autoCityName.closed;  
+      }
     }
   }
 }

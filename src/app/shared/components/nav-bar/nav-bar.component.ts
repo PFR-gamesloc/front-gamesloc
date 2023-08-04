@@ -12,12 +12,14 @@ export class NavBarComponent {
   classSchBarNav: string = 'input sh-nav';
   placeholderSchBarNav: string = 'jeux';
   showSearchBar: boolean = true;
-  currentWindowWidth!: number;
+  showHeader: boolean = true; 
+  currentWindowWidth: number;
 
   constructor(private router: Router) {
     router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         (val.url == '/auth/login' || val.url == '/auth/signin') ? this.showSearchBar = false : this.showSearchBar = true;
+        (val.url == '/admin' || val.url == '/admin/located-games' || val.url == '/admin/games' || val.url == '/admin/users') ? this.showHeader = false : this.showHeader = true;
       }
     })
     this.currentWindowWidth = window.innerWidth;
