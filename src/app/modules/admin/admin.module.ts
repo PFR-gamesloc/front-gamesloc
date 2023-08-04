@@ -17,6 +17,7 @@ import { TableComponentComponent } from './components/table-component/table-comp
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { GameEditComponent } from './pages/game-edit/game-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdminItemComponent } from './components/admin-item/admin-item.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     AllTheGamesComponent,
     AllTheUsersComponent,
     TableComponentComponent,
-    GameEditComponent
+    GameEditComponent,
+    AdminItemComponent
+
   ],
   imports: [
     CommonModule,
@@ -37,7 +40,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatTableModule,
     MatIconModule,
     MatPaginatorModule,
-    MatSlideToggleModule, 
+    MatSlideToggleModule,
     ReactiveFormsModule
   ],
 })

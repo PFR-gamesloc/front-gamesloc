@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import {FormGroup, FormGroupDirective} from "@angular/forms";
 
 @Component({
   selector: 'app-input-password',
@@ -11,9 +12,18 @@ export class InputPasswordComponent {
   @Input() typeInput: string | undefined;
   @Input() placeholderInput: string | undefined;
 
-  showPassword: boolean =  true; 
+  showPassword: boolean =  true;
+
+  form!: FormGroup;
+
+  constructor( private formgroup: FormGroupDirective) {
+  }
+
+  ngOnInit(){
+    this.form = this.formgroup.control;
+  }
 
   toggleShow() {
-    this.showPassword = !this.showPassword; 
+    this.showPassword = !this.showPassword;
   }
 }
