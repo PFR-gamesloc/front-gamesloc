@@ -1,21 +1,23 @@
-import { Component, ElementRef, ViewChildren } from '@angular/core';
-import { FormArray, FormBuilder, FormControlName, FormGroup } from '@angular/forms';
+import { Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormControlName, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GameService } from 'src/app/core/http/games.service';
-import { Game } from 'src/app/shared/entities/game';
 import { SideNavToggle } from '../../entities/SideNavToggle';
+import { GameList } from 'src/app/shared/entities/gameList';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-game-edit',
   templateUrl: './game-edit.component.html',
   styleUrls: ['./game-edit.component.scss']
 })
-export class GameEditComponent {
+export class GameEditComponent implements OnInit {
 
   @ViewChildren(FormControlName, { read: ElementRef }) inputElements!: ElementRef[];
 
   public gameForm!: FormGroup;
-  public game!: Game;
+  public gameId!: number;
+  public game!: GameList;
   public pageTitle!: string;
   public isAddMode!: boolean;
   isSideNavCollapsed = false;
@@ -29,22 +31,50 @@ export class GameEditComponent {
   ) { }
 
   ngOnInit(): void {
-
-    this.route.paramMap.subscribe(params => {
-      const id = Number(params.get('id'));
-      if (!this.isAddMode) {
-        this.getSelectedGame(id);
-      }
+    this.gameForm = new FormGroup({
+      gameName: new FormControl(''),
+      gameDescr: new FormControl(''),
+      stock: new FormControl(''),
+      gamePrice: new FormControl(''),
+      image: new FormControl(''),
+      minPlayer: new FormControl(''),
+      maxPlayer: new FormControl(''),
+      minAge: new FormControl(''),
+      type: new FormControl(''),
+      editor: new FormControl(''),
+      languages: new FormControl(''),
+      tags: new FormControl('')
     })
+
+    this.gameId = this.route.snapshot.params['id'];
+    this.isAddMode = !this.gameId;
+
+    if (!this.isAddMode) {
+      this.gamesService.getGameById(this.gameId)
+        .pipe(first())
+        .subscribe(
+          game => {
+            this.gameForm.patchValue({
+              gameName: game.gameName,
+              gameDescr: game.gameDescr,
+              stock: game.stock,
+              gamePrice: game.gamePrice,
+              image: game.image,
+              minPlayer: game.minPlayer,
+              maxPlayer: game.maxPlayer,
+              minAge: game.minAge,
+              type: game.type,
+              editor: game.editor
+            });
+
+            this.gameForm.setControl('languages', this.fb.array(game.languages) || [])
+            this.gameForm.setControl('tags', this.fb.array(game.tags) || [])
+          }
+        )
+    }
   }
 
-  public getSelectedGame(id: number): void {
-    this.gamesService.getGameById(id).subscribe({
-      next: (game: Game) => this.displayGame(game)
-    });
-  }
-
-  public displayGame(game: Game): void {
+  public displayGame(game: GameList): void {
     this.game = game;
 
     if (this.game.gameId === 0) {
@@ -53,21 +83,9 @@ export class GameEditComponent {
       this.pageTitle = `Modifier le jeu ${this.game.gameName}`;
     }
 
-    // this.gameForm.patchValue({
-    //   gameName: this.game.gameName,
-    //   gameDescr: this.game.gameDescr,
-    //   stock: this.game.stock,
-    //   gamePrice: this.game.gamePrice,
-    //   image: this.game.image,
-    //   minPlayer: this.game.minPlayer,
-    //   maxPlayer: this.game.maxPlayer,
-    //   minAge: this.game.minAge,
-    //   type: this.game.type,
-    //   editor: this.game.editor
-    // })
 
-    // this.gameForm.setControl('languages', this.fb.array(this.game.languages) || [])
-    // this.gameForm.setControl('tags', this.fb.array(this.game.tags) || [])
+
+
   }
 
   public get languages(): FormArray {
