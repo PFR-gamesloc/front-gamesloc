@@ -15,6 +15,8 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { TableComponentComponent } from './components/table-component/table-component.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 import { GameEditComponent } from './pages/game-edit/game-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminItemComponent } from './components/admin-item/admin-item.component';
@@ -41,7 +43,9 @@ import { AdminItemComponent } from './components/admin-item/admin-item.component
     MatIconModule,
     MatPaginatorModule,
     MatSlideToggleModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    MatCheckboxModule, 
+    MatRadioModule
   ],
 })
 export class AdminModule { }

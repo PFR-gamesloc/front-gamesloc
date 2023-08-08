@@ -4,7 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GameService } from 'src/app/core/http/games.service';
 import { SideNavToggle } from '../../entities/SideNavToggle';
 import { GameList } from 'src/app/shared/entities/gameList';
-import { first } from 'rxjs';
+import { Observable, first } from 'rxjs';
+import { Editor } from 'src/app/shared/entities/editor';
+import { Language } from 'src/app/shared/entities/language';
+import { Tag } from 'src/app/shared/entities/tag';
 
 @Component({
   selector: 'app-game-edit',
@@ -20,6 +23,9 @@ export class GameEditComponent implements OnInit {
   public game!: GameList;
   public pageTitle!: string;
   public isAddMode!: boolean;
+  editors$!: Observable<Editor[]>; 
+  languages$!: Observable<Language[]>; 
+  tags$!: Observable<Tag[]>; 
   isSideNavCollapsed = false;
   screenWith = 0;
 
@@ -42,8 +48,8 @@ export class GameEditComponent implements OnInit {
       minAge: new FormControl(''),
       type: new FormControl(''),
       editor: new FormControl(''),
-      languages: new FormControl(''),
-      tags: new FormControl('')
+      languages: new FormArray([]),  
+      tags: new FormArray([])
     })
 
     this.gameId = this.route.snapshot.params['id'];
@@ -72,28 +78,32 @@ export class GameEditComponent implements OnInit {
           }
         )
     }
+
+    this.editors$ = this.gamesService.getEditors(); 
+
+    this.languages$ = this.gamesService.getLanguages(); 
+
+    this.tags$ = this.gamesService.getTags(); 
   }
 
   public displayGame(game: GameList): void {
     this.game = game;
-
-    if (this.game.gameId === 0) {
-      this.pageTitle = "Ajouter un jeu"
-    } else {
-      this.pageTitle = `Modifier le jeu ${this.game.gameName}`;
-    }
-
-
-
-
   }
 
   public get languages(): FormArray {
     return this.gameForm.get('languages') as FormArray;
   }
 
+  public addLanguage(): void {
+    this.languages.push(new FormControl(true)); 
+  }
+
   public get tags(): FormArray {
     return this.gameForm.get('tags') as FormArray;
+  }
+
+  public addTag(): void {
+    this.tags.push(new FormControl('')); 
   }
 
   onToggleSideNav(data: SideNavToggle): void {

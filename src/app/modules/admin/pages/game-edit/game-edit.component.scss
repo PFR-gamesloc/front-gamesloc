@@ -1,0 +1,38 @@
+@use "../../../../../sass/mixins" as m;
+
+.title {
+    padding-bottom: 50px;
+}
+
+.gameForm {
+
+    .twice {
+        display: flex;
+        justify-content: space-between;
+        padding: 3px;
+
+        app-input {
+            width: 49%;
+        }
+    }
+
+    .boxes {
+        display: flex;
+        width: 100%;
+        justify-content: space-between; 
+        margin-left: 70px;
+
+        .box {
+            padding-top: 10px;
+            width: 30%;
+        }
+
+        .titleSection {
+            color: var(--blue-primary);
+            padding: 15px 10px;
+        }
+
+    }
+
+
+}

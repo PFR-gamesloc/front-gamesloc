@@ -24,9 +24,14 @@ export class NavBarComponent {
         } else {
           this.showHeader = true; 
         }
+
+        (val.url == '/auth/login' || val.url == '/auth/signin') ? this.showSearchBar = false : this.showHeader; 
       }
+
     })
+
     this.currentWindowWidth = window.innerWidth;
+
 
   }
   @HostListener('window:resize')

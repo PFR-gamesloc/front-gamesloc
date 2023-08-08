@@ -1,19 +1,76 @@
 <app-navbar-admin (onToggleSideNav)="onToggleSideNav($event)">
     <div class="container">
-        <h1>{{ isAddMode ? 'Ajouter' : 'Modifier'}} mes informations</h1>
-
+        <div class="title">
+            <h1><strong>
+                    {{ isAddMode ? 'Ajouter' : 'Modifier'}} mes informations
+                </strong></h1>
+        </div>
         <form action="" class="gameForm" [formGroup]="gameForm">
-                <div class="twice">
-                    <app-input forInput="gameName" textLabel="Nom du jeu" typeInput="text"></app-input>
-                    <app-input forInput="gameDescr" textLabel="Description du jeu" typeInput="text" id="gameDescr"></app-input>
-                </div>
-                <div class="twice">
-                    <app-input forInput="stock" textLabel="Nombre de jeux" typeInput="text" id="stock"></app-input>
-                    <app-input forInput="gamePrice" textLabel="Prix du jeu" typeInput="text" id="gamePrice"></app-input>
-                </div>
+            <div class="twice">
+                <app-input forInput="gameName" textLabel="Nom du jeu" typeInput="text"></app-input>
+                <app-input forInput="gameDescr" textLabel="Description du jeu" typeInput="text"
+                    id="gameDescr"></app-input>
+            </div>
+            <div class="twice">
+                <app-input forInput="stock" textLabel="Nombre de jeux" typeInput="number" id="stock"></app-input>
+                <app-input forInput="gamePrice" textLabel="Prix du jeu" typeInput="number" id="gamePrice"></app-input>
+            </div>
+            <app-input forInput="image" textLabel="Image du jeu" typeInput="text" id="image"></app-input>
+            <div class="twice">
+                <app-input forInput="minPlayer" textLabel="Nombre minimum de joueur" typeInput="number"
+                    id="minPlayer"></app-input>
+                <app-input forInput="maxPlayer" textLabel="Nombre maximum de joueur" typeInput="number"
+                    id="gamePrice"></app-input>
+            </div>
+            <div class="twice">
+                <app-input forInput="minAge" textLabel="Age minimum du jeu" typeInput="number" id="minAge"></app-input>
+                <app-input forInput="type" textLabel="Type de jeu" typeInput="text" id="type"></app-input>
+            </div>
+            <div class="boxes">
+                <ng-container *ngIf="editors$ | async as editors">
+                    <div class="box">
+                        <p class="titleSection">Editeur :</p>
+                        <mat-radio-group formControlName="editor">
+                            <div *ngFor="let editor of editors">
+                                <mat-radio-button value="{{ editor.editorId}}">
+                                    {{ editor.name}}
+                                </mat-radio-button>
+                            </div>
+                        </mat-radio-group>
+                    </div>
+
+
+                </ng-container>
+
+                <ng-container *ngIf="languages$ | async as languages">
+                    <div class="box">
+                        <p class="titleSection">Langues :</p>
+                        <div formArrayName="languages">
+                            <div *ngFor="let language of languages">
+                                    <mat-checkbox value="{{language.languageId }}" >{{language.name}}</mat-checkbox>  
+                            </div>
+                        </div>
+                    </div>
+
+                </ng-container>
+
+                <ng-container *ngIf="tags$ | async as tags">
+                    <div class="box">
+                        <p class="titleSection">Tags :</p>
+
+                        <div *ngFor="let tag of tags">
+                            <mat-checkbox>{{tag.name}}</mat-checkbox>
+                        </div>
+                    </div>
+                </ng-container>
+
+            </div>
 
             <app-btn-component classBtn="btn btn-submit"
                 textBtn="{{ isAddMode ? 'Ajouter' : 'Modifier'}}"></app-btn-component>
         </form>
     </div>
+
+    {{ gameForm.value | json }}
+
 </app-navbar-admin>

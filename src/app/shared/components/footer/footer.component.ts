@@ -13,7 +13,9 @@ export class FooterComponent {
   constructor(private router: Router) {
     router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
+
         const adminRoutePattern = /^\/admin(\/|$)/; 
+
         if(adminRoutePattern.test(val.url)) {
           this.showFooter = false; 
         } else {
