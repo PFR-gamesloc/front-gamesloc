@@ -7,16 +7,31 @@
         </div>
 
         <ul class="sidenav-nav">
-            <li class="sidenav-nav-item" *ngFor="let data of navData">
-                <a class="sidenav-nav-link" [routerLink]="[data.routeLink]" routerLinkActive="active"
-                    [routerLinkActiveOptions]="{exact: true}">
-                    <i class="sidenav-link-icon">
-                        <ng-icon [name]="data.icon"></ng-icon>
-                    </i>
-                    <span class="sidenav-link-text" *ngIf="collapsed">{{ data.label }}</span>
-                </a>
-            </li>
+            <div class="first-sidenav">
+                <li class="sidenav-nav-item" *ngFor="let data of navData">
+                    <a class="sidenav-nav-link" [routerLink]="[data.routeLink]" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        <i class="sidenav-link-icon">
+                            <ng-icon [name]="data.icon"></ng-icon>
+                        </i>
+                        <span class="sidenav-link-text" *ngIf="collapsed">{{ data.label }}</span>
+                    </a>
+                </li>
+            </div>
+
+            <div class="second-sidenav">
+                <li class="sidenav-nav-item">
+                    <a class="sidenav-nav-link" [routerLink]="['/']">
+                        <i class="sidenav-link-icon icon-house">
+                            <ng-icon name="bootstrapHouseFill"></ng-icon>
+                        </i>
+                        <span class="sidenav-link-text" *ngIf="collapsed">Website</span>
+                    </a>
+                </li>
+            </div>
         </ul>
+
+
     </div>
 
     <div class="containers" [ngClass]="collapsed ? 'containers-collapsed' : '  '">
@@ -25,5 +40,5 @@
             <ng-content></ng-content>
         </div>
     </div>
-    
+
 </div>

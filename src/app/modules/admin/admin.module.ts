@@ -6,7 +6,7 @@ import { RouterModule } from "@angular/router";
 import { SharedModule } from "../../shared/shared.module";
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgIconsModule } from '@ng-icons/core';
-import { bootstrapBagCheckFill, bootstrapCardList, bootstrapPeopleFill, bootstrapX, bootstrapPenFill, bootstrapPlusSquare } from '@ng-icons/bootstrap-icons';
+import { bootstrapBagCheckFill, bootstrapCardList, bootstrapPeopleFill, bootstrapX, bootstrapPenFill, bootstrapPlusSquare, bootstrapHouseFill } from '@ng-icons/bootstrap-icons';
 import { LocatedGamesComponent } from './pages/located-games/located-games.component';
 import { AllTheGamesComponent } from './pages/all-the-games/all-the-games.component';
 import { AllTheUsersComponent } from './pages/all-the-users/all-the-users.component';
@@ -38,7 +38,7 @@ import { AdminItemComponent } from './components/admin-item/admin-item.component
     AdminRoutingModule,
     SharedModule,
     RouterModule,
-    NgIconsModule.withIcons({ bootstrapBagCheckFill, bootstrapCardList, bootstrapPeopleFill, bootstrapX, bootstrapPenFill, bootstrapPlusSquare }),
+    NgIconsModule.withIcons({ bootstrapBagCheckFill, bootstrapCardList, bootstrapPeopleFill, bootstrapX, bootstrapPenFill, bootstrapPlusSquare, bootstrapHouseFill }),
     MatTableModule,
     MatIconModule,
     MatPaginatorModule,
