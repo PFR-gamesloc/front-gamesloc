@@ -18,7 +18,7 @@ export class OrdersService {
   }
 
   public getAdminOrders() : Observable<AdminOrder[]> {
-    const url = `${this.baseUrl}/orders`; 
+    const url = `${this.baseUrl}/admin/order/all`; 
     return this.httpClient.get<AdminOrder[]>(url); 
   }
 }

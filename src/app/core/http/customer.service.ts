@@ -9,22 +9,22 @@ import { CustomerAddress } from 'src/app/shared/entities/customerAddress';
 })
 export class CustomerService {  
 
-  private baseUrl: string = "http://localhost:8080/customer";
+  private baseUrl: string = "http://localhost:8080";
 
   constructor(private httpClient: HttpClient) { }
 
   public getCustomer(userId : number): Observable<Customer> {
-    const url = `${this.baseUrl}/${userId}`
+    const url = `${this.baseUrl}/customer/${userId}`
     return this.httpClient.get<Customer>(url);
   }
 
   public getAddressCustomer(userId : number) : Observable<CustomerAddress> {
-    const url = `${this.baseUrl}/${userId}`
+    const url = `${this.baseUrl}/customer/${userId}`
     return this.httpClient.get<CustomerAddress>(url);
   }
 
-  public getCustomers() : Observable<Customer[]> {
-    const url = `${this.baseUrl}/all`
+  public getCustomersAdmin() : Observable<Customer[]> {
+    const url = `${this.baseUrl}/admin/customer/all`
     return this.httpClient.get<Customer[]>(url);
   }
 }

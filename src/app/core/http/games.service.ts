@@ -28,27 +28,27 @@ export class GameService {
   }
 
   public getAdminGames() : Observable<GameList[]> {
-    const url = `${this.baseUrl}/games`; 
+    const url = `${this.baseUrl}/admin/game/all`; 
     return this.httpClient.get<GameList[]>(url);
   }
 
   public getEditors() : Observable<Editor[]> {
-    const url = `${this.baseUrl}/auth/editors`; 
+    const url = `${this.baseUrl}/admin/game/editors`; 
     return this.httpClient.get<Editor[]>(url); 
   }
 
   public getLanguages() : Observable<Language[]> {
-    const url = `${this.baseUrl}/auth/languages`; 
+    const url = `${this.baseUrl}/admin/game/languages`; 
     return this.httpClient.get<Language[]>(url); 
   }
 
   public getTags() : Observable<Tag[]> {
-    const url = `${this.baseUrl}/auth/tags`; 
+    const url = `${this.baseUrl}/admin/game/tags`; 
     return this.httpClient.get<Tag[]>(url); 
   }
 
   public getTypes() : Observable<Type[]> {
-    const url = `${this.baseUrl}/auth/types`; 
+    const url = `${this.baseUrl}/admin/game/types`; 
     return this.httpClient.get<Type[]>(url); 
   }
 
@@ -58,7 +58,7 @@ export class GameService {
       image: 'assets/img'
     }; 
 
-    const url = `${this.baseUrl}/auth/game/add`;
+    const url = `${this.baseUrl}/admin/game/add`;
     return this.httpClient.post<GameList>(url, game)
   }
 

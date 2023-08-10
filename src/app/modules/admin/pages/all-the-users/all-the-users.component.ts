@@ -35,7 +35,7 @@ export class AllTheUsersComponent {
   }
 
   private getUsers(): void {
-    this.users$ = this.customerService.getCustomers().pipe(
+    this.users$ = this.customerService.getCustomersAdmin().pipe(
       catchError((error) => {
         console.error('Error fetching orders:', error);
         return of([]);
