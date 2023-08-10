@@ -5,21 +5,19 @@ import { ModifyUserOptionComponent } from './pages/modify-user-option/modify-use
 import { NumberIdGuardService } from 'src/app/core/guard/number-id.guard';
 import { ModifyUserAddressOptionComponent } from './pages/modify-user-address-option/modify-user-address-option.component';
 
+
 const routes: Routes = [
   {
-    path: ':id',
+    path: 'me',
     component: DashboardPageComponent,
-    canActivate: [NumberIdGuardService]
   },
   {
-    path: ':id/edit',
+    path: 'me/edit',
     component: ModifyUserOptionComponent,
-    canActivate: [NumberIdGuardService]
-  }, 
+  },
   {
-    path: ':id/edit/address', 
-    component: ModifyUserAddressOptionComponent, 
-    canActivate: [NumberIdGuardService]
+    path: ':me/edit/address',
+    component: ModifyUserAddressOptionComponent,
   }
 ];
 

@@ -24,17 +24,17 @@ export class ProductPageComponent implements OnInit {
   ngOnInit() {
    const gameId = this.gameService.getSelectedGameId();
    this.currentWindowWidth = window.innerWidth;
-    if (gameId ) { 
+    if (gameId ) {
       this.gameService.getGameById(gameId).subscribe({
         next: (gameDetail) => {
           this.game = gameDetail;
         },
         error: (error) => {
-          console.log("Erreur lors de la récupération du produit : ", error);
+
         }
       });
       } else {
-        console.log('ID du jeu invalide');
+
       }
   }
 

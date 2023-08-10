@@ -15,7 +15,7 @@ import { GameList } from 'src/app/shared/entities/gameList';
 export class AllTheGamesComponent {
 
   games$!: Observable<GameList[]>;
-  gamesList!: GameList[]; 
+  gamesList!: GameList[];
   isSideNavCollapsed = false;
   checked!: Boolean;
   screenWith = 0;
@@ -29,7 +29,7 @@ export class AllTheGamesComponent {
   }
 
   toggleChecked(): void {
-    this.checked = !this.checked; 
+    this.checked = !this.checked;
   }
 
   onToggleSideNav(data: SideNavToggle): void {
@@ -51,8 +51,7 @@ export class AllTheGamesComponent {
 
     this.games$.subscribe((games) => {
       this.dataSource.data = games;
-      this.gamesList = games; 
-      console.log(games)
+      this.gamesList = games;
     })
   }
 

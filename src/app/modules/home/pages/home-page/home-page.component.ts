@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GameService } from 'src/app/core/http/games.service';
-import { GameList } from 'src/app/shared/entities/gameList'; 
+import { GameList } from 'src/app/shared/entities/gameList';
 import { Router } from '@angular/router';
 
 @Component({
@@ -40,10 +40,7 @@ games$: Observable<GameList[]> = new Observable<GameList[]> ;
 constructor(private gameService: GameService, private router:Router){}
 
 ngOnInit() {
-  this.games$ = this.gameService.getGames()
-   /* this.games$ = this.gameService.getGames().pipe(
-      tap(games => console.log(games))
-    );*/
+  this.games$ = this.gameService.getGames();
   };
 
   navigateToGameDetails(gameId:number, gameName: string) {
@@ -52,4 +49,4 @@ ngOnInit() {
     this.router.navigate(['game', gameName]);
   }
 }
- 
+

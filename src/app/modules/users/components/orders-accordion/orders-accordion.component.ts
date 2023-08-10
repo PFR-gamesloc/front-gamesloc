@@ -4,30 +4,26 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { OrdersService } from 'src/app/core/http/orders.service';
 import { Order } from 'src/app/shared/entities/order';
+import {GetService} from "../../../../core/http/get.service";
 
 @Component({
   selector: 'app-orders-accordion',
   templateUrl: './orders-accordion.component.html',
-  styleUrls: ['./orders-accordion.component.scss'], 
+  styleUrls: ['./orders-accordion.component.scss'],
   providers: [DatePipe]
 })
 export class OrdersAccordionComponent {
-  orders$: Observable<Order[]> | undefined; 
+  orders: Order[] ;
 
-  constructor(
-    private ordersService: OrdersService, 
-    private route: ActivatedRoute, 
-    private datePipe: DatePipe ) {
+  constructor(private getService:GetService) {
+    this.orders = [];
      }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const id = params?.get('id');
-      this.getSelectedOrdersByUserId(Number(id));
+    this.getService.getData<Order[]>("customer/me/orders").subscribe({
+      next: res =>this.orders = res
     })
   }
-  
-  private getSelectedOrdersByUserId(id : number) : void {
-    this.orders$ = this.ordersService.getOrders(id); 
-  }
+
+
 }

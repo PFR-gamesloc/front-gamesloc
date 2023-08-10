@@ -40,7 +40,5 @@ export class InscriptionPageComponent implements OnInit {
   }
 
   public submit(): void {
-    console.log(this.form.controls['phoneNumber'])
-    console.log(this.form.controls['errors'])
   }
 }

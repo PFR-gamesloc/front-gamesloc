@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CustomerLikeService } from 'src/app/core/http/customer-like.service';
 import { CustomerLike } from 'src/app/shared/entities/customerLike';
+import {CustomerAddress} from "../../../../shared/entities/customerAddress";
+import {GetService} from "../../../../core/http/get.service";
 
 @Component({
   selector: 'app-favorite-item-accordion',
@@ -10,21 +12,17 @@ import { CustomerLike } from 'src/app/shared/entities/customerLike';
   styleUrls: ['./favorite-item-accordion.component.scss']
 })
 export class FavoriteItemAccordionComponent {
-  favoriteGames$: Observable<CustomerLike[]> | undefined; 
+  favoriteGames: CustomerLike[];
 
   constructor(
-    private customerLikeService: CustomerLikeService,
-    private route: ActivatedRoute) {}
+    private getService:GetService) {
+    this.favoriteGames = [];
+  }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const id = params?.get('id'); 
-      this.getFavoriteOrdersByUserId(Number(id)); 
-    })
+    console.log("ici")
+      this.getService.getData<CustomerLike[]>("customer/me/favs").subscribe({
+        next: (res:CustomerLike[]) => this.favoriteGames = res
+      });
   }
-
-  private getFavoriteOrdersByUserId(id : number) : void {
-    this.favoriteGames$ = this.customerLikeService.getFavoriteItems(id); 
-  }
-
 }

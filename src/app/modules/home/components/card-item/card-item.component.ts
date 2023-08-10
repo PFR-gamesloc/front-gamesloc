@@ -13,7 +13,6 @@ export class CardItemComponent implements OnInit {
  @Input() game: GameList| undefined
 
   constructor(private parent: HomePageComponent) { }
-  ngOnInit() {  
-      console.log(this.parent);  
+  ngOnInit() {
   }
 }

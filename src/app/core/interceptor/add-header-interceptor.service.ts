@@ -3,19 +3,25 @@ import {HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest} from 
 import {mergeMap, Observable, of} from "rxjs";
 import {GetService} from "../http/get.service";
 import {Token} from "../../modules/auth/entities/token";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddHeaderInterceptorService implements HttpInterceptor {
 
-  constructor(private getService:GetService) { }
+  constructor(private getService:GetService, private router:Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (req.url != "http://localhost:8080/auth/authenticate") {
+
+    if (!req.url.startsWith("http://localhost:8080/auth/") && !req.url.startsWith("http://localhost:8080/product/" )) {
+      let token = localStorage.getItem("token") ?? sessionStorage.getItem("token");
+      // if (token === null ){
+      //   this.router.navigate(["/auth/login"])
+      // }
       req = req.clone({
         headers: req.headers.append(
-          'Authorization', 'Bearer ' + localStorage.getItem("token")
+          'Authorization', 'Bearer ' + token
         )
       });
       return next.handle(req)

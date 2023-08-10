@@ -1,5 +1,5 @@
 <div class="cards">
-    <ng-container *ngIf="orders$ | async as orders">
+    <ng-container *ngIf="orders.length != 0">
         <div class="card" *ngFor="let order of orders">
             <div class="header">Commande n° {{ order.orderId }}</div>
             <div class="body">

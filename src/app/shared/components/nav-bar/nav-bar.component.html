@@ -9,27 +9,33 @@
       *ngIf="showSearchBar"
     ></app-search-bar>
     <div class="icons">
-      <div *ngIf="currentWindowWidth! < 768" class="icon">
-        <a routerLink="/auth/login" class="display-connexion"
-          ><ng-icon
-            color="#FFFFFF"
-            size="25"
-            name="bootstrapPersonCircle"
-          ></ng-icon
-        ></a>
-        <span *ngIf="currentWindowWidth! < 768" class="dis-card">Compte</span>
-      </div>
-      <div class="icon" *ngIf="currentWindowWidth! >= 768">
-        <app-btn-component
-          [classBtn]="classBtn"
-          [textBtn]="textBtn"
-          routerLink="/auth/login"
-        ></app-btn-component>
-      </div>
+      <ng-container *ngIf="!isConnected, else dropdown_menu">
+        <div *ngIf="currentWindowWidth! < 768" class="icon">
+          <a routerLink="/auth/login" class="display-connexion">
+            <ng-icon
+              color="#FFFFFF"
+              size="25"
+              name="bootstrapPersonCircle"
+            ></ng-icon
+            >
+          </a>
+          <span *ngIf="currentWindowWidth! < 768" class="dis-card">Compte</span>
+        </div>
+        <div class="icon" *ngIf="currentWindowWidth! >= 768">
+          <app-btn-component
+            [classBtn]="classBtn"
+            [textBtn]="textBtn"
+            routerLink="/auth/login"
+          ></app-btn-component>
+        </div>
+      </ng-container>
+      <ng-template #dropdown_menu>
+        <app-dropdown-menu></app-dropdown-menu>
+      </ng-template>
       <div routerLink="/cart" class="icon column">
-        <a
-          ><ng-icon color="#FFFFFF" size="25" name="bootstrapCart"></ng-icon
-        ></a>
+        <a>
+          <ng-icon color="#FFFFFF" size="25" name="bootstrapCart"></ng-icon>
+        </a>
         <span class="dis-card">Panier</span>
       </div>
     </div>
