@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from 'src/app/core/http/customer.service';
 import { CustomerAddress } from 'src/app/shared/entities/customerAddress';
+import {GetService} from "../../../../core/http/get.service";
 
 @Component({
   selector: 'app-modify-user-address-option',
@@ -16,10 +17,7 @@ export class ModifyUserAddressOptionComponent {
   private isFormSubmitter!: boolean;
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private fb: FormBuilder,
-    private customerService: CustomerService
+    private getService:GetService
   ) { }
 
   ngOnInit(): void {
@@ -28,21 +26,14 @@ export class ModifyUserAddressOptionComponent {
       complementaryNumber: new FormControl(''),
       streetName: new FormControl(''),
       complementaryAddress: new FormControl(''),
-      postalCode: new FormControl(''), 
+      postalCode: new FormControl(''),
       cityName: new FormControl('')
     })
 
-    this.route.paramMap.subscribe(params => {
-      const id = Number(params.get("id"));
+    this.getService.getData<CustomerAddress>("customer/me").subscribe({
+      next: (res:CustomerAddress) => this.displayCustomer(res)
+    });
 
-      this.getSelectedCustomer(id); 
-    })
-  }
-
-  public getSelectedCustomer(id: number) : void {
-    this.customerService.getAddressCustomer(id).subscribe({
-      next: (customer: CustomerAddress) => this.displayCustomer(customer)
-    })
   }
 
   public displayCustomer(customer: CustomerAddress): void {
@@ -50,7 +41,7 @@ export class ModifyUserAddressOptionComponent {
 
     this.customerForm.patchValue({
       numberAddress: this.customer.address.numberAddress,
-      complementaryNumber: this.customer.address.complementaryNumber, 
+      complementaryNumber: this.customer.address.complementaryNumber,
       streetName: this.customer.address.streetName,
       complementaryAddress: this.customer.address.complementaryAddress,
       postalCode: this.customer.address.city.postalCode,
@@ -59,9 +50,9 @@ export class ModifyUserAddressOptionComponent {
   }
 
   public saveCustomer() : void {
-    this.isFormSubmitter = true; 
+    this.isFormSubmitter = true;
     this.customerForm.updateValueAndValidity({
-      onlySelf: true, 
+      onlySelf: true,
       emitEvent: true
     })
   }
