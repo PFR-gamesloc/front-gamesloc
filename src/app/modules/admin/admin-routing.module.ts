@@ -24,11 +24,11 @@ const routes: Routes = [
     component: AllTheUsersComponent
   },
   {
-    path: 'add',
+    path: 'game/add',
     component: GameEditComponent
   },
   {
-    path: 'edit/:id',
+    path: 'game/edit/:id',
     component: GameEditComponent
   }
 

@@ -18,21 +18,41 @@
 
     .boxes {
         display: flex;
-        width: 100%;
-        justify-content: space-between; 
-        margin-left: 70px;
+        padding-left: 10px;
 
         .box {
             padding-top: 10px;
-            width: 30%;
-        }
+            width: 50%;
 
-        .titleSection {
-            color: var(--blue-primary);
-            padding: 15px 10px;
-        }
+            label {
+                display: flex;
+                padding: 10px;
 
+                .name {
+                    padding-left: 10px;
+                }
+            }
+
+            .titleSection {
+                color: var(--blue-primary);
+                padding: 15px 10px;
+            }
+
+        }
     }
 
+    .btn-small {
+        display: flex;
+        justify-content: flex-end;
+
+        app-btn-component {
+            width: 15%;
+            padding-bottom: 5px;
+        }
+    }
+
+    .checkbox-wrapper-4 * {
+        box-sizing: border-box;
+    }
 
 }

@@ -7,6 +7,7 @@ import { GameDetail } from 'src/app/shared/entities/gameDetail';
 import { Editor } from 'src/app/shared/entities/editor';
 import { Language } from 'src/app/shared/entities/language';
 import { Tag } from 'src/app/shared/entities/tag';
+import { Type } from 'src/app/shared/entities/type';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,21 @@ export class GameService {
   public getTags() : Observable<Tag[]> {
     const url = `${this.baseUrl}/auth/tags`; 
     return this.httpClient.get<Tag[]>(url); 
+  }
+
+  public getTypes() : Observable<Type[]> {
+    const url = `${this.baseUrl}/auth/types`; 
+    return this.httpClient.get<Type[]>(url); 
+  }
+
+  public createGame(game: GameList): Observable<GameList> {
+    game =  {
+      ...game, 
+      image: 'assets/img'
+    }; 
+
+    const url = `${this.baseUrl}/auth/game/add`;
+    return this.httpClient.post<GameList>(url, game)
   }
 
   setSelectedGameId(gameId: number) {

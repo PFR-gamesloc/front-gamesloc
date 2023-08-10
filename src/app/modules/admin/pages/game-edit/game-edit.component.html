@@ -5,7 +5,7 @@
                     {{ isAddMode ? 'Ajouter' : 'Modifier'}} mes informations
                 </strong></h1>
         </div>
-        <form action="" class="gameForm" [formGroup]="gameForm">
+        <form action="" class="gameForm" [formGroup]="gameForm" (ngSubmit)="saveGame()">
             <div class="twice">
                 <app-input forInput="gameName" textLabel="Nom du jeu" typeInput="text"></app-input>
                 <app-input forInput="gameDescr" textLabel="Description du jeu" typeInput="text"
@@ -24,13 +24,25 @@
             </div>
             <div class="twice">
                 <app-input forInput="minAge" textLabel="Age minimum du jeu" typeInput="number" id="minAge"></app-input>
-                <app-input forInput="type" textLabel="Type de jeu" typeInput="text" id="type"></app-input>
             </div>
             <div class="boxes">
+                <ng-container *ngIf="types$ | async as types">
+                    <div class="box">
+                        <p class="titleSection">Type :</p>
+                        <mat-radio-group formControlName="typeId">
+                            <div *ngFor="let type of types">
+                                <mat-radio-button value="{{ type.typeId}}">
+                                    {{ type.name}}
+                                </mat-radio-button>
+                            </div>
+                        </mat-radio-group>
+                    </div>
+                </ng-container>
+
                 <ng-container *ngIf="editors$ | async as editors">
                     <div class="box">
                         <p class="titleSection">Editeur :</p>
-                        <mat-radio-group formControlName="editor">
+                        <mat-radio-group formControlName="editorId">
                             <div *ngFor="let editor of editors">
                                 <mat-radio-button value="{{ editor.editorId}}">
                                     {{ editor.name}}
@@ -38,36 +50,47 @@
                             </div>
                         </mat-radio-group>
                     </div>
-
-
                 </ng-container>
-
+            </div>
+            <div class="boxes">
                 <ng-container *ngIf="languages$ | async as languages">
                     <div class="box">
                         <p class="titleSection">Langues :</p>
-                        <div formArrayName="languages">
-                            <div *ngFor="let language of languages">
-                                    <mat-checkbox value="{{language.languageId }}" >{{language.name}}</mat-checkbox>  
-                            </div>
+                        <div>
+                            <ng-container *ngFor="let language of languages">
+                                <label>
+                                    <input type="checkbox" value="{{ language.languageId }}"
+                                        (change)="handleLangs($event)">
+                                    <div class="name">
+                                        {{ language.name}}
+                                    </div>
+                                </label>
+                            </ng-container>
                         </div>
                     </div>
-
                 </ng-container>
 
                 <ng-container *ngIf="tags$ | async as tags">
                     <div class="box">
                         <p class="titleSection">Tags :</p>
 
-                        <div *ngFor="let tag of tags">
-                            <mat-checkbox>{{tag.name}}</mat-checkbox>
-                        </div>
+                        <ng-container *ngFor="let tag of tags">
+                            <label>
+                                <input type="checkbox" value="{{ tag.tagId }}" (change)="handleTags($event)">
+                                <div class="name">
+                                    {{ tag.name}}
+                                </div>
+                            </label>
+                        </ng-container>
                     </div>
                 </ng-container>
-
             </div>
 
-            <app-btn-component classBtn="btn btn-submit"
-                textBtn="{{ isAddMode ? 'Ajouter' : 'Modifier'}}"></app-btn-component>
+            <div class="btn-small">
+                <app-btn-component classBtn="btn btn-submit"
+                    textBtn="{{ isAddMode ? 'Ajouter' : 'Modifier'}}"></app-btn-component>
+            </div>
+
         </form>
     </div>
 
