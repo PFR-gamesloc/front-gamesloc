@@ -1,9 +1,9 @@
 <div class="fav-card">
-    <ng-container *ngIf="favoriteGames$ | async as games">
-        <div class="error" *ngIf="games.length === 0">
+    <ng-container *ngIf="favoriteGames">
+        <div class="error" *ngIf="favoriteGames.length === 0">
             <p><strong>Pas de favoris ?</strong></p>
         </div>
-        <div class="card" *ngFor="let game of games">
+        <div class="card" *ngFor="let game of favoriteGames">
             <img src="/assets/testArticle.jpg" alt="{{ game?.image }}" />
             <div class="infos">
                 <div class="game">

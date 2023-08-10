@@ -16,6 +16,8 @@ import {SearchBarComponent} from "./components/search-bar/search-bar.component";
 import { NgIconsModule } from '@ng-icons/core';
 import {bootstrapTrash, bootstrapFacebook ,bootstrapTwitter,bootstrapTiktok,bootstrapInstagram,bootstrapCart,bootstrapPersonCircle,bootstrapStar,bootstrapArrowReturnLeft} from '@ng-icons/bootstrap-icons';
 import { CartItemComponent } from './components/cart-item/cart-item.component'
+import {CoreModule} from "../core/core.module";
+import { DropdownMenuComponent } from './components/dropdown-menu/dropdown-menu.component';
 @NgModule({
   declarations: [
     NavBarComponent,
@@ -27,16 +29,28 @@ import { CartItemComponent } from './components/cart-item/cart-item.component'
     InputPasswordComponent,
     ErrorMessageComponent,
     SearchBarComponent,
-    CartItemComponent
+    CartItemComponent,
+    DropdownMenuComponent
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatInputModule,
-    RouterLink,
-    NgIconsModule.withIcons({bootstrapTrash,bootstrapFacebook,bootstrapTwitter,bootstrapTiktok,bootstrapInstagram,bootstrapCart,bootstrapPersonCircle,bootstrapStar,bootstrapArrowReturnLeft})
-  ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatInputModule,
+        RouterLink,
+        NgIconsModule.withIcons({
+            bootstrapTrash,
+            bootstrapFacebook,
+            bootstrapTwitter,
+            bootstrapTiktok,
+            bootstrapInstagram,
+            bootstrapCart,
+            bootstrapPersonCircle,
+            bootstrapStar,
+            bootstrapArrowReturnLeft
+        }),
+        CoreModule
+    ],
   exports:[
     NavBarComponent,
     InputComponent,

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Customer } from '../../../../shared/entities/customer';
 import { CustomerService } from 'src/app/core/http/customer.service';
 import { ActivatedRoute } from '@angular/router';
+import {GetService} from "../../../../core/http/get.service";
 
 @Component({
   selector: 'app-user-accordion',
@@ -11,22 +12,11 @@ import { ActivatedRoute } from '@angular/router';
 export class UserAccordionComponent {
   customer: Customer | undefined;
 
-  constructor(
-    private customerService: CustomerService,
-    private route: ActivatedRoute) { }
+  constructor(private getService:GetService) { }
 
-  ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      const id = params?.get('id');
-      this.getSelectedUser(Number(id));
-    })
-  }
-
-  private getSelectedUser(id: number): void {
-    this.customerService.getCustomer(id).subscribe({
-      next: value => {
-        this.customer = value
-      }
-    })
+  ngOnInit(){
+    this.getService.getData<Customer>("customer/me").subscribe({
+      next: res => this.customer=res
+    });
   }
 }

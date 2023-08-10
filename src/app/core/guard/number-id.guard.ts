@@ -9,13 +9,13 @@ export class NumberIdGuardService {
   constructor(private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const id = Number(route.params["id"]); 
+    const id = Number(route.params["id"]);
 
     if(isNaN(id) || id <= 0) {
       this.router.navigate(['/auth/login']);
-      return false; 
+      return false;
     }
 
-    return true; 
+    return true;
   }
 }

@@ -6,6 +6,9 @@
     <form action="" class="cardConnection" [formGroup]="formGroup">
         <app-input forInput="mail" textLabel="Email" typeInput="texte" placeholderInput="Email"></app-input>
         <app-input-password></app-input-password>
+        <div *ngIf="showErrorMessage" class="error-message">
+          Email ou mot de passe incorrect
+        </div>
         <div class="check">
             <div class="remind-me">
                 <input type="checkbox" name="remind" id="remind" formControlName = "rememberMe">

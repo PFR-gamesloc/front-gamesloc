@@ -1,5 +1,7 @@
 import { NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
+import {isSignedInGuard} from "./core/guard/is-signed-in.guard";
+import {isAdminGuard} from "./core/guard/is-admin.guard";
 
 const routes: Routes = [
   {
@@ -8,7 +10,8 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule)
+    loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule),
+    canActivate:[isAdminGuard]
   },
   {
     path: 'auth',
@@ -24,7 +27,8 @@ const routes: Routes = [
   },
   {
     path: 'user',
-    loadChildren: () => import('./modules/users/user.module').then(m => m.UserModule)
+    loadChildren: () => import('./modules/users/user.module').then(m => m.UserModule),
+    canActivate: [isSignedInGuard]
   }
 ]
 @NgModule({
