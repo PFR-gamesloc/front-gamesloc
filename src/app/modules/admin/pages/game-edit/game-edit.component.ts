@@ -10,6 +10,7 @@ import { Language } from 'src/app/shared/entities/language';
 import { Tag } from 'src/app/shared/entities/tag';
 import { Type } from 'src/app/shared/entities/type';
 import { Game } from 'src/app/shared/entities/game';
+import { ToastrService} from 'ngx-toastr'; 
 
 @Component({
   selector: 'app-game-edit',
@@ -37,7 +38,8 @@ export class GameEditComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private gamesService: GameService
+    private gamesService: GameService, 
+    private toastr: ToastrService 
   ) { }
 
   ngOnInit(): void {
@@ -143,9 +145,12 @@ export class GameEditComponent implements OnInit {
       this.gamesService.createGame(newGame).subscribe({
         next: (response) => {
           console.log('Jeu ajouté avec success ', response);
-          this.saveCompleted(); 
+          this.saveCompleted(response); 
         },
-        error: (err) => console.log('Error lors ajout ', err.message)
+        error: (err) => {
+          console.log('Error lors ajout ', err.message)
+          this.toastr.error("Le jeu n'a pas pu être créé", err.message)
+      }
       })
 
       // if (newGame.gameId === 0) {
@@ -162,9 +167,10 @@ export class GameEditComponent implements OnInit {
     }
   }
 
-  public saveCompleted() : void {
+  public saveCompleted(response: GameList) : void {
     this.gameForm.reset(); 
     this.router.navigate(['/admin', 'games'])
+    this.toastr.success("Le jeu a été ajouté avec success", response.gameName); 
   }
 
 }

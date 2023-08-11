@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { GameService } from 'src/app/core/http/games.service';
 import { GameList } from 'src/app/shared/entities/gameList';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home-page',
@@ -31,19 +32,19 @@ export class HomePageComponent {
         'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
       imageAlt: 'person2',
     },
-]
+  ]
 
-games$: Observable<GameList[]> = new Observable<GameList[]> ;
-@Input() game : GameList | undefined;
+  games$: Observable<GameList[]> = new Observable<GameList[]>;
+  @Input() game: GameList | undefined;
 
 
-constructor(private gameService: GameService, private router:Router){}
+  constructor(private gameService: GameService, private router: Router) { }
 
-ngOnInit() {
-  this.games$ = this.gameService.getGames();
+  ngOnInit() {
+    this.games$ = this.gameService.getGames();
   };
 
-  navigateToGameDetails(gameId:number, gameName: string) {
+  navigateToGameDetails(gameId: number, gameName: string) {
     this.gameService.setSelectedGameId(gameId);
 
     this.router.navigate(['game', gameName]);
