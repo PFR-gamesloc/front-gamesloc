@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from 'src/app/core/http/customer.service';
 import { UsersService } from 'src/app/core/http/users.service';
 import { Customer } from 'src/app/shared/entities/customer';
+import {GetService} from "../../../../core/http/get.service";
 
 @Component({
   selector: 'app-modify-user-option',
@@ -18,10 +19,7 @@ export class ModifyUserOptionComponent implements OnInit {
   private isFormSubmitter!: boolean;
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private fb: FormBuilder,
-    private customerService: CustomerService
+    private getService:GetService,
   ) { }
 
   ngOnInit(): void {
@@ -32,18 +30,9 @@ export class ModifyUserOptionComponent implements OnInit {
       email: new FormControl(''),
       password: new FormControl('')
     })
-
-    this.route.paramMap.subscribe(params => {
-      const id = Number(params.get("id"));
-
-      this.getSelectedCustomer(id); 
-    })
-  }
-
-  public getSelectedCustomer(id: number) : void {
-    this.customerService.getCustomer(id).subscribe({
-      next: (customer: Customer) => this.displayCustomer(customer)
-    })
+    this.getService.getData<Customer>("customer/me").subscribe({
+      next: res => this.displayCustomer(res)
+    });
   }
 
   public displayCustomer(customer: Customer): void {
@@ -59,9 +48,9 @@ export class ModifyUserOptionComponent implements OnInit {
   }
 
   public saveCustomer() : void {
-    this.isFormSubmitter = true; 
+    this.isFormSubmitter = true;
     this.customerForm.updateValueAndValidity({
-      onlySelf: true, 
+      onlySelf: true,
       emitEvent: true
     })
   }
