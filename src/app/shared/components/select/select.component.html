@@ -1,31 +1,31 @@
 <ng-container [formGroup]="formZipCode">
-    <div class="container">
-      <label>
-        <div>
-          Code Postal
-        </div>
-      </label>
-      <input type="text" placeholder="Pick one" aria-label="Code Postal" matInput [formControl]="myControlZipCode"
-        [matAutocomplete]="autoZipCode" formControlName="postalCode" #zipCodeInput>
-      <mat-autocomplete #autoZipCode="matAutocomplete">
-        <mat-option *ngFor="let postalCode of filteredPostalCodes" [value]="postalCode">
-          {{postalCode}}
-        </mat-option>
-      </mat-autocomplete>
-    </div>
-    <div class="container">
-      <label>
-        <div>
-          Ville
-        </div>
-      </label>
-      <input type="text" placeholder="Pick one" aria-label="Ville" matInput [formControl]="myControlName"
-        [matAutocomplete]="autoCityName" formControlName="cityName" (click)="filterCityNames()">
-      <mat-autocomplete #autoCityName="matAutocomplete">
-        <mat-option *ngFor="let cityName of filteredCityNames" [value]="cityName">
-          {{cityName}}
-        </mat-option>
-      </mat-autocomplete>
-    </div>
+  <div class="container">
+    <label>
+      <div>
+        Code Postal
+      </div>
+    </label>
+    <input type="text" placeholder="Pick one" aria-label="Code Postal" matInput [matAutocomplete]="autoZipCode"
+      formControlName="postalCode" (input)="filteredPostalCodes = _filter(formZipCode.get('postalCode')?.value)">
+    <mat-autocomplete #autoZipCode="matAutocomplete">
+      <mat-option *ngFor="let postalCode of filteredPostalCodes" [value]="postalCode">
+        {{postalCode}}
+      </mat-option>
+    </mat-autocomplete>
+  </div>
+  <div class="container">
+    <label>
+      <div>
+        Ville
+      </div>
+    </label>
+    <input type="text" placeholder="Pick one" aria-label="Ville" matInput [matAutocomplete]="autoCityName"
+      formControlName="cityName" (click)="filterCityNames()">
+    <mat-autocomplete #autoCityName="matAutocomplete">
+      <mat-option *ngFor="let cityName of filteredCityNames" [value]="cityName">
+        {{cityName}}
+      </mat-option>
+    </mat-autocomplete>
+  </div>
 
 </ng-container>

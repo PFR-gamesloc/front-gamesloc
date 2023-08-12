@@ -38,7 +38,7 @@ export class HomePageComponent {
   @Input() game: GameList | undefined;
 
 
-  constructor(private gameService: GameService, private router: Router) { }
+  constructor(private gameService: GameService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.games$ = this.gameService.getGames();
@@ -49,5 +49,9 @@ export class HomePageComponent {
 
     this.router.navigate(['game', gameName]);
   }
+
+  // public showSuccess() {
+  //   this.toastr.success('Hello World')
+  // }
 }
 

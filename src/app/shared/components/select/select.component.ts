@@ -13,17 +13,16 @@ import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material
 })
 
 export class SelectComponent implements OnInit {
-  myControlZipCode: FormControl<string | null> = new FormControl('', Validators.required);
-  myControlName: FormControl<string | null> = new FormControl('', Validators.required);
+
   options: City[];
   postalCodes: string[];
   cityNames: string[];
   filteredPostalCodes: string[];
   filteredCityNames: string[];
 
-  formZipCode! : FormGroup;
+  formZipCode!: FormGroup;
 
-  constructor(private citiesService: CitiesService, private rootFormGroup : FormGroupDirective) {
+  constructor(private citiesService: CitiesService, private rootFormGroup: FormGroupDirective) {
     this.options = [];
     this.filteredPostalCodes = [];
     this.filteredCityNames = [];
@@ -41,35 +40,21 @@ export class SelectComponent implements OnInit {
       }
     });
 
-    this.formZipCode = this.rootFormGroup.control; 
+    this.formZipCode = this.rootFormGroup.control;
 
-
-    this.myControlZipCode.valueChanges.subscribe(
-      value => {
-
-        if (value && value.length >= 2) {
-          this.filteredPostalCodes = this._filter(value || '');
-        }
-        else {
-          this.filteredPostalCodes = [];
-        }
+    this.formZipCode.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged()
+    ).subscribe(value => {
+      if (value && value.cityName && value.postalCode.length >= 2) {
+        this.filterCityNames();
+      } else {
+        this.filteredCityNames = [];
       }
-    );
-
-    this.myControlName.valueChanges.subscribe(
-      value => {
-        if (value && value.length >= 2) {
-          if (this.myControlZipCode.value != null)
-            this.filteredCityNames = this._filterCityNamesByPostalCode(this.myControlZipCode.value, value);
-        }
-        else {
-          this.filteredCityNames = [];
-        }
-      }
-    )
+    });
   }
 
-  private _filter(value: string): string[] {
+  public _filter(value: string): string[] {
     const filterValueZip = value.toLowerCase();
     return this.postalCodes.filter(option => option.toLowerCase().startsWith(filterValueZip));
   }
@@ -77,14 +62,12 @@ export class SelectComponent implements OnInit {
   private _filterCityNamesByPostalCode(zipCode: string, cityNameFilter: string): string[] {
     const filterValueZip = zipCode.toLowerCase();
     const filteredCities = this.options.filter(city => city.postalCode.toLowerCase().startsWith(filterValueZip));
-    return filteredCities.map(city => city.cityName).filter(cityName => cityName.toLowerCase().startsWith(cityNameFilter.toLowerCase()));
+    return filteredCities.filter(city => city.cityName.toLowerCase().startsWith(cityNameFilter.toLowerCase()))
+      .map(city => city.cityName);
   }
 
   private handlePostalCode(cities: City[]): void {
-    const distinctCodes: Set<string> = new Set<string>();
-    for (let city of cities)
-      distinctCodes.add(city.postalCode);
-
+    const distinctCodes = new Set<string>(cities.map(city => city.postalCode));
     this.postalCodes = Array.from(distinctCodes);
   }
 
@@ -98,20 +81,18 @@ export class SelectComponent implements OnInit {
   }
 
   public filterCityNames(): void {
-    const zipCode = this.myControlZipCode.value;
-    const cityNameFilter = this.myControlName.value || '';
-    if (zipCode) {
-      this.filteredCityNames = this._filterCityNamesByPostalCode(zipCode, cityNameFilter);
-    }
+    const zipCode = this.formZipCode.value ? this.formZipCode.value.postalCode : '';
+    const cityNameFilter = this.formZipCode.value ? this.formZipCode.value.cityName : '';
+    this.filteredCityNames = this._filterCityNamesByPostalCode(zipCode, cityNameFilter);
   }
 
   public onCitySelected(event: MatAutocompleteSelectedEvent): void {
     const selectedCity = event.option.value;
     const city = this.options.find(option => option.cityName === selectedCity);
     if (city) {
-      if(this.autoCityName !== undefined) {
-        this.myControlZipCode.setValue(city.postalCode);
-        this.autoCityName.closed;  
+      if (this.autoCityName !== undefined) {
+        this.formZipCode.get("postalCode")?.setValue(city.postalCode);
+        this.autoCityName.closed;
       }
     }
   }
