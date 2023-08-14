@@ -55,11 +55,21 @@ export class GameService {
   public createGame(game: GameList): Observable<GameList> {
     game =  {
       ...game, 
-      image: 'assets/img'
+      image: game.image
     }; 
 
     const url = `${this.baseUrl}/admin/game/add`;
     return this.httpClient.post<GameList>(url, game)
+  }
+
+  public updateGame(gameEdit: GameList, id: Number) : Observable<GameList> {
+    gameEdit = {
+      ...gameEdit, 
+      image: gameEdit.image
+    }
+
+    const url = `${this.baseUrl}/admin/game/edit/${id}`;
+    return this.httpClient.put<GameList>(url, gameEdit); 
   }
 
   setSelectedGameId(gameId: number) {
@@ -69,5 +79,17 @@ export class GameService {
   getSelectedGameId(): number | undefined {
     const gameId = localStorage.getItem(this.selectedGameIdKey);
     return gameId ? parseInt(gameId) : undefined;
+  }
+
+  uploadImage(imageFile: File): Observable<string> {
+    // Créez une instance de FormData
+    const formData = new FormData();
+    
+    // Ajoutez le fichier image à FormData
+    formData.append('image', imageFile);
+    
+    // Effectuez une requête HTTP POST pour téléverser l'image
+    return this.httpClient.post<string>(`${this.baseUrl}/upload`, formData);
+
   }
 }

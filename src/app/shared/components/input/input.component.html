@@ -8,5 +8,8 @@
     <ng-container *ngIf="checkValidity()">
       <app-error-message [errors]="errors"></app-error-message>
     </ng-container>
+    <ng-content>
+      
+    </ng-content>
   </div>
 </ng-container>
