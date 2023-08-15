@@ -11,6 +11,7 @@ import { Tag } from 'src/app/shared/entities/tag';
 import { Type } from 'src/app/shared/entities/type';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
+import { DataConfirmDialogService } from '../../entities/data-confirm-dialog.service';
 
 @Component({
   selector: 'app-game-edit',

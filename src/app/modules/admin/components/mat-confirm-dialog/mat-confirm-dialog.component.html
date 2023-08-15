@@ -1,0 +1,8 @@
+<div class="content-container">
+    <p (click)="closeDialog()" class="close">X</p>
+    <p class="describe">Etes vous sûr de vouloir supprimer ce jeu ?</p>
+    <div mat-dialog-action class="btns">
+        <button mat-flat-button [mat-dialog-close]="false" class="no">no</button>
+        <button mat-flat-button [mat-dialog-close]="true" class="yes">yes</button>
+    </div>
+</div>

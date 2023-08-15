@@ -72,6 +72,11 @@ export class GameService {
     return this.httpClient.put<GameList>(url, gameEdit); 
   }
 
+  public deleteAGame(id: Number) : Observable<GameList> {
+    const url = `${this.baseUrl}/admin/game/delete/${id}`
+    return this.httpClient.delete<GameList>(url)
+  }
+
   setSelectedGameId(gameId: number) {
     localStorage.setItem(this.selectedGameIdKey, gameId.toString());
   }

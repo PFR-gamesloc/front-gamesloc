@@ -18,6 +18,7 @@ import { CardItemComponent } from 'src/app/modules/home/components/card-item/car
     CommonModule,
     HomeRoutingModule,
     SharedModule,
-    NgIconsModule.withIcons({ bootstrapArrowLeftCircle, bootstrapArrowRightCircle })  ]
+    NgIconsModule.withIcons({ bootstrapArrowLeftCircle, bootstrapArrowRightCircle })
+  ]
 })
 export class HomeModule { }
