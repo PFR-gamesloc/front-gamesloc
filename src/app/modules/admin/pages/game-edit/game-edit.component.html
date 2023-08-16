@@ -7,23 +7,24 @@
         </div>
         <form action="" class="gameForm" [formGroup]="gameForm" (ngSubmit)="saveGame()">
             <div class="twice">
-                <app-input forInput="gameName" textLabel="Nom du jeu" typeInput="text"></app-input>
+                <app-input forInput="gameName" textLabel="Nom du jeu" typeInput="text" placeholderInput="Nom du jeu"></app-input>
                 <app-input forInput="gameDescr" textLabel="Description du jeu" typeInput="text"
-                    id="gameDescr"></app-input>
+                    id="gameDescr" placeholderInput="Description"></app-input>
             </div>
             <div class="twice">
-                <app-input forInput="stock" textLabel="Nombre de jeux" typeInput="number" id="stock"></app-input>
-                <app-input forInput="gamePrice" textLabel="Prix du jeu" typeInput="number" id="gamePrice"></app-input>
+                <app-input forInput="stock" textLabel="Nombre de jeux" typeInput="number" id="stock" placeholderInput="Nombre de jeux"></app-input>
+                <app-input forInput="gamePrice" textLabel="Prix du jeu" typeInput="number" id="gamePrice" placeholderInput="Prix du jeu"></app-input>
             </div>
-            <app-input class="img" forInput="image" textLabel="Image du jeu" typeInput="file" id="image"></app-input>
+            <app-input class="img" forInput="image" textLabel="Image du jeu" typeInput="{{isAddMode ? 'file' : 'text'}}" id="image" (change)="onFileSelected($event)">
+            </app-input>
             <div class="twice">
                 <app-input forInput="minPlayer" textLabel="Nombre minimum de joueur" typeInput="number"
-                    id="minPlayer"></app-input>
+                    id="minPlayer" placeholderInput="Minimum de joeur"></app-input>
                 <app-input forInput="maxPlayer" textLabel="Nombre maximum de joueur" typeInput="number"
-                    id="gamePrice"></app-input>
+                    id="gamePrice" placeholderInput="Maximum de joueur"></app-input>
             </div>
             <div class="twice">
-                <app-input forInput="minAge" textLabel="Age minimum du jeu" typeInput="number" id="minAge"></app-input>
+                <app-input forInput="minAge" textLabel="Age minimum du jeu" typeInput="number" id="minAge" placeholderInput="Age conseillé pour"></app-input>
             </div>
             <div class="boxes">
                 <ng-container *ngIf="types$ | async as types">
@@ -57,10 +58,11 @@
                     <div class="box">
                         <p class="titleSection">Langues :</p>
                         <div>
-                            <ng-container *ngFor="let language of languages">
+                            <ng-container *ngFor="let language of languages; let i = index">
                                 <label>
                                     <input type="checkbox" value="{{ language.languageId }}"
-                                        (change)="handleLangs($event)">
+                                        (change)="handleLangs($event, language.languageId)"
+                                        [checked]="gameForm.get('languages')?.value.includes(language.languageId)">
                                     <div class="name">
                                         {{ language.name}}
                                     </div>
@@ -76,7 +78,7 @@
 
                         <ng-container *ngFor="let tag of tags">
                             <label>
-                                <input type="checkbox" value="{{ tag.tagId }}" (change)="handleTags($event)">
+                                <input type="checkbox" value="{{ tag.tagId }}" (change)="handleTags($event, tag.tagId)" [checked]="gameForm.get('tags')?.value.includes(tag.tagId)">
                                 <div class="name">
                                     {{ tag.name}}
                                 </div>

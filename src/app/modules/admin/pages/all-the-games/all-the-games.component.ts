@@ -6,6 +6,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { GameService } from 'src/app/core/http/games.service';
 import { GameList } from 'src/app/shared/entities/gameList';
+import { DataConfirmDialogService } from '../../entities/data-confirm-dialog.service';
+import { ToastrService } from 'ngx-toastr'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-the-games',
@@ -24,7 +27,12 @@ export class AllTheGamesComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private gamesService: GameService) {
+  constructor(
+    private gamesService: GameService,
+    private dialogService: DataConfirmDialogService,
+    private toastr: ToastrService, 
+    private rooter: Router
+  ) {
     this.getGames();
   }
 
@@ -59,5 +67,19 @@ export class AllTheGamesComponent {
     const words = text.split(' ');
     const sliceWords = words.slice(0, numWords);
     return sliceWords.join(' ');
+  }
+
+  public onDelete(id: Number) {
+    this.dialogService.openConfirmDialog().afterClosed().subscribe(res => {
+      if(res) {
+        this.gamesService.deleteAGame(id); 
+        console.log("delete id");
+        console.log(id);
+        this.rooter.navigate(['/admin', 'games']); 
+        this.toastr.success("Le jeu a bien été supprimé !"); 
+      } else {
+        this.toastr.info("Vous n'avez pas supprimé le jeu")
+      }
+    })
   }
 }

@@ -1,0 +1,54 @@
+.content-container {
+    padding: 20px;
+    overflow: hidden;
+    color: grey;
+
+    .close {
+        display: flex;
+        justify-content: end;
+        cursor: pointer;
+        padding-bottom: 10px;
+        color: grey;
+    }
+
+    .close:hover {
+        color: darkgray;
+    }
+
+    .describe {
+        text-align: center;
+        padding: 10px 0px;
+    }
+
+    .btns {
+        padding-top: 20px;
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        align-items: center;
+
+        .no,
+        .yes {
+            width: 40%;
+            border: none;
+            color: white;
+            border-radius: 1px;
+            cursor: pointer;
+        }
+
+        .no:hover,
+        .yes:hover {
+            opacity: .75;
+        }
+
+        .no {
+            background-color: #BF2A2A;
+        }
+
+        .yes {
+            background-color: #0FA67B;
+        }
+
+
+    }
+}

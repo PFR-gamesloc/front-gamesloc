@@ -9,7 +9,7 @@ import { Editor } from 'src/app/shared/entities/editor';
 import { Language } from 'src/app/shared/entities/language';
 import { Tag } from 'src/app/shared/entities/tag';
 import { Type } from 'src/app/shared/entities/type';
-import { Game } from 'src/app/shared/entities/game';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-game-edit',
@@ -31,14 +31,19 @@ export class GameEditComponent implements OnInit {
   types$!: Observable<Type[]>;
   isSideNavCollapsed = false;
   screenWith = 0;
+  uploadedImage: File | null = null;
+  imguploaded!: string; 
   private isFormSubmitted!: boolean;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private gamesService: GameService
-  ) { }
+    private gamesService: GameService,
+    private toastr: ToastrService
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.gameForm = new FormGroup({
@@ -50,8 +55,8 @@ export class GameEditComponent implements OnInit {
       minPlayer: new FormControl(),
       maxPlayer: new FormControl(),
       minAge: new FormControl(),
-      typeId: new FormControl(),
-      editorId: new FormControl(),
+      typeId: new FormControl(""),
+      editorId: new FormControl(""),
       languages: new FormArray([]),
       tags: new FormArray([])
     })
@@ -73,12 +78,24 @@ export class GameEditComponent implements OnInit {
               minPlayer: game.minPlayer,
               maxPlayer: game.maxPlayer,
               minAge: game.minAge,
-              typeId: game.type,
-              editorId: game.editor,
-              languages: game.languages,
-              tags: game.tags
+              typeId: game.type.typeId.toString(),
+              editorId: game.editor.editorId.toString(),
             });
 
+            game.languages.forEach((language) => {
+              const control = new FormControl(language.languageId);
+              (this.gameForm.get('languages') as FormArray).push(control);
+            });
+
+            // Peupler les contrôles de tags
+            game.tags.forEach((tag) => {
+              const control = new FormControl(tag.tagId);
+              (this.gameForm.get('tags') as FormArray).push(control);
+            });
+
+            console.log("New Game");
+            console.log(game);
+            
           }
         )
     }
@@ -101,67 +118,99 @@ export class GameEditComponent implements OnInit {
     this.isSideNavCollapsed = data.collapsed;
   }
 
-  handleLangs(e: any) {
+  handleLangs(e: any, languageId: Number) {
     const lang = this.gameForm.get('languages') as FormArray;
-    const langValue = e.target.value;
+    const isSelected = e.target.checked;
 
-    if (e.target.checked) {
-      lang.push(new FormControl(langValue));
+    if (isSelected) {
+      const existsIndex = lang.controls.findIndex((lgue: any) => lgue.value === languageId);
+      if (existsIndex === -1) {
+        lang.push(new FormControl(languageId));
+      }
     } else {
-      const index = lang.controls.findIndex((lgue: any) => lgue.value === langValue);
+      const index = lang.controls.findIndex((lgue: any) => lgue.value === languageId);
       if (index !== -1) {
         lang.removeAt(index);
       }
     }
   }
 
-  handleTags(e: any) {
-    const tags = this.gameForm.get('tags') as FormArray;
-    const tagValue = e.target.value;
 
-    if (e.target.checked) {
-      tags.push(new FormControl(tagValue));
+  handleTags(e: any, tagId: Number) {
+    const tags = this.gameForm.get('tags') as FormArray;
+    const tagValue = e.target.checked;
+
+    if (tagValue) {
+      const existsIndex = tags.controls.findIndex((inf: any) => inf.value === tagId);
+      if (existsIndex === -1) {
+        tags.push(new FormControl(tagId));
+      }
     } else {
-      const index = tags.controls.findIndex((tag: any) => tag.value === tagValue);
+      const index = tags.controls.findIndex((tag: any) => tag.value === tagId);
       if (index !== -1) {
         tags.removeAt(index);
       }
     }
   }
 
+  onFileSelected(event: any): void {
+    this.uploadedImage = event.target.files[0];
+    if (this.uploadedImage) {
+      this.gamesService.uploadImage(this.uploadedImage);
+    }
+
+    console.log(this.uploadedImage);
+    
+  }
+
   public saveGame(): void {
     this.isFormSubmitted = true;
+
     if (this.gameForm.valid) {
       const newGame: GameList = {
         ...this.gameForm.value,
-        image: 'assets/img'
+        image: `assets/img/${this.uploadedImage?.name}`
       };
 
       this.gamesService.createGame(newGame).subscribe({
         next: (response) => {
           console.log('Jeu ajouté avec success ', response);
-          this.saveCompleted();
+          this.saveCompleted(response);
         },
         error: (err) => console.log('Error lors ajout ', err.message)
       })
 
-      // if (newGame.gameId === 0) {
-      //   this.gamesService.createGame(newGame).subscribe({
-      //     next: (response) => console.log('Jeu ajouté avec success ', response),
-      //     error: (err) => console.log('Error lors ajout ', err)
-      // })
-      // } else {
-      //   this.gamesService.updateGame(newGame).subscribe({
-      //     next: (response) => console.log('Jeu modifié avec success ', response),
-      //     error: (err) => console.log("Error lors modification ", err)
-      //   })
-      // }
+      if (this.uploadedImage) {
+        const imagePath = `assets/img/${this.uploadedImage.name}`;
+        newGame.image = imagePath;
+      };
+
+      if (this.isAddMode) {
+        this.gamesService.createGame(newGame).subscribe({
+          next: (response) => {
+            this.saveCompleted(response);
+          },
+          error: (err) => {
+            this.toastr.error("Le jeu n'a pas pu être créé", err.message);
+          }
+        })
+      } else {
+        this.gamesService.updateGame(newGame, this.gameId).subscribe({
+          next: (response) => {
+            this.saveCompleted(response);
+          },
+          error: (err) => {
+            this.toastr.error("Le jeu n'a pas pu être créé", err.message);
+          }
+        })
+      }
     }
   }
 
-  public saveCompleted() : void {
+  public saveCompleted(response: GameList): void {
     this.gameForm.reset();
     this.router.navigate(['/admin', 'games'])
+    this.toastr.success(`Le jeu a été ${this.isAddMode ? "ajouté" : "modifié"} avec succes`, response.gameName);
   }
 
 }

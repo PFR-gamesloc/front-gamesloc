@@ -6,7 +6,7 @@ import { RouterModule } from "@angular/router";
 import { SharedModule } from "../../shared/shared.module";
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgIconsModule } from '@ng-icons/core';
-import { bootstrapBagCheckFill, bootstrapCardList, bootstrapPeopleFill, bootstrapX, bootstrapPenFill, bootstrapPlusSquare, bootstrapHouseFill } from '@ng-icons/bootstrap-icons';
+import { bootstrapBagCheckFill, bootstrapCardList, bootstrapPeopleFill, bootstrapX, bootstrapPenFill, bootstrapPlusSquare, bootstrapHouseFill, bootstrapTrashFill } from '@ng-icons/bootstrap-icons';
 import { LocatedGamesComponent } from './pages/located-games/located-games.component';
 import { AllTheGamesComponent } from './pages/all-the-games/all-the-games.component';
 import { AllTheUsersComponent } from './pages/all-the-users/all-the-users.component';
@@ -20,6 +20,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { GameEditComponent } from './pages/game-edit/game-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminItemComponent } from './components/admin-item/admin-item.component';
+import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -30,22 +32,23 @@ import { AdminItemComponent } from './components/admin-item/admin-item.component
     AllTheUsersComponent,
     TableComponentComponent,
     GameEditComponent,
-    AdminItemComponent
-
+    AdminItemComponent,
+    MatConfirmDialogComponent, 
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     SharedModule,
     RouterModule,
-    NgIconsModule.withIcons({ bootstrapBagCheckFill, bootstrapCardList, bootstrapPeopleFill, bootstrapX, bootstrapPenFill, bootstrapPlusSquare, bootstrapHouseFill }),
+    NgIconsModule.withIcons({ bootstrapBagCheckFill, bootstrapCardList, bootstrapPeopleFill, bootstrapX, bootstrapPenFill, bootstrapPlusSquare, bootstrapHouseFill, bootstrapTrashFill }),
     MatTableModule,
     MatIconModule,
     MatPaginatorModule,
     MatSlideToggleModule,
     ReactiveFormsModule, 
     MatCheckboxModule, 
-    MatRadioModule
-  ],
+    MatRadioModule, 
+    MatDialogModule
+    ]
 })
 export class AdminModule { }

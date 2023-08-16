@@ -4,6 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from 'src/app/core/http/customer.service';
 import { CustomerAddress } from 'src/app/shared/entities/customerAddress';
 import {GetService} from "../../../../core/http/get.service";
+import { Customer } from 'src/app/shared/entities/customer';
+import { CustomerEdit } from 'src/app/shared/entities/customerEdit';
+import { CustomerAddressEdit } from 'src/app/shared/entities/customerAddressEdit';
+import { ToastrService} from 'ngx-toastr'; 
 
 @Component({
   selector: 'app-modify-user-address-option',
@@ -17,7 +21,10 @@ export class ModifyUserAddressOptionComponent {
   private isFormSubmitter!: boolean;
 
   constructor(
-    private getService:GetService
+    private getService:GetService, 
+    private customerService: CustomerService, 
+    private router: Router, 
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -49,11 +56,31 @@ export class ModifyUserAddressOptionComponent {
     });
   }
 
-  public saveCustomer() : void {
+  public saveCustomer(): void {
     this.isFormSubmitter = true;
-    this.customerForm.updateValueAndValidity({
-      onlySelf: true,
-      emitEvent: true
-    })
+
+    if (this.customerForm.valid) {
+      const modifyCustomer: CustomerAddressEdit = {
+        ...this.customerForm.value
+      }
+
+      console.log(modifyCustomer);
+      
+
+      this.customerService.modifyAddressCustomer(modifyCustomer).subscribe({
+        next: (response) => {
+          this.saveCompleted(response); 
+        }, 
+        error: (err) => {
+          this.toastr.error("Votre modification n'a pas été pris en compte ", err.message); 
+        }
+      })
+    }
+  }
+
+  public saveCompleted(response: CustomerAddressEdit) : void {
+    this.customerForm.reset(); 
+    this.router.navigate(['/user', 'me'])
+    this.toastr.success("Votre modification a bien été pris en compte"); 
   }
 }

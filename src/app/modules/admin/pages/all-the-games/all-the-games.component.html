@@ -47,10 +47,9 @@
                             <ng-icon name="bootstrapPenFill" class="icon"></ng-icon>
                         </div>
 
-                        <label class="switch" [ngClass]="element.stock >= 20 || checked ? 'active' : ''">
-                            <input type="checkbox" [checked]="element.stock" (click)="toggleChecked()">
-                            <span class="slider round"></span>
-                        </label>
+                        <div class="bootstrapTrashFill" (click)="onDelete(element.gameId)">
+                            <ng-icon name="bootstrapTrashFill" class="icon"></ng-icon>
+                        </div>
 
                     </div>
                 </td>
