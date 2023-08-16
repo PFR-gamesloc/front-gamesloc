@@ -27,7 +27,7 @@
   }
 }
 
-// Button Dekstop Navbar media queries 
+// Button Dekstop Navbar media queries
 .btn-dekstop {
     visibility: hidden;
 
@@ -38,7 +38,7 @@
 
 // Button Submit connexion
 .btn-submit {
-    margin-top: 30px; 
+    margin-top: 30px;
     width: 100%;
     background-color: var(--primary);
     color: white;
@@ -56,12 +56,17 @@
 
 //Button page product
 .btn-add {
-    background-color: var(--primary) ;   
+    background-color: var(--primary) ;
     height: 100%;
     border-radius: 20px;
-    @include m.bk-desktop {     
-        font-size: 1.3rem; 
-        padding: 1rem;   
+    @include m.bk-desktop {
+        font-size: 1.3rem;
+        padding: 1rem;
     }
+}
 
+.disabled {
+  background-color: grey;
+  cursor: not-allowed; /* Changez le curseur pour indiquer qu'il est désactivé */
+  /* Ajoutez d'autres styles selon vos besoins */
 }

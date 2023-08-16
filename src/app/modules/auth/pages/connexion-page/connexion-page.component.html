@@ -5,7 +5,7 @@
 
     <form action="" class="cardConnection" [formGroup]="formGroup">
         <app-input forInput="mail" textLabel="Email" typeInput="texte" placeholderInput="Email"></app-input>
-        <app-input-password></app-input-password>
+        <app-input-password forInput="password" textLabel="Mot de passe"></app-input-password>
         <div *ngIf="showErrorMessage" class="error-message">
           Email ou mot de passe incorrect
         </div>

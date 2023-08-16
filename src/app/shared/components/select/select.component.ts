@@ -41,7 +41,7 @@ export class SelectComponent implements OnInit {
       }
     });
 
-    this.formZipCode = this.rootFormGroup.control; 
+    this.formZipCode = this.rootFormGroup.control;
 
 
     this.myControlZipCode.valueChanges.subscribe(
@@ -111,8 +111,22 @@ export class SelectComponent implements OnInit {
     if (city) {
       if(this.autoCityName !== undefined) {
         this.myControlZipCode.setValue(city.postalCode);
-        this.autoCityName.closed;  
+        this.autoCityName.closed;
       }
     }
+  }
+
+  get postalErrors(){
+    return this.formZipCode.get('postalCode')?.errors;
+  }
+
+  get cityErrors(){
+    return this.formZipCode.get('cityName')?.errors;
+  }
+  checkPostalValidity(){
+    return (this.formZipCode.get('postalCode')?.invalid && (this.formZipCode.get('postalCode')?.touched || this.formZipCode.get('postalCode')?.dirty));
+  }
+  checkCityValidity(){
+    return (this.formZipCode.get('cityName')?.invalid && (this.formZipCode.get('cityName')?.touched || this.formZipCode.get('cityName')?.dirty));
   }
 }
