@@ -29,8 +29,8 @@ export class ModifyUserOptionComponent implements OnInit {
 
   ngOnInit(): void {
     this.customerForm = new FormGroup({
-      lastname: new FormControl(''),
-      firstname: new FormControl(''),
+      lastName: new FormControl(''),
+      firstName: new FormControl(''),
       phoneNumber: new FormControl(''),
       email: new FormControl('')
     })
@@ -43,8 +43,8 @@ export class ModifyUserOptionComponent implements OnInit {
     this.customer = customer;
 
     this.customerForm.patchValue({
-      lastname: this.customer.lastName,
-      firstname: this.customer.firstName,
+      lastName: this.customer.lastName,
+      firstName: this.customer.firstName,
       phoneNumber: this.customer.phoneNumber,
       email: this.customer.email
     });
