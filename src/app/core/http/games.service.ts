@@ -8,6 +8,7 @@ import { Editor } from 'src/app/shared/entities/editor';
 import { Language } from 'src/app/shared/entities/language';
 import { Tag } from 'src/app/shared/entities/tag';
 import { Type } from 'src/app/shared/entities/type';
+import { Customer } from 'src/app/shared/entities/customer';
 
 @Injectable({
   providedIn: 'root'

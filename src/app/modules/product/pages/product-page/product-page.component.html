@@ -3,23 +3,30 @@
     <a routerLink="" class="head-icon">
       <ng-icon size="20" name="bootstrapArrowReturnLeft"></ng-icon>
     </a>
+
     <h1 class="title-product">{{ game?.gameName }}</h1>
   </div>
   <div class="product-flex">
-    <img src="./assets/Predator_Wallpaper_02_3840x2400.jpg" alt="exemple d'un jeu de société" />
+    <img
+      src="./assets/Predator_Wallpaper_02_3840x2400.jpg"
+      alt="exemple d'un jeu de société"
+    />
     <div class="detail-product">
       <h1 *ngIf="currentWindowWidth! > 768" title="title-product">
         {{ game?.gameName }}
       </h1>
+      <a *ngIf="game" (click)="addToFavorites(game)">Add favorite</a>
       <span class="price">{{
         game?.gamePrice | currency : "EUR" : "symbol" : "2.2-2" : "fr"
-        }}</span>
+      }}</span>
       <ng-container class="stock" *ngIf="game?.stock">
-        <p [ngClass]="{
+        <p
+          [ngClass]="{
             'in-stock': game!.stock > 20,
             'low-stock': game!.stock <= 20,
             'out-of-stock': game!.stock <= 16
-          }">
+          }"
+        >
           Stock : <span> {{ game?.stock }}</span>
         </p>
       </ng-container>
@@ -31,7 +38,11 @@
         <ng-icon size="25" name="bootstrapStar"></ng-icon>
         <span class="total-notice">(26 avis)</span>
       </span>
-      <app-btn-component classBtn="btn btn-add" textBtn="Ajouter au panier"></app-btn-component>
+      <app-btn-component
+        classBtn="btn btn-add"
+        textBtn="Ajouter au panier"
+        (click)="addToCart()"
+      ></app-btn-component>
     </div>
   </div>
 
@@ -43,55 +54,79 @@
     <a (click)="more()">Voir plus...</a>
   </span>
   <h2>Caractéristiques</h2>
-  <div class="flex-feature">
-    <div class="feature-left">
-      <p [ngClass]="'bold-feature'">Age (à partir de) :</p>
-      <p [ngClass]="'content-feature'">{{ game?.minAge }} ans</p>
-      <p [ngClass]="'bold-feature'">
-        {{
-        game?.minPlayer
-        ? game!.minPlayer > 1
-        ? "Nombre de joueurs"
-        : "Nombre de joueur"
-        : "Nombre de joueur non spécifié"
-        }}
-      </p>
-      <p [ngClass]="'content-feature'">
-        {{ game?.minPlayer }} à {{ game?.maxPlayer }}
-      </p>
-       <p [ngClass]="'bold-feature'">Éditeur :</p>
-      <p [ngClass]="'content-feature'">
-        <span>{{ game?.editor?.name }}</span>
-      </p>
-    </div>
-    <div class="feature-right">
-      <p [ngClass]="'bold-feature'">Type :</p>
-      <p [ngClass]="'content-feature'">{{ game?.type?.name }}</p>
-      <ng-container *ngIf="game?.languages">
-        <p [ngClass]="'bold-feature'">
-          {{ (game?.languages)!.length > 1 ? "Langues" : "Langue" }} :
-        </p>
-        <p>
-          <span [ngClass]="'content-feature'" *ngFor="let language of game?.languages">
-            {{ language.name }}
-          </span>
-        </p>
-      </ng-container>
-      <ng-container *ngIf="game?.tags">
-        <p [ngClass]="'bold-feature'">
-          {{ (game?.tags)!.length > 1 ? "Catégories" : "Catégorie" }} :
-        </p>
-
-        <p>
-          <span [ngClass]="'content-feature'" *ngFor="let tag of game?.tags">
-            {{ tag.name }}
-          </span>
-        </p>
-      </ng-container>
-    </div>
-  </div> 
+  <div class="game-details-container">
+    <table class="game-details-table">
+      <tr>
+        <th colspan="2" class="game-details-header">Détails du jeu</th>
+      </tr>
+      <tr>
+        <td class="game-details-left">
+          <p class="game-details-label">Age (à partir de) :</p>
+          <p class="game-details-content">{{ game?.minAge }} ans</p>
+          <p class="game-details-label">
+            {{
+              game?.minPlayer
+                ? game!.minPlayer > 1
+                  ? "Nombre de joueurs"
+                  : "Nombre de joueur"
+                : "Nombre de joueur non spécifié"
+            }}
+          </p>
+          <p class="game-details-content">
+            {{ game?.minPlayer }} à {{ game?.maxPlayer }}
+          </p>
+          <p class="game-details-label">Éditeur :</p>
+          <p class="game-details-content">
+            {{ game?.editor?.name }}
+          </p>
+        </td>
+        <td class="game-details-right">
+          <p class="game-details-label">Type :</p>
+          <p class="game-details-content">{{ game?.type?.name }}</p>
+          <p class="game-details-label">
+            {{
+              game?.languages
+                ? (game?.languages)!.length > 1
+                  ? "Langues"
+                  : "Langue"
+                : ""
+            }}
+            :
+          </p>
+          <p class="game-details-content">
+            <span
+              *ngFor="let language of game?.languages"
+            >
+              {{ language.name }}
+            </span>
+          </p>
+          <p class="game-details-label">
+            {{
+              game?.tags
+                ? (game?.tags)!.length > 1
+                  ? "Catégories"
+                  : "Catégorie"
+                : ""
+            }}
+            :
+          </p>
+          <p class="game-details-content">
+            <span *ngFor="let tag of game?.tags">
+              {{ tag.name }}
+            </span>
+          </p>
+        </td>
+      </tr>
+    </table>
+  </div>
 
   <h2>Commentaire (2)</h2>
-  <app-commentary classCommentary="commentary" nameCommentary="nameCommentary" ratingCommentary="ratingCommentary"
-    rating="rating" ratingDate="ratingDate" contentCommentary="contentCommentary"></app-commentary>
+  <app-commentary
+    classCommentary="commentary"
+    nameCommentary="nameCommentary"
+    ratingCommentary="ratingCommentary"
+    rating="rating"
+    ratingDate="ratingDate"
+    contentCommentary="contentCommentary"
+  ></app-commentary>
 </div>

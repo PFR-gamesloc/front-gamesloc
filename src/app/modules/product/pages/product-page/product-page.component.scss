@@ -1,126 +1,147 @@
 @use "../../../../../sass/mixins" as m;
 
-p {
-  font-family: var(--font-rosario);
-}
-
 .container-product {
   margin: auto;
+  max-width: 80%;
   display: flex;
   flex-direction: column;
-  max-width: 80%;
+  text-align: center;
 
-  @include m.bk-tablette-max-M {
-    max-width: 100%;
-    margin: 0 2rem;
+  .head-mobile {
+    display: flex;
+    align-items: center;
+    height: 3rem;
+
+    .head-icon {
+      margin-right: 1rem;
+    }
+    .title-product {
+      text-align: center;
+      flex: 1;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.8rem;
+      color: var(--blue-primary);
+      font-weight: bold;
+    }
+  }
+
+  img {
+    width: 100%;
+
+    @include m.bk-laptop {
+      width: 50%;
+    }
   }
 
   h2 {
     color: var(--blue-primary);
     border-bottom: 2px solid var(--blue-primary);
-
-    @include m.bk-tablette-max-M {
-      margin-top: 1rem;
-      font-size: 1.3rem;
-      font-weight: bold;
-      border-bottom: 1px solid var(--blue-primary);
-    }
+    font-size: 1.5rem;
+    margin: 2rem 0;
+    font-weight: bold;
+    
   }
 
   .product-flex {
     display: flex;
-    flex-direction: row;
-    align-items: stretch;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
 
-    @include m.bk-tablette-max-M {
-      flex-direction: column;
-      align-items: center;
+    @include m.bk-laptop {
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: normal;
     }
 
-    img {
-      width: 60%;
-      margin: 1rem;
-    }
-    .detail-product {
+    .notice {
       display: flex;
-      flex: 1;
-      flex-direction: column;
-      justify-content: space-evenly;
       align-items: center;
 
-      @include m.bk-tablette-max-M {
-        gap: 1rem;
+      ng-icon {
+        font-size: 1.5rem;
       }
 
-      .notice {
-        display: flex;
-        align-items: center;
-      }
-
-      h1 {
-        font-size: 3rem;
-      }
-
-      .price {
-        font-size: 1.6rem;
-      }
-      .notice,
-      p {
+      .total-notice {
         font-size: 1rem;
-      }
-
-      .stock {
-        p {
-          font-size: 1.4rem;
-        }
-      }
-
-      p {
-        font-size: 1.4rem;
-      }
-      @include m.bk-tablette-max-M {
-        .price,
-        .notice,
-        .stock p,
-        p {
-          font-size: 1.2rem;
-          margin: 0;
-        }
+        margin-left: 0.5rem;
       }
     }
   }
-  .description {
+
+  .detail-product {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+
+    @include m.bk-laptop {
+      justify-content: space-around;
+    }
+
+    h1 {
+      color: var(--blue-primary);
+      font-weight: bold;
+    }
+
+    .price {
+      color: var(--blue-primary);
+      font-size: 1.4rem;
+    }
+
+  }
+
+  .game-details-container {
+    margin: 1rem;
+    @include m.bk-laptop {
+      
+    }
+  }
+
+  .game-details-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--blue-secondary);
+  }
+
+  .game-details-header {
+    background-color: var(--blue-primary);
+    color: white;
+    padding: 10px;
     text-align: center;
   }
 
-  .flex-feature {
+  .game-details-left,
+  .game-details-right {
+    padding: 15px;
+    border: 1px solid var(--blue-secondary);
     display: flex;
-    margin: 1rem;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: var(--whitegray);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-    @include m.bk-tablette-max-M {
-      margin: 0;
+    @include m.bk-laptop {
+      width: 47%;
+      display:revert;
+
     }
+  }
 
-    p,
-    span {
-      margin: 1rem 0;
+  .game-details-label {
+    font-weight: bold;
+    padding: 4px;
+    color: var(--blue-primary);
+  }
 
-      @include m.bk-tablette-max-M {
-        margin: 8px;
-        font-size: 1rem;
-      }
-    }
-
-    .feature-right,
-    .feature-left {
-      width: 45%;
-      display: flex;
-      justify-content: space-between;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
+  .game-details-content {
+    padding: 5px;
+    color: var(--blue-secondary);
   }
 }
 
@@ -134,41 +155,4 @@ p {
 
 .out-of-stock {
   color: red;
-}
-
-.bold-feature {
-  font-weight: bold;
-  font-size: 1.2rem;
-
-  @include m.bk-tablette-max {
-    font-size: 0.8rem;
-    font-weight: bolder;
-    border: none;
-    margin: 0;
-  }
-}
-
-.content-feature {
-  letter-spacing: 1px;
-  font-size: 1.2rem;
-  @include m.bk-tablette-max-M {
-    font-size: 1rem;
-  }
-}
-
-.head-mobile {
-  display: flex;
-  align-items: center;
-  height: 3rem;
-
-  .head-icon {
-    margin-right: 1rem;
-  }
-  .title-product {
-    text-align: center;
-    flex: 1;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
 }

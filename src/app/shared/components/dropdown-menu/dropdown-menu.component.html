@@ -2,16 +2,18 @@
   <button (click)="showDropdown = !showDropdown"  class="dropbtn">
     <ng-icon
       color="#FFFFFF"
-      size="25"
+      size="30"
       name="bootstrapPersonCircle"
     ></ng-icon>
-    <span class="dis-card">Votre compte</span>
+    <span class="dis-card">Account</span>
   </button>
 </div>
 <div id="myDropdown" class="dropdown-content" [ngClass]="showDropdown ? 'show' : null">
   <ul>
-    <li><button><a routerLink="/user/me">Mon compte</a></button></li>
-    <li *appIsAdmin><button><a routerLink="/admin">Administration</a></button></li>
+    <li><button><a routerLink="/user/me">Mon compte</a></button></li> 
+    <ng-container *appIsAdmin> 
+     <li><button><a routerLink="/admin">Administration</a></button></li>
+    </ng-container>
     <li><button (click)="logout()">Se déconnecter</button></li>
   </ul>
 </div>

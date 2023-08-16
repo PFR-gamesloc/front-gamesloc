@@ -3,26 +3,18 @@
     <img
       src="./assets/Predator_Wallpaper_02_3840x2400.jpg"
       alt="exemple d'un jeu de société"
+      
     />
   </div>
-
   <div class="articleDescription">
-    <h3>Description</h3>
+    <h3>{{game?.gameName}}</h3>
     <p>{{ game?.gameDescr }}</p>
   </div>
 
   <div class="articleEnd">
-    <div class="content">
-      <h4>Editor</h4>
-      <p>{{ game?.editor?.name }}</p>
-    </div>
-    <div class="content">
-      <h4>My category</h4>
-      <p>{{ game?.type?.name }}</p>
-    </div>
-    <div class="content">
-      <h4>Price</h4>
-      <p>{{ game?.gamePrice }}&euro;</p>
-    </div>
+    <p>{{ game?.editor?.name }}</p>
+    <p>{{ game?.type?.name }}</p>
+    <p>{{ game?.gamePrice }}&euro;</p>
   </div>
+  
 </div>

@@ -1,12 +1,10 @@
- <h2>Monopoly</h2>
+ <h2>{{item?.gameName}}</h2>
 <div class="cart-item-container">  
-   
    <div class="item">
-    
   <img src="/assets/Predator_Wallpaper_02_3840x2400.jpg" alt="" />
   <div class="cart-price">
-    <h4>8euros</h4>
-    <ng-icon size="25" name="bootstrapTrash"></ng-icon>
+    <h4>{{item?.gamePrice}}</h4>
+    <ng-icon size="25" name="bootstrapTrash" (click)="removeFromCart(item!)"></ng-icon>
   </div>
 </div>
 </div>

@@ -1,76 +1,91 @@
 @use "../../../../../sass/mixins" as m;
 .articleCard {
   display: flex;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  justify-content: center;
-  border-radius: 5px;
-  align-items: center;
-  margin: 1rem 2rem;
-  align-items: center;
+  flex-direction: column;
+  box-shadow: 0px 0px 5px 1px #000;
+  margin: 1rem 1rem;
+  background-color: var(--whitegray);
+  
 
-  @include m.bk-tablette-max-M {
+  @include m.bk-laptop {
+    flex-direction: row;
+    justify-content: space-between;
   }
-  .articleImage {
-    text-align: center;
-    width: 30%;
 
-    @include m.bk-tablette-max-M {
-      min-width: 50%;
+  .articleImage {
+    display: flex;
+    @include m.bk-laptop {
+      flex-basis:20% ;
     }
     img {
-      padding: 1rem;
-      max-width: 100%;
+      width: 100%;
+      height: 150px;
+      border-bottom: 4px solid var(--primary);
 
-      @include m.bk-tablette-max-M {
-        max-height: 200px;
+      @include m.bk-tablette {
+       border: none;
+      }
+
+      @include m.bk-laptop {     
+        height: 175px; 
       }
     }
   }
+
   .articleDescription {
-    padding: 1rem;
-    width: 40%;
+    @include m.bk-laptop {
+      flex-basis: 40%;
+      flex-grow: 1;
+      margin: auto;
+    }
 
-    @include m.bk-tablette-max-M {
-      display: none;
-    }
     h3 {
-      padding-bottom: 1rem;
+      font-size: 1.4rem;
+      color: var(--blue-primary);
       text-align: center;
+
+      @include m.bk-tablette {
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
     }
+
     p {
-      text-align: center;
-      text-align: center;
-      overflow: hidden;
+      font-size: 14px;
+      color: #666;
       display: -webkit-box;
-      -webkit-line-clamp: 7;
+      text-align: center;
+      margin: 6px;
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
+      overflow: hidden;
+
+     @include m.bk-laptop {
+        -webkit-line-clamp: 6;
+        font-size: 16px;
+      }
     }
   }
+
   .articleEnd {
-    text-align: center;
-    width: 50%;
-    padding-top: 1rem;
+    background-color: var(--blue-primary);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px;
+  
 
-    @include m.bk-tablette-max-M {
-      width: 50%;
-      padding-top: 0rem;
+    @include m.bk-laptop {
+      flex-basis: 15%;
+      flex-direction: column;
+      font-weight: bold;
+      letter-spacing: 1px;
     }
-    .content {
-      display: flex;
-      align-items: center;
-      text-align: center;
 
-      p,
-      h4 {
-        display: block;
-        width: 45%;
-        margin: 6px 0rem;
-        text-align: center;
-        @include m.bk-tablette-max {
-          margin: 2px;
-          font-size: 12px;
-        }
-      }
+    p {
+      font-size: 14px;
+      text-align: center;
     }
   }
 }
