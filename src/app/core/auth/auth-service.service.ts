@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {UserCredentials} from "../../modules/auth/entities/user-credentials";
-import {BehaviorSubject, map, Observable, tap} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {Token} from "../../modules/auth/entities/token";
 import {Router} from "@angular/router";
-import {isCI} from "@angular/cli/src/utilities/environment-options";
-import {observableToBeFn} from "rxjs/internal/testing/TestScheduler";
+import {InscriptionForm} from "../../shared/entities/inscriptionForm";
+
 
 @Injectable({
   providedIn: 'root'
@@ -33,23 +33,24 @@ export class AuthServiceService {
 
 
   private isAuthenticated(): boolean {
-    if ((sessionStorage.getItem("token") === null) && (localStorage.getItem("token") === null)) {
-      return false;
-    }
-    else {
-      return true;
-    }
+    return !((sessionStorage.getItem("token") === null) && (localStorage.getItem("token") === null));
   }
 
   logout() {
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("subject");
-    sessionStorage.removeItem("role");
-    localStorage.removeItem("token");
-    localStorage.removeItem("subject");
-    localStorage.removeItem("role");
+    sessionStorage.clear();
+    localStorage.clear();
     this.isAuth.next(false);
     this.router.navigate(["/"]);
+  }
+
+  createUser(userInfo:InscriptionForm){
+    console.log("ici");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    this.httpClient.post(this.baseurl + "auth/register",userInfo,httpOptions).subscribe(()=>console.log("la"));
   }
 
 

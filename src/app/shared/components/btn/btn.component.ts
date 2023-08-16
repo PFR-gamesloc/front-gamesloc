@@ -6,7 +6,8 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./btn.component.scss']
 })
 export class BtnComponent {
-  @Input() textBtn: string | undefined;
-  @Input() classBtn: string | undefined;
+  @Input() textBtn !: string;
+  @Input() classBtn !: string ;
+  @Input() disabled: boolean = false;
 
 }

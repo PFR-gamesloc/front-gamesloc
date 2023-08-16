@@ -3,7 +3,7 @@
     <label for="{{ forInput }}">
       <div>{{ textLabel }}</div>
     </label>
-    <input pattern="{{ regex }}" type="{{ typeInput }}" placeholder="{{ placeholderInput }}" id="{{ forInput }}"
+    <input type="{{ typeInput }}" placeholder="{{ placeholderInput }}" id="{{ forInput }}"
            formControlName="{{ forInput }}"/>
     <ng-container *ngIf="checkValidity()">
       <app-error-message [errors]="errors"></app-error-message>

@@ -55,7 +55,7 @@
 
         }
 
-        .nameSurname {
+        .double-input {
           display: flex;
           justify-content: space-between;
 
@@ -67,4 +67,8 @@
       }
     }
   }
+}
+
+.invalid{
+  background-color: grey;
 }

@@ -7,7 +7,7 @@ import {FormGroup, FormGroupDirective} from "@angular/forms";
   styleUrls: ['./input-password.component.scss']
 })
 export class InputPasswordComponent {
-  @Input() forInput: string | undefined;
+  @Input() forInput: string;
   @Input() textLabel: string | undefined;
   @Input() typeInput: string | undefined;
   @Input() placeholderInput: string | undefined;
@@ -15,15 +15,24 @@ export class InputPasswordComponent {
   showPassword: boolean =  true;
 
   form!: FormGroup;
-
-  constructor( private formgroup: FormGroupDirective) {
-  }
-
-  ngOnInit(){
-    this.form = this.formgroup.control;
+  constructor(private rootFormGroup : FormGroupDirective) {
+    this.forInput = '';
   }
 
   toggleShow() {
     this.showPassword = !this.showPassword;
   }
+
+  ngOnInit(){
+    this.form = this.rootFormGroup.control;
+  }
+
+  get errors(){
+    return this.form.get(this.forInput)?.errors;
+  }
+
+  checkValidity(){
+    return (this.form.get(this.forInput)?.invalid && (this.form.get(this.forInput)?.touched || this.form.get(this.forInput)?.dirty));
+  }
 }
+

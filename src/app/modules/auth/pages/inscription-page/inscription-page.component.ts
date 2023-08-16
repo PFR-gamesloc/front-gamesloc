@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {InscriptionForm} from "../../../../shared/entities/inscriptionForm";
+import {env} from "../../../../../env"
+import {passwordMatchValidator} from "../../validators/PasswordMatchValidator";
+import {AuthServiceService} from "../../../../core/auth/auth-service.service";
 
 @Component({
   selector: 'app-inscription-page',
@@ -8,37 +12,80 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class InscriptionPageComponent implements OnInit {
 
-  nameRegex!: RegExp;
-  emailRegex!: RegExp;
-  phoneNumberRegex!: RegExp;
-  passwordRegex!: RegExp;
-  addressRegex!: RegExp;
-
   public form!: FormGroup;
 
+  constructor(private authService:AuthServiceService) {
+  }
   ngOnInit(): void {
-
-    this.nameRegex = /^[a-zA-Zàáâäãåçèéêëìíîïñòóôöõøùúûüýÿ'\-\s]{2,}$/;
-    this.emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    this.phoneNumberRegex = /^[0-9]{10}$/;
-    this.passwordRegex = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
-    this.addressRegex = /^\d+\s[a-zA-Z\s]+$/
-
     this.form = new FormGroup({
-      lastname: new FormControl('', [Validators.required, Validators.pattern(this.nameRegex)]),
-      firstname: new FormControl('', [Validators.required, Validators.pattern(this.nameRegex)]),
-      password: new FormControl('', [Validators.required, Validators.pattern(this.passwordRegex)]),
-      email: new FormControl('', [Validators.required, Validators.pattern(this.emailRegex)]),
-      phoneNumber: new FormControl('', Validators.pattern(this.phoneNumberRegex)),
-      address: new FormControl('', Validators.pattern(this.addressRegex)),
+      lastname: new FormControl('', [Validators.required, Validators.pattern(env.nameRegex)]),
+      firstname: new FormControl('', [Validators.required, Validators.pattern(env.nameRegex)]),
+      password: new FormControl('', [Validators.required, Validators.pattern(env.passwordRegex)]),
+      repeatPassword: new FormControl('', [Validators.required, passwordMatchValidator]),
+      email: new FormControl('', [Validators.required, Validators.pattern(env.emailRegex)]),
+      phoneNumber: new FormControl('', [Validators.required, Validators.pattern(env.phoneNumberRegex)]),
+      streetNumber: new FormControl('', [Validators.required, Validators.pattern(env.streetNumberRegex)]),
+      complementaryNumber: new FormControl('', [Validators.pattern(env.complementaryNumberRegex)]),
+      streetName: new FormControl('', [Validators.required, Validators.pattern(env.streetNameRegex)]),
+      complementaryAddress: new FormControl(''),
+      postalCode: new FormControl('', [Validators.required, Validators.pattern(env.postalCodeRegex)]),
+      cityName: new FormControl('', [Validators.required, Validators.pattern(env.cityNameRegex)])
+    }, {
+      validators: passwordMatchValidator
     });
 
+    this.form.get('firstname')?.valueChanges.subscribe(() => {
+      this.formatFirstLetter('firstname');
+    });
+    this.form.get('lastname')?.valueChanges.subscribe(() => {
+      this.formatFirstLetter('lastname');
+    });
+
+    this.form.get('postalCode')?.valueChanges.subscribe(() => {
+      this.convertToUppercase('postalCode');
+    });
+    this.form.get('cityName')?.valueChanges.subscribe(() => {
+      this.convertToUppercase('cityName');
+    });
   }
 
-  get lastname() {
-    return this.form.get('lastname');
+  isFormValid(): boolean {
+    return this.form.valid;
   }
 
-  public submit(): void {
+  submit(): void {
+    if (!this.form.invalid) {
+      const inscriptionForm: InscriptionForm = {
+        firstName: this.form.get('firstname')?.value,
+        lastName: this.form.get('lastname')?.value,
+        password: this.form.get('password')?.value,
+        email: this.form.get('email')?.value,
+        phoneNumber: this.form.get('phoneNumber')?.value,
+        numberAddress: this.form.get('streetNumber')?.value,
+        complementaryNumber: this.form.get('complementaryNumber')?.value,
+        streetName: this.form.get('streetName')?.value,
+        complementaryAddress: this.form.get('complementaryAddress')?.value,
+        postalCode: this.form.get('postalCode')?.value,
+        cityName: this.form.get('cityName')?.value
+      };
+      console.log(inscriptionForm)
+     this.authService.createUser(inscriptionForm);
+    }
+
+  }
+
+  private formatFirstLetter(fieldToChange: string):void {
+    const inputValue = this.form.get(fieldToChange)?.value;
+    if (inputValue) {
+      this.form.get(fieldToChange)?.setValue(inputValue.charAt(0).toUpperCase() + inputValue.slice(1), {emitEvent: false});
+    }
+  }
+
+  private  convertToUppercase(fieldToChange: string):void {
+    const inputValue = this.form.get(fieldToChange)?.value;
+    if (inputValue) {
+      this.form.get(fieldToChange)?.setValue(inputValue.toUpperCase(), {emitEvent: false});
+    }
+
   }
 }

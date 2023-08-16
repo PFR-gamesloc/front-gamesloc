@@ -74,8 +74,8 @@ export class GameEditComponent implements OnInit {
               maxPlayer: game.maxPlayer,
               minAge: game.minAge,
               typeId: game.type,
-              editorId: game.editor, 
-              languages: game.languages, 
+              editorId: game.editor,
+              languages: game.languages,
               tags: game.tags
             });
 
@@ -137,13 +137,10 @@ export class GameEditComponent implements OnInit {
         image: 'assets/img'
       };
 
-      console.log(newGame);
-      
-
       this.gamesService.createGame(newGame).subscribe({
         next: (response) => {
           console.log('Jeu ajouté avec success ', response);
-          this.saveCompleted(); 
+          this.saveCompleted();
         },
         error: (err) => console.log('Error lors ajout ', err.message)
       })
@@ -163,7 +160,7 @@ export class GameEditComponent implements OnInit {
   }
 
   public saveCompleted() : void {
-    this.gameForm.reset(); 
+    this.gameForm.reset();
     this.router.navigate(['/admin', 'games'])
   }
 
