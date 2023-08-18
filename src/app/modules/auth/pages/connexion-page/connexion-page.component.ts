@@ -55,7 +55,7 @@ export class ConnexionPageComponent {
       sessionStorage.setItem("role", decodedToken.role)
     }
 
-    this.router.navigate(['/']);
+    this.router.navigate(['/']).then(() => window.location.reload()); 
 
   }
 }
