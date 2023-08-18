@@ -36,7 +36,12 @@ export class CustomerService {
 
   public addToFavorites(game: AddGameToCustomerFavDTO): Observable<Customer> {
     const url = `${this.baseUrl}/customer/me/favs/add`;
-    return this.httpClient.post(url, game) as Observable<Customer>;
+    return this.httpClient.post<Customer>(url, game);
+  }
+
+  public removeToFavorites(game: AddGameToCustomerFavDTO): Observable<Customer> {
+    const url = `${this.baseUrl}/customer/me/favs/remove`;
+    return this.httpClient.post<Customer>(url, game);
   }
 
   public modifyCustomer(customerEdit: CustomerEdit) : Observable<CustomerEdit> {

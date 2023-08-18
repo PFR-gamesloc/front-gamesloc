@@ -6,10 +6,11 @@ import { ProductPageComponent } from "./pages/product-page/product-page.componen
 import { CoreModule } from "../../core/core.module";
 import { CommentaryComponent } from './components/commentary/commentary.component';
 import { NgIconsModule } from '@ng-icons/core';
-import { bootstrapStar, bootstrapArrowReturnLeft } from '@ng-icons/bootstrap-icons';
 import {NgbRating} from "@ng-bootstrap/ng-bootstrap";
 import {CommentaryFormComponent} from "./components/commentary-form/commentary-form.component";
 import {ReactiveFormsModule} from "@angular/forms";
+import { bootstrapStar, bootstrapArrowReturnLeft, bootstrapHeartFill } from '@ng-icons/bootstrap-icons';
+
 
 
 @NgModule({
@@ -23,9 +24,9 @@ import {ReactiveFormsModule} from "@angular/forms";
     ProductRoutingModule,
     SharedModule,
     CoreModule,
-    NgIconsModule.withIcons({bootstrapStar, bootstrapArrowReturnLeft}),
     NgbRating,
     ReactiveFormsModule,
+    NgIconsModule.withIcons({ bootstrapStar, bootstrapArrowReturnLeft, bootstrapHeartFill }),
   ],
   providers:[]
 })

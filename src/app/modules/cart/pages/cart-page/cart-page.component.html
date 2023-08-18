@@ -8,5 +8,7 @@
   <app-btn-component
     classBtn="btn btn-add app-btn-last"
     textBtn="Valider au panier"
+    [disabled]="isEmptyCart()"
+    (click)="validateCart()"
   ></app-btn-component>
 </div>
