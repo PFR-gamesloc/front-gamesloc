@@ -15,8 +15,9 @@
                 <app-input forInput="stock" textLabel="Nombre de jeux" typeInput="number" id="stock" placeholderInput="Nombre de jeux"></app-input>
                 <app-input forInput="gamePrice" textLabel="Prix du jeu" typeInput="number" id="gamePrice" placeholderInput="Prix du jeu"></app-input>
             </div>
-            <app-input class="img" forInput="image" textLabel="Image du jeu" typeInput="{{isAddMode ? 'file' : 'text'}}" id="image" (change)="onFileSelected($event)">
+            <app-input class="img" forInput="image" textLabel="Image du jeu" typeInput="file" id="image" (change)="onFileSelected($event)">
             </app-input>
+            <app-file-upload-component></app-file-upload-component>
             <div class="twice">
                 <app-input forInput="minPlayer" textLabel="Nombre minimum de joueur" typeInput="number"
                     id="minPlayer" placeholderInput="Minimum de joeur"></app-input>

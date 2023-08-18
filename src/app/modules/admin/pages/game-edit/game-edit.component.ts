@@ -10,6 +10,7 @@ import { Language } from 'src/app/shared/entities/language';
 import { Tag } from 'src/app/shared/entities/tag';
 import { Type } from 'src/app/shared/entities/type';
 import { ToastrService } from 'ngx-toastr';
+import { FileUploadService } from '../../entities/file-upload.service';
 
 @Component({
   selector: 'app-game-edit',
@@ -31,8 +32,8 @@ export class GameEditComponent implements OnInit {
   types$!: Observable<Type[]>;
   isSideNavCollapsed = false;
   screenWith = 0;
-  uploadedImage: File | null = null;
-  imguploaded!: string; 
+  uploadedImage!: File;
+  imguploaded!: string;
   private isFormSubmitted!: boolean;
 
   constructor(
@@ -40,7 +41,8 @@ export class GameEditComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private gamesService: GameService,
-    private toastr: ToastrService
+    private toastr: ToastrService, 
+    private fileUploadService: FileUploadService
   ) {
 
   }
@@ -95,7 +97,7 @@ export class GameEditComponent implements OnInit {
 
             console.log("New Game");
             console.log(game);
-            
+
           }
         )
     }
@@ -153,37 +155,25 @@ export class GameEditComponent implements OnInit {
     }
   }
 
-  onFileSelected(event: any): void {
-    this.uploadedImage = event.target.files[0];
-    if (this.uploadedImage) {
-      this.gamesService.uploadImage(this.uploadedImage);
-    }
-
+  public saveGame(): void {
     console.log(this.uploadedImage);
     
-  }
-
-  public saveGame(): void {
     this.isFormSubmitted = true;
+
+    console.log(this.gameForm.get('image')?.value);
 
     if (this.gameForm.valid) {
       const newGame: GameList = {
-        ...this.gameForm.value,
-        image: `assets/img/${this.uploadedImage?.name}`
+        ...this.gameForm.value
       };
 
-      this.gamesService.createGame(newGame).subscribe({
-        next: (response) => {
-          console.log('Jeu ajouté avec success ', response);
-          this.saveCompleted(response);
-        },
-        error: (err) => console.log('Error lors ajout ', err.message)
-      })
+      const formData = new FormData(); 
+      formData.append('image', this.uploadedImage, this.uploadedImage.name);
 
-      if (this.uploadedImage) {
-        const imagePath = `assets/img/${this.uploadedImage.name}`;
-        newGame.image = imagePath;
-      };
+      newGame.image = formData;
+
+      console.log('ici')
+      console.log(newGame.image.get('image'));
 
       if (this.isAddMode) {
         this.gamesService.createGame(newGame).subscribe({
@@ -211,6 +201,10 @@ export class GameEditComponent implements OnInit {
     this.gameForm.reset();
     this.router.navigate(['/admin', 'games'])
     this.toastr.success(`Le jeu a été ${this.isAddMode ? "ajouté" : "modifié"} avec succes`, response.gameName);
+  }
+
+  onFileSelected(event: any): void {
+    this.uploadedImage = event.target.files[0];
   }
 
 }

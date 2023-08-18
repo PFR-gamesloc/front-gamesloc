@@ -22,6 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AdminItemComponent } from './components/admin-item/admin-item.component';
 import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FileUploadComponentComponent } from './components/file-upload-component/file-upload-component.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     TableComponentComponent,
     GameEditComponent,
     AdminItemComponent,
-    MatConfirmDialogComponent, 
+    MatConfirmDialogComponent,
+    FileUploadComponentComponent, 
   ],
   imports: [
     CommonModule,
