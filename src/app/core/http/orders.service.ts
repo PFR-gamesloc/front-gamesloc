@@ -8,17 +8,21 @@ import { Order } from 'src/app/shared/entities/order';
   providedIn: 'root'
 })
 export class OrdersService {
-  private baseUrl: string = "http://localhost:8080"; 
+  private baseUrl: string = "http://localhost:8080";
 
   constructor(private httpClient: HttpClient) { }
 
-  public getOrders(userId : number): Observable<Order[]> {
-    const url = `${this.baseUrl}/customer/${userId}/orders`; 
+  public getOrders(userId: number): Observable<Order[]> {
+    const url = `${this.baseUrl}/customer/${userId}/orders`;
     return this.httpClient.get<Order[]>(url)
   }
 
-  public getAdminOrders() : Observable<AdminOrder[]> {
-    const url = `${this.baseUrl}/admin/order/all`; 
-    return this.httpClient.get<AdminOrder[]>(url); 
+  public getAdminOrders(): Observable<AdminOrder[]> {
+    const url = `${this.baseUrl}/admin/order/all`;
+    return this.httpClient.get<AdminOrder[]>(url);
+  }
+  validateCart(orderDTO: any): Observable<any> {
+    const url = `${this.baseUrl}/customers/me/create-order`; // URL Back Order
+    return this.httpClient.post(url, orderDTO);
   }
 }

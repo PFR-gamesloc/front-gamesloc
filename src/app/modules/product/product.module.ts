@@ -6,7 +6,7 @@ import { ProductPageComponent } from "./pages/product-page/product-page.componen
 import { CoreModule } from "../../core/core.module";
 import { CommentaryComponent } from './components/commentary/commentary.component';
 import { NgIconsModule } from '@ng-icons/core';
-import { bootstrapStar, bootstrapArrowReturnLeft } from '@ng-icons/bootstrap-icons';
+import { bootstrapStar, bootstrapArrowReturnLeft, bootstrapHeartFill } from '@ng-icons/bootstrap-icons';
 
 
 @NgModule({
@@ -20,7 +20,7 @@ import { bootstrapStar, bootstrapArrowReturnLeft } from '@ng-icons/bootstrap-ico
     ProductRoutingModule,
     SharedModule,
     CoreModule,
-    NgIconsModule.withIcons({ bootstrapStar, bootstrapArrowReturnLeft }),
+    NgIconsModule.withIcons({ bootstrapStar, bootstrapArrowReturnLeft, bootstrapHeartFill }),
   ],
 })
 export class ProductModule { }

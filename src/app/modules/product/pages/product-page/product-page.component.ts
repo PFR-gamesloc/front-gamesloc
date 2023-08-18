@@ -8,6 +8,8 @@ import { Game } from 'src/app/shared/entities/game';
 import { StorageService } from 'src/app/core/http/storage.service';
 import { CustomerService } from 'src/app/core/http/customer.service';
 import { AddGameToCustomerFavDTO } from 'src/app/shared/entities/AddGameToCustomerFavDTO';
+import { GetService } from 'src/app/core/http/get.service';
+import { CustomerLike } from 'src/app/shared/entities/customerLike';
 registerLocaleData(localeFr, 'fr');
 
 @Component({
@@ -22,22 +24,30 @@ export class ProductPageComponent implements OnInit {
   game: GameDetail | undefined;
   input: boolean = true;
   currentWindowWidth!: number;
+  isGameLiked: boolean | undefined;
+  errorMessage: string = '';
 
-  constructor(private gameService: GameService,private customerService: CustomerService, private route: ActivatedRoute, private router: Router, private cartService: StorageService) { }
+  constructor(private gameService: GameService, private getService: GetService, private customerService: CustomerService, private route: ActivatedRoute, private router: Router, private cartService: StorageService) { }
   ngOnInit() {
     const gameId = this.gameService.getSelectedGameId();
     this.currentWindowWidth = window.innerWidth;
     if (gameId) {
-      this.gameService.getGameById(gameId).subscribe({
-        next: (gameDetail) => {
-          this.game = gameDetail;
+      console.log("getData Detail game")
+      this.getService.getData<GameDetail>(`product/game/${gameId}`).subscribe({
+        next: (res: GameDetail) => {
+          this.game = res;
+          this.getService.getData<CustomerLike[]>(`customer/me/favs`).subscribe({
+            next: (favoriteItems: CustomerLike[]) => {
+              this.isGameLiked = favoriteItems.some(gameLike => gameLike.gameId === gameId);
+              console.log(this.isGameLiked);
+            },
+          })
         },
-        error: (error) => {
-
+        error: (err) => {
+          console.log("Erreur le jeu souhaitez n'existe pas", err);
+          this.router.navigate(['/home-page']); // Redirect to the 'not-found' route
         }
       });
-    } else {
-
     }
   }
 
@@ -50,25 +60,53 @@ export class ProductPageComponent implements OnInit {
     this.input = !this.input;
   }
 
+
   addToCart() {
-    this.cartService.addItem(this.game!); // la méthode d'ajout au panier du service
-    console.log("Item ajouter avec succes" + this.game?.gameName)
-    console.log(this.cartService)
+    const result = this.cartService.addItem(this.game!);
+    if(result.message){
+      this.errorMessage = result.message;
+    }
+    if(result.success){
+      this.router.navigate(['/']);
+    }
   }
 
   addToFavorites(game: Game): void {
-    let gameId : AddGameToCustomerFavDTO ={
-      id : game.gameId
+    this.isGameLiked = true;
+    let gameId: AddGameToCustomerFavDTO = {
+      id: game.gameId
     }
     this.customerService.addToFavorites(gameId).subscribe({
       next: response => {
-        console.log(response); // You can handle the success response
+        console.log(response); 
+
       },
       error: error => {
-        console.error(error); // Handle the error response
+        console.error(error); 
       }
     });
   }
+
+  removeToFavorites(game: Game): void {
+    this.isGameLiked = false;
+    let gameId: AddGameToCustomerFavDTO = {
+      id: game.gameId
+    }
+    this.customerService.removeToFavorites(gameId).subscribe({
+      next: response => {
+        console.log(response);
+
+      },
+      error: error => {
+        console.error(error);
+      }
+    });
+  }
+
+  closePopup() {
+    this.errorMessage = '';
+  }
+
 }
 
 

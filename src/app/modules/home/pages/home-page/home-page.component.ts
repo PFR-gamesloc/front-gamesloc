@@ -4,6 +4,7 @@ import { GameService } from 'src/app/core/http/games.service';
 import { GameList } from 'src/app/shared/entities/gameList';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { GetService } from 'src/app/core/http/get.service';
 
 @Component({
   selector: 'app-home-page',
@@ -34,14 +35,22 @@ export class HomePageComponent {
     },
   ]
 
-  games$: Observable<GameList[]> = new Observable<GameList[]>;
-  @Input() game: GameList | undefined;
+  games$: GameList[] = [];
+  //@Input() game: GameList | undefined;
 
 
-  constructor(private gameService: GameService, private router: Router, private toastr: ToastrService) { }
+  constructor(private getService: GetService,private gameService: GameService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.games$ = this.gameService.getGames();
+    console.log("getData")
+    this.getService.getData<GameList[]>("product/games").subscribe({
+      next: (res: GameList[]) => {
+        this.games$ = res; 
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
   };
 
   navigateToGameDetails(gameId: number, gameName: string) {
@@ -50,8 +59,5 @@ export class HomePageComponent {
     this.router.navigate(['game', gameName]);
   }
 
-  // public showSuccess() {
-  //   this.toastr.success('Hello World')
-  // }
 }
 

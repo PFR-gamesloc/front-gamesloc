@@ -15,7 +15,21 @@
       <h1 *ngIf="currentWindowWidth! > 768" title="title-product">
         {{ game?.gameName }}
       </h1>
-      <a *ngIf="game" (click)="addToFavorites(game)">Add favorite</a>
+      <ng-icon
+        *ngIf="!isGameLiked"
+        size="25"
+        name="bootstrapHeartFill"
+        (click)="addToFavorites(game!)"
+        >Add favorite</ng-icon
+      >
+      <ng-icon
+        *ngIf="isGameLiked"
+        size="25"
+        color="#FF0000"
+        name="bootstrapHeartFill"
+        (click)="removeToFavorites(game!)"
+        >removefavorite</ng-icon
+      >
       <span class="price">{{
         game?.gamePrice | currency : "EUR" : "symbol" : "2.2-2" : "fr"
       }}</span>
@@ -24,7 +38,7 @@
           [ngClass]="{
             'in-stock': game!.stock > 20,
             'low-stock': game!.stock <= 20,
-            'out-of-stock': game!.stock <= 16
+            'out-of-stock': game!.stock <= 10
           }"
         >
           Stock : <span> {{ game?.stock }}</span>
@@ -43,6 +57,14 @@
         textBtn="Ajouter au panier"
         (click)="addToCart()"
       ></app-btn-component>
+          
+      <div *ngIf="errorMessage"  class="popup" [ngClass]="{ 'show-popup': errorMessage }">
+        <div class="popup-content">
+          <h2>Erreur</h2>
+          <p>{{ errorMessage }}</p>
+          <button (click)="closePopup()">Fermer</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -94,9 +116,7 @@
             :
           </p>
           <p class="game-details-content">
-            <span
-              *ngFor="let language of game?.languages"
-            >
+            <span *ngFor="let language of game?.languages">
               {{ language.name }}
             </span>
           </p>

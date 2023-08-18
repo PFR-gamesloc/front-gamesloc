@@ -8,12 +8,13 @@ import { CustomerLike } from 'src/app/shared/entities/customerLike';
 })
 export class CustomerLikeService {
 
-  private baseUrl: string = "http://localhost:8080/customer"; 
+  private baseUrl: string = "http://localhost:8080/customer";
 
   constructor(private httpClient: HttpClient) { }
 
-  public getFavoriteItems(userId : number): Observable<CustomerLike[]> {
-    const url = `${this.baseUrl}/${userId}/favs`; 
+  //A SAUTER
+  public getFavoriteItems(userId: number): Observable<CustomerLike[]> {
+    const url = `${this.baseUrl}/${userId}/favs`;
     return this.httpClient.get<CustomerLike[]>(url)
   }
 }
