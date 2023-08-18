@@ -1,3 +1,4 @@
+
 .commentary {
   display: flex;
   flex-direction: column;
@@ -12,6 +13,10 @@
     font-size: 1.2rem;
     padding-bottom: 5px;
 
+  }
+  ngb-rating {
+    color: #FFC107;
+    font-size: 30px;
   }
 
   .ratingCommentary {

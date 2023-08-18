@@ -8,6 +8,10 @@ import { Game } from 'src/app/shared/entities/game';
 import { StorageService } from 'src/app/core/http/storage.service';
 import { CustomerService } from 'src/app/core/http/customer.service';
 import { AddGameToCustomerFavDTO } from 'src/app/shared/entities/AddGameToCustomerFavDTO';
+import {Commentary} from "../../entities/Commentary";
+import {GetService} from "../../../../core/http/get.service";
+import {AuthServiceService} from "../../../../core/auth/auth-service.service";
+import {Order} from "../../../../shared/entities/order";
 registerLocaleData(localeFr, 'fr');
 
 @Component({
@@ -19,18 +23,32 @@ registerLocaleData(localeFr, 'fr');
 
 export class ProductPageComponent implements OnInit {
 
-  game: GameDetail | undefined;
+  game!: GameDetail;
   input: boolean = true;
   currentWindowWidth!: number;
+  commentaries: Commentary[] = [];
+  orders: Order[] = [];
 
-  constructor(private gameService: GameService,private customerService: CustomerService, private route: ActivatedRoute, private router: Router, private cartService: StorageService) { }
+  constructor(private gameService: GameService,private customerService: CustomerService, private route: ActivatedRoute, private router: Router, private cartService: StorageService, private getService:GetService, private authService:AuthServiceService) { }
   ngOnInit() {
+    this.customerService.getOrders().subscribe({
+      next:(orders:Order[]) =>{
+        this.orders= orders;
+        console.log(orders)
+      }
+    });
+    this.getService.getData<Commentary[]>("product/"+ this.gameService.getSelectedGameId() + "/comments").subscribe({
+      next: (value:Commentary[]) => {
+        this.commentaries = value;
+      }
+    })
     const gameId = this.gameService.getSelectedGameId();
     this.currentWindowWidth = window.innerWidth;
     if (gameId) {
       this.gameService.getGameById(gameId).subscribe({
-        next: (gameDetail) => {
+        next: (gameDetail:GameDetail) => {
           this.game = gameDetail;
+
         },
         error: (error) => {
 
@@ -39,6 +57,7 @@ export class ProductPageComponent implements OnInit {
     } else {
 
     }
+
   }
 
   @HostListener('window:resize')
@@ -68,6 +87,24 @@ export class ProductPageComponent implements OnInit {
         console.error(error); // Handle the error response
       }
     });
+  }
+
+  checkAlreadyCommented():boolean{
+    console.log("ici")
+    if (!this.authService.isAuth.value){
+      return false;
+    }
+    for (const commentary of this.commentaries) {
+      if (commentary.customer.email === sessionStorage.getItem('subject') || commentary.customer.email === localStorage.getItem('subject') ){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  checkIfOrdered():boolean{
+
+    return true
   }
 }
 

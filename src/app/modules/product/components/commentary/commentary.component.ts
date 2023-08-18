@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import {Commentary} from "../../entities/Commentary";
+import {GetService} from "../../../../core/http/get.service";
 
 @Component({
   selector: 'app-commentary',
@@ -6,10 +8,12 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./commentary.component.scss']
 })
 export class CommentaryComponent {
-  @Input() classCommentary: string | undefined;  
-  @Input() nameCommentary: string | undefined;
-  @Input() ratingCommentary: string | undefined;
-  @Input() rating: string | undefined;
-  @Input() ratingDate: string | undefined;
-  @Input() contentCommentary : string | undefined;
+  @Input() commentaries!: Commentary[];
+  @Input() gameId!:number;
+
+  constructor(private getService:GetService) {
+  }
+  ngOnInit():void{
+
+  }
 }

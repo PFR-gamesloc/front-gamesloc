@@ -1,0 +1,8 @@
+<ng-container>
+  <h2>Laissez-nous votre avis !</h2>
+  <form [formGroup]="commentaryForm" (ngSubmit) = "PostComment()" >
+    <ngb-rating [max]="5" [readonly]="false" formControlName="rating"></ngb-rating>
+    <app-input textLabel="Votre commentaire" forInput="comment" placeholderInput="Super jeu !" typeInput="textArea"></app-input>
+    <app-btn-component textBtn="Commenté !" classBtn="btn-connexionPage" ></app-btn-component>
+  </form>
+</ng-container>

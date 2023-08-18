@@ -9,6 +9,7 @@ import { Language } from 'src/app/shared/entities/language';
 import { Tag } from 'src/app/shared/entities/tag';
 import { Type } from 'src/app/shared/entities/type';
 import { Customer } from 'src/app/shared/entities/customer';
+import {CommentToPost} from "../../modules/product/entities/CommentToPost";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ import { Customer } from 'src/app/shared/entities/customer';
 export class GameService {
   private selectedGameIdKey = 'selectedGameId'
 
-  private baseUrl: string = "http://localhost:8080"; 
+  private baseUrl: string = "http://localhost:8080";
   constructor(private httpClient: HttpClient) { }
 
   public getGames(): Observable<GameList[]> {
@@ -24,40 +25,40 @@ export class GameService {
   }
 
   public getGameById(gameId: Number): Observable<GameDetail> {
-    const url = `${this.baseUrl}/product/game/${gameId}`; 
-    return this.httpClient.get<GameDetail>(url); 
+    const url = `${this.baseUrl}/product/game/${gameId}`;
+    return this.httpClient.get<GameDetail>(url);
   }
 
   public getAdminGames() : Observable<GameList[]> {
-    const url = `${this.baseUrl}/admin/game/all`; 
+    const url = `${this.baseUrl}/admin/game/all`;
     return this.httpClient.get<GameList[]>(url);
   }
 
   public getEditors() : Observable<Editor[]> {
-    const url = `${this.baseUrl}/admin/game/editors`; 
-    return this.httpClient.get<Editor[]>(url); 
+    const url = `${this.baseUrl}/admin/game/editors`;
+    return this.httpClient.get<Editor[]>(url);
   }
 
   public getLanguages() : Observable<Language[]> {
-    const url = `${this.baseUrl}/admin/game/languages`; 
-    return this.httpClient.get<Language[]>(url); 
+    const url = `${this.baseUrl}/admin/game/languages`;
+    return this.httpClient.get<Language[]>(url);
   }
 
   public getTags() : Observable<Tag[]> {
-    const url = `${this.baseUrl}/admin/game/tags`; 
-    return this.httpClient.get<Tag[]>(url); 
+    const url = `${this.baseUrl}/admin/game/tags`;
+    return this.httpClient.get<Tag[]>(url);
   }
 
   public getTypes() : Observable<Type[]> {
-    const url = `${this.baseUrl}/admin/game/types`; 
-    return this.httpClient.get<Type[]>(url); 
+    const url = `${this.baseUrl}/admin/game/types`;
+    return this.httpClient.get<Type[]>(url);
   }
 
   public createGame(game: GameList): Observable<GameList> {
     game =  {
-      ...game, 
+      ...game,
       image: game.image
-    }; 
+    };
 
     const url = `${this.baseUrl}/admin/game/add`;
     return this.httpClient.post<GameList>(url, game)
@@ -65,12 +66,12 @@ export class GameService {
 
   public updateGame(gameEdit: GameList, id: Number) : Observable<GameList> {
     gameEdit = {
-      ...gameEdit, 
+      ...gameEdit,
       image: gameEdit.image
     }
 
     const url = `${this.baseUrl}/admin/game/edit/${id}`;
-    return this.httpClient.put<GameList>(url, gameEdit); 
+    return this.httpClient.put<GameList>(url, gameEdit);
   }
 
   public deleteAGame(id: Number) : Observable<GameList> {
@@ -90,10 +91,10 @@ export class GameService {
   uploadImage(imageFile: File): Observable<string> {
     // Créez une instance de FormData
     const formData = new FormData();
-    
+
     // Ajoutez le fichier image à FormData
     formData.append('image', imageFile);
-    
+
     // Effectuez une requête HTTP POST pour téléverser l'image
     return this.httpClient.post<string>(`${this.baseUrl}/upload`, formData);
 

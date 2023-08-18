@@ -6,18 +6,21 @@ import { CustomerAddress } from 'src/app/shared/entities/customerAddress';
 import { AddGameToCustomerFavDTO } from 'src/app/shared/entities/AddGameToCustomerFavDTO';
 import { CustomerEdit } from 'src/app/shared/entities/customerEdit';
 import { CustomerAddressEdit } from 'src/app/shared/entities/customerAddressEdit';
+import {CommentToPost} from "../../modules/product/entities/CommentToPost";
+import {GetService} from "./get.service";
+import {Order} from "../../shared/entities/order";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerService {  
+export class CustomerService {
 
   private baseUrl: string = "http://localhost:8080";
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private getService:GetService) { }
 
   public getCustomer(userId : number): Observable<Customer> {
-    const url = `${this.baseUrl}/customer/${userId}`; 
+    const url = `${this.baseUrl}/customer/${userId}`;
     return this.httpClient.get<Customer>(url);
   }
 
@@ -35,11 +38,11 @@ export class CustomerService {
     const url = `${this.baseUrl}/customer/me/favs/add`;
     return this.httpClient.post(url, game) as Observable<Customer>;
   }
-  
+
   public modifyCustomer(customerEdit: CustomerEdit) : Observable<CustomerEdit> {
     customerEdit = {
       ...customerEdit
-    }; 
+    };
 
     const url = `${this.baseUrl}/customer/edit`;
     return this.httpClient.put<CustomerEdit>(url, customerEdit);
@@ -48,9 +51,19 @@ export class CustomerService {
   public modifyAddressCustomer(customerAddressEdit: CustomerAddressEdit) : Observable<CustomerAddressEdit> {
     customerAddressEdit = {
       ...customerAddressEdit
-    }; 
+    };
 
     const url = `${this.baseUrl}/customer/edit/address`;
     return this.httpClient.put<CustomerAddressEdit>(url, customerAddressEdit);
   }
+  public postAComment(commentToPost:CommentToPost){
+    this.httpClient.post(this.baseUrl + "/customer/comment/add", commentToPost).subscribe({
+      next:res => console.log(res)
+    })
+  }
+
+  public getOrders():Observable<Order[]>{
+    return this.getService.getData<Order[]>('/customer/me/orders');
+  }
+
 }

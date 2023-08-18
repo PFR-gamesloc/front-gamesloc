@@ -8,10 +8,13 @@ import { SharedModule } from "./shared/shared.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import { CommentaryFormComponent } from './modules/product/components/commentary-form/commentary-form.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     CoreModule,
@@ -21,7 +24,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     BrowserAnimationsModule,
     SharedModule,
     ToastrModule.forRoot(),
-    MatDialogModule
+    MatDialogModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

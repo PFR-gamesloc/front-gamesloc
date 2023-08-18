@@ -18,6 +18,7 @@ import {bootstrapTrash, bootstrapFacebook ,bootstrapTwitter,bootstrapTiktok,boot
 import { CartItemComponent } from './components/cart-item/cart-item.component'
 import {CoreModule} from "../core/core.module";
 import { DropdownMenuComponent } from './components/dropdown-menu/dropdown-menu.component';
+import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle} from "@ng-bootstrap/ng-bootstrap";
 @NgModule({
   declarations: [
     NavBarComponent,
@@ -32,25 +33,29 @@ import { DropdownMenuComponent } from './components/dropdown-menu/dropdown-menu.
     CartItemComponent,
     DropdownMenuComponent
   ],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        MatAutocompleteModule,
-        MatInputModule,
-        RouterLink,
-        NgIconsModule.withIcons({
-            bootstrapTrash,
-            bootstrapFacebook,
-            bootstrapTwitter,
-            bootstrapTiktok,
-            bootstrapInstagram,
-            bootstrapCart,
-            bootstrapPersonCircle,
-            bootstrapStar,
-            bootstrapArrowReturnLeft
-        }),
-        CoreModule
-    ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    RouterLink,
+    NgIconsModule.withIcons({
+      bootstrapTrash,
+      bootstrapFacebook,
+      bootstrapTwitter,
+      bootstrapTiktok,
+      bootstrapInstagram,
+      bootstrapCart,
+      bootstrapPersonCircle,
+      bootstrapStar,
+      bootstrapArrowReturnLeft
+    }),
+    CoreModule,
+    NgbDropdownToggle,
+    NgbDropdown,
+    NgbDropdownMenu,
+    NgbDropdownItem
+  ],
   exports:[
     NavBarComponent,
     InputComponent,

@@ -1,22 +1,24 @@
-<div class="{{ classCommentary }}">
-  <div class="{{ nameCommentary }}">Pseudonyme</div>
-  <div class="{{ ratingCommentary }}">
-    <div class="{{ rating }}">
-      <i class="fa-regular fa-star"></i>
-      <i class="fa-regular fa-star"></i>
-      <i class="fa-regular fa-star"></i>
-      <i class="fa-regular fa-star"></i>
-      <i class="fa-regular fa-star"></i>
-      <span class="notice">(26 avis)</span>
+<ng-container *ngIf="commentaries.length > 0; else noCommentaries">
+  <ng-container *ngFor="let commentary of commentaries">
+    <div class="commentary">
+      <div class="nameCommentary">{{commentary.customer.firstName + " " + commentary.customer.lastName}}
+        <ng-container *ngIf="commentary.rating !== null">
+          <div class="rating">
+            <ngb-rating [max]="5" [(rate)]="commentary.rating" [readonly]="false"></ngb-rating>
+          </div>
+  </ng-container>
+        <div>
+          <div class="ratingDate">Déposé le {{commentary.publishDate  | date: 'dd/MM/yyyy'}}</div>
+        </div>
+      </div>
+      <div class="contentCommentary">
+        {{commentary.comment}}
+      </div>
     </div>
-    <div>
-      <div class="{{ ratingDate }}">Déposé le 04/07/2023</div>
-    </div>
-  </div>
-  <div class="{{ contentCommentary }}">
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur
-    voluptatum suscipit, perferendis voluptates totam temporibus eius a odit
-    praesentium amet nesciunt id asperiores, sed reiciendis similique commodi
-    sequi, corporis quae!
-  </div>
-</div>
+  </ng-container>
+</ng-container>
+<ng-template #noCommentaries>
+  <h2>Aucun commentaires pour le moment !</h2>
+</ng-template>
+
+
