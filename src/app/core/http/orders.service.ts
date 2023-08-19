@@ -19,11 +19,11 @@ export class OrdersService {
   }
 
   public getAdminOrders(): Observable<AdminOrder[]> {
-    const url = `${this.baseUrl}/admin/order/all`;
+    const url = `admin/order/all`;
     return this.getService.getData<AdminOrder[]>(url);
   }
   public validateCart(orderDTO: any): Observable<any> {
-    const url = `${this.baseUrl}/customers/me/create-order`; // URL Back Order
+    const url = `${this.baseUrl}/customers/me/create-order`;
     return this.httpClient.post(url, orderDTO);
   }
 }

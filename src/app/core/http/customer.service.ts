@@ -30,7 +30,7 @@ export class CustomerService {
   }
 
   public getCustomersAdmin() : Observable<Customer[]> {
-    const url = `${this.baseUrl}/admin/customer/all`;
+    const url = `admin/customer/all`;
     return this.getService.getData<Customer[]>(url);
   }
 

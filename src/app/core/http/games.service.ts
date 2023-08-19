@@ -31,27 +31,27 @@ export class GameService {
   }
   
   public getAdminGames(): Observable<GameList[]> {
-    const url = `${this.baseUrl}/admin/game/all`;
+    const url = `admin/game/all`;
     return this.getService.getData<GameList[]>(url);
   }
 
   public getEditors(): Observable<Editor[]> {
-    const url = `${this.baseUrl}/admin/game/editors`;
+    const url = `admin/game/editors`;
     return this.getService.getData<Editor[]>(url);
   }
 
   public getLanguages(): Observable<Language[]> {
-    const url = `${this.baseUrl}/admin/game/languages`;
+    const url = `admin/game/languages`;
     return this.getService.getData<Language[]>(url);
   }
 
   public getTags(): Observable<Tag[]> {
-    const url = `${this.baseUrl}/admin/game/tags`;
+    const url = `admin/game/tags`;
     return this.getService.getData<Tag[]>(url);
   }
 
   public getTypes(): Observable<Type[]> {
-    const url = `${this.baseUrl}/admin/game/types`;
+    const url = `admin/game/types`;
     return this.getService.getData<Type[]>(url);
   }
 
