@@ -26,7 +26,7 @@ export class GameService {
   }
 
   public getGameById(gameId: Number): Observable<GameDetail> {
-    const url = `${this.baseUrl}/product/game/${gameId}`;
+    const url = `product/game/${gameId}`;
     return this.getService.getData<GameDetail>(url);
   }
   
