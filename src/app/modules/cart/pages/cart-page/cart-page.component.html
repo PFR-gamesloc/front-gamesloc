@@ -7,7 +7,7 @@
   </div>
   <div class="total-price-container">
     <div class="total-price">
-      <p>Total Price:</p>
+      <p>Prix  total:</p>
       <p>{{ totalPrice }}</p>
     </div>
   </div>
@@ -18,10 +18,11 @@
       <button (click)="closePurchasePopup()">Fermer</button>
     </div>
   </div>
-  <app-btn-component
-    classBtn="btn btn-add app-btn-last"
-    textBtn="Valider au panier"
-    [disabled]="isEmptyCart()"
-    (click)="validateCart()"
-  ></app-btn-component>
+  <ng-container *ngIf="((isEmptyCart() || !this.isAuth) ) ; else canPurchase">
+    <app-btn-component classBtn="btn btn-add app-btn-last" textBtn="Valider le panier" [disabled]="true"></app-btn-component>
+  </ng-container>
+  <ng-template #canPurchase>
+    <app-btn-component classBtn="btn btn-add app-btn-last" textBtn="Valider le panier" (click)="validateCart()"></app-btn-component>
+  </ng-template>
+
 </div>

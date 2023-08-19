@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { StorageService } from 'src/app/core/http/storage.service';
-import { GameDetail } from 'src/app/shared/entities/gameDetail';
-import { OrderPostDTO } from 'src/app/shared/entities/orderPostDTO';
+import {Component, OnChanges, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
+import {StorageService} from 'src/app/core/http/storage.service';
+import {GameDetail} from 'src/app/shared/entities/gameDetail';
+import {OrderPostDTO} from 'src/app/shared/entities/orderPostDTO';
+import {AuthServiceService} from "../../../../core/auth/auth-service.service";
 
 @Component({
   selector: 'app-cart-page',
@@ -16,8 +17,10 @@ export class CartPageComponent implements OnInit {
   totalPrice: number = 0;
   isCartEmpty: boolean = false;
   purchaseResponse: number = 0;
+  isAuth!: boolean;
 
-  constructor(private cartService: StorageService, private router: Router) { }
+  constructor(private cartService: StorageService, private router: Router, private authService: AuthServiceService) {
+  }
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getItems();
@@ -25,15 +28,13 @@ export class CartPageComponent implements OnInit {
     this.cartItems$.subscribe(items => {
       this.cartItems = items;
     });
+    this.authService.isAuth.subscribe(value => this.isAuth = value);
+    this.cartService.totalPrice.subscribe(value => this.totalPrice = value);
+  }
 
-    this.calculateTotalPrice();
-  }
-  calculateTotalPrice(): number {
-    return this.totalPrice = this.cartItems.reduce((total, item) => total + item.gamePrice, 0);
-  }
 
   validateCart(): void {
-    const totalPrice = this.calculateTotalPrice();
+    const totalPrice = this.totalPrice;
     const orderDTO: OrderPostDTO = {
       price: totalPrice,
       gamesId: this.cartItems.map(item => item.gameId),
@@ -56,4 +57,6 @@ export class CartPageComponent implements OnInit {
   closePurchasePopup(): void {
     this.purchaseResponse = 0;
   }
+
+
 }

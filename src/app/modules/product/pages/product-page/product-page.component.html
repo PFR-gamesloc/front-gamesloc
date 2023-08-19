@@ -40,8 +40,7 @@
               'in-stock': game!.stock > 20,
               'low-stock': game!.stock <= 20,
               'out-of-stock': game!.stock <= 10
-            }"
-          >
+            }">
             Stock : <span> {{ game.stock }}</span>
           </p>
         </ng-container>
@@ -52,20 +51,9 @@
         <app-btn-component
           classBtn="btn btn-add"
           textBtn="Ajouter au panier"
-          (click)="addToCart()"
-        ></app-btn-component>
+          (click)="addToCart()">
+        </app-btn-component>
 
-        <div
-          *ngIf="errorMessage"
-          class="popup"
-          [ngClass]="{ 'show-popup': errorMessage }"
-        >
-          <div class="popup-content">
-            <h2>Erreur</h2>
-            <p>{{ errorMessage }}</p>
-            <button (click)="closePopup()">Fermer</button>
-          </div>
-        </div>
       </div>
     </div>
     <h2>Description</h2>
