@@ -11,9 +11,4 @@ export class CommentaryComponent {
   @Input() commentaries!: Commentary[];
   @Input() gameId!:number;
 
-  constructor(private getService:GetService) {
-  }
-  ngOnInit():void{
-
-  }
 }

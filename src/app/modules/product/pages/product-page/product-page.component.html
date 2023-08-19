@@ -10,19 +10,24 @@
       <img src="./assets/Predator_Wallpaper_02_3840x2400.jpg" alt="exemple d'un jeu de société"/>
       <div class="detail-product">
         <h1 *ngIf="currentWindowWidth! > 768" title="title-product">{{ game.gameName }}</h1>
-        <ng-icon
-          *ngIf="!isGameLiked"
-          size="25"
-          name="bootstrapHeartFill"
-          (click)="addToFavorites(game!)"> Add favorite
-        </ng-icon>
-        <ng-icon
-          *ngIf="isGameLiked"
-          size="25"
-          color="#FF0000"
-          name="bootstrapHeartFill"
-          (click)="removeToFavorites(game!)"> removefavorite
-        </ng-icon>
+        <ng-container *ngIf="isConnected() ; else isNotAuthenticated">
+          <ng-icon
+            *ngIf="!isGameLiked"
+            size="25"
+            name="bootstrapHeartFill"
+            (click)="addToFavorites(game!)">
+          </ng-icon>
+          <ng-icon
+            *ngIf="isGameLiked"
+            size="25"
+            color="#FF0000"
+            name="bootstrapHeartFill"
+            (click)="removeToFavorites(game!)">
+          </ng-icon>
+        </ng-container>
+        <ng-template #isNotAuthenticated>
+          <span>Connectez vous pour liké ce jeu !</span>
+        </ng-template>
         <span class="price">{{
           game.gamePrice | currency : "EUR" : "symbol" : "2.2-2" : "fr"
           }}</span>
@@ -37,12 +42,8 @@
           </p>
         </ng-container>
         <span class="notice">
-        <ng-icon size="25" name="bootstrapStar"></ng-icon>
-        <ng-icon size="25" name="bootstrapStar"></ng-icon>
-        <ng-icon size="25" name="bootstrapStar"></ng-icon>
-        <ng-icon size="25" name="bootstrapStar"></ng-icon>
-        <ng-icon size="25" name="bootstrapStar"></ng-icon>
-        <span class="total-notice">(26 avis)</span>
+         <ngb-rating [max]="5" [(rate)]="rating" [readonly]="true"></ngb-rating>
+        <span class="total-notice">({{nbRating}} avis)</span>
       </span>
         <app-btn-component
           classBtn="btn btn-add"
@@ -147,7 +148,16 @@
     </div>
 
     <h2>Commentaires</h2>
-    <ng-container *ngIf="checkIfOrdered() && !checkAlreadyCommented()">
+    <ng-container *ngIf="!isConnected()">
+      <h2>Connectez vous pour donner votre avis !</h2>
+    </ng-container>
+    <ng-container *ngIf="!checkIfOrdered() && isConnected()">
+      <h2>Commandez ce jeu pour donner votre avis !</h2>
+    </ng-container>
+    <ng-container *ngIf="checkIfOrdered() && checkAlreadyCommented()&& isConnected()">
+      <h2>Vous avez déjà donner votre opinion sur ce Jeu</h2>
+    </ng-container>
+    <ng-container *ngIf="checkIfOrdered() && !checkAlreadyCommented() && isConnected()">
       <app-commentary-form [gameId]="game.gameId"></app-commentary-form>
     </ng-container>
     <app-commentary [commentaries]="commentaries"

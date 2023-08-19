@@ -4,7 +4,7 @@
       <div class="nameCommentary">{{commentary.customer.firstName + " " + commentary.customer.lastName}}
         <ng-container *ngIf="commentary.rating !== null">
           <div class="rating">
-            <ngb-rating [max]="5" [(rate)]="commentary.rating" [readonly]="false"></ngb-rating>
+            <ngb-rating [max]="5" [(rate)]="commentary.rating" [readonly]="true"></ngb-rating>
           </div>
   </ng-container>
         <div>

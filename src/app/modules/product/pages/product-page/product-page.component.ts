@@ -30,24 +30,30 @@ export class ProductPageComponent implements OnInit {
   currentWindowWidth!: number;
   commentaries: Commentary[] = [];
   orders: Order[] = [];
-  isGameLiked: boolean | undefined;
+  isGameLiked: boolean = false;
   errorMessage: string = '';
+  rating:number = 0;
+  nbRating:number = 0;
 
   constructor(private gameService: GameService, private customerService: CustomerService, private route: ActivatedRoute, private router: Router, private cartService: StorageService, private getService: GetService, private authService: AuthServiceService) {
   }
 
   ngOnInit() {
-    this.customerService.getOrders().subscribe({
-      next: (orders: Order[]) => {
-        this.orders = orders;
-        console.log(orders)
-      }
-    });
+    if(this.authService.isAuth.value){
+      this.customerService.getOrders().subscribe({
+        next: (orders: Order[]) => {
+          this.orders = orders;
+        }
+      });
+    }
     this.getService.getData<Commentary[]>("product/" + this.gameService.getSelectedGameId() + "/comments").subscribe({
       next: (value: Commentary[]) => {
         this.commentaries = value;
+        this.setRating();
       }
-    })
+    });
+
+
     const gameId = this.gameService.getSelectedGameId();
     this.currentWindowWidth = window.innerWidth;
     if (gameId) {
@@ -58,12 +64,13 @@ export class ProductPageComponent implements OnInit {
           this.getService.getData<GameDetail>(`product/game/${gameId}`).subscribe({
             next: (res: GameDetail) => {
               this.game = res;
-              this.getService.getData<CustomerLike[]>(`customer/me/favs`).subscribe({
-                next: (favoriteItems: CustomerLike[]) => {
-                  this.isGameLiked = favoriteItems.some(gameLike => gameLike.gameId === gameId);
-                  console.log(this.isGameLiked);
-                },
-              })
+              if (this.authService.isAuth.value){
+                this.getService.getData<CustomerLike[]>(`customer/me/favs`).subscribe({
+                  next: (favoriteItems: CustomerLike[]) => {
+                    this.isGameLiked = favoriteItems.some(gameLike => gameLike.gameId === gameId);
+                  },
+                });
+              }
             },
             error: (err) => {
               console.log("Erreur le jeu souhaitez n'existe pas", err);
@@ -76,43 +83,34 @@ export class ProductPageComponent implements OnInit {
   }
 
   @HostListener('window:resize')
-    onResize()
-    {
-      this!.currentWindowWidth = window.innerWidth
+  onResize(): void {
+    this!.currentWindowWidth = window.innerWidth
+  }
+
+  more(): void {
+    this.input = !this.input;
+  }
+
+
+  addToCart() {
+    const result = this.cartService.addItem(this.game!);
+    if (result.message) {
+      this.errorMessage = result.message;
     }
-
-    more()
-    {
-      this.input = !this.input;
+    if (result.success) {
+      this.router.navigate(['/']);
     }
+  }
 
-
-    addToCart()
-    {
-      const result = this.cartService.addItem(this.game!);
-      if (result.message) {
-        this.errorMessage = result.message;
-      }
-      if (result.success) {
-        this.router.navigate(['/']);
-      }
-    }
-
-    addToFavorites(game
-  :
-    Game
-  ):
-    void {
-      this.isGameLiked = true;
-      let gameId
-  :
-    AddGameToCustomerFavDTO = {
+  addToFavorites(game: Game): void {
+    this.isGameLiked = true;
+    let gameId: AddGameToCustomerFavDTO = {
       id: game.gameId
     }
+
     this.customerService.addToFavorites(gameId).subscribe({
       next: response => {
         console.log(response);
-
       },
       error: error => {
         console.error(error);
@@ -120,38 +118,32 @@ export class ProductPageComponent implements OnInit {
     });
   }
 
-    checkAlreadyCommented()
-  :
-    boolean
-    {
-      console.log("ici")
-      if (!this.authService.isAuth.value) {
-        return false;
+  checkAlreadyCommented(): boolean {
+    if (!this.authService.isAuth.value) {
+      return false;
+    }
+    for (const commentary of this.commentaries) {
+      if (commentary.customer.email === sessionStorage.getItem('subject') || commentary.customer.email === localStorage.getItem('subject')) {
+        return true;
       }
-      for (const commentary of this.commentaries) {
-        if (commentary.customer.email === sessionStorage.getItem('subject') || commentary.customer.email === localStorage.getItem('subject')) {
+    }
+    return false;
+  }
+
+  checkIfOrdered(): boolean {
+    for (const order of this.orders) {
+      for (const game of order.games) {
+        if(game.gameId == this.game.gameId){
           return true;
         }
       }
-      return false;
     }
+    return false;
+  }
 
-    checkIfOrdered()
-  :
-    boolean
-    {
-      return true
-    }
-
-    removeToFavorites(game
-  :
-    Game
-  ):
-    void {
-      this.isGameLiked = false;
-      let gameId
-  :
-    AddGameToCustomerFavDTO = {
+  removeToFavorites(game: Game): void {
+    this.isGameLiked = false;
+    let gameId: AddGameToCustomerFavDTO = {
       id: game.gameId
     }
 
@@ -166,10 +158,26 @@ export class ProductPageComponent implements OnInit {
     });
   }
 
-    closePopup()
-    {
-      this.errorMessage = '';
+  setRating(){
+    let sum:number = 0
+    let nbRating:number = 0;
+    for (const commentary of this.commentaries) {
+      if (commentary.rating !== null){
+        sum+= commentary.rating;
+        nbRating ++;
+      }
     }
+    this.rating = sum/nbRating;
+    this.nbRating = nbRating;
   }
+
+  closePopup(): void {
+    this.errorMessage = '';
+  }
+
+  isConnected():boolean{
+    return this.authService.isAuth.value;
+  }
+}
 
 

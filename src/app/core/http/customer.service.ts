@@ -61,14 +61,12 @@ export class CustomerService {
     const url = `${this.baseUrl}/customer/edit/address`;
     return this.httpClient.put<CustomerAddressEdit>(url, customerAddressEdit);
   }
-  public postAComment(commentToPost:CommentToPost){
-    this.httpClient.post(this.baseUrl + "/customer/comment/add", commentToPost).subscribe({
-      next:res => console.log(res)
-    })
+  public postAComment(commentToPost:CommentToPost):Observable<boolean>{
+    return this.httpClient.post<boolean>(this.baseUrl + "/customer/comment/add", commentToPost);
   }
 
   public getOrders():Observable<Order[]>{
-    return this.getService.getData<Order[]>('/customer/me/orders');
+    return this.getService.getData<Order[]>('customer/me/orders');
   }
 
 }
