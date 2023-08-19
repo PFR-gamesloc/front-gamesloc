@@ -73,5 +73,9 @@
   .btn-next{
     right: 0;
     font-size: 3rem;
+
+    .fade:not(.show){
+      opacity: 1;
+    }
   }
 }
