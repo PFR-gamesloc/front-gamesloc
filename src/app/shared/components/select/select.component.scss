@@ -1,10 +1,11 @@
 @use '../../../../sass/mixins' as m;
 
 
-.container {
+.container-select {
     display: flex;
     flex-direction: column;
     width: 100%;
+    padding: 5px;
 
     label {
         display: flex;

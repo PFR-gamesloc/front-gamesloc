@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/core/http/customer.service';
 import { CustomerAddress } from 'src/app/shared/entities/customerAddress';
-import {GetService} from "../../../../core/http/get.service";
-import { Customer } from 'src/app/shared/entities/customer';
-import { CustomerEdit } from 'src/app/shared/entities/customerEdit';
+import { GetService } from "../../../../core/http/get.service";
 import { CustomerAddressEdit } from 'src/app/shared/entities/customerAddressEdit';
-import { ToastrService} from 'ngx-toastr'; 
+import { ToastrService } from 'ngx-toastr';
+import { env } from 'src/env';
 
 @Component({
   selector: 'app-modify-user-address-option',
@@ -21,24 +20,24 @@ export class ModifyUserAddressOptionComponent {
   private isFormSubmitter!: boolean;
 
   constructor(
-    private getService:GetService, 
-    private customerService: CustomerService, 
-    private router: Router, 
+    private getService: GetService,
+    private customerService: CustomerService,
+    private router: Router,
     private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
     this.customerForm = new FormGroup({
-      numberAddress: new FormControl(''),
-      complementaryNumber: new FormControl(''),
-      streetName: new FormControl(''),
+      numberAddress: new FormControl('', [Validators.required, Validators.pattern(env.streetNumberRegex)]),
+      complementaryNumber: new FormControl('', [Validators.pattern(env.complementaryNumberRegex)]),
+      streetName: new FormControl('', [Validators.required, Validators.pattern(env.streetNameRegex)]),
       complementaryAddress: new FormControl(''),
-      postalCode: new FormControl(''),
-      cityName: new FormControl('')
+      postalCode: new FormControl('', [Validators.required, Validators.pattern(env.postalCodeRegex)]),
+      cityName: new FormControl('', [Validators.required, Validators.pattern(env.cityNameRegex)])
     })
 
     this.getService.getData<CustomerAddress>("customer/me").subscribe({
-      next: (res:CustomerAddress) => this.displayCustomer(res)
+      next: (res: CustomerAddress) => this.displayCustomer(res)
     });
 
   }
@@ -65,22 +64,22 @@ export class ModifyUserAddressOptionComponent {
       }
 
       console.log(modifyCustomer);
-      
+
 
       this.customerService.modifyAddressCustomer(modifyCustomer).subscribe({
         next: (response) => {
-          this.saveCompleted(response); 
-        }, 
+          this.saveCompleted(response);
+        },
         error: (err) => {
-          this.toastr.error("Votre modification n'a pas été pris en compte ", err.message); 
+          this.toastr.error("Votre modification n'a pas été pris en compte ", err.message);
         }
       })
     }
   }
 
-  public saveCompleted(response: CustomerAddressEdit) : void {
-    this.customerForm.reset(); 
+  public saveCompleted(response: CustomerAddressEdit): void {
+    this.customerForm.reset();
     this.router.navigate(['/user', 'me'])
-    this.toastr.success("Votre modification a bien été pris en compte"); 
+    this.toastr.success("Votre modification a bien été pris en compte");
   }
 }

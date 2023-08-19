@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormControlName, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GameService } from 'src/app/core/http/games.service';
 import { SideNavToggle } from '../../entities/SideNavToggle';
@@ -11,6 +11,7 @@ import { Tag } from 'src/app/shared/entities/tag';
 import { Type } from 'src/app/shared/entities/type';
 import { ToastrService } from 'ngx-toastr';
 import { FileUploadService } from '../../entities/file-upload.service';
+import { env } from 'src/env';
 
 @Component({
   selector: 'app-game-edit',
@@ -26,6 +27,7 @@ export class GameEditComponent implements OnInit {
   public game!: GameList;
   public pageTitle!: string;
   public isAddMode!: boolean;
+  public isAddImage: boolean = false;
   editors$!: Observable<Editor[]>;
   languages$!: Observable<Language[]>;
   tags$!: Observable<Tag[]>;
@@ -41,26 +43,27 @@ export class GameEditComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private gamesService: GameService,
-    private toastr: ToastrService, 
+    private toastr: ToastrService,
     private fileUploadService: FileUploadService
   ) {
 
   }
 
   ngOnInit(): void {
+
     this.gameForm = new FormGroup({
-      gameName: new FormControl(''),
-      gameDescr: new FormControl(''),
-      stock: new FormControl(),
-      gamePrice: new FormControl(),
-      image: new FormControl(''),
-      minPlayer: new FormControl(),
-      maxPlayer: new FormControl(),
-      minAge: new FormControl(),
-      typeId: new FormControl(""),
-      editorId: new FormControl(""),
-      languages: new FormArray([]),
-      tags: new FormArray([])
+      gameName: new FormControl('', [Validators.required, Validators.pattern(env.nameRegex)]),
+      gameDescr: new FormControl('', [Validators.required]),
+      stock: new FormControl([Validators.required, Validators.pattern(env.integerRegex)]),
+      gamePrice: new FormControl([Validators.required, Validators.pattern(env.decimalRegex)]),
+      image: new FormControl('', [Validators.required]),
+      minPlayer: new FormControl([Validators.required, Validators.pattern(env.integerRegex)]),
+      maxPlayer: new FormControl([Validators.required, Validators.pattern(env.integerRegex)]),
+      minAge: new FormControl([Validators.required, Validators.pattern(env.integerRegex)]),
+      typeId: new FormControl("", [Validators.required]),
+      editorId: new FormControl("", [Validators.required]),
+      languages: new FormArray([], [Validators.required]),
+      tags: new FormArray([], [Validators.required])
     })
 
     this.gameId = this.route.snapshot.params['id'];
@@ -83,6 +86,8 @@ export class GameEditComponent implements OnInit {
               typeId: game.type.typeId.toString(),
               editorId: game.editor.editorId.toString(),
             });
+
+            game.image = this.imguploaded;
 
             game.languages.forEach((language) => {
               const control = new FormControl(language.languageId);
@@ -156,24 +161,14 @@ export class GameEditComponent implements OnInit {
   }
 
   public saveGame(): void {
-    console.log(this.uploadedImage);
-    
     this.isFormSubmitted = true;
-
-    console.log(this.gameForm.get('image')?.value);
 
     if (this.gameForm.valid) {
       const newGame: GameList = {
         ...this.gameForm.value
       };
 
-      const formData = new FormData(); 
-      formData.append('image', this.uploadedImage, this.uploadedImage.name);
-
-      newGame.image = formData;
-
-      console.log('ici')
-      console.log(newGame.image.get('image'));
+      console.log(newGame);
 
       if (this.isAddMode) {
         this.gamesService.createGame(newGame).subscribe({
@@ -190,7 +185,7 @@ export class GameEditComponent implements OnInit {
             this.saveCompleted(response);
           },
           error: (err) => {
-            this.toastr.error("Le jeu n'a pas pu être créé", err.message);
+            this.toastr.error(`Le jeu n'a pas pu être modifié`, err.message);
           }
         })
       }
@@ -205,6 +200,15 @@ export class GameEditComponent implements OnInit {
 
   onFileSelected(event: any): void {
     this.uploadedImage = event.target.files[0];
+  }
+
+  displayImage() {
+    return this.game.image;
+  }
+
+  toggleAddImage(event: Event) {
+    event.preventDefault();
+    this.isAddImage = !this.isAddImage;
   }
 
 }

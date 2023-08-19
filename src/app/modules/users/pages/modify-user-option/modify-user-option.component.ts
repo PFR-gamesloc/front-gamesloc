@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { env } from "../../../../../env"
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from 'src/app/core/http/customer.service';
 import { UsersService } from 'src/app/core/http/users.service';
 import { Customer } from 'src/app/shared/entities/customer';
 import { GetService } from "../../../../core/http/get.service";
 import { CustomerEdit } from 'src/app/shared/entities/customerEdit';
-import { ToastrService} from 'ngx-toastr'; 
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modify-user-option',
@@ -21,7 +22,7 @@ export class ModifyUserOptionComponent implements OnInit {
   private isFormSubmitter!: boolean;
 
   constructor(
-    private router: Router, 
+    private router: Router,
     private getService: GetService,
     private customerService: CustomerService,
     private toastr: ToastrService
@@ -29,10 +30,10 @@ export class ModifyUserOptionComponent implements OnInit {
 
   ngOnInit(): void {
     this.customerForm = new FormGroup({
-      lastName: new FormControl(''),
-      firstName: new FormControl(''),
-      phoneNumber: new FormControl(''),
-      email: new FormControl('')
+      lastName: new FormControl('', [Validators.required, Validators.pattern(env.nameRegex)]),
+      firstName: new FormControl('', [Validators.required, Validators.pattern(env.nameRegex)]),
+      phoneNumber: new FormControl('', [Validators.required, Validators.pattern(env.phoneNumberRegex)]),
+      email: new FormControl('', [Validators.required, Validators.pattern(env.emailRegex)]),
     })
     this.getService.getData<Customer>("customer/me").subscribe({
       next: res => this.displayCustomer(res)
@@ -60,19 +61,19 @@ export class ModifyUserOptionComponent implements OnInit {
 
       this.customerService.modifyCustomer(modifyCustomer).subscribe({
         next: (response) => {
-          this.saveCompleted(response); 
-        }, 
+          this.saveCompleted(response);
+        },
         error: (err) => {
-          this.toastr.error("Votre modification n'a pas été pris en compte ", err.message); 
+          this.toastr.error("Votre modification n'a pas été pris en compte ", err.message);
         }
       })
     }
   }
 
-  public saveCompleted(response: CustomerEdit) : void {
-    this.customerForm.reset(); 
+  public saveCompleted(response: CustomerEdit): void {
+    this.customerForm.reset();
     this.router.navigate(['/user', 'me'])
-    this.toastr.success("Votre modification a bien été pris en compte"); 
+    this.toastr.success("Votre modification a bien été pris en compte");
   }
 
 }

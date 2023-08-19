@@ -18,7 +18,7 @@
 
     .boxes {
         display: flex;
-        padding-left: 10px;
+        padding-left: 30px;
 
         .box {
             padding-top: 10px;
@@ -55,4 +55,7 @@
         box-sizing: border-box;
     }
 
+    .title-img {
+        color: var(--blue-primary);
+    }
 }

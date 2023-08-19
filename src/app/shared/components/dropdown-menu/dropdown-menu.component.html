@@ -3,11 +3,13 @@
     <button class="btn dropbtn" id="gfg" ngbDropdownToggle>
       <ng-icon color="#FFFFFF" size="30" name="bootstrapPersonCircle"></ng-icon>
     </button>
-    <div ngbDropdownMenu="gfg">
+    <div ngbDropdownMenu="gfg" class="dropDownMenu">
       <a routerLink="/user/me"><button ngbDropdownItem>Mon compte</button></a>
-      <a routerLink="/admin"><button ngbDropdownItem *appIsAdmin>Administration</button></a>
-      <button (click)="logout()" ngbDropdownItem>Se déconnecter</button>
+      <a routerLink="/admin/located-games"><button ngbDropdownItem *appIsAdmin>Administration</button></a>
+      <a class="logout">
+        <button (click)="logout()" ngbDropdownItem> <span>Se déconnecter</span></button>
+      </a>
+
     </div>
   </div>
 </div>
-

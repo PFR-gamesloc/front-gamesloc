@@ -22,3 +22,12 @@
 .dropbtn span {
   display: block;
 }
+
+a {
+  text-decoration: none;
+}
+
+button.dropdown-item {
+  display: flex;
+  justify-content: flex-start;
+}

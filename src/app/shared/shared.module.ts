@@ -14,11 +14,11 @@ import { InputPasswordComponent } from "./components/input-password/input-passwo
 import { ErrorMessageComponent } from "./components/error-message/error-message.component";
 import { SearchBarComponent } from "./components/search-bar/search-bar.component";
 import { NgIconsModule } from '@ng-icons/core';
-import { bootstrapTrash, bootstrapFacebook, bootstrapTwitter, bootstrapTiktok, bootstrapInstagram, bootstrapCart, bootstrapPersonCircle, bootstrapStar, bootstrapArrowReturnLeft, bootstrapHeartFill } from '@ng-icons/bootstrap-icons';
+import { bootstrapTrash, bootstrapFacebook, bootstrapTwitter, bootstrapTiktok, bootstrapInstagram, bootstrapCart, bootstrapPersonCircle, bootstrapStar, bootstrapArrowReturnLeft, bootstrapHeartFill, bootstrapArrowBarRight } from '@ng-icons/bootstrap-icons';
 import { CartItemComponent } from './components/cart-item/cart-item.component'
 import { CoreModule } from "../core/core.module";
 import { DropdownMenuComponent } from './components/dropdown-menu/dropdown-menu.component';
-import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle} from "@ng-bootstrap/ng-bootstrap";
+import { NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle } from "@ng-bootstrap/ng-bootstrap";
 @NgModule({
   declarations: [
     NavBarComponent,
@@ -49,7 +49,8 @@ import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle} from "
       bootstrapPersonCircle,
       bootstrapStar,
       bootstrapArrowReturnLeft,
-      bootstrapHeartFill
+      bootstrapHeartFill,
+      bootstrapArrowBarRight
     }),
     CoreModule,
     NgbDropdownToggle,

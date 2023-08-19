@@ -13,6 +13,8 @@ export class InputComponent implements OnInit{
   @Input() typeInput: string | undefined;
   @Input() placeholderInput: string | undefined;
   @Input() regex: RegExp | undefined;
+  @Input() readonly: boolean = false; 
+  @Input() isTextArea: boolean = false; 
 
   form!: FormGroup;
   constructor(private rootFormGroup : FormGroupDirective) {

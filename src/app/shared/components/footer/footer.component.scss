@@ -11,9 +11,11 @@ section {
 }
 
 .textLinks {
+  padding-bottom: 10px;
   ul {
     display: flex;
     margin: auto;
+
     li {
       margin: 0 1rem;
     }
@@ -23,10 +25,12 @@ section {
 .iconLinks {
   div {
     margin: auto;
+
     i {
       padding: 5px;
     }
   }
+
   a {
     padding-left: 1rem;
   }

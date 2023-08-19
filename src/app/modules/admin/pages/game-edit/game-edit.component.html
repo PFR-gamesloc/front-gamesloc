@@ -1,97 +1,150 @@
 <app-navbar-admin (onToggleSideNav)="onToggleSideNav($event)">
-    <div class="container">
+    <div>
         <div class="title">
             <h1><strong>
                     {{ isAddMode ? 'Ajouter' : 'Modifier'}} mes informations
                 </strong></h1>
         </div>
         <form action="" class="gameForm" [formGroup]="gameForm" (ngSubmit)="saveGame()">
-            <div class="twice">
-                <app-input forInput="gameName" textLabel="Nom du jeu" typeInput="text" placeholderInput="Nom du jeu"></app-input>
-                <app-input forInput="gameDescr" textLabel="Description du jeu" typeInput="text"
-                    id="gameDescr" placeholderInput="Description"></app-input>
-            </div>
-            <div class="twice">
-                <app-input forInput="stock" textLabel="Nombre de jeux" typeInput="number" id="stock" placeholderInput="Nombre de jeux"></app-input>
-                <app-input forInput="gamePrice" textLabel="Prix du jeu" typeInput="number" id="gamePrice" placeholderInput="Prix du jeu"></app-input>
-            </div>
-            <app-input class="img" forInput="image" textLabel="Image du jeu" typeInput="file" id="image" (change)="onFileSelected($event)">
-            </app-input>
-            <app-file-upload-component></app-file-upload-component>
-            <div class="twice">
-                <app-input forInput="minPlayer" textLabel="Nombre minimum de joueur" typeInput="number"
-                    id="minPlayer" placeholderInput="Minimum de joeur"></app-input>
-                <app-input forInput="maxPlayer" textLabel="Nombre maximum de joueur" typeInput="number"
-                    id="gamePrice" placeholderInput="Maximum de joueur"></app-input>
-            </div>
-            <div class="twice">
-                <app-input forInput="minAge" textLabel="Age minimum du jeu" typeInput="number" id="minAge" placeholderInput="Age conseillé pour"></app-input>
-            </div>
-            <div class="boxes">
-                <ng-container *ngIf="types$ | async as types">
-                    <div class="box">
-                        <p class="titleSection">Type :</p>
-                        <mat-radio-group formControlName="typeId">
-                            <div *ngFor="let type of types">
-                                <mat-radio-button value="{{ type.typeId}}">
-                                    {{ type.name}}
-                                </mat-radio-button>
-                            </div>
-                        </mat-radio-group>
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-6">
+                        <app-input forInput="gameName" textLabel="Nom du jeu" typeInput="text"
+                            placeholderInput="Nom du jeu"></app-input>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <app-input forInput="gameDescr" textLabel="Description du jeu" id="gameDescr"
+                            placeholderInput="Description" [isTextArea]="true"></app-input>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <app-input forInput="stock" textLabel="Nombre de jeux" typeInput="number" id="stock"
+                            placeholderInput="Nombre de jeux"></app-input>
+                    </div>
+                    <div class="col">
+                        <app-input forInput="gamePrice" textLabel="Prix du jeu" typeInput="number" id="gamePrice"
+                            placeholderInput="Prix du jeu" class="col"></app-input>
+                    </div>
+                </div>
+
+                <ng-container *ngIf="isAddMode">
+                    <div class="p-4">
+                        <p class="title-img">Image du jeu</p>
+                        <app-file-upload-component (change)="onFileSelected($event)"
+                            [gameImage]="imguploaded"></app-file-upload-component>
                     </div>
                 </ng-container>
 
-                <ng-container *ngIf="editors$ | async as editors">
-                    <div class="box">
-                        <p class="titleSection">Editeur :</p>
-                        <mat-radio-group formControlName="editorId">
-                            <div *ngFor="let editor of editors">
-                                <mat-radio-button value="{{ editor.editorId}}">
-                                    {{ editor.name}}
-                                </mat-radio-button>
-                            </div>
-                        </mat-radio-group>
+                <ng-container *ngIf="!isAddMode">
+                    <div class="row">
+                        <div class="p-2">
+                            <app-input forInput="image" textLabel="Le nom de votre image est:" typeInput="text"
+                                id="image" [readonly]="true" class="col"></app-input>
+                        </div>
                     </div>
+
+                    <div class="p-4">
+                        <button type="button" [class]='isAddImage ? "btn btn-danger" : "btn btn-success"'
+                            (click)="toggleAddImage($event)"> {{ isAddImage ? "Ne pas changer l'image" : "Changer
+                            l'image"
+                            }}</button>
+                    </div>
+
+                    <ng-container *ngIf="isAddImage">
+                        <div class="p-4">
+                            <p class="title-img">Image du jeu</p>
+                            <app-file-upload-component (change)="onFileSelected($event)"
+                                [gameImage]="imguploaded"></app-file-upload-component>
+                        </div>
+                    </ng-container>
                 </ng-container>
-            </div>
-            <div class="boxes">
-                <ng-container *ngIf="languages$ | async as languages">
-                    <div class="box">
-                        <p class="titleSection">Langues :</p>
-                        <div>
-                            <ng-container *ngFor="let language of languages; let i = index">
+
+
+
+                <div class="row">
+                    <app-input forInput="minPlayer" textLabel="Nombre minimum de joueur" typeInput="number"
+                        id="minPlayer" placeholderInput="Minimum de joeur" class="col"></app-input>
+                    <app-input forInput="maxPlayer" textLabel="Nombre maximum de joueur" typeInput="number"
+                        id="gamePrice" placeholderInput="Maximum de joueur" class="col"></app-input>
+                </div>
+                <div class="row">
+                    <app-input forInput="minAge" textLabel="Age minimum du jeu" typeInput="number" id="minAge"
+                        placeholderInput="Age conseillé pour" class="col-md-6"></app-input>
+                </div>
+                <div class="boxes">
+                    <ng-container *ngIf="types$ | async as types">
+                        <div class="box">
+                            <p class="titleSection">Type :</p>
+                            <mat-radio-group formControlName="typeId">
+                                <div *ngFor="let type of types">
+                                    <mat-radio-button value="{{ type.typeId}}">
+                                        {{ type.name}}
+                                    </mat-radio-button>
+                                </div>
+                            </mat-radio-group>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="editors$ | async as editors">
+                        <div class="box">
+                            <p class="titleSection">Editeur :</p>
+                            <mat-radio-group formControlName="editorId">
+                                <div *ngFor="let editor of editors">
+                                    <mat-radio-button value="{{ editor.editorId}}">
+                                        {{ editor.name}}
+                                    </mat-radio-button>
+                                </div>
+                            </mat-radio-group>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="boxes">
+                    <ng-container *ngIf="languages$ | async as languages">
+                        <div class="box">
+                            <p class="titleSection">Langues :</p>
+                            <div>
+                                <ng-container *ngFor="let language of languages; let i = index">
+                                    <label>
+                                        <input type="checkbox" value="{{ language.languageId }}"
+                                            (change)="handleLangs($event, language.languageId)"
+                                            [checked]="gameForm.get('languages')?.value.includes(language.languageId)">
+                                        <div class="name">
+                                            {{ language.name}}
+                                        </div>
+                                    </label>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="tags$ | async as tags">
+                        <div class="box">
+                            <p class="titleSection">Tags :</p>
+
+                            <ng-container *ngFor="let tag of tags">
                                 <label>
-                                    <input type="checkbox" value="{{ language.languageId }}"
-                                        (change)="handleLangs($event, language.languageId)"
-                                        [checked]="gameForm.get('languages')?.value.includes(language.languageId)">
+                                    <input type="checkbox" value="{{ tag.tagId }}"
+                                        (change)="handleTags($event, tag.tagId)"
+                                        [checked]="gameForm.get('tags')?.value.includes(tag.tagId)">
                                     <div class="name">
-                                        {{ language.name}}
+                                        {{ tag.name}}
                                     </div>
                                 </label>
                             </ng-container>
                         </div>
-                    </div>
-                </ng-container>
+                    </ng-container>
+                </div>
 
-                <ng-container *ngIf="tags$ | async as tags">
-                    <div class="box">
-                        <p class="titleSection">Tags :</p>
-
-                        <ng-container *ngFor="let tag of tags">
-                            <label>
-                                <input type="checkbox" value="{{ tag.tagId }}" (change)="handleTags($event, tag.tagId)" [checked]="gameForm.get('tags')?.value.includes(tag.tagId)">
-                                <div class="name">
-                                    {{ tag.name}}
-                                </div>
-                            </label>
-                        </ng-container>
-                    </div>
-                </ng-container>
-            </div>
-
-            <div class="btn-small">
-                <app-btn-component classBtn="btn btn-submit"
-                    textBtn="{{ isAddMode ? 'Ajouter' : 'Modifier'}}"></app-btn-component>
+                <div class="btn-small">
+                    <app-btn-component classBtn="btn btn-submit"
+                        textBtn="{{ isAddMode ? 'Ajouter' : 'Modifier'}}"></app-btn-component>
+                </div>
             </div>
 
         </form>
