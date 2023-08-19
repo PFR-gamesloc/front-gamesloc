@@ -2,8 +2,8 @@
 
 .carousel-container {
   position: relative;
- height: 350px;
- margin: 1rem 1rem;
+  height: 350px;
+  margin: 1rem 1rem;
   img {
     display: none;
   }
@@ -18,7 +18,7 @@
     animation-name: fade;
     animation-duration: 1.5s;
   }
-  .fade:not(.show){
+  .fade:not(.show) {
     opacity: 1;
   }
 
@@ -26,7 +26,6 @@
     transform: translate(0, -100%);
     display: flex;
     justify-content: center;
-
   }
   .dot {
     cursor: pointer;
@@ -67,14 +66,14 @@
     color: antiquewhite;
     margin: 0 1rem;
     top: 50%;
-    transform: translateY(-50%); 
+    transform: translateY(-50%);
   }
-  .btn-prev{
+  .btn-prev {
     left: 0;
     font-size: 3rem;
   }
-  .btn-next{
+  .btn-next {
     right: 0;
-    font-size: 3rem;  
+    font-size: 3rem;
   }
 }

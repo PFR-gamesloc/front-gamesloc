@@ -14,7 +14,6 @@ export class CartPageComponent implements OnInit {
   cartItems: GameDetail[] = [];
   cartItems$!: Observable<GameDetail[]>;
   totalPrice: number = 0;
-
   isCartEmpty: boolean = false;
   purchaseResponse: number = 0;
 
@@ -40,19 +39,13 @@ export class CartPageComponent implements OnInit {
       gamesId: this.cartItems.map(item => item.gameId),
     };
 
-    console.log(orderDTO);
-    console.log("Envoie au back");
     this.cartService.validateCart(orderDTO).subscribe({
       next: response => {
-        console.log(response);
         this.purchaseResponse = response;
         this.cartService.clearItems();
         this.cartService.emitCartItemsUpdate();
         this.router.navigate(['/']);
       },
-      error: error => {
-        console.error(error);
-      }
     });
   }
 

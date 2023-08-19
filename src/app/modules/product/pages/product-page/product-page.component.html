@@ -7,50 +7,64 @@
       <h1 class="title-product">{{ game.gameName }}</h1>
     </div>
     <div class="product-flex">
-      <img src="./assets/Predator_Wallpaper_02_3840x2400.jpg" alt="exemple d'un jeu de société"/>
+      <img
+        src="./assets/Predator_Wallpaper_02_3840x2400.jpg"
+        alt="exemple d'un jeu de société"
+      />
       <div class="detail-product">
-        <h1 *ngIf="currentWindowWidth! > 768" title="title-product">{{ game.gameName }}</h1>
+        <h1 *ngIf="currentWindowWidth! > 768" title="title-product">
+          {{ game.gameName }}
+        </h1>
         <ng-icon
           *ngIf="!isGameLiked"
           size="25"
           name="bootstrapHeartFill"
-          (click)="addToFavorites(game!)"> Add favorite
+          (click)="addToFavorites(game!)"
+        >
+          Add favorite
         </ng-icon>
         <ng-icon
           *ngIf="isGameLiked"
           size="25"
           color="#FF0000"
           name="bootstrapHeartFill"
-          (click)="removeToFavorites(game!)"> removefavorite
+          (click)="removeToFavorites(game!)"
+        >
+          removefavorite
         </ng-icon>
         <span class="price">{{
           game.gamePrice | currency : "EUR" : "symbol" : "2.2-2" : "fr"
-          }}</span>
+        }}</span>
         <ng-container class="stock" *ngIf="game.stock">
-          <p [ngClass]="{
-            'in-stock': game!.stock > 20,
-            'low-stock': game!.stock <= 20,
-            'out-of-stock': game!.stock <= 10
-          }"
+          <p
+            [ngClass]="{
+              'in-stock': game!.stock > 20,
+              'low-stock': game!.stock <= 20,
+              'out-of-stock': game!.stock <= 10
+            }"
           >
             Stock : <span> {{ game.stock }}</span>
           </p>
         </ng-container>
         <span class="notice">
-        <ng-icon size="25" name="bootstrapStar"></ng-icon>
-        <ng-icon size="25" name="bootstrapStar"></ng-icon>
-        <ng-icon size="25" name="bootstrapStar"></ng-icon>
-        <ng-icon size="25" name="bootstrapStar"></ng-icon>
-        <ng-icon size="25" name="bootstrapStar"></ng-icon>
-        <span class="total-notice">(26 avis)</span>
-      </span>
+          <ng-icon size="25" name="bootstrapStar"></ng-icon>
+          <ng-icon size="25" name="bootstrapStar"></ng-icon>
+          <ng-icon size="25" name="bootstrapStar"></ng-icon>
+          <ng-icon size="25" name="bootstrapStar"></ng-icon>
+          <ng-icon size="25" name="bootstrapStar"></ng-icon>
+          <span class="total-notice">(26 avis)</span>
+        </span>
         <app-btn-component
           classBtn="btn btn-add"
           textBtn="Ajouter au panier"
           (click)="addToCart()"
         ></app-btn-component>
 
-        <div *ngIf="errorMessage" class="popup" [ngClass]="{ 'show-popup': errorMessage }">
+        <div
+          *ngIf="errorMessage"
+          class="popup"
+          [ngClass]="{ 'show-popup': errorMessage }"
+        >
           <div class="popup-content">
             <h2>Erreur</h2>
             <p>{{ errorMessage }}</p>
@@ -78,11 +92,11 @@
             <p class="game-details-content">{{ game.minAge }} ans</p>
             <p class="game-details-label">
               {{
-              game.minPlayer
-                ? game!.minPlayer > 1
-                  ? "Nombre de joueurs"
-                  : "Nombre de joueur"
-                : "Nombre de joueur non spécifié"
+                game.minPlayer
+                  ? game!.minPlayer > 1
+                    ? "Nombre de joueurs"
+                    : "Nombre de joueur"
+                  : "Nombre de joueur non spécifié"
               }}
             </p>
             <p class="game-details-content">
@@ -98,41 +112,41 @@
             <p class="game-details-content">{{ game.type.name }}</p>
             <p class="game-details-label">
               {{
-              game.languages
-                ? (game.languages)!.length > 1
-                  ? "Langues"
-                  : "Langue"
-                : ""
+                game.languages
+                  ? game.languages!.length > 1
+                    ? "Langues"
+                    : "Langue"
+                  : ""
               }}
               :
             </p>
             <p class="game-details-content">
-              <span
-                *ngFor="let language of game.languages"
-              >
+              <span *ngFor="let language of game.languages">
                 {{ language.name }}
               </span>
             </p>
             <p class="game-details-label">
-              {{game.tags ?
-              (game.tags)!.length > 1 ? "Catégories"
-                : "Catégorie"
-              : ""
+              {{
+                game.tags
+                  ? game.tags!.length > 1
+                    ? "Catégories"
+                    : "Catégorie"
+                  : ""
               }}
               :
             </p>
             <p class="game-details-content">
-            <span *ngFor="let language of game.languages">
-              {{ language.name }}
-            </span>
+              <span *ngFor="let language of game.languages">
+                {{ language.name }}
+              </span>
             </p>
             <p class="game-details-label">
               {{
-              game.tags
-                ? (game.tags)!.length > 1
-                  ? "Catégories"
-                  : "Catégorie"
-                : ""
+                game.tags
+                  ? game.tags!.length > 1
+                    ? "Catégories"
+                    : "Catégorie"
+                  : ""
               }}
               :
             </p>
@@ -150,7 +164,6 @@
     <ng-container *ngIf="checkIfOrdered() && !checkAlreadyCommented()">
       <app-commentary-form [gameId]="game.gameId"></app-commentary-form>
     </ng-container>
-    <app-commentary [commentaries]="commentaries"
-    ></app-commentary>
+    <app-commentary [commentaries]="commentaries"></app-commentary>
   </div>
 </ng-container>
