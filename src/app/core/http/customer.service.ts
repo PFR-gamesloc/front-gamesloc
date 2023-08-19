@@ -21,17 +21,17 @@ export class CustomerService {
 
   public getCustomer(userId : number): Observable<Customer> {
     const url = `${this.baseUrl}/customer/${userId}`;
-    return this.httpClient.get<Customer>(url);
+    return this.getService.getData<Customer>(url);
   }
 
   public getAddressCustomer(userId : number) : Observable<CustomerAddress> {
     const url = `${this.baseUrl}/customer/${userId}`;
-    return this.httpClient.get<CustomerAddress>(url);
+    return this.getService.getData<CustomerAddress>(url);
   }
 
   public getCustomersAdmin() : Observable<Customer[]> {
     const url = `${this.baseUrl}/admin/customer/all`;
-    return this.httpClient.get<Customer[]>(url);
+    return this.getService.getData<Customer[]>(url);
   }
 
   public addToFavorites(game: AddGameToCustomerFavDTO): Observable<Customer> {
@@ -45,19 +45,11 @@ export class CustomerService {
   }
 
   public modifyCustomer(customerEdit: CustomerEdit) : Observable<CustomerEdit> {
-    customerEdit = {
-      ...customerEdit
-    };
-
     const url = `${this.baseUrl}/customer/edit`;
     return this.httpClient.put<CustomerEdit>(url, customerEdit);
   }
 
   public modifyAddressCustomer(customerAddressEdit: CustomerAddressEdit) : Observable<CustomerAddressEdit> {
-    customerAddressEdit = {
-      ...customerAddressEdit
-    };
-
     const url = `${this.baseUrl}/customer/edit/address`;
     return this.httpClient.put<CustomerAddressEdit>(url, customerAddressEdit);
   }
@@ -66,7 +58,6 @@ export class CustomerService {
       next:res => console.log(res)
     })
   }
-
   public getOrders():Observable<Order[]>{
     return this.getService.getData<Order[]>('/customer/me/orders');
   }
