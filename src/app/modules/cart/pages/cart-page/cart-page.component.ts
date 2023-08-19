@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { StorageService } from 'src/app/core/http/storage.service';
 import { GameDetail } from 'src/app/shared/entities/gameDetail';
@@ -14,43 +15,45 @@ export class CartPageComponent implements OnInit {
   cartItems$!: Observable<GameDetail[]>;
   totalPrice: number = 0;
   isCartEmpty: boolean = false;
+  purchaseResponse: number = 0;
 
-  constructor(private cartService: StorageService) { }
+  constructor(private cartService: StorageService, private router: Router) { }
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getItems();
-    this.cartItems$ = this.cartService.getCartItemsObservable(); // Utiliser l'Observable du service
+    this.cartItems$ = this.cartService.getCartItemsObservable();
     this.cartItems$.subscribe(items => {
-      this.cartItems = items;     
+      this.cartItems = items;
     });
-  }
 
+    this.calculateTotalPrice();
+  }
   calculateTotalPrice(): number {
     return this.totalPrice = this.cartItems.reduce((total, item) => total + item.gamePrice, 0);
   }
 
   validateCart(): void {
-    const totalPrice = this.calculateTotalPrice(); // Calculez le prix total du panier de mon user
+    const totalPrice = this.calculateTotalPrice();
     const orderDTO: OrderPostDTO = {
       price: totalPrice,
-      gamesId: this.cartItems.map(item => (item.gameId)),
+      gamesId: this.cartItems.map(item => item.gameId),
     };
 
-    console.log(orderDTO)
-    console.log("Envoie au back")
     this.cartService.validateCart(orderDTO).subscribe({
       next: response => {
-        console.log(response);
-
+        this.purchaseResponse = response;
+        this.cartService.clearItems();
+        this.cartService.emitCartItemsUpdate();
+        this.router.navigate(['/']);
       },
-      error: error => {
-        console.error(error);
-      }
     });
   }
 
   isEmptyCart(): boolean {
     return this.cartItems.length === 0;
   }
-}
 
+  closePurchasePopup(): void {
+    this.purchaseResponse = 0;
+  }
+}

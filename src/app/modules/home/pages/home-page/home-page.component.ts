@@ -36,26 +36,19 @@ export class HomePageComponent {
   ]
 
   games$: GameList[] = [];
-  //@Input() game: GameList | undefined;
 
-
-  constructor(private getService: GetService,private gameService: GameService, private router: Router, private toastr: ToastrService) { }
+  constructor(private getService: GetService, private gameService: GameService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
-    console.log("getData")
     this.getService.getData<GameList[]>("product/games").subscribe({
       next: (res: GameList[]) => {
-        this.games$ = res; 
+        this.games$ = res;
       },
-      error: (err) => {
-        console.log(err);
-      }
     });
   };
 
   navigateToGameDetails(gameId: number, gameName: string) {
     this.gameService.setSelectedGameId(gameId);
-
     this.router.navigate(['game', gameName]);
   }
 

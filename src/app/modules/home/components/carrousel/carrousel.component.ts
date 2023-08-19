@@ -9,18 +9,13 @@ interface carouselImage {
   templateUrl: './carrousel.component.html',
   styleUrls: ['./carrousel.component.scss']
 })
-export class CarrouselComponent implements OnInit {
-
+export class CarrouselComponent {
 
   @Input() images: carouselImage[] = [];
   @Input() indicators = true;
   @Input() controls = true;
 
   selectedIndex: number = 0;
-
-
-  ngOnInit(): void {
-  }
 
   selectedImage(index: number): void {
     this.selectedIndex = index;
@@ -34,7 +29,7 @@ export class CarrouselComponent implements OnInit {
     }
   }
   onNextClick(): void {
-    if (this.selectedIndex === this.images.length -1 ) {
+    if (this.selectedIndex === this.images.length - 1) {
       this.selectedIndex = 0;
     } else {
       this.selectedIndex++;

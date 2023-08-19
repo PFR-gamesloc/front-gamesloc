@@ -10,6 +10,7 @@ import { Tag } from 'src/app/shared/entities/tag';
 import { Type } from 'src/app/shared/entities/type';
 import { Customer } from 'src/app/shared/entities/customer';
 import {CommentToPost} from "../../modules/product/entities/CommentToPost";
+import { GetService } from './get.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,40 +19,40 @@ export class GameService {
   private selectedGameIdKey = 'selectedGameId'
 
   private baseUrl: string = "http://localhost:8080";
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private getService:GetService) { }
 
   public getGames(): Observable<GameList[]> {
-    return this.httpClient.get<GameList[]>(this.baseUrl + "/product/games");
+    return this.getService.getData<GameList[]>(this.baseUrl + "/product/games");
   }
 
   public getGameById(gameId: Number): Observable<GameDetail> {
-    const url = `${this.baseUrl}/product/game/${gameId}`;
-    return this.httpClient.get<GameDetail>(url);
+    const url = `product/game/${gameId}`;
+    return this.getService.getData<GameDetail>(url);
   }
   
   public getAdminGames(): Observable<GameList[]> {
-    const url = `${this.baseUrl}/admin/game/all`;
-    return this.httpClient.get<GameList[]>(url);
+    const url = `admin/game/all`;
+    return this.getService.getData<GameList[]>(url);
   }
 
   public getEditors(): Observable<Editor[]> {
-    const url = `${this.baseUrl}/admin/game/editors`;
-    return this.httpClient.get<Editor[]>(url);
+    const url = `admin/game/editors`;
+    return this.getService.getData<Editor[]>(url);
   }
 
   public getLanguages(): Observable<Language[]> {
-    const url = `${this.baseUrl}/admin/game/languages`;
-    return this.httpClient.get<Language[]>(url);
+    const url = `admin/game/languages`;
+    return this.getService.getData<Language[]>(url);
   }
 
   public getTags(): Observable<Tag[]> {
-    const url = `${this.baseUrl}/admin/game/tags`;
-    return this.httpClient.get<Tag[]>(url);
+    const url = `admin/game/tags`;
+    return this.getService.getData<Tag[]>(url);
   }
 
   public getTypes(): Observable<Type[]> {
-    const url = `${this.baseUrl}/admin/game/types`;
-    return this.httpClient.get<Type[]>(url);
+    const url = `admin/game/types`;
+    return this.getService.getData<Type[]>(url);
   }
 
   public createGame(game: GameList): Observable<GameList> {

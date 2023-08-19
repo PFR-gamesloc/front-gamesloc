@@ -1,18 +1,18 @@
-import {Component, HostListener, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {GameService} from "../../../../core/http/games.service";
-import {GameDetail} from 'src/app/shared/entities/gameDetail';
-import {registerLocaleData} from '@angular/common';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
+import { GameService } from "../../../../core/http/games.service";
+import { GameDetail } from 'src/app/shared/entities/gameDetail';
+import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-import {Game} from 'src/app/shared/entities/game';
-import {StorageService} from 'src/app/core/http/storage.service';
-import {CustomerService} from 'src/app/core/http/customer.service';
-import {AddGameToCustomerFavDTO} from 'src/app/shared/entities/AddGameToCustomerFavDTO';
-import {Commentary} from "../../entities/Commentary";
-import {GetService} from "../../../../core/http/get.service";
-import {AuthServiceService} from "../../../../core/auth/auth-service.service";
-import {Order} from "../../../../shared/entities/order";
-import {CustomerLike} from 'src/app/shared/entities/customerLike';
+import { Game } from 'src/app/shared/entities/game';
+import { StorageService } from 'src/app/core/http/storage.service';
+import { CustomerService } from 'src/app/core/http/customer.service';
+import { AddGameToCustomerFavDTO } from 'src/app/shared/entities/AddGameToCustomerFavDTO';
+import { Commentary } from "../../entities/Commentary";
+import { GetService } from "../../../../core/http/get.service";
+import { AuthServiceService } from "../../../../core/auth/auth-service.service";
+import { Order } from "../../../../shared/entities/order";
+import { CustomerLike } from 'src/app/shared/entities/customerLike';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -53,14 +53,12 @@ export class ProductPageComponent implements OnInit {
       }
     });
 
-
     const gameId = this.gameService.getSelectedGameId();
     this.currentWindowWidth = window.innerWidth;
     if (gameId) {
       this.gameService.getGameById(gameId).subscribe({
         next: (gameDetail: GameDetail) => {
           this.game = gameDetail;
-          console.log("getData Detail game")
           this.getService.getData<GameDetail>(`product/game/${gameId}`).subscribe({
             next: (res: GameDetail) => {
               this.game = res;
@@ -72,10 +70,6 @@ export class ProductPageComponent implements OnInit {
                 });
               }
             },
-            error: (err) => {
-              console.log("Erreur le jeu souhaitez n'existe pas", err);
-              this.router.navigate(['/home-page']); // Redirect to the 'not-found' route
-            }
           });
         }
       })
@@ -83,11 +77,11 @@ export class ProductPageComponent implements OnInit {
   }
 
   @HostListener('window:resize')
-  onResize(): void {
-    this!.currentWindowWidth = window.innerWidth
+  onResize() {
+    this!.currentWindowWidth = window.innerWidth;
   }
 
-  more(): void {
+  more() {
     this.input = !this.input;
   }
 
@@ -102,7 +96,8 @@ export class ProductPageComponent implements OnInit {
     }
   }
 
-  addToFavorites(game: Game): void {
+
+  addToFavorites(game:Game):void {
     this.isGameLiked = true;
     let gameId: AddGameToCustomerFavDTO = {
       id: game.gameId
@@ -111,13 +106,12 @@ export class ProductPageComponent implements OnInit {
     this.customerService.addToFavorites(gameId).subscribe({
       next: response => {
         console.log(response);
+
       },
       error: error => {
-        console.error(error);
       }
     });
   }
-
   checkAlreadyCommented(): boolean {
     if (!this.authService.isAuth.value) {
       return false;
@@ -146,14 +140,10 @@ export class ProductPageComponent implements OnInit {
     let gameId: AddGameToCustomerFavDTO = {
       id: game.gameId
     }
-
     this.customerService.removeToFavorites(gameId).subscribe({
       next: response => {
-        console.log(response);
-
       },
       error: error => {
-        console.error(error);
       }
     });
   }
@@ -169,7 +159,7 @@ export class ProductPageComponent implements OnInit {
     }
     this.rating = sum/nbRating;
     this.nbRating = nbRating;
-  }
+}
 
   closePopup(): void {
     this.errorMessage = '';

@@ -1,45 +1,48 @@
 @use "../../../../sass/mixins" as m;
 
-.cart-item-container{
+.container {
+  text-align: center;
+
+  .cart-item-container {
     display: flex;
     justify-content: center;
-   
-   .item{
-    margin:  1rem 1rem 0 1rem;
-    width: 100%;
-    display:flex ;
-    justify-content: space-around;
-    border: 1px solid #ccc; /* Add a border to give it a card-like appearance */
-    border-radius: 5px; /* Add border-radius to round the corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
-   
+    text-align: center;
 
-   @include m.bk-laptop {
-    width: 50%;
-    align-items: center;
-    justify-content: center;
-   }
+    .item {
+      margin: 1rem 1rem 0 1rem;
+      width: 100%;
+      display: flex;
 
-   @include m.bk-desktop {
-    width: 50%;
-    align-items: center;
-    justify-content: center;
-   }
-}
-   
+      align-items: center;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-    .cart-price{
-        width: 50%;
-        display: flex;
-        flex-direction: column;
+      h2 {
         text-align: center;
-        align-items: center;
-        justify-content: space-around;
-        gap: 2rem;
-    }
-    img{
-        width: 50%;  
-       
+      }
+
+      @include m.bk-laptop {
+        width: 50%;
+      }
+
+      @include m.bk-desktop {
+        width: 50%;
+      }
     }
 
+    .cart-price {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+      justify-content: space-around;
+      gap: 2rem;
+    }
+
+    img {
+      width: 50%;
+    }
+  }
 }

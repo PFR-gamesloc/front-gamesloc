@@ -13,7 +13,7 @@ export class CartItemComponent {
   constructor(private cartService: StorageService) { }
 
   removeFromCart(item: GameDetail) {
-    this.cartService.removeItem(item); // removeItem
-    this.cartService.emitCartItemsUpdate(); // update cart
+    this.cartService.removeItem(item); 
+    this.cartService.emitCartItemsUpdate(); 
   }
 }

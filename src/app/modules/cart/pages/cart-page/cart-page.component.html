@@ -5,6 +5,19 @@
   <div *ngFor="let item of cartItems" class="cart-item">
     <app-cart-item [item]="item"></app-cart-item>
   </div>
+  <div class="total-price-container">
+    <div class="total-price">
+      <p>Total Price:</p>
+      <p>{{ totalPrice }}</p>
+    </div>
+  </div>
+  <div *ngIf="purchaseResponse" class="purchase-overlay">
+    <div class="purchase-popup">
+      <p>Achat effectué avec succès !</p>
+      <p>Prix total : {{ totalPrice}}</p>
+      <button (click)="closePurchasePopup()">Fermer</button>
+    </div>
+  </div>
   <app-btn-component
     classBtn="btn btn-add app-btn-last"
     textBtn="Valider au panier"

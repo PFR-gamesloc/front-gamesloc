@@ -7,7 +7,10 @@
       <h1 class="title-product">{{ game.gameName }}</h1>
     </div>
     <div class="product-flex">
-      <img src="./assets/Predator_Wallpaper_02_3840x2400.jpg" alt="exemple d'un jeu de société"/>
+      <img
+        src="./assets/Predator_Wallpaper_02_3840x2400.jpg"
+        alt="exemple d'un jeu de société"
+      />
       <div class="detail-product">
         <h1 *ngIf="currentWindowWidth! > 768" title="title-product">{{ game.gameName }}</h1>
         <ng-container *ngIf="isConnected() ; else isNotAuthenticated">
@@ -32,26 +35,31 @@
           game.gamePrice | currency : "EUR" : "symbol" : "2.2-2" : "fr"
           }}</span>
         <ng-container class="stock" *ngIf="game.stock">
-          <p [ngClass]="{
-            'in-stock': game!.stock > 20,
-            'low-stock': game!.stock <= 20,
-            'out-of-stock': game!.stock <= 10
-          }"
+          <p
+            [ngClass]="{
+              'in-stock': game!.stock > 20,
+              'low-stock': game!.stock <= 20,
+              'out-of-stock': game!.stock <= 10
+            }"
           >
             Stock : <span> {{ game.stock }}</span>
           </p>
         </ng-container>
         <span class="notice">
-         <ngb-rating [max]="5" [(rate)]="rating" [readonly]="true"></ngb-rating>
-        <span class="total-notice">({{nbRating}} avis)</span>
-      </span>
+          <ngb-rating [max]="5" [(rate)]="rating" [readonly]="true"></ngb-rating>
+          <span class="total-notice">({{nbRating}} avis)</span>
+        </span>
         <app-btn-component
           classBtn="btn btn-add"
           textBtn="Ajouter au panier"
           (click)="addToCart()"
         ></app-btn-component>
 
-        <div *ngIf="errorMessage" class="popup" [ngClass]="{ 'show-popup': errorMessage }">
+        <div
+          *ngIf="errorMessage"
+          class="popup"
+          [ngClass]="{ 'show-popup': errorMessage }"
+        >
           <div class="popup-content">
             <h2>Erreur</h2>
             <p>{{ errorMessage }}</p>
@@ -100,7 +108,7 @@
             <p class="game-details-label">
               {{
               game.languages
-                ? (game.languages)!.length > 1
+                ? game.languages!.length > 1
                   ? "Langues"
                   : "Langue"
                 : ""
@@ -108,29 +116,29 @@
               :
             </p>
             <p class="game-details-content">
-              <span
-                *ngFor="let language of game.languages"
-              >
+              <span *ngFor="let language of game.languages">
                 {{ language.name }}
               </span>
             </p>
             <p class="game-details-label">
-              {{game.tags ?
-              (game.tags)!.length > 1 ? "Catégories"
-                : "Catégorie"
-              : ""
+              {{
+              game.tags
+                ? game.tags!.length > 1
+                  ? "Catégories"
+                  : "Catégorie"
+                : ""
               }}
               :
             </p>
             <p class="game-details-content">
-            <span *ngFor="let language of game.languages">
-              {{ language.name }}
-            </span>
+              <span *ngFor="let language of game.languages">
+                {{ language.name }}
+              </span>
             </p>
             <p class="game-details-label">
               {{
               game.tags
-                ? (game.tags)!.length > 1
+                ? game.tags!.length > 1
                   ? "Catégories"
                   : "Catégorie"
                 : ""
@@ -160,7 +168,6 @@
     <ng-container *ngIf="checkIfOrdered() && !checkAlreadyCommented() && isConnected()">
       <app-commentary-form [gameId]="game.gameId"></app-commentary-form>
     </ng-container>
-    <app-commentary [commentaries]="commentaries"
-    ></app-commentary>
+    <app-commentary [commentaries]="commentaries"></app-commentary>
   </div>
 </ng-container>

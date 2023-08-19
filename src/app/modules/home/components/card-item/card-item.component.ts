@@ -10,13 +10,11 @@ import { StorageService } from 'src/app/core/http/storage.service';
   templateUrl: './card-item.component.html',
   styleUrls: ['./card-item.component.scss']
 })
-export class CardItemComponent implements OnInit {
+export class CardItemComponent {
 
- @Input() game: GameList| undefined
+  @Input() game: GameList | undefined
 
   constructor(private parent: HomePageComponent) { }
-  ngOnInit() {
-  }
 
 
 }
