@@ -37,7 +37,7 @@
                     <div class="p-4">
                         <p class="title-img">Image du jeu</p>
                         <app-file-upload-component (change)="onFileSelected($event)"
-                            [gameImage]="imguploaded"></app-file-upload-component>
+                            [gameImage]="uploadedImageName"></app-file-upload-component>
                     </div>
                 </ng-container>
 
@@ -51,16 +51,16 @@
 
                     <div class="p-4">
                         <button type="button" [class]='isAddImage ? "btn btn-danger" : "btn btn-success"'
-                            (click)="toggleAddImage($event)"> {{ isAddImage ? "Ne pas changer l'image" : "Changer
-                            l'image"
-                            }}</button>
+                            (click)="toggleAddImage($event)"> {{ isAddImage ? "Ne pas changer l'image" : "Changer l\'image"
+                            }}
+                        </button>
                     </div>
 
                     <ng-container *ngIf="isAddImage">
                         <div class="p-4">
                             <p class="title-img">Image du jeu</p>
                             <app-file-upload-component (change)="onFileSelected($event)"
-                                [gameImage]="imguploaded"></app-file-upload-component>
+                                [gameImage]="uploadedImageName"></app-file-upload-component>
                         </div>
                     </ng-container>
                 </ng-container>
@@ -113,7 +113,7 @@
                                     <label>
                                         <input type="checkbox" value="{{ language.languageId }}"
                                             (change)="handleLangs($event, language.languageId)"
-                                            [checked]="gameForm.get('languages')?.value.includes(language.languageId)">
+                                            [checked]="gameForm.get('languagesId')?.value.includes(language.languageId)">
                                         <div class="name">
                                             {{ language.name}}
                                         </div>
@@ -131,7 +131,7 @@
                                 <label>
                                     <input type="checkbox" value="{{ tag.tagId }}"
                                         (change)="handleTags($event, tag.tagId)"
-                                        [checked]="gameForm.get('tags')?.value.includes(tag.tagId)">
+                                        [checked]="gameForm.get('tagsId')?.value.includes(tag.tagId)">
                                     <div class="name">
                                         {{ tag.name}}
                                     </div>
@@ -149,7 +149,4 @@
 
         </form>
     </div>
-
-    {{ gameForm.value | json }}
-
 </app-navbar-admin>

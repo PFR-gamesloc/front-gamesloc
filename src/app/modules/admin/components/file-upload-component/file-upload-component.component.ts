@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FileUploadService } from '../../entities/file-upload.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { GameList } from 'src/app/shared/entities/gameList';
 
 @Component({
   selector: 'app-file-upload-component',
@@ -11,7 +10,7 @@ import { GameList } from 'src/app/shared/entities/gameList';
 })
 export class FileUploadComponentComponent {
 
-  @Input() gameImage : string | undefined; 
+  @Input() gameImage : string | undefined;
 
   selectedFiles?: File;
   currentFile?: File;
@@ -37,14 +36,14 @@ export class FileUploadComponentComponent {
       const file: File | null = this.selectedFiles;
 
       if (file) {
-        this.currentFile = file; 
+        this.currentFile = file;
         this.uploadService.upload(this.currentFile).subscribe({
           next: (event: any) => {
             if (event.type === HttpEventType.UploadProgress) {
               this.progress = Math.round(100 * event.loaded / event.total);
             } else if (event instanceof HttpResponse) {
               this.message = event.body.message;
-              this.fileInfos = this.uploadService.getFile(this.selectFile.name); 
+              this.fileInfos = this.uploadService.getFile(this.selectFile.name);
             }
           },
           error: (err: any) => {

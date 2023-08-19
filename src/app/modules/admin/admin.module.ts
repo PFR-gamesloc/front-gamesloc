@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
-import { AdminDashboardPageComponent } from './pages/admin-dashbord-page/admin-dashboard-page.component';
 import { RouterModule } from "@angular/router";
 import { SharedModule } from "../../shared/shared.module";
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -26,7 +25,6 @@ import { FileUploadComponentComponent } from './components/file-upload-component
 
 @NgModule({
   declarations: [
-    AdminDashboardPageComponent,
     NavbarComponent,
     LocatedGamesComponent,
     AllTheGamesComponent,
@@ -35,7 +33,7 @@ import { FileUploadComponentComponent } from './components/file-upload-component
     GameEditComponent,
     AdminItemComponent,
     MatConfirmDialogComponent,
-    FileUploadComponentComponent, 
+    FileUploadComponentComponent,
   ],
   imports: [
     CommonModule,
@@ -47,9 +45,9 @@ import { FileUploadComponentComponent } from './components/file-upload-component
     MatIconModule,
     MatPaginatorModule,
     MatSlideToggleModule,
-    ReactiveFormsModule, 
-    MatCheckboxModule, 
-    MatRadioModule, 
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    MatRadioModule,
     MatDialogModule
     ]
 })

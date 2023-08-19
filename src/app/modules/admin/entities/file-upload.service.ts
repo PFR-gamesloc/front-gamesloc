@@ -25,6 +25,6 @@ export class FileUploadService {
   }
 
   getFile(fileName: String): Observable<any> {
-    return this.http.get(`${this.baseUrl}/admin/game/${fileName}`);
+    return this.http.get(`${this.baseUrl}/product/img/${fileName}`,{ responseType: 'blob' });
   }
 }

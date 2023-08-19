@@ -14,6 +14,7 @@ import {AuthServiceService} from "../../../../core/auth/auth-service.service";
 import {Order} from "../../../../shared/entities/order";
 import {CustomerLike} from 'src/app/shared/entities/customerLike';
 import {ToastrService} from "ngx-toastr";
+import {FileUploadService} from "../../../admin/entities/file-upload.service";
 
 registerLocaleData(localeFr, 'fr');
 
@@ -36,6 +37,8 @@ export class ProductPageComponent implements OnInit {
   rating: number = 0;
   nbRating: number = 0;
 
+  image = '';
+
   constructor(private gameService: GameService,
               private customerService: CustomerService,
               private route: ActivatedRoute,
@@ -43,10 +46,12 @@ export class ProductPageComponent implements OnInit {
               private cartService: StorageService,
               private getService: GetService,
               private authService: AuthServiceService,
-              private toastrService: ToastrService) {
+              private toastrService: ToastrService,
+              private fileService: FileUploadService) {
   }
 
   ngOnInit() {
+
     if (this.authService.isAuth.value) {
       this.customerService.getOrders().subscribe({
         next: (orders: Order[]) => {
@@ -67,6 +72,10 @@ export class ProductPageComponent implements OnInit {
       this.gameService.getGameById(gameId).subscribe({
         next: (gameDetail: GameDetail) => {
           this.game = gameDetail;
+
+          this.fileService.getFile(this.game.image).subscribe({
+            next: (res:Blob) => this.image = URL.createObjectURL(res)
+          })
           this.getService.getData<GameDetail>(`product/game/${gameId}`).subscribe({
             next: (res: GameDetail) => {
               this.game = res;

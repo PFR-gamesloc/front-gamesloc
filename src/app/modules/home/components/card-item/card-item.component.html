@@ -1,9 +1,9 @@
 <div class="articleCard">
   <div class="articleImage">
     <img
-      src="./assets/Predator_Wallpaper_02_3840x2400.jpg"
-      alt="exemple d'un jeu de société"
-      
+      [src]="image"
+      alt="{{game?.gameName}}"
+
     />
   </div>
   <div class="articleDescription">
@@ -16,5 +16,5 @@
     <p>{{ game?.type?.name }}</p>
     <p>{{ game?.gamePrice }}&euro;</p>
   </div>
-  
+
 </div>

@@ -1,17 +1,17 @@
 import { Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GameService } from 'src/app/core/http/games.service';
 import { SideNavToggle } from '../../entities/SideNavToggle';
-import { GameList } from 'src/app/shared/entities/gameList';
-import { Observable, first } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Editor } from 'src/app/shared/entities/editor';
 import { Language } from 'src/app/shared/entities/language';
 import { Tag } from 'src/app/shared/entities/tag';
 import { Type } from 'src/app/shared/entities/type';
 import { ToastrService } from 'ngx-toastr';
-import { FileUploadService } from '../../entities/file-upload.service';
 import { env } from 'src/env';
+import {GameEditDto} from "../../entities/GameToEditDto";
+
 
 @Component({
   selector: 'app-game-edit',
@@ -23,9 +23,8 @@ export class GameEditComponent implements OnInit {
   @ViewChildren(FormControlName, { read: ElementRef }) inputElements!: ElementRef[];
 
   public gameForm!: FormGroup;
-  public gameId!: number;
-  public game!: GameList;
-  public pageTitle!: string;
+  public gameToEditId!: number;
+  public gameToEdit!:GameEditDto;
   public isAddMode!: boolean;
   public isAddImage: boolean = false;
   editors$!: Observable<Editor[]>;
@@ -35,16 +34,13 @@ export class GameEditComponent implements OnInit {
   isSideNavCollapsed = false;
   screenWith = 0;
   uploadedImage!: File;
-  imguploaded!: string;
-  private isFormSubmitted!: boolean;
+  uploadedImageName!: string;
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
-    private fb: FormBuilder,
+    private activatedRoute: ActivatedRoute,
     private gamesService: GameService,
     private toastr: ToastrService,
-    private fileUploadService: FileUploadService
   ) {
 
   }
@@ -55,54 +51,50 @@ export class GameEditComponent implements OnInit {
       gameName: new FormControl('', [Validators.required, Validators.pattern(env.nameRegex)]),
       gameDescr: new FormControl('', [Validators.required]),
       stock: new FormControl([Validators.required, Validators.pattern(env.integerRegex)]),
+      image: new FormControl(""),
       gamePrice: new FormControl([Validators.required, Validators.pattern(env.decimalRegex)]),
-      image: new FormControl('', [Validators.required]),
       minPlayer: new FormControl([Validators.required, Validators.pattern(env.integerRegex)]),
       maxPlayer: new FormControl([Validators.required, Validators.pattern(env.integerRegex)]),
       minAge: new FormControl([Validators.required, Validators.pattern(env.integerRegex)]),
       typeId: new FormControl("", [Validators.required]),
       editorId: new FormControl("", [Validators.required]),
-      languages: new FormArray([], [Validators.required]),
-      tags: new FormArray([], [Validators.required])
+      languagesId: new FormArray([], [Validators.required]),
+      tagsId: new FormArray([], [Validators.required])
     })
 
-    this.gameId = this.route.snapshot.params['id'];
-    this.isAddMode = !this.gameId;
 
-    if (!this.isAddMode) {
-      this.gamesService.getGameById(this.gameId)
-        .pipe(first())
-        .subscribe(
-          game => {
+    this.isAddMode = this.activatedRoute.snapshot.url[1].path === "add";
+
+    if (!this.isAddMode){
+
+      this.gameToEditId = this.activatedRoute.snapshot.params['id'];
+      this.gamesService.getGameToEditById(this.gameToEditId)
+        .subscribe((gameToEdit:GameEditDto) => {
+            this.gameToEdit = gameToEdit;
             this.gameForm.patchValue({
-              gameName: game.gameName,
-              gameDescr: game.gameDescr,
-              stock: game.stock,
-              gamePrice: game.gamePrice,
-              image: game.image,
-              minPlayer: game.minPlayer,
-              maxPlayer: game.maxPlayer,
-              minAge: game.minAge,
-              typeId: game.type.typeId.toString(),
-              editorId: game.editor.editorId.toString(),
+              gameName: gameToEdit.gameName,
+              gameDescr: gameToEdit.gameDescr,
+              stock: gameToEdit.stock,
+              gamePrice: gameToEdit.gamePrice,
+              image: gameToEdit.image,
+              minPlayer: gameToEdit.minPlayer,
+              maxPlayer: gameToEdit.maxPlayer,
+              minAge: gameToEdit.minAge,
+              typeId: gameToEdit.typeId.toString(),
+              editorId: gameToEdit.editorId.toString(),
             });
 
-            game.image = this.imguploaded;
-
-            game.languages.forEach((language) => {
-              const control = new FormControl(language.languageId);
-              (this.gameForm.get('languages') as FormArray).push(control);
+            //peupler les contrôles de langues
+            gameToEdit.languagesId.forEach((languageId:number) => {
+              const control = new FormControl(languageId);
+              (this.gameForm.get('languagesId') as FormArray).push(control);
             });
 
             // Peupler les contrôles de tags
-            game.tags.forEach((tag) => {
-              const control = new FormControl(tag.tagId);
-              (this.gameForm.get('tags') as FormArray).push(control);
+            gameToEdit.tagsId.forEach((tagId:number) => {
+              const control = new FormControl(tagId);
+              (this.gameForm.get('tagsId') as FormArray).push(control);
             });
-
-            console.log("New Game");
-            console.log(game);
-
           }
         )
     }
@@ -116,17 +108,13 @@ export class GameEditComponent implements OnInit {
     this.types$ = this.gamesService.getTypes();
   }
 
-  public displayGame(game: GameList): void {
-    this.game = game;
-  }
-
   onToggleSideNav(data: SideNavToggle): void {
     this.screenWith = data.screenWidth;
     this.isSideNavCollapsed = data.collapsed;
   }
 
   handleLangs(e: any, languageId: Number) {
-    const lang = this.gameForm.get('languages') as FormArray;
+    const lang = this.gameForm.get('languagesId') as FormArray;
     const isSelected = e.target.checked;
 
     if (isSelected) {
@@ -144,7 +132,7 @@ export class GameEditComponent implements OnInit {
 
 
   handleTags(e: any, tagId: Number) {
-    const tags = this.gameForm.get('tags') as FormArray;
+    const tags = this.gameForm.get('tagsId') as FormArray;
     const tagValue = e.target.checked;
 
     if (tagValue) {
@@ -161,26 +149,30 @@ export class GameEditComponent implements OnInit {
   }
 
   public saveGame(): void {
-    this.isFormSubmitted = true;
-
     if (this.gameForm.valid) {
-      const newGame: GameList = {
-        ...this.gameForm.value
-      };
-
-      console.log(newGame);
-
-      if (this.isAddMode) {
+      if(this.isAddMode){
+        const newGame: GameEditDto = {
+          ...this.gameForm.value,
+          image:this.uploadedImageName
+        };
         this.gamesService.createGame(newGame).subscribe({
-          next: (response) => {
-            this.saveCompleted(response);
+          next: (gameCreated:GameEditDto) => {
+            this.saveCompleted(gameCreated);
           },
           error: (err) => {
             this.toastr.error("Le jeu n'a pas pu être créé", err.message);
           }
         })
       } else {
-        this.gamesService.updateGame(newGame, this.gameId).subscribe({
+        console.log(this.gameToEdit)
+        this.gameToEdit = {
+          ...this.gameForm.value
+        }
+        if(this.uploadedImage !== undefined){
+          this.gameToEdit.image = this.uploadedImageName;
+        }
+        console.log(this.gameToEdit)
+        this.gamesService.updateGame(this.gameToEdit, this.gameToEditId).subscribe({
           next: (response) => {
             this.saveCompleted(response);
           },
@@ -192,23 +184,20 @@ export class GameEditComponent implements OnInit {
     }
   }
 
-  public saveCompleted(response: GameList): void {
+  public saveCompleted(gameCreated: GameEditDto): void {
     this.gameForm.reset();
     this.router.navigate(['/admin', 'games'])
-    this.toastr.success(`Le jeu a été ${this.isAddMode ? "ajouté" : "modifié"} avec succes`, response.gameName);
+      .then(()=>this.toastr.success(`Le jeu a été ${this.isAddMode ? "ajouté" : "modifié"} avec succès`, gameCreated.gameName));
+
   }
 
   onFileSelected(event: any): void {
     this.uploadedImage = event.target.files[0];
-  }
-
-  displayImage() {
-    return this.game.image;
+    this.uploadedImageName = this.uploadedImage.name;
   }
 
   toggleAddImage(event: Event) {
     event.preventDefault();
     this.isAddImage = !this.isAddImage;
   }
-
 }

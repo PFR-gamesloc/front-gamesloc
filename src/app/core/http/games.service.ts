@@ -1,16 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Game } from 'src/app/shared/entities/game';
-import { GameList } from 'src/app/shared/entities/gameList';
-import { GameDetail } from 'src/app/shared/entities/gameDetail';
 import { Editor } from 'src/app/shared/entities/editor';
 import { Language } from 'src/app/shared/entities/language';
 import { Tag } from 'src/app/shared/entities/tag';
 import { Type } from 'src/app/shared/entities/type';
-import { Customer } from 'src/app/shared/entities/customer';
-import {CommentToPost} from "../../modules/product/entities/CommentToPost";
 import { GetService } from './get.service';
+import {GameDetail} from "../../shared/entities/gameDetail";
+import {GameEditDto} from "../../modules/admin/entities/GameToEditDto";
 
 @Injectable({
   providedIn: 'root'
@@ -21,18 +18,22 @@ export class GameService {
   private baseUrl: string = "http://localhost:8080";
   constructor(private httpClient: HttpClient, private getService:GetService) { }
 
-  public getGames(): Observable<GameList[]> {
-    return this.getService.getData<GameList[]>(this.baseUrl + "/product/games");
+  public getGames(): Observable<GameDetail[]> {
+    return this.getService.getData<GameDetail[]>(this.baseUrl + "/product/games");
   }
 
   public getGameById(gameId: Number): Observable<GameDetail> {
     const url = `product/game/${gameId}`;
     return this.getService.getData<GameDetail>(url);
   }
-  
-  public getAdminGames(): Observable<GameList[]> {
+
+  public getGameToEditById(gameId: number): Observable<GameEditDto> {
+    return this.getService.getData<GameEditDto>("admin/game/"+gameId);
+  }
+
+  public getAdminGames(): Observable<GameDetail[]> {
     const url = `admin/game/all`;
-    return this.getService.getData<GameList[]>(url);
+    return this.getService.getData<GameDetail[]>(url);
   }
 
   public getEditors(): Observable<Editor[]> {
@@ -55,14 +56,14 @@ export class GameService {
     return this.getService.getData<Type[]>(url);
   }
 
-  public createGame(game: GameList): Observable<GameList> {
+  public createGame(game: GameEditDto): Observable<GameEditDto> {
     const url = `${this.baseUrl}/admin/game/add`;
-    return this.httpClient.post<GameList>(url, game)
+    return this.httpClient.post<GameEditDto>(url, game)
   }
 
-  public updateGame(gameEdit: GameList, id: Number): Observable<GameList> {
+  public updateGame(gameEdit: GameEditDto, id: Number): Observable<GameEditDto> {
     const url = `${this.baseUrl}/admin/game/edit/${id}`;
-    return this.httpClient.put<GameList>(url, gameEdit);
+    return this.httpClient.put<GameEditDto>(url, gameEdit);
   }
 
   public deleteAGame(id: Number) {
