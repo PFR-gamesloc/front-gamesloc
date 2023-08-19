@@ -2,8 +2,7 @@
     <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : '  '">
         <div class="logo-container">
             <button class="logo" (click)="toggleCollapse()">GL</button>
-            <button class="btn-close" *ngIf="collapsed"><ng-icon name="bootstrapX"
-                    (click)="closeSidenav()"></ng-icon></button>
+            <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()"></button>
         </div>
 
         <ul class="sidenav-nav">
@@ -35,8 +34,8 @@
     </div>
 
     <div class="containers" [ngClass]="collapsed ? 'containers-collapsed' : '  '">
-        <div class="contain"></div>
-        <div class="container">
+        <div class="left-contain"></div>
+        <div class="right-contain">
             <ng-content></ng-content>
         </div>
     </div>

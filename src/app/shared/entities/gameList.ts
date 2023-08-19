@@ -13,7 +13,7 @@ export interface GameList {
     minPlayer: number, 
     maxPlayer: number, 
     minAge: number, 
-    image: FormData,
+    image: string,
     editor: Editor,
     type: Type, 
     languages: Language[], 

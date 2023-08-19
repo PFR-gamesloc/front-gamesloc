@@ -9,8 +9,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import { CommentaryFormComponent } from './modules/product/components/commentary-form/commentary-form.component';
-
 
 @NgModule({
   declarations: [
