@@ -36,7 +36,7 @@ export class ModifyUserAddressOptionComponent {
       cityName: new FormControl('', [Validators.required, Validators.pattern(env.cityNameRegex)])
     })
 
-    this.getService.getData<CustomerAddress>("customer/me").subscribe({
+    this.getService.getData<CustomerAddress>("/customer/me").subscribe({
       next: (res: CustomerAddress) => this.displayCustomer(res)
     });
 

@@ -34,7 +34,7 @@ export class ModifyUserOptionComponent implements OnInit {
       phoneNumber: new FormControl('', [Validators.required, Validators.pattern(env.phoneNumberRegex)]),
       email: new FormControl('', [Validators.required, Validators.pattern(env.emailRegex)]),
     })
-    this.getService.getData<Customer>("customer/me").subscribe({
+    this.getService.getData<Customer>("/customer/me").subscribe({
       next: (res:Customer) => this.displayCustomer(res)
     });
   }

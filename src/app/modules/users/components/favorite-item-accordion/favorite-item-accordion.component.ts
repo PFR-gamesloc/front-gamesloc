@@ -22,7 +22,7 @@ export class FavoriteItemAccordionComponent {
   }
 
   ngOnInit(): void {
-    this.getService.getData<CustomerLike[]>("customer/me/favs").subscribe({
+    this.getService.getData<CustomerLike[]>("/customer/me/favs").subscribe({
       next: (customerLikes: CustomerLike[]) => {
         this.favoriteGames = customerLikes;
         for (const customerLike of customerLikes) {

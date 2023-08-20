@@ -59,7 +59,7 @@ export class ProductPageComponent implements OnInit {
         }
       });
     }
-    this.getService.getData<Commentary[]>("product/" + this.gameService.getSelectedGameId() + "/comments").subscribe({
+    this.getService.getData<Commentary[]>("/product/" + this.gameService.getSelectedGameId() + "/comments").subscribe({
       next: (value: Commentary[]) => {
         this.commentaries = value;
         this.setRating();
@@ -76,11 +76,11 @@ export class ProductPageComponent implements OnInit {
           this.fileService.getFile(this.game.image).subscribe({
             next: (res:Blob) => this.image = URL.createObjectURL(res)
           })
-          this.getService.getData<GameDetail>(`product/game/${gameId}`).subscribe({
+          this.getService.getData<GameDetail>(`/product/game/${gameId}`).subscribe({
             next: (res: GameDetail) => {
               this.game = res;
               if (this.authService.isAuth.value) {
-                this.getService.getData<CustomerLike[]>(`customer/me/favs`).subscribe({
+                this.getService.getData<CustomerLike[]>(`/customer/me/favs`).subscribe({
                   next: (favoriteItems: CustomerLike[]) => {
                     this.isGameLiked = favoriteItems.some(gameLike => gameLike.gameId === gameId);
                   },

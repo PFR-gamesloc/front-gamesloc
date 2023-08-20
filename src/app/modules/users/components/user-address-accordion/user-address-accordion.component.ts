@@ -15,7 +15,7 @@ export class UserAddressAccordionComponent {
     }
 
   ngOnInit() {
-    this.getService.getData<CustomerAddress>("customer/me").subscribe({
+    this.getService.getData<CustomerAddress>("/customer/me").subscribe({
       next: (res:CustomerAddress) => this.customerAddress=res
     });
   }
