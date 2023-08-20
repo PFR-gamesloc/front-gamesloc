@@ -25,7 +25,5 @@ export class CartItemComponent {
   removeFromCart(item: GameDetail) {
     this.cartService.removeItem(item);
     this.cartService.emitCartItemsUpdate();
-    console.log(item)
-
   }
 }

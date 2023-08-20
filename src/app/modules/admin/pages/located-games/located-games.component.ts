@@ -53,7 +53,7 @@ export class LocatedGamesComponent {
     );
 
     this.orders$.subscribe((orders) => {
-      console.log(orders)
+
       this.dataSource.data = orders;
     });
   }
