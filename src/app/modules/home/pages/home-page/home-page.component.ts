@@ -40,7 +40,7 @@ export class HomePageComponent {
   constructor(private getService: GetService, private gameService: GameService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.getService.getData<GameList[]>("product/games").subscribe({
+    this.getService.getData<GameList[]>("/product/games").subscribe({
       next: (res: GameList[]) => {
         this.games$ = res;
       },
