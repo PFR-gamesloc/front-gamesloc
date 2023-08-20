@@ -1,9 +1,0 @@
-{
-  "customerId": 1,
-  "firstName": "Nico"  ,
-  "lastName": "BonDev",
-  "password": "1234",
-  "email": "nico@bondev.com",
-  "phoneNumber": "0606060606",
-  "addressId": 1
-}
