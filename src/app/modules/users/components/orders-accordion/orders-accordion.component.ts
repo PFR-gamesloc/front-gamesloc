@@ -17,7 +17,7 @@ export class OrdersAccordionComponent {
      }
 
   ngOnInit(): void {
-    this.getService.getData<Order[]>("customer/me/orders").subscribe({
+    this.getService.getData<Order[]>("/customer/me/orders").subscribe({
       next: res =>this.orders = res
     })
   }

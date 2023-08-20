@@ -13,7 +13,7 @@ export class UserAccordionComponent {
   constructor(private getService:GetService) { }
 
   ngOnInit(){
-    this.getService.getData<Customer>("customer/me").subscribe({
+    this.getService.getData<Customer>("/customer/me").subscribe({
       next: res => this.customer=res
     });
   }
