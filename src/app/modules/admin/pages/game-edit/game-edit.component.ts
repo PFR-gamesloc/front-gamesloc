@@ -165,14 +165,12 @@ export class GameEditComponent implements OnInit {
           }
         })
       } else {
-        console.log(this.gameToEdit)
         this.gameToEdit = {
           ...this.gameForm.value
         }
         if(this.uploadedImage !== undefined){
           this.gameToEdit.image = this.uploadedImageName;
         }
-        console.log(this.gameToEdit)
         this.adminGamesService.updateGame(this.gameToEdit, this.gameToEditId).subscribe({
           next: (response:GameEditDto) => {
             this.saveCompleted(response);

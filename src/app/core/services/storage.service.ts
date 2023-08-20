@@ -66,7 +66,6 @@ export class StorageService {
         for (const item of this.getItems()) {
           sum += item.gamePrice;
         }
-        console.log("updateprice")
         this.totalPrice.next(sum);
       }
 

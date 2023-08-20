@@ -8,7 +8,7 @@ import { GameList } from 'src/app/shared/entities/gameList';
 import { DataConfirmDialogService } from '../../services/data-confirm-dialog.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import {AdminGamesService} from "../../../../core/http/admin-games.service";
+import { AdminGamesService } from "../../../../core/http/admin-games.service";
 
 @Component({
   selector: 'app-all-the-games',
@@ -52,15 +52,15 @@ export class AllTheGamesComponent {
       })
     );
 
-    this.games$.subscribe((games:GameList[]) => {
+    this.games$.subscribe((games: GameList[]) => {
       this.dataSource.data = games;
       this.gamesList = games;
     })
   }
 
   public getFiewWords(text: string, numWords: number): string {
-    const words:string[] = text.split(' ');
-    const sliceWords:string[] = words.slice(0, numWords);
+    const words: string[] = text.split(' ');
+    const sliceWords: string[] = words.slice(0, numWords);
     return sliceWords.join(' ');
   }
 
@@ -70,9 +70,9 @@ export class AllTheGamesComponent {
         this.adminGameService.deleteAGame(id).subscribe({
           next: deleted => {
             if (deleted) {
+              this.toastr.success("Le jeu a bien été supprimé !");
               this.rooter.navigate(['/admin', 'games'])
-                .then(() =>this.toastr.success("Le jeu a bien été supprimé !"))
-                .then(window.location.reload)
+                .then(() => window.location.reload())
             } else {
               this.toastr.error("Erreur dans la requête")
             }

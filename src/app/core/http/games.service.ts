@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Editor } from 'src/app/shared/entities/editor';
-import { Language } from 'src/app/shared/entities/language';
-import { Tag } from 'src/app/shared/entities/tag';
-import { Type } from 'src/app/shared/entities/type';
 import { GetService } from './get.service';
 import {GameDetail} from "../../shared/entities/gameDetail";
-import {GameEditDto} from "../../modules/admin/entities/GameToEditDto";
 
 @Injectable({
   providedIn: 'root'

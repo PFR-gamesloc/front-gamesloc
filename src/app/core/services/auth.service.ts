@@ -49,7 +49,7 @@ export class AuthService {
         'Content-Type': 'application/json',
       })
     };
-    this.httpClient.post(this.baseurl + "auth/register",userInfo,httpOptions).subscribe(()=>console.log("la"));
+    this.httpClient.post(this.baseurl + "auth/register",userInfo,httpOptions);
   }
 
 

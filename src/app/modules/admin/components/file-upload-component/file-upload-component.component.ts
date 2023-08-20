@@ -25,7 +25,6 @@ export class FileUploadComponentComponent {
 
   selectFile(event: any): void {
     this.selectedFiles = event.target.files[0];
-    console.log(this.selectedFiles);
   }
 
   upload(event: Event): void {
@@ -47,7 +46,6 @@ export class FileUploadComponentComponent {
             }
           },
           error: (err: any) => {
-            console.log(err);
             this.progress = 0;
 
             if (err.error && err.error.message) {

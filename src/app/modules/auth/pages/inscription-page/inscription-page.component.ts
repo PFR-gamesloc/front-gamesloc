@@ -68,7 +68,6 @@ export class InscriptionPageComponent implements OnInit {
         postalCode: this.form.get('postalCode')?.value,
         cityName: this.form.get('cityName')?.value
       };
-      console.log(inscriptionForm)
      this.authService.createUser(inscriptionForm);
     }
 

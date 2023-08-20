@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {FormGroup, FormGroupDirective} from '@angular/forms';
+import { FormGroup, FormGroupDirective } from '@angular/forms';
 import { City } from "../../entities/city";
-import { debounceTime, distinctUntilChanged} from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import {CustomerService} from "../../../core/http/customer.service";
+import { CustomerService } from "../../../core/http/customer.service";
 
 
 @Component({
@@ -38,10 +38,9 @@ export class SelectComponent implements OnInit {
     this.formZipCode.get('postalCode')?.valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged()
-    ).subscribe( {
+    ).subscribe({
       next: (value) => {
-        console.log(value)
-        if ( value.length >= 3) {
+        if (value.length >= 3) {
           this.customerService.getCities(value).subscribe({
             next: res => {
               this.handlePostalCode(res);
@@ -52,7 +51,8 @@ export class SelectComponent implements OnInit {
         } else {
           this.filteredCityNames = [];
         }
-      }});
+      }
+    });
   }
 
   public _filter(value: string): string[] {
@@ -98,17 +98,17 @@ export class SelectComponent implements OnInit {
     }
   }
 
-  get postalErrors(){
+  get postalErrors() {
     return this.formZipCode.get('postalCode')?.errors;
   }
 
-  get cityErrors(){
+  get cityErrors() {
     return this.formZipCode.get('cityName')?.errors;
   }
-  checkPostalValidity(){
+  checkPostalValidity() {
     return (this.formZipCode.get('postalCode')?.invalid && (this.formZipCode.get('postalCode')?.touched || this.formZipCode.get('postalCode')?.dirty));
   }
-  checkCityValidity(){
+  checkCityValidity() {
     return (this.formZipCode.get('cityName')?.invalid && (this.formZipCode.get('cityName')?.touched || this.formZipCode.get('cityName')?.dirty));
   }
 }

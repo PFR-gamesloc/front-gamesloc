@@ -5,8 +5,7 @@ import {isAdminGuard} from "./core/guard/is-admin.guard";
 
 const routes: Routes = [
   {
-    path:'',
-    pathMatch: "full",
+    path:'', 
     loadChildren:() => import('./modules/home/home.module').then(m => m.HomeModule)
   },
   {

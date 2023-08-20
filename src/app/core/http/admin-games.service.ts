@@ -66,6 +66,6 @@ export class AdminGamesService {
 
   public getAdminOrders(): Observable<AdminOrder[]> {
     const url = `admin/order/all`;
-    return this.getService.getData<AdminOrder[]>(this.baseUrl + "admin/order/all");
+    return this.getService.getData<AdminOrder[]>(url);
   }
 }
