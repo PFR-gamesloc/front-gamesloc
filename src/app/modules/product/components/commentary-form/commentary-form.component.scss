@@ -2,3 +2,24 @@ ngb-rating {
   color: #FFC107;
   font-size: 30px;
 }
+
+
+.commentary {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  padding: 1rem 0rem 1rem 1rem;
+  gap: 10px;
+  box-shadow: 0px 16px 50px 5px rgba(0, 0, 0, 0.1);
+
+  .btn-width {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px 5px;
+  }
+
+  .commentaryTitle {
+    color: var(--blue-primary);
+    padding: 10px;
+  }
+}

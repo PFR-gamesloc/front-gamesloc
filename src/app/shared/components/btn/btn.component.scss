@@ -27,6 +27,12 @@
   }
 }
 
+.btn-connexionPage:hover {
+  background-color: var(--blue-secondary);
+  border: 2px solid var(--blue-secondary);
+  opacity: 0.90;
+}
+
 // Button Dekstop Navbar media queries
 .btn-dekstop {
     visibility: hidden;
