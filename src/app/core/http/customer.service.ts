@@ -53,11 +53,11 @@ export class CustomerService {
     return this.httpClient.post<boolean>(this.baseUrl + "/customer/comment/add", commentToPost);
   }
   public getOrders():Observable<Order[]>{
-    return this.getService.getData<Order[]>('customer/me/orders');
+    return this.getService.getData<Order[]>('/customer/me/orders');
   }
 
   public getCities(value: string):Observable<City[]>{
-    return this.getService.getData<City[]>("customer/cities/"+ value);
+    return this.getService.getData<City[]>("/customer/cities/"+ value);
   }
 
 }

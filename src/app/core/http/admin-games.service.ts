@@ -29,31 +29,31 @@ export class AdminGamesService {
 
 
   public getGameToEditById(gameId: number): Observable<GameEditDto> {
-    return this.getService.getData<GameEditDto>("admin/game/"+gameId);
+    return this.getService.getData<GameEditDto>("/admin/game/"+gameId);
   }
 
   public getAdminGames(): Observable<GameDetail[]> {
-    const url = `product/games`;
+    const url = `/product/games`;
     return this.getService.getData<GameDetail[]>(url);
   }
 
   public getEditors(): Observable<Editor[]> {
-    const url = `admin/game/editors`;
+    const url = `/admin/game/editors`;
     return this.getService.getData<Editor[]>(url);
   }
 
   public getLanguages(): Observable<Language[]> {
-    const url = `admin/game/languages`;
+    const url = `/admin/game/languages`;
     return this.getService.getData<Language[]>(url);
   }
 
   public getTags(): Observable<Tag[]> {
-    const url = `admin/game/tags`;
+    const url = `/admin/game/tags`;
     return this.getService.getData<Tag[]>(url);
   }
 
   public getTypes(): Observable<Type[]> {
-    const url = `admin/game/types`;
+    const url = `/admin/game/types`;
     return this.getService.getData<Type[]>(url);
   }
 
@@ -73,7 +73,7 @@ export class AdminGamesService {
   }
 
   public getAdminOrders(): Observable<AdminOrder[]> {
-    const url = `admin/order/all`;
+    const url = `/admin/order/all`;
     return this.getService.getData<AdminOrder[]>(url);
   }
 }

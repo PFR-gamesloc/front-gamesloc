@@ -11,7 +11,7 @@ export class AdminCustomerService {
   constructor(private getService: GetService) { }
 
   public getCustomersAdmin() : Observable<Customer[]> {
-    const url = `admin/customer/all`;
+    const url = `/admin/customer/all`;
     return this.getService.getData<Customer[]>(url);
   }
 }

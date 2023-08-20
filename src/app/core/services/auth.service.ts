@@ -35,7 +35,7 @@ export class AuthService {
       })
     };
     this.isAuth.next(true);
-    return this.httpClient.post<Token>(this.baseUrl + "auth/authenticate", userCredentials, httpOptions);
+    return this.httpClient.post<Token>(this.baseUrl + "/auth/authenticate", userCredentials, httpOptions);
 
   }
 
@@ -57,7 +57,7 @@ export class AuthService {
         'Content-Type': 'application/json',
       })
     };
-    this.httpClient.post(this.baseUrl + "auth/register",userInfo,httpOptions);
+    this.httpClient.post(this.baseUrl + "/auth/register",userInfo,httpOptions);
   }
 
 
