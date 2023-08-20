@@ -12,7 +12,7 @@ import {Router} from "@angular/router";
 })
 export class FavoriteItemAccordionComponent {
   favoriteGames: CustomerLike[];
-  image:string ='';
+  image:string[] =[];
   constructor(
     private getService: GetService,
     private fileService: FileUploadService,
@@ -25,9 +25,9 @@ export class FavoriteItemAccordionComponent {
     this.getService.getData<CustomerLike[]>("/customer/me/favs").subscribe({
       next: (customerLikes: CustomerLike[]) => {
         this.favoriteGames = customerLikes;
-        for (const customerLike of customerLikes) {
-          this.fileService.getFile(customerLike.image).subscribe({
-            next:res=> this.image = URL.createObjectURL(res)
+        for (let i = 0; i < customerLikes.length; i++) {
+          this.fileService.getFile(customerLikes[i].image).subscribe({
+            next:res=> this.image[i] = URL.createObjectURL(res)
           })
         }
       }

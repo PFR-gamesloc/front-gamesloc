@@ -3,8 +3,8 @@
         <div class="error" *ngIf="favoriteGames.length === 0">
             <p><strong>Pas de favoris ?</strong></p>
         </div>
-        <div class="card" *ngFor="let game of favoriteGames">
-            <img [src]="image" alt="{{ game?.image }}"  (click)="navigateToGameDetails(game.gameId, game.gameName)"/>
+        <div class="card" *ngFor="let game of favoriteGames;let index = index">
+            <img [src]="image[index]" alt="{{ game?.image }}"  (click)="navigateToGameDetails(game.gameId, game.gameName)"/>
             <div class="infos">
                 <div class="game">
                     <p class="title"><strong>{{ game?.gameName }}</strong></p>
