@@ -3,6 +3,8 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { GetService } from './get.service';
 import {GameDetail} from "../../shared/entities/gameDetail";
+import {environmentProd} from "../../../environment.prod";
+import {env} from "../../../env";
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +12,15 @@ import {GameDetail} from "../../shared/entities/gameDetail";
 export class GameService {
   private selectedGameIdKey = 'selectedGameId'
 
-  private baseUrl: string = "http://localhost:8080";
-  constructor(private httpClient: HttpClient, private getService:GetService) { }
+  baseUrl!: string;
+  constructor(private httpClient: HttpClient, private getService:GetService) {
+    if(environmentProd.production){
+      this.baseUrl = environmentProd.baseUrl;
+    }
+    else {
+      this.baseUrl = env.baseUrl;
+    }
+  }
 
   public getGames(): Observable<GameDetail[]> {
     return this.getService.getData<GameDetail[]>(this.baseUrl + "/product/games");

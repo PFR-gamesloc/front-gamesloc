@@ -9,15 +9,23 @@ import {Type} from "../../shared/entities/type";
 import {GetService} from "./get.service";
 import {HttpClient} from "@angular/common/http";
 import {env} from "../../../env"
+import {environmentProd} from "../../../environment.prod"
 import {AdminOrder} from "../../shared/entities/admin-order";
 @Injectable({
   providedIn: 'root'
 })
 export class AdminGamesService {
 
-  private baseUrl:string = env.baseUrl;
+  baseUrl!:string;
   constructor(private getService:GetService,
-              private httpClient:HttpClient) { }
+              private httpClient:HttpClient) {
+    if(environmentProd.production){
+      this.baseUrl = environmentProd.baseUrl;
+    }
+    else {
+      this.baseUrl = env.baseUrl;
+    }
+  }
 
 
   public getGameToEditById(gameId: number): Observable<GameEditDto> {

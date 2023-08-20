@@ -1,4 +1,6 @@
-export const env = {
+export const environmentProd = {
+  production: true,
+  baseUrl: 'https://api.gamesloc.store',
   nameRegex: /^[a-zA-Zàáâäãåçèéêëìíîïñòóôöõøùúûüýÿ'\-\s]{2,}$/,
   emailRegex: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
   phoneNumberRegex: /^[0-9]{10}$/,
@@ -10,6 +12,5 @@ export const env = {
   cityNameRegex: /^[a-zA-ZÀ-ÖØ-öø-ÿ\s'\-]*$/,
   integerRegex: /^[0-9]+$/,
   decimalRegex: /^[0-9]+(\.[0-9]+)?$/,
-  baseUrl: "http://localhost:8080"
-
-}
+  // Ajoutez d'autres variables spécifiques à la production
+};

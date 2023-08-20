@@ -3,17 +3,26 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import { GameDetail } from 'src/app/shared/entities/gameDetail';
 import { OrderPostDTO } from 'src/app/shared/entities/orderPostDTO';
+import {environmentProd} from "../../../environment.prod";
+import {env} from "../../../env";
 
 @Injectable({
     providedIn: 'root',
 })
 export class StorageService {
 
-    private baseUrl: string = "http://localhost:8080"
+    private baseUrl!: string;
     private cartItemsSubject = new Subject<GameDetail[]>();
     totalPrice = new BehaviorSubject<number>(0);
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient) {
+      if(environmentProd.production){
+        this.baseUrl = environmentProd.baseUrl;
+      }
+      else {
+        this.baseUrl = env.baseUrl;
+      }
+    }
 
     getCartItemsObservable(): Observable<GameDetail[]> {
         return this.cartItemsSubject.asObservable();

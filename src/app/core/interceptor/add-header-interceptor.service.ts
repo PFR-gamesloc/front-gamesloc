@@ -4,17 +4,26 @@ import {mergeMap, Observable, of} from "rxjs";
 import {GetService} from "../http/get.service";
 import {Token} from "../../modules/auth/entities/token";
 import {Router} from "@angular/router";
+import {environmentProd} from "../../../environment.prod";
+import {env} from "../../../env";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddHeaderInterceptorService implements HttpInterceptor {
-
-  constructor(private getService:GetService, private router:Router) { }
+  baseUrl!:string;
+  constructor(private getService:GetService, private router:Router) {
+    if(environmentProd.production){
+      this.baseUrl = environmentProd.baseUrl;
+    }
+    else {
+      this.baseUrl = env.baseUrl;
+    }
+  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (!req.url.startsWith("http://localhost:8080/auth/") && !req.url.startsWith("http://localhost:8080/product/" )) {
+    if (!req.url.startsWith(this.baseUrl + "/auth") && !req.url.startsWith(this.baseUrl + "/product")) {
       let token = localStorage.getItem("token") ?? sessionStorage.getItem("token");
       // if (token === null ){
       //   this.router.navigate(["/services/login"])

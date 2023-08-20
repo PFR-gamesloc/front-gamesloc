@@ -10,15 +10,24 @@ import {CommentToPost} from "../../modules/product/entities/CommentToPost";
 import {GetService} from "./get.service";
 import {Order} from "../../shared/entities/order";
 import {City} from "../../shared/entities/city";
+import {environmentProd} from "../../../environment.prod";
+import {env} from "../../../env";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
 
-  private baseUrl: string = "http://localhost:8080";
+  baseUrl!: string;
 
-  constructor(private httpClient: HttpClient, private getService:GetService) { }
+  constructor(private httpClient: HttpClient, private getService:GetService) {
+    if(environmentProd.production){
+      this.baseUrl = environmentProd.baseUrl;
+    }
+    else {
+      this.baseUrl = env.baseUrl;
+    }
+  }
 
 
   public addToFavorites(game: AddGameToCustomerFavDTO): Observable<Customer> {

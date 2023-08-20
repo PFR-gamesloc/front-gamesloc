@@ -1,15 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {environmentProd} from "../../../../environment.prod";
+import {env} from "../../../../env";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileUploadService {
 
-  private baseUrl = 'http://localhost:8080';
+  baseUrl!:string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    if(environmentProd.production){
+      this.baseUrl = environmentProd.baseUrl;
+    }
+    else {
+      this.baseUrl = env.baseUrl;
+    }
+  }
 
   upload(file: File):Observable<HttpEvent<any>>{
     const formData: FormData = new FormData();
