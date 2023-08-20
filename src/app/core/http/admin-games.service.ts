@@ -25,7 +25,7 @@ export class AdminGamesService {
   }
 
   public getAdminGames(): Observable<GameDetail[]> {
-    const url = `admin/game/all`;
+    const url = `product/games`;
     return this.getService.getData<GameDetail[]>(url);
   }
 

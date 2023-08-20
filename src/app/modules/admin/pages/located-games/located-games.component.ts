@@ -48,12 +48,12 @@ export class LocatedGamesComponent {
   private getOrders(): void {
     this.orders$ = this.adminGameService.getAdminOrders().pipe(
       catchError((error) => {
-        console.error('Error fetching orders:', error);
         return of([]); // En cas d'erreur, renvoyer un Observable vide pour éviter les erreurs de typage.
       })
     );
 
     this.orders$.subscribe((orders) => {
+      console.log(orders)
       this.dataSource.data = orders;
     });
   }
