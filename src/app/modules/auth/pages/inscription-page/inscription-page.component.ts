@@ -14,8 +14,9 @@ export class InscriptionPageComponent implements OnInit {
 
   public form!: FormGroup;
 
-  constructor(private authService:AuthService) {
+  constructor(private authService: AuthService) {
   }
+
   ngOnInit(): void {
     this.form = new FormGroup({
       lastname: new FormControl('', [Validators.required, Validators.pattern(env.nameRegex)]),
@@ -54,33 +55,30 @@ export class InscriptionPageComponent implements OnInit {
   }
 
   submit(): void {
-    if (!this.form.invalid) {
-      const inscriptionForm: InscriptionForm = {
-        firstName: this.form.get('firstname')?.value,
-        lastName: this.form.get('lastname')?.value,
-        password: this.form.get('password')?.value,
-        email: this.form.get('email')?.value,
-        phoneNumber: this.form.get('phoneNumber')?.value,
-        numberAddress: this.form.get('streetNumber')?.value,
-        complementaryNumber: this.form.get('complementaryNumber')?.value,
-        streetName: this.form.get('streetName')?.value,
-        complementaryAddress: this.form.get('complementaryAddress')?.value,
-        postalCode: this.form.get('postalCode')?.value,
-        cityName: this.form.get('cityName')?.value
-      };
-     this.authService.createUser(inscriptionForm);
-    }
-
+    const inscriptionForm: InscriptionForm = {
+      firstName: this.form.get('firstname')?.value,
+      lastName: this.form.get('lastname')?.value,
+      password: this.form.get('password')?.value,
+      email: this.form.get('email')?.value,
+      phoneNumber: this.form.get('phoneNumber')?.value,
+      numberAddress: this.form.get('streetNumber')?.value,
+      complementaryNumber: this.form.get('complementaryNumber')?.value,
+      streetName: this.form.get('streetName')?.value,
+      complementaryAddress: this.form.get('complementaryAddress')?.value,
+      postalCode: this.form.get('postalCode')?.value,
+      cityName: this.form.get('cityName')?.value
+    };
+    this.authService.createUser(inscriptionForm);
   }
 
-  private formatFirstLetter(fieldToChange: string):void {
+  private formatFirstLetter(fieldToChange: string): void {
     const inputValue = this.form.get(fieldToChange)?.value;
     if (inputValue) {
       this.form.get(fieldToChange)?.setValue(inputValue.charAt(0).toUpperCase() + inputValue.slice(1), {emitEvent: false});
     }
   }
 
-  private  convertToUppercase(fieldToChange: string):void {
+  private convertToUppercase(fieldToChange: string): void {
     const inputValue = this.form.get(fieldToChange)?.value;
     if (inputValue) {
       this.form.get(fieldToChange)?.setValue(inputValue.toUpperCase(), {emitEvent: false});
