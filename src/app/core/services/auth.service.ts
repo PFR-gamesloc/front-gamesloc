@@ -57,7 +57,7 @@ export class AuthService {
         'Content-Type': 'application/json',
       })
     };
-    this.httpClient.post(this.baseUrl + "/auth/register",userInfo,httpOptions);
+    return this.httpClient.post(this.baseUrl + "/auth/register",userInfo,httpOptions);
   }
 
 

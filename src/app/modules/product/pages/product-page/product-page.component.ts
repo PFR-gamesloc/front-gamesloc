@@ -98,11 +98,6 @@ export class ProductPageComponent implements OnInit {
     this!.currentWindowWidth = window.innerWidth;
   }
 
-  more() {
-    this.input = !this.input;
-  }
-
-
   addToCart() {
     const result = this.cartService.addItem(this.game!);
     if (!result.success) {

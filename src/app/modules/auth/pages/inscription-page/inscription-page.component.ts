@@ -4,6 +4,8 @@ import {InscriptionForm} from "../../../../shared/entities/inscriptionForm";
 import {env} from "../../../../../env"
 import {passwordMatchValidator} from "../../validators/PasswordMatchValidator";
 import {AuthService} from "../../../../core/services/auth.service";
+import {ToastrService} from "ngx-toastr";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-inscription-page',
@@ -14,7 +16,9 @@ export class InscriptionPageComponent implements OnInit {
 
   public form!: FormGroup;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+              private toaster:ToastrService,
+              private router:Router) {
   }
 
   ngOnInit(): void {
@@ -55,7 +59,7 @@ export class InscriptionPageComponent implements OnInit {
   }
 
   submit(): void {
-
+     console.log("ici")
     const inscriptionForm: InscriptionForm = {
       firstName: this.form.get('firstname')?.value,
       lastName: this.form.get('lastname')?.value,
@@ -69,8 +73,16 @@ export class InscriptionPageComponent implements OnInit {
       postalCode: this.form.get('postalCode')?.value,
       cityName: this.form.get('cityName')?.value
     };
+    console.log("la")
+    this.authService.createUser(inscriptionForm).subscribe({
+      next: () => {
 
-    this.authService.createUser(inscriptionForm);
+        this.router.navigate(['/'])
+          .then(()=>window.location.reload())
+          .then(() =>this.toaster.success("Utilisateur créer !"))
+      },
+      error: () => this.toaster.error("Erreur lors de la création")
+    });
   }
 
   private formatFirstLetter(fieldToChange: string): void {
