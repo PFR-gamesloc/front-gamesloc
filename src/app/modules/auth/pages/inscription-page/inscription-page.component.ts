@@ -55,6 +55,7 @@ export class InscriptionPageComponent implements OnInit {
   }
 
   submit(): void {
+
     const inscriptionForm: InscriptionForm = {
       firstName: this.form.get('firstname')?.value,
       lastName: this.form.get('lastname')?.value,
@@ -68,6 +69,7 @@ export class InscriptionPageComponent implements OnInit {
       postalCode: this.form.get('postalCode')?.value,
       cityName: this.form.get('cityName')?.value
     };
+
     this.authService.createUser(inscriptionForm);
   }
 
