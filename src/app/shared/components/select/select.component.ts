@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
+import {FormGroup, FormGroupDirective} from '@angular/forms';
 import { City } from "../../entities/city";
-import { CitiesService } from "../../../core/http/cities.service";
-import { Observable, debounceTime, distinctUntilChanged, filter, map, of, switchMap } from 'rxjs';
+import { debounceTime, distinctUntilChanged} from 'rxjs';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import {CustomerService} from "../../../core/http/customer.service";
 
 
 @Component({
@@ -22,7 +22,7 @@ export class SelectComponent implements OnInit {
 
   formZipCode!: FormGroup;
 
-  constructor(private citiesService: CitiesService, private rootFormGroup: FormGroupDirective) {
+  constructor(private customerService: CustomerService, private rootFormGroup: FormGroupDirective) {
     this.options = [];
     this.filteredPostalCodes = [];
     this.filteredCityNames = [];
@@ -33,25 +33,26 @@ export class SelectComponent implements OnInit {
   @ViewChild('autoCityName') autoCityName: MatAutocomplete | undefined;
 
   ngOnInit(): void {
-    this.citiesService.getCities().subscribe({
-      next: res => {
-        this.handlePostalCode(res);
-        this.handleCityName(res);
-      }
-    });
-
     this.formZipCode = this.rootFormGroup.control;
 
-    this.formZipCode.valueChanges.pipe(
+    this.formZipCode.get('postalCode')?.valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged()
-    ).subscribe(value => {
-      if (value && value.cityName && value.postalCode.length >= 2) {
-        this.filterCityNames();
-      } else {
-        this.filteredCityNames = [];
-      }
-    });
+    ).subscribe( {
+      next: (value) => {
+        console.log(value)
+        if ( value.length >= 3) {
+          this.customerService.getCities(value).subscribe({
+            next: res => {
+              this.handlePostalCode(res);
+              this.handleCityName(res);
+            }
+          });
+          this.filterCityNames();
+        } else {
+          this.filteredCityNames = [];
+        }
+      }});
   }
 
   public _filter(value: string): string[] {

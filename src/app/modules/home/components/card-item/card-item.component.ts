@@ -1,10 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { GameService } from 'src/app/core/http/games.service';
+import { Component, Input } from '@angular/core';
 import { GameList } from '../../../../shared/entities/gameList';
 import { HomePageComponent } from '../../pages/home-page/home-page.component';
-import { GameDetail } from 'src/app/shared/entities/gameDetail';
-import { StorageService } from 'src/app/core/http/storage.service';
-import {FileUploadService} from "../../../admin/entities/file-upload.service";
+import {FileUploadService} from "../../../admin/services/file-upload.service";
 
 @Component({
   selector: 'app-card-item',
@@ -14,7 +11,7 @@ import {FileUploadService} from "../../../admin/entities/file-upload.service";
 export class CardItemComponent {
 
   @Input() game!: GameList;
-  image = '';
+  image:string = '';
 
   constructor(private parent: HomePageComponent,
               private fileService:FileUploadService) { }

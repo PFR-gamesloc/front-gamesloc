@@ -5,13 +5,16 @@
         Code Postal
       </div>
     </label>
-    <input type="text" placeholder="Pick one" aria-label="Code Postal" matInput [matAutocomplete]="autoZipCode"
+    <input type="text" placeholder="Sélectionner votre code postal" aria-label="Code Postal" matInput [matAutocomplete]="autoZipCode"
       formControlName="postalCode" (input)="filteredPostalCodes = _filter(formZipCode.get('postalCode')?.value)">
     <mat-autocomplete #autoZipCode="matAutocomplete">
-      <mat-option *ngFor="let postalCode of filteredPostalCodes" [value]="postalCode">
+      <mat-option *ngFor="let postalCode of postalCodes" [value]="postalCode">
         {{postalCode}}
       </mat-option>
     </mat-autocomplete>
+    <ng-container *ngIf="postalErrors">
+      <app-error-message></app-error-message>
+    </ng-container>
   </div>
   <div class="container-select">
     <label>
@@ -19,13 +22,16 @@
         Ville
       </div>
     </label>
-    <input type="text" placeholder="Pick one" aria-label="Ville" matInput [matAutocomplete]="autoCityName"
+    <input type="text" placeholder="Sélectionner votre ville" aria-label="Ville" matInput [matAutocomplete]="autoCityName"
       formControlName="cityName" (click)="filterCityNames()">
     <mat-autocomplete #autoCityName="matAutocomplete">
       <mat-option *ngFor="let cityName of filteredCityNames" [value]="cityName">
         {{cityName}}
       </mat-option>
     </mat-autocomplete>
+    <ng-container *ngIf="cityErrors">
+      <app-error-message></app-error-message>
+    </ng-container>
   </div>
 
 </ng-container>

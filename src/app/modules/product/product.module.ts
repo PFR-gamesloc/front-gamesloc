@@ -11,8 +11,6 @@ import {CommentaryFormComponent} from "./components/commentary-form/commentary-f
 import {ReactiveFormsModule} from "@angular/forms";
 import { bootstrapStar, bootstrapArrowReturnLeft, bootstrapHeartFill } from '@ng-icons/bootstrap-icons';
 
-
-
 @NgModule({
   declarations: [
     ProductPageComponent,

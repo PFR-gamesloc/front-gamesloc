@@ -5,8 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { AdminOrder } from 'src/app/shared/entities/admin-order';
 import { Observable, catchError, of } from 'rxjs';
-import { OrdersService } from 'src/app/core/http/orders.service';
 import { DatePipe } from '@angular/common';
+import {AdminGamesService} from "../../../../core/http/admin-games.service";
 
 @Component({
   selector: 'app-located-games',
@@ -18,7 +18,7 @@ import { DatePipe } from '@angular/common';
       state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
-  ], 
+  ],
   providers: [DatePipe]
 })
 export class LocatedGamesComponent {
@@ -31,7 +31,7 @@ export class LocatedGamesComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
-    private ordersService: OrdersService, 
+    private adminGameService: AdminGamesService,
     private datePipe: DatePipe) {
     this.getOrders();
   }
@@ -46,7 +46,7 @@ export class LocatedGamesComponent {
   }
 
   private getOrders(): void {
-    this.orders$ = this.ordersService.getAdminOrders().pipe(
+    this.orders$ = this.adminGameService.getAdminOrders().pipe(
       catchError((error) => {
         console.error('Error fetching orders:', error);
         return of([]); // En cas d'erreur, renvoyer un Observable vide pour éviter les erreurs de typage.

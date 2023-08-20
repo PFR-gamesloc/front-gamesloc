@@ -11,6 +11,7 @@ import { Type } from 'src/app/shared/entities/type';
 import { ToastrService } from 'ngx-toastr';
 import { env } from 'src/env';
 import {GameEditDto} from "../../entities/GameToEditDto";
+import {AdminGamesService} from "../../../../core/http/admin-games.service";
 
 
 @Component({
@@ -39,7 +40,7 @@ export class GameEditComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private gamesService: GameService,
+    private adminGamesService: AdminGamesService,
     private toastr: ToastrService,
   ) {
 
@@ -68,7 +69,7 @@ export class GameEditComponent implements OnInit {
     if (!this.isAddMode){
 
       this.gameToEditId = this.activatedRoute.snapshot.params['id'];
-      this.gamesService.getGameToEditById(this.gameToEditId)
+      this.adminGamesService.getGameToEditById(this.gameToEditId)
         .subscribe((gameToEdit:GameEditDto) => {
             this.gameToEdit = gameToEdit;
             this.gameForm.patchValue({
@@ -99,13 +100,13 @@ export class GameEditComponent implements OnInit {
         )
     }
 
-    this.editors$ = this.gamesService.getEditors();
+    this.editors$ = this.adminGamesService.getEditors();
 
-    this.languages$ = this.gamesService.getLanguages();
+    this.languages$ = this.adminGamesService.getLanguages();
 
-    this.tags$ = this.gamesService.getTags();
+    this.tags$ = this.adminGamesService.getTags();
 
-    this.types$ = this.gamesService.getTypes();
+    this.types$ = this.adminGamesService.getTypes();
   }
 
   onToggleSideNav(data: SideNavToggle): void {
@@ -155,7 +156,7 @@ export class GameEditComponent implements OnInit {
           ...this.gameForm.value,
           image:this.uploadedImageName
         };
-        this.gamesService.createGame(newGame).subscribe({
+        this.adminGamesService.createGame(newGame).subscribe({
           next: (gameCreated:GameEditDto) => {
             this.saveCompleted(gameCreated);
           },
@@ -172,8 +173,8 @@ export class GameEditComponent implements OnInit {
           this.gameToEdit.image = this.uploadedImageName;
         }
         console.log(this.gameToEdit)
-        this.gamesService.updateGame(this.gameToEdit, this.gameToEditId).subscribe({
-          next: (response) => {
+        this.adminGamesService.updateGame(this.gameToEdit, this.gameToEditId).subscribe({
+          next: (response:GameEditDto) => {
             this.saveCompleted(response);
           },
           error: (err) => {

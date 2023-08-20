@@ -17,7 +17,7 @@ export class AddHeaderInterceptorService implements HttpInterceptor {
     if (!req.url.startsWith("http://localhost:8080/auth/") && !req.url.startsWith("http://localhost:8080/product/" )) {
       let token = localStorage.getItem("token") ?? sessionStorage.getItem("token");
       // if (token === null ){
-      //   this.router.navigate(["/auth/login"])
+      //   this.router.navigate(["/services/login"])
       // }
       req = req.clone({
         headers: req.headers.append(

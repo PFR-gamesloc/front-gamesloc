@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import {Commentary} from "../../entities/Commentary";
-import {GetService} from "../../../../core/http/get.service";
 
 @Component({
   selector: 'app-commentary',

@@ -63,12 +63,11 @@ export class ModifyUserAddressOptionComponent {
         ...this.customerForm.value
       }
 
-      console.log(modifyCustomer);
 
 
       this.customerService.modifyAddressCustomer(modifyCustomer).subscribe({
-        next: (response) => {
-          this.saveCompleted(response);
+        next: () => {
+          this.saveCompleted();
         },
         error: (err) => {
           this.toastr.error("Votre modification n'a pas été pris en compte ", err.message);
@@ -77,9 +76,9 @@ export class ModifyUserAddressOptionComponent {
     }
   }
 
-  public saveCompleted(response: CustomerAddressEdit): void {
+  public saveCompleted(): void {
     this.customerForm.reset();
-    this.router.navigate(['/user', 'me'])
     this.toastr.success("Votre modification a bien été pris en compte");
+    this.router.navigate(['/user', 'me'])
   }
 }

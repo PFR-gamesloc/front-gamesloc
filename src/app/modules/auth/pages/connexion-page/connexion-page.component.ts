@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {AuthServiceService} from "../../../../core/auth/auth-service.service";
+import {AuthService} from "../../../../core/services/auth.service";
 import {UserCredentials} from "../../entities/user-credentials";
 import {Token} from "../../entities/token";
 import jwt_decode from 'jwt-decode';
@@ -22,7 +22,7 @@ export class ConnexionPageComponent {
 
   showErrorMessage:boolean = false ;
 
-  constructor(private authService:AuthServiceService,
+  constructor(private authService:AuthService,
               private router:Router) {}
 
   signin() {
@@ -55,7 +55,7 @@ export class ConnexionPageComponent {
       sessionStorage.setItem("role", decodedToken.role)
     }
 
-    this.router.navigate(['/']).then(() => window.location.reload()); 
+    this.router.navigate(['/']).then(() => window.location.reload());
 
   }
 }

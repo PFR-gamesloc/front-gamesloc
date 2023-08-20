@@ -5,16 +5,16 @@ import {GameDetail} from 'src/app/shared/entities/gameDetail';
 import {registerLocaleData} from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import {Game} from 'src/app/shared/entities/game';
-import {StorageService} from 'src/app/core/http/storage.service';
+import {StorageService} from 'src/app/core/services/storage.service';
 import {CustomerService} from 'src/app/core/http/customer.service';
 import {AddGameToCustomerFavDTO} from 'src/app/shared/entities/AddGameToCustomerFavDTO';
 import {Commentary} from "../../entities/Commentary";
 import {GetService} from "../../../../core/http/get.service";
-import {AuthServiceService} from "../../../../core/auth/auth-service.service";
+import {AuthService} from "../../../../core/services/auth.service";
 import {Order} from "../../../../shared/entities/order";
 import {CustomerLike} from 'src/app/shared/entities/customerLike';
 import {ToastrService} from "ngx-toastr";
-import {FileUploadService} from "../../../admin/entities/file-upload.service";
+import {FileUploadService} from "../../../admin/services/file-upload.service";
 
 registerLocaleData(localeFr, 'fr');
 
@@ -45,7 +45,7 @@ export class ProductPageComponent implements OnInit {
               private router: Router,
               private cartService: StorageService,
               private getService: GetService,
-              private authService: AuthServiceService,
+              private authService: AuthService,
               private toastrService: ToastrService,
               private fileService: FileUploadService) {
   }

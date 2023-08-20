@@ -1,14 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
 import { SideNavToggle } from '../../entities/SideNavToggle';
-import { Game } from 'src/app/shared/entities/game';
 import { Observable, catchError, of } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { GameService } from 'src/app/core/http/games.service';
 import { GameList } from 'src/app/shared/entities/gameList';
-import { DataConfirmDialogService } from '../../entities/data-confirm-dialog.service';
+import { DataConfirmDialogService } from '../../services/data-confirm-dialog.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import {AdminGamesService} from "../../../../core/http/admin-games.service";
 
 @Component({
   selector: 'app-all-the-games',
@@ -28,16 +28,12 @@ export class AllTheGamesComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
-    private gamesService: GameService,
+    private adminGameService: AdminGamesService,
     private dialogService: DataConfirmDialogService,
     private toastr: ToastrService,
     private rooter: Router
   ) {
     this.getGames();
-  }
-
-  toggleChecked(): void {
-    this.checked = !this.checked;
   }
 
   onToggleSideNav(data: SideNavToggle): void {
@@ -50,45 +46,41 @@ export class AllTheGamesComponent {
   }
 
   private getGames(): void {
-    this.games$ = this.gamesService.getAdminGames().pipe(
+    this.games$ = this.adminGameService.getAdminGames().pipe(
       catchError((error) => {
-        console.error('Error fetching games:', error);
         return of([]);
       })
     );
 
-    this.games$.subscribe((games) => {
+    this.games$.subscribe((games:GameList[]) => {
       this.dataSource.data = games;
       this.gamesList = games;
     })
   }
 
   public getFiewWords(text: string, numWords: number): string {
-    const words = text.split(' ');
-    const sliceWords = words.slice(0, numWords);
+    const words:string[] = text.split(' ');
+    const sliceWords:string[] = words.slice(0, numWords);
     return sliceWords.join(' ');
   }
 
   public onDelete(id: Number) {
     this.dialogService.openConfirmDialog().afterClosed().subscribe(res => {
       if (res) {
-        this.gamesService.deleteAGame(id).subscribe({
+        this.adminGameService.deleteAGame(id).subscribe({
           next: deleted => {
             if (deleted) {
-              this.rooter.navigate(['/admin', 'games']).then(() => window.location.reload())
-              this.toastr.success("Le jeu a bien été supprimé !");
+              this.rooter.navigate(['/admin', 'games'])
+                .then(() =>this.toastr.success("Le jeu a bien été supprimé !"))
+                .then(window.location.reload)
             } else {
               this.toastr.error("Erreur dans la requête")
             }
           }
         });
-        console.log("delete id");
-        console.log(id);
-
       } else {
         this.toastr.info("Vous n'avez pas supprimé le jeu")
       }
     })
-    console.log("click");
   }
 }

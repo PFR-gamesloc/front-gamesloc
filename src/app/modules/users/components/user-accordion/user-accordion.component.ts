@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { Customer } from '../../../../shared/entities/customer';
-import { CustomerService } from 'src/app/core/http/customer.service';
-import { ActivatedRoute } from '@angular/router';
 import {GetService} from "../../../../core/http/get.service";
 
 @Component({

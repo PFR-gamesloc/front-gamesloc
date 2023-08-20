@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FileUploadService } from '../../entities/file-upload.service';
+import { FileUploadService } from '../../services/file-upload.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 @Component({

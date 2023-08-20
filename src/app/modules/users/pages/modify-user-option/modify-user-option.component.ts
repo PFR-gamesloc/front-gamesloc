@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { env } from "../../../../../env"
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/core/http/customer.service';
-import { UsersService } from 'src/app/core/http/users.service';
 import { Customer } from 'src/app/shared/entities/customer';
 import { GetService } from "../../../../core/http/get.service";
 import { CustomerEdit } from 'src/app/shared/entities/customerEdit';
@@ -36,7 +35,7 @@ export class ModifyUserOptionComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.pattern(env.emailRegex)]),
     })
     this.getService.getData<Customer>("customer/me").subscribe({
-      next: res => this.displayCustomer(res)
+      next: (res:Customer) => this.displayCustomer(res)
     });
   }
 
@@ -60,8 +59,8 @@ export class ModifyUserOptionComponent implements OnInit {
       }
 
       this.customerService.modifyCustomer(modifyCustomer).subscribe({
-        next: (response) => {
-          this.saveCompleted(response);
+        next: () => {
+          this.saveCompleted();
         },
         error: (err) => {
           this.toastr.error("Votre modification n'a pas été pris en compte ", err.message);
@@ -70,7 +69,7 @@ export class ModifyUserOptionComponent implements OnInit {
     }
   }
 
-  public saveCompleted(response: CustomerEdit): void {
+  public saveCompleted(): void {
     this.customerForm.reset();
     this.router.navigate(['/user', 'me'])
     this.toastr.success("Votre modification a bien été pris en compte");

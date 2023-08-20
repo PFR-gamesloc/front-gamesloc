@@ -18,7 +18,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { GameEditComponent } from './pages/game-edit/game-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AdminItemComponent } from './components/admin-item/admin-item.component';
 import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FileUploadComponentComponent } from './components/file-upload-component/file-upload-component.component';
@@ -31,7 +30,6 @@ import { FileUploadComponentComponent } from './components/file-upload-component
     AllTheUsersComponent,
     TableComponentComponent,
     GameEditComponent,
-    AdminItemComponent,
     MatConfirmDialogComponent,
     FileUploadComponentComponent,
   ],

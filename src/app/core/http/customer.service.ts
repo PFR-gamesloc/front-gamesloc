@@ -9,6 +9,7 @@ import { CustomerAddressEdit } from 'src/app/shared/entities/customerAddressEdit
 import {CommentToPost} from "../../modules/product/entities/CommentToPost";
 import {GetService} from "./get.service";
 import {Order} from "../../shared/entities/order";
+import {City} from "../../shared/entities/city";
 
 @Injectable({
   providedIn: 'root'
@@ -19,20 +20,6 @@ export class CustomerService {
 
   constructor(private httpClient: HttpClient, private getService:GetService) { }
 
-  public getCustomer(userId : number): Observable<Customer> {
-    const url = `${this.baseUrl}/customer/${userId}`;
-    return this.getService.getData<Customer>(url);
-  }
-
-  public getAddressCustomer(userId : number) : Observable<CustomerAddress> {
-    const url = `${this.baseUrl}/customer/${userId}`;
-    return this.getService.getData<CustomerAddress>(url);
-  }
-
-  public getCustomersAdmin() : Observable<Customer[]> {
-    const url = `admin/customer/all`;
-    return this.getService.getData<Customer[]>(url);
-  }
 
   public addToFavorites(game: AddGameToCustomerFavDTO): Observable<Customer> {
     const url = `${this.baseUrl}/customer/me/favs/add`;
@@ -58,6 +45,10 @@ export class CustomerService {
   }
   public getOrders():Observable<Order[]>{
     return this.getService.getData<Order[]>('customer/me/orders');
+  }
+
+  public getCities(value: string):Observable<City[]>{
+    return this.getService.getData<City[]>("customer/cities/"+ value);
   }
 
 }

@@ -1,6 +1,5 @@
 import {CustomerOpinionDto} from "./CustomerOpinionDto";
 
-
 export interface Commentary {
   comment: string,
   rating: number,

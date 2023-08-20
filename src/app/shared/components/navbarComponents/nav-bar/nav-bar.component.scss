@@ -1,0 +1,39 @@
+@use "../../../../../sass/mixins" as m;
+
+.nav-bar {
+  background-color: var(--primary);
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 75px;
+
+  .logo {
+    margin-left: 1rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+
+  app-search-bar {
+    width: 45%;
+  }
+
+  .icons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+    margin-right: 1rem;
+    align-items: center;
+    text-align: center;
+
+    span {
+      color: white;
+    }
+
+    .dis-card {
+      display: block;
+      font-size: 12px;
+      font-weight: bold;
+    }
+  }
+}

@@ -1,12 +1,12 @@
-import {ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot} from '@angular/router';
+import {ActivatedRouteSnapshot, Router, RouterStateSnapshot} from '@angular/router';
 import {Injectable} from "@angular/core";
-import {AuthServiceService} from "../auth/auth-service.service";
+import {AuthService} from "../services/auth.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class isAdminGuard {
-  constructor(private router: Router, private AuthService: AuthServiceService) {
+  constructor(private router: Router, private AuthService: AuthService) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {

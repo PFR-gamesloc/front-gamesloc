@@ -23,8 +23,4 @@ import { IsLoggedInDirective } from './directives/is-logged-in.directive';
   ]
 })
 export class CoreModule {
-  // constructor(private core:CoreModule) {
-  //     if(!core)
-  //       throw new Error("coreModule has already been loaded. Import this module in the AppModule only.");
-  // }
 }

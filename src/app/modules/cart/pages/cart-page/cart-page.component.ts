@@ -1,10 +1,10 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
-import {StorageService} from 'src/app/core/http/storage.service';
+import {StorageService} from 'src/app/core/services/storage.service';
 import {GameDetail} from 'src/app/shared/entities/gameDetail';
 import {OrderPostDTO} from 'src/app/shared/entities/orderPostDTO';
-import {AuthServiceService} from "../../../../core/auth/auth-service.service";
+import {AuthService} from "../../../../core/services/auth.service";
 
 @Component({
   selector: 'app-cart-page',
@@ -19,7 +19,7 @@ export class CartPageComponent implements OnInit {
   purchaseResponse: number = 0;
   isAuth!: boolean;
 
-  constructor(private cartService: StorageService, private router: Router, private authService: AuthServiceService) {
+  constructor(private cartService: StorageService, private router: Router, private authService: AuthService) {
   }
 
   ngOnInit(): void {

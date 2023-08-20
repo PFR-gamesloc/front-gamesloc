@@ -1,12 +1,12 @@
 import {Directive, TemplateRef, ViewContainerRef} from '@angular/core';
-import {AuthServiceService} from "../auth/auth-service.service";
+import {AuthService} from "../services/auth.service";
 
 
 @Directive({
   selector: '[appIsAdmin]'
 })
 export class IsAdminDirective {
-  constructor(private templateRef: TemplateRef<any>, private viewContainer: ViewContainerRef, private authService:AuthServiceService) {
+  constructor(private templateRef: TemplateRef<any>, private viewContainer: ViewContainerRef, private authService:AuthService) {
   }
 
   ngOnInit(): void {

@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Observable, catchError, of } from 'rxjs';
 import { Customer } from 'src/app/shared/entities/customer';
 import { CustomerService } from 'src/app/core/http/customer.service';
+import {AdminCustomerService} from "../../../../core/http/admin-customer.service";
 
 @Component({
   selector: 'app-all-the-users',
@@ -21,7 +22,7 @@ export class AllTheUsersComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
-    private customerService: CustomerService) {
+    private adminCustomerService: AdminCustomerService) {
     this.getUsers();
   }
 
@@ -35,14 +36,14 @@ export class AllTheUsersComponent {
   }
 
   private getUsers(): void {
-    this.users$ = this.customerService.getCustomersAdmin().pipe(
+    this.users$ = this.adminCustomerService.getCustomersAdmin().pipe(
       catchError((error) => {
         console.error('Error fetching orders:', error);
         return of([]);
       })
     );
 
-    this.users$.subscribe((users) => {
+    this.users$.subscribe((users:Customer[]) => {
       this.dataSource.data = users;
     });
   }

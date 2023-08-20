@@ -1,0 +1,33 @@
+@use "../../../../../sass/mixins" as m;
+
+
+.icons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  margin-right: 1rem;
+  align-items: center;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  height: 75px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: block;
+}
+
+.dropbtn span {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+button.dropdown-item {
+  display: flex;
+  justify-content: flex-start;
+}

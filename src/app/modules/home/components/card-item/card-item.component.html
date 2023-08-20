@@ -2,19 +2,19 @@
   <div class="articleImage">
     <img
       [src]="image"
-      alt="{{game?.gameName}}"
+      alt="{{game.gameName}}"
 
     />
   </div>
   <div class="articleDescription">
-    <h3>{{game?.gameName}}</h3>
-    <p>{{ game?.gameDescr }}</p>
+    <h3>{{game.gameName}}</h3>
+    <p>{{ game.gameDescr }}</p>
   </div>
 
   <div class="articleEnd">
-    <p>{{ game?.editor?.name }}</p>
-    <p>{{ game?.type?.name }}</p>
-    <p>{{ game?.gamePrice }}&euro;</p>
+    <p>{{ game.editor.name }}</p>
+    <p>{{ game.type.name }}</p>
+    <p>{{ game.gamePrice }}&euro;</p>
   </div>
 
 </div>

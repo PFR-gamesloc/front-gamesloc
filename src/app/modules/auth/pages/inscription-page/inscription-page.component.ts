@@ -3,7 +3,7 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {InscriptionForm} from "../../../../shared/entities/inscriptionForm";
 import {env} from "../../../../../env"
 import {passwordMatchValidator} from "../../validators/PasswordMatchValidator";
-import {AuthServiceService} from "../../../../core/auth/auth-service.service";
+import {AuthService} from "../../../../core/services/auth.service";
 
 @Component({
   selector: 'app-inscription-page',
@@ -14,7 +14,7 @@ export class InscriptionPageComponent implements OnInit {
 
   public form!: FormGroup;
 
-  constructor(private authService:AuthServiceService) {
+  constructor(private authService:AuthService) {
   }
   ngOnInit(): void {
     this.form = new FormGroup({

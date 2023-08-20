@@ -1,8 +1,5 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { OrdersService } from 'src/app/core/http/orders.service';
 import { Order } from 'src/app/shared/entities/order';
 import {GetService} from "../../../../core/http/get.service";
 
