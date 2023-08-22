@@ -26,7 +26,6 @@ export class AuthService {
         'Content-Type': 'application/json',
       })
     };
-    this.isAuth.next(true);
     return this.httpClient.post<Token>(this.baseurl + "auth/authenticate", userCredentials, httpOptions);
 
   }
