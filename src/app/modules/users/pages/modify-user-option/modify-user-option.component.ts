@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { env } from "../../../../../env"
+import { regex } from "../../../../../environments/regex"
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/core/http/customer.service';
 import { Customer } from 'src/app/shared/entities/customer';
@@ -29,10 +29,10 @@ export class ModifyUserOptionComponent implements OnInit {
 
   ngOnInit(): void {
     this.customerForm = new FormGroup({
-      lastName: new FormControl('', [Validators.required, Validators.pattern(env.nameRegex)]),
-      firstName: new FormControl('', [Validators.required, Validators.pattern(env.nameRegex)]),
-      phoneNumber: new FormControl('', [Validators.required, Validators.pattern(env.phoneNumberRegex)]),
-      email: new FormControl('', [Validators.required, Validators.pattern(env.emailRegex)]),
+      lastName: new FormControl('', [Validators.required, Validators.pattern(regex.nameRegex)]),
+      firstName: new FormControl('', [Validators.required, Validators.pattern(regex.nameRegex)]),
+      phoneNumber: new FormControl('', [Validators.required, Validators.pattern(regex.phoneNumberRegex)]),
+      email: new FormControl('', [Validators.required, Validators.pattern(regex.emailRegex)]),
     })
     this.getService.getData<Customer>("/customer/me").subscribe({
       next: (res:Customer) => this.displayCustomer(res)

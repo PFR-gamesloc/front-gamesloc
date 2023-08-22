@@ -8,8 +8,7 @@ import {Tag} from "../../shared/entities/tag";
 import {Type} from "../../shared/entities/type";
 import {GetService} from "./get.service";
 import {HttpClient} from "@angular/common/http";
-import {env} from "../../../env"
-import {environmentProd} from "../../../environment.prod"
+import {environment} from "../../../environments/environment"
 import {AdminOrder} from "../../shared/entities/admin-order";
 @Injectable({
   providedIn: 'root'
@@ -19,12 +18,8 @@ export class AdminGamesService {
   baseUrl!:string;
   constructor(private getService:GetService,
               private httpClient:HttpClient) {
-    if(environmentProd.production){
-      this.baseUrl = environmentProd.baseUrl;
-    }
-    else {
-      this.baseUrl = env.baseUrl;
-    }
+      this.baseUrl = environment.baseUrl;
+
   }
 
 

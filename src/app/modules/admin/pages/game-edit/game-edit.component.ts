@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
 import { FormArray, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GameService } from 'src/app/core/http/games.service';
 import { SideNavToggle } from '../../entities/SideNavToggle';
 import { Observable } from 'rxjs';
 import { Editor } from 'src/app/shared/entities/editor';
@@ -9,7 +8,7 @@ import { Language } from 'src/app/shared/entities/language';
 import { Tag } from 'src/app/shared/entities/tag';
 import { Type } from 'src/app/shared/entities/type';
 import { ToastrService } from 'ngx-toastr';
-import { env } from 'src/env';
+import { regex } from 'src/environments/regex';
 import {GameEditDto} from "../../entities/GameToEditDto";
 import {AdminGamesService} from "../../../../core/http/admin-games.service";
 
@@ -49,14 +48,14 @@ export class GameEditComponent implements OnInit {
   ngOnInit(): void {
 
     this.gameForm = new FormGroup({
-      gameName: new FormControl('', [Validators.required, Validators.pattern(env.nameRegex)]),
+      gameName: new FormControl('', [Validators.required, Validators.pattern(regex.nameRegex)]),
       gameDescr: new FormControl('', [Validators.required]),
-      stock: new FormControl([Validators.required, Validators.pattern(env.integerRegex)]),
+      stock: new FormControl([Validators.required, Validators.pattern(regex.integerRegex)]),
       image: new FormControl(""),
-      gamePrice: new FormControl([Validators.required, Validators.pattern(env.decimalRegex)]),
-      minPlayer: new FormControl([Validators.required, Validators.pattern(env.integerRegex)]),
-      maxPlayer: new FormControl([Validators.required, Validators.pattern(env.integerRegex)]),
-      minAge: new FormControl([Validators.required, Validators.pattern(env.integerRegex)]),
+      gamePrice: new FormControl([Validators.required, Validators.pattern(regex.decimalRegex)]),
+      minPlayer: new FormControl([Validators.required, Validators.pattern(regex.integerRegex)]),
+      maxPlayer: new FormControl([Validators.required, Validators.pattern(regex.integerRegex)]),
+      minAge: new FormControl([Validators.required, Validators.pattern(regex.integerRegex)]),
       typeId: new FormControl("", [Validators.required]),
       editorId: new FormControl("", [Validators.required]),
       languagesId: new FormArray([], [Validators.required]),

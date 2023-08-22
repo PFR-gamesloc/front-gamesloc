@@ -3,8 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { GetService } from './get.service';
 import {GameDetail} from "../../shared/entities/gameDetail";
-import {environmentProd} from "../../../environment.prod";
-import {env} from "../../../env";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +13,7 @@ export class GameService {
 
   baseUrl!: string;
   constructor(private httpClient: HttpClient, private getService:GetService) {
-    if(environmentProd.production){
-      this.baseUrl = environmentProd.baseUrl;
-    }
-    else {
-      this.baseUrl = env.baseUrl;
-    }
+      this.baseUrl = environment.baseUrl;
   }
 
   public getGames(): Observable<GameDetail[]> {

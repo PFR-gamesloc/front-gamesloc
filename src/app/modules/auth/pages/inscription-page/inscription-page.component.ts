@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {InscriptionForm} from "../../../../shared/entities/inscriptionForm";
-import {env} from "../../../../../env"
+import {regex} from "../../../../../environments/regex"
 import {passwordMatchValidator} from "../../validators/PasswordMatchValidator";
 import {AuthService} from "../../../../core/services/auth.service";
 import {ToastrService} from "ngx-toastr";
@@ -23,18 +23,18 @@ export class InscriptionPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      lastname: new FormControl('', [Validators.required, Validators.pattern(env.nameRegex)]),
-      firstname: new FormControl('', [Validators.required, Validators.pattern(env.nameRegex)]),
-      password: new FormControl('', [Validators.required, Validators.pattern(env.passwordRegex)]),
+      lastname: new FormControl('', [Validators.required, Validators.pattern(regex.nameRegex)]),
+      firstname: new FormControl('', [Validators.required, Validators.pattern(regex.nameRegex)]),
+      password: new FormControl('', [Validators.required, Validators.pattern(regex.passwordRegex)]),
       repeatPassword: new FormControl('', [Validators.required, passwordMatchValidator]),
-      email: new FormControl('', [Validators.required, Validators.pattern(env.emailRegex)]),
-      phoneNumber: new FormControl('', [Validators.required, Validators.pattern(env.phoneNumberRegex)]),
-      streetNumber: new FormControl('', [Validators.required, Validators.pattern(env.streetNumberRegex)]),
-      complementaryNumber: new FormControl('', [Validators.pattern(env.complementaryNumberRegex)]),
-      streetName: new FormControl('', [Validators.required, Validators.pattern(env.streetNameRegex)]),
+      email: new FormControl('', [Validators.required, Validators.pattern(regex.emailRegex)]),
+      phoneNumber: new FormControl('', [Validators.required, Validators.pattern(regex.phoneNumberRegex)]),
+      streetNumber: new FormControl('', [Validators.required, Validators.pattern(regex.streetNumberRegex)]),
+      complementaryNumber: new FormControl('', [Validators.pattern(regex.complementaryNumberRegex)]),
+      streetName: new FormControl('', [Validators.required, Validators.pattern(regex.streetNameRegex)]),
       complementaryAddress: new FormControl(''),
-      postalCode: new FormControl('', [Validators.required, Validators.pattern(env.postalCodeRegex)]),
-      cityName: new FormControl('', [Validators.required, Validators.pattern(env.cityNameRegex)])
+      postalCode: new FormControl('', [Validators.required, Validators.pattern(regex.postalCodeRegex)]),
+      cityName: new FormControl('', [Validators.required, Validators.pattern(regex.cityNameRegex)])
     }, {
       validators: passwordMatchValidator
     });

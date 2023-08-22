@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, ValidationErrors } from '@angular/forms';
-import {env} from "../../../../../env";
+import { Component, Input } from '@angular/core';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
+import {regex} from "../../../../../environments/regex";
 
 @Component({
   selector: 'app-error-message',
@@ -27,24 +27,24 @@ export class ErrorMessageComponent{
       if(this.errors['pattern']){
         this.errorMessage = "Format incorrect"
         switch(this.errors['pattern'].requiredPattern) {
-          case env.nameRegex.toString(): {
+          case regex.nameRegex.toString(): {
             this.errorMessage = 'Veuillez saisir un nom/prénom avec au moins 2 caractères, comportant uniquement des lettres'
             break;
           }
-          case env.emailRegex.toString(): {
+          case regex.emailRegex.toString(): {
             this.errorMessage = 'Veuillez saisir une adresse email valide'
             break;
           }
-          case env.phoneNumberRegex.toString(): {
+          case regex.phoneNumberRegex.toString(): {
             this.errorMessage = 'Veuillez saisir un numéro de téléphone de 10 chiffres'
             break;
           }
-          case env.passwordRegex.toString(): {
+          case regex.passwordRegex.toString(): {
             this.errorMessage = 'Veuillez saisir un mot de passe d\'au moins 8 caractères avec au moins une majuscule, une minuscule et un caractère spécial'
             break;
           }
 
-          case env.complementaryNumberRegex.toString(): {
+          case regex.complementaryNumberRegex.toString(): {
             this.errorMessage = 'la valeur peut être uniquement BIS/TER/QUARTER'
             break;
           }

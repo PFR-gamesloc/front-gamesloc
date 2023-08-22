@@ -1,17 +1,15 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { Customer } from "../../shared/entities/customer";
-import { CustomerAddress } from 'src/app/shared/entities/customerAddress';
-import { AddGameToCustomerFavDTO } from 'src/app/shared/entities/AddGameToCustomerFavDTO';
-import { CustomerEdit } from 'src/app/shared/entities/customerEdit';
-import { CustomerAddressEdit } from 'src/app/shared/entities/customerAddressEdit';
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {Customer} from "../../shared/entities/customer";
+import {AddGameToCustomerFavDTO} from 'src/app/shared/entities/AddGameToCustomerFavDTO';
+import {CustomerEdit} from 'src/app/shared/entities/customerEdit';
+import {CustomerAddressEdit} from 'src/app/shared/entities/customerAddressEdit';
 import {CommentToPost} from "../../modules/product/entities/CommentToPost";
 import {GetService} from "./get.service";
 import {Order} from "../../shared/entities/order";
 import {City} from "../../shared/entities/city";
-import {environmentProd} from "../../../environment.prod";
-import {env} from "../../../env";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -20,13 +18,8 @@ export class CustomerService {
 
   baseUrl!: string;
 
-  constructor(private httpClient: HttpClient, private getService:GetService) {
-    if(environmentProd.production){
-      this.baseUrl = environmentProd.baseUrl;
-    }
-    else {
-      this.baseUrl = env.baseUrl;
-    }
+  constructor(private httpClient: HttpClient, private getService: GetService) {
+    this.baseUrl = environment.baseUrl;
   }
 
 
@@ -40,24 +33,26 @@ export class CustomerService {
     return this.httpClient.post<Customer>(url, game);
   }
 
-  public modifyCustomer(customerEdit: CustomerEdit) : Observable<CustomerEdit> {
+  public modifyCustomer(customerEdit: CustomerEdit): Observable<CustomerEdit> {
     const url = `${this.baseUrl}/customer/edit`;
     return this.httpClient.put<CustomerEdit>(url, customerEdit);
   }
 
-  public modifyAddressCustomer(customerAddressEdit: CustomerAddressEdit) : Observable<CustomerAddressEdit> {
+  public modifyAddressCustomer(customerAddressEdit: CustomerAddressEdit): Observable<CustomerAddressEdit> {
     const url = `${this.baseUrl}/customer/edit/address`;
     return this.httpClient.put<CustomerAddressEdit>(url, customerAddressEdit);
   }
-  public postAComment(commentToPost:CommentToPost):Observable<boolean>{
+
+  public postAComment(commentToPost: CommentToPost): Observable<boolean> {
     return this.httpClient.post<boolean>(this.baseUrl + "/customer/comment/add", commentToPost);
   }
-  public getOrders():Observable<Order[]>{
+
+  public getOrders(): Observable<Order[]> {
     return this.getService.getData<Order[]>('/customer/me/orders');
   }
 
-  public getCities(value: string):Observable<City[]>{
-    return this.getService.getData<City[]>("/customer/cities/"+ value);
+  public getCities(value: string): Observable<City[]> {
+    return this.getService.getData<City[]>("/customer/cities/" + value);
   }
 
 }

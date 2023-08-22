@@ -6,7 +6,7 @@ import { CustomerAddress } from 'src/app/shared/entities/customerAddress';
 import { GetService } from "../../../../core/http/get.service";
 import { CustomerAddressEdit } from 'src/app/shared/entities/customerAddressEdit';
 import { ToastrService } from 'ngx-toastr';
-import { env } from 'src/env';
+import { regex } from 'src/environments/regex';
 
 @Component({
   selector: 'app-modify-user-address-option',
@@ -28,12 +28,12 @@ export class ModifyUserAddressOptionComponent {
 
   ngOnInit(): void {
     this.customerForm = new FormGroup({
-      numberAddress: new FormControl('', [Validators.required, Validators.pattern(env.streetNumberRegex)]),
-      complementaryNumber: new FormControl('', [Validators.pattern(env.complementaryNumberRegex)]),
-      streetName: new FormControl('', [Validators.required, Validators.pattern(env.streetNameRegex)]),
+      numberAddress: new FormControl('', [Validators.required, Validators.pattern(regex.streetNumberRegex)]),
+      complementaryNumber: new FormControl('', [Validators.pattern(regex.complementaryNumberRegex)]),
+      streetName: new FormControl('', [Validators.required, Validators.pattern(regex.streetNameRegex)]),
       complementaryAddress: new FormControl(''),
-      postalCode: new FormControl('', [Validators.required, Validators.pattern(env.postalCodeRegex)]),
-      cityName: new FormControl('', [Validators.required, Validators.pattern(env.cityNameRegex)])
+      postalCode: new FormControl('', [Validators.required, Validators.pattern(regex.postalCodeRegex)]),
+      cityName: new FormControl('', [Validators.required, Validators.pattern(regex.cityNameRegex)])
     })
 
     this.getService.getData<CustomerAddress>("/customer/me").subscribe({
