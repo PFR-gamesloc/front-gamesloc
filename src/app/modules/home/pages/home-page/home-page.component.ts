@@ -15,23 +15,23 @@ export class HomePageComponent {
   images = [
     {
       imageSrc:
-        'https://images.unsplash.com/photo-1460627390041-532a28402358?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
-      imageAlt: 'nature1',
+      'https://images.pexels.com/photos/776654/pexels-photo-776654.jpeg',
+      imageAlt: 'Zoom plateau monopoly',
     },
     {
       imageSrc:
-        'https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
-      imageAlt: 'nature2',
+        'https://images.pexels.com/photos/4691584/pexels-photo-4691584.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      imageAlt: 'Jeu de société',
     },
     {
       imageSrc:
-        'https://images.unsplash.com/photo-1640844444545-66e19eb6f549?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80',
-      imageAlt: 'person1',
+        'https://images.pexels.com/photos/6333933/pexels-photo-6333933.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      imageAlt: 'Personnes jouant autour de la table',
     },
     {
       imageSrc:
-        'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
-      imageAlt: 'person2',
+        'https://images.pexels.com/photos/411195/pexels-photo-411195.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      imageAlt: "Pièce d'échec de la Reine ",
     },
   ]
 
