@@ -116,21 +116,6 @@
               :
             </p>
             <p class="game-details-content">
-              <span *ngFor="let language of game.languages">
-                {{ language.name }}
-              </span>
-            </p>
-            <p class="game-details-label">
-              {{
-              game.tags
-                ? game.tags!.length > 1
-                  ? "Catégories"
-                  : "Catégorie"
-                : ""
-              }}
-              :
-            </p>
-            <p class="game-details-content">
               <span *ngFor="let tag of game.tags">
                 {{ tag.name }}
               </span>
