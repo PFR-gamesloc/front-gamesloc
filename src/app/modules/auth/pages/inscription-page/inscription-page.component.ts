@@ -59,7 +59,7 @@ export class InscriptionPageComponent implements OnInit {
   }
 
   submit(): void {
-     console.log("ici")
+     console.log()
     const inscriptionForm: InscriptionForm = {
       firstName: this.form.get('firstname')?.value,
       lastName: this.form.get('lastname')?.value,
@@ -73,10 +73,8 @@ export class InscriptionPageComponent implements OnInit {
       postalCode: this.form.get('postalCode')?.value,
       cityName: this.form.get('cityName')?.value
     };
-    console.log("la")
     this.authService.createUser(inscriptionForm).subscribe({
       next: () => {
-
         this.router.navigate(['/'])
           .then(()=>window.location.reload())
           .then(() =>this.toaster.success("Utilisateur créer !"))

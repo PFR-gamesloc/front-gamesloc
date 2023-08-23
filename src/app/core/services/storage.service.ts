@@ -12,7 +12,7 @@ export class StorageService {
 
     private baseUrl!: string;
     private cartItemsSubject = new Subject<GameDetail[]>();
-    totalPrice = new BehaviorSubject<number>(0);
+    totalPrice = new BehaviorSubject<number>(this.updatePrice());
 
     constructor(private httpClient: HttpClient) {
         this.baseUrl = environment.baseUrl;
@@ -23,7 +23,7 @@ export class StorageService {
     }
 
     emitCartItemsUpdate() {
-        this.updatePrice();
+        this.totalPrice.next(this.updatePrice());
         this.cartItemsSubject.next(this.getItems());
     }
 
@@ -62,14 +62,14 @@ export class StorageService {
 
     updatePrice(){
       if (this.getItems().length === 0){
-        this.totalPrice.next(0);
+        return 0;
       }
       else {
         let sum = 0;
         for (const item of this.getItems()) {
           sum += item.gamePrice;
         }
-        this.totalPrice.next(sum);
+        return sum;
       }
 
     }

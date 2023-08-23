@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
 import { City } from "../../entities/city";
-import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { CustomerService } from "../../../core/http/customer.service";
 
@@ -35,21 +34,37 @@ export class SelectComponent implements OnInit {
   ngOnInit(): void {
     this.formZipCode = this.rootFormGroup.control;
 
-    this.formZipCode.get('postalCode')?.valueChanges.pipe(
-      debounceTime(300),
-      distinctUntilChanged()
-    ).subscribe({
+    this.formZipCode.get('postalCode')?.valueChanges.subscribe({
       next: (value) => {
-        if (value.length >= 3) {
+        if (value.length >= 2) {
           this.customerService.getCities(value).subscribe({
             next: res => {
               this.handlePostalCode(res);
               this.handleCityName(res);
             }
           });
-          this.filterCityNames();
+          if (this.formZipCode.get('cityName')?.value ==="") {
+            this.filterCityNames();
+          }
         } else {
           this.filteredCityNames = [];
+        }
+      }
+    });
+    this.formZipCode.get('cityName')?.valueChanges.subscribe({
+      next: (value) => {
+        if (value.length >= 2) {
+          this.customerService.getCities(value.toUpperCase()).subscribe({
+            next: res => {
+              this.handlePostalCode(res);
+              this.handleCityName(res);
+            }
+          });
+          if (this.formZipCode.get('postalCode')?.value ==="" ){
+            this.filterPostalCodes();
+          }
+        } else {
+          this.filteredPostalCodes = [];
         }
       }
     });
@@ -67,6 +82,13 @@ export class SelectComponent implements OnInit {
       .map(city => city.cityName);
   }
 
+  private _filterPostalCodesByCityName(cityName: string, postalCodeFilter: string) :string[]{
+    const filterValueCityName = cityName.toLowerCase();
+    const filteredCities = this.options.filter(city => city.cityName.toLowerCase().startsWith(filterValueCityName));
+    return filteredCities.filter(city => city.postalCode.toLowerCase().startsWith(postalCodeFilter.toLowerCase()))
+      .map(city => city.postalCode);
+  }
+
   private handlePostalCode(cities: City[]): void {
     const distinctCodes = new Set<string>(cities.map(city => city.postalCode));
     this.postalCodes = Array.from(distinctCodes);
@@ -78,9 +100,13 @@ export class SelectComponent implements OnInit {
       distinctNames.add(city.cityName);
     }
     this.cityNames = Array.from(distinctNames);
-    this.options = cities;
   }
 
+  public filterPostalCodes():void{
+    const zipCodeFilter = this.formZipCode.value ? this.formZipCode.value.postalCode : '';
+    const cityName = this.formZipCode.value ? this.formZipCode.value.cityName : '';
+    this.filteredPostalCodes = this._filterPostalCodesByCityName(cityName, zipCodeFilter);
+  }
   public filterCityNames(): void {
     const zipCode = this.formZipCode.value ? this.formZipCode.value.postalCode : '';
     const cityNameFilter = this.formZipCode.value ? this.formZipCode.value.cityName : '';

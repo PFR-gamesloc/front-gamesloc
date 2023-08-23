@@ -19,8 +19,15 @@
     </div>
   </div>
   <ng-container *ngIf="((isEmptyCart() || !this.isAuth) ) ; else canPurchase">
+    <ng-container *ngIf="isEmptyCart()">
+      <h2>Votre panier est vide !</h2>
+    </ng-container>
+      <ng-container *ngIf="(!isEmptyCart() && !this.isAuth)">
+        <h2>Connectez vous pour valider le panier</h2>
+      </ng-container>
     <app-btn-component classBtn="btn btn-add app-btn-last" textBtn="Valider le panier" [disabled]="true"></app-btn-component>
   </ng-container>
+
   <ng-template #canPurchase>
     <app-btn-component classBtn="btn btn-add app-btn-last" textBtn="Valider le panier" (click)="validateCart()"></app-btn-component>
   </ng-template>

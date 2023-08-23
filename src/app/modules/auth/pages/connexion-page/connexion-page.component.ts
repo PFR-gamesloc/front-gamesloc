@@ -6,6 +6,7 @@ import {Token} from "../../entities/token";
 import jwt_decode from 'jwt-decode';
 import {DecodedToken} from "../../entities/decoded-token";
 import {Router} from "@angular/router";
+import {isCI} from "@angular/cli/src/utilities/environment-options";
 
 @Component({
   selector: 'app-connexion-page',
@@ -30,7 +31,7 @@ export class ConnexionPageComponent {
       username: this.formGroup.get('mail')?.value,
       password: this.formGroup.get('password')?.value
     };
-
+    console.log(userCredentials);
     this.authService.login(userCredentials).subscribe({
       next: (value:Token) => this.setTokenInSession(value),
       error: () => this.showErrorMessage = true
@@ -39,6 +40,7 @@ export class ConnexionPageComponent {
 
 
   setTokenInSession(res:Token) {
+    console.log("ici");
     this.authService.isAuth.next(true);
     const remember = this.formGroup.get('rememberMe')?.value;
     const decodedToken: DecodedToken = jwt_decode(res.token);
@@ -55,7 +57,7 @@ export class ConnexionPageComponent {
       sessionStorage.setItem("role", decodedToken.role)
     }
 
-    this.router.navigate(['/']).then(() => window.location.reload());
+    this.router.navigate(['/']);
 
   }
 }

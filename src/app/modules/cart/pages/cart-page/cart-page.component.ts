@@ -14,7 +14,7 @@ import {AuthService} from "../../../../core/services/auth.service";
 export class CartPageComponent implements OnInit {
   cartItems: GameDetail[] = [];
   cartItems$!: Observable<GameDetail[]>;
-  totalPrice: number = 0;
+  totalPrice!: number;
   isCartEmpty: boolean = false;
   purchaseResponse: number = 0;
   isAuth!: boolean;

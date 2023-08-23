@@ -22,13 +22,13 @@ export class AuthService {
   }
 
   login(userCredentials: UserCredentials): Observable<Token> {
-
+    console.log("login")
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       })
     };
-    return this.httpClient.post<Token>(this.baseUrl + "auth/authenticate", userCredentials, httpOptions);
+    return this.httpClient.post<Token>(this.baseUrl + "/auth/authenticate", userCredentials, httpOptions);
   }
 
 
@@ -37,8 +37,12 @@ export class AuthService {
   }
 
   logout() {
-    sessionStorage.clear();
-    localStorage.clear();
+    sessionStorage.removeItem('role');
+    sessionStorage.removeItem('subject');
+    sessionStorage.removeItem('token');
+    localStorage.removeItem('role');
+    localStorage.removeItem('subject');
+    localStorage.removeItem('token');
     this.isAuth.next(false);
     this.router.navigate(["/"]);
   }
