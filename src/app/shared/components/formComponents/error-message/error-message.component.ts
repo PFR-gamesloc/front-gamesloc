@@ -40,7 +40,7 @@ export class ErrorMessageComponent{
             break;
           }
           case regex.passwordRegex.toString(): {
-            this.errorMessage = 'Veuillez saisir un mot de passe d\'au moins 8 caractères avec au moins une majuscule, une minuscule et un caractère spécial'
+            this.errorMessage = 'Veuillez saisir un mot de passe d\'au moins 8 caractères avec au moins une majuscule, une minuscule et un caractère spécial(#=@$!%?&^*,;_-)'
             break;
           }
 
