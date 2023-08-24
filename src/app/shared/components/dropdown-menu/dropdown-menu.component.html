@@ -1,0 +1,13 @@
+<div class="col">
+  <div ngbDropdown class="">
+    <button class="btn dropbtn" id="gfg" ngbDropdownToggle>
+      <ng-icon color="#FFFFFF" size="30" name="bootstrapPersonCircle"></ng-icon>
+    </button>
+    <div ngbDropdownMenu="gfg">
+      <a routerLink="/user/me"><button ngbDropdownItem>Mon compte</button></a>
+      <a routerLink="/admin"><button ngbDropdownItem *appIsAdmin>Administration</button></a>
+      <button (click)="logout()" ngbDropdownItem>Se déconnecter</button>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,15 @@
+<ng-container [formGroup]="form">
+  <div class="container">
+    <label for="{{ forInput }}">
+      <div>{{ textLabel }}</div>
+    </label>
+    <input type="{{ typeInput }}" placeholder="{{ placeholderInput }}" id="{{ forInput }}"
+           formControlName="{{ forInput }}"/>
+    <ng-container *ngIf="checkValidity()">
+      <app-error-message [errors]="errors"></app-error-message>
+    </ng-container>
+    <ng-content>
+      
+    </ng-content>
+  </div>
+</ng-container>

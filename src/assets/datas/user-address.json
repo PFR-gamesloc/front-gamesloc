@@ -1,0 +1,13 @@
+{
+    "addressId": 1, 
+    "numberAddress": 4, 
+    "complementaryNumber": null, 
+    "streetName": "Rue de la Haute Borne", 
+    "complementaryAddress": "Appartement 1", 
+    "city": {
+        "cityId": "1",
+        "postalCode": "01400",
+        "countryName": "FRANCE",
+        "cityName": "L ABERGEMENT CLEMENCIAT"
+    }
+}
