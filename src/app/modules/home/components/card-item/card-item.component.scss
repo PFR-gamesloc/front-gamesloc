@@ -1,108 +1,28 @@
-@use "../../../../../sass/mixins" as m;
-
-.articleCard {
+.card {
+  margin: 1rem;
+  border: none;
   display: flex;
-  flex-direction: column;
-  box-shadow: 0px 0px 5px 1px #000;
-  margin: 1rem 1rem;
-  background-color: var(--whitegray);
-  cursor: pointer;
-
-  @include m.bk-laptop {
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: var(--whitegray);
-
+  flex-direction: row;
+  &-img-top {
+    width: 70%; 
+    height: 350px;
+    border: none;
   }
-
-  .articleImage {
+  &-body {
+    width: 0%;
+    margin: 4px;
     display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-
-    @include m.bk-laptop {
-      flex-basis: 20%;
-      text-align: center;
-      margin: 0;
-    }
-
-    img {
-      text-align: center;
-      height: 225px;
-      width: 90%;
-      border-bottom: 4px solid var(--primary);
-
-
-      @include m.bk-tablette {
-        border: none;
-        height: 200px;
-        width: 70%;
-      }
-
-      @include m.bk-laptop {
-        height: 175px;
-        width: 100%;
-      }
-    }
-  }
-
-  .articleDescription {
-    background-color: var(--whitegray);
-
-    @include m.bk-laptop {
-      flex-basis: 40%;
-      flex-grow: 1;
-      margin: auto;
-    }
-
-    h3 {
-      font-size: 1.4rem;
-      color: var(--blue-primary);
-      text-align: center;
-
-      @include m.bk-tablette {
-        font-size: 1.8rem;
-        font-weight: bold;
-      }
-    }
-
-    p {
-      font-size: 14px;
-      color: #666;
-      display: -webkit-box;
-      text-align: center;
-      margin: 10px;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-
-      @include m.bk-laptop {
-        -webkit-line-clamp: 6;
-        font-size: 16px;
-      }
-    }
-  }
-
-  .articleEnd {
-    background-color: var(--blue-primary);
-    color: white;
-    display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    text-align: center;
+    justify-content:space-around;
+    background-color: var( --secondary);
     align-items: center;
-    padding: 6px;
-
-
-    @include m.bk-laptop {
-      flex-basis: 15%;
-      flex-direction: column;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-
+    border-radius:10px;
     p {
-      font-size: 14px;
-      text-align: center;
+      margin: 0;
+      font-size: 1.4rem;
+    }
+    .footer-element {
       margin: 0;
     }
   }

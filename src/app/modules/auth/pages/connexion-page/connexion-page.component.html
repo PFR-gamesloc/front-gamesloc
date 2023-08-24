@@ -1,25 +1,44 @@
 <div class="container">
+  <div class="container-connexion">
     <h1>Connexion au Compte</h1>
     <h4>Déjà Client ?</h4>
     <h4>Connectez-vous</h4>
 
     <form action="" class="cardConnection" [formGroup]="formGroup">
-        <app-input forInput="mail" textLabel="Email" typeInput="texte" placeholderInput="Email"></app-input>
-        <app-input-password forInput="password" textLabel="Mot de passe"></app-input-password>
-        <div *ngIf="showErrorMessage" class="error-message">
-          Email ou mot de passe incorrect
+      <app-input
+        forInput="mail"
+        textLabel="Email"
+        typeInput="texte"
+        placeholderInput="Email"
+      ></app-input>
+      <app-input-password
+        forInput="password"
+        textLabel="Mot de passe"
+      ></app-input-password>
+      <div *ngIf="showErrorMessage" class="error-message">
+        Email ou mot de passe incorrect
+      </div>
+      <div class="check">
+        <div class="remind-me">
+          <input
+            type="checkbox"
+            name="remind"
+            id="remind"
+            formControlName="rememberMe"
+          />
+          <label for="remind">Se souvenir de moi</label>
         </div>
-        <div class="check">
-            <div class="remind-me">
-                <input type="checkbox" name="remind" id="remind" formControlName = "rememberMe">
-                <label for="remind">Se souvenir de moi</label>
-            </div>
-            <a routerLink="" class="link">Mot de passe oublié ?</a>
-        </div>
-        <app-btn-component classBtn="btn btn-submit" textBtn="Connexion" (click)="signin()" ></app-btn-component>
-        <div class="subscribe">
-            <p>Tu n'as pas de compte ?</p>
-            <a routerLink="../signin" class="link">Enregistre toi ici</a>
-        </div>
+        <a routerLink="" class="link">Mot de passe oublié ?</a>
+      </div>
+      <app-btn-component
+        classBtn="btn btn-submit"
+        textBtn="Connexion"
+        (click)="signin()"
+      ></app-btn-component>
+      <div class="subscribe">
+        <p>Tu n'as pas de compte ?</p>
+        <a routerLink="../signin" class="link">Enregistre toi ici</a>
+      </div>
     </form>
+  </div>
 </div>

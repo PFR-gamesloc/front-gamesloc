@@ -1,19 +1,11 @@
 @use "../../../../../sass/mixins" as m;
-
-.flexCard {
-  margin: auto;
-  height: 600px;
-  overflow: hidden;
-  overflow-y: scroll;
-  
-  @include m.bk-tablette{
-    width: 70%;
-  
-  }
-
-  @include m.bk-laptop{
-   width: 100%;
-   
-   
+.card-list {
+  margin: 0 2rem;
+  padding-bottom: 1rem;
+  border: none;
+  &-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
   }
 }

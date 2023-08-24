@@ -1,13 +1,14 @@
 <app-carrousel [images]="images"></app-carrousel>
-<div class="flexCard">
-  <div
+<div class="row justify-content-between card-list">
+    <div
     *ngFor="let game of games$"
     (click)="navigateToGameDetails(game.gameId, game.gameName)"
-    class="clickable-card"
+    class="col-md-4 card-list-item"
   >
-    <app-card-item class="cardItem" [game]="game"></app-card-item>
+    <app-card-item [game]="game"></app-card-item>
   </div>
 </div>
+
 
 <!-- <button (click)="showSuccess()">
   Click for toast

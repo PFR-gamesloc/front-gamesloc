@@ -1,20 +1,9 @@
-<div class="articleCard">
-  <div class="articleImage">
-    <img
-      [src]="image"
-      alt="{{game.gameName}}"
-
-    />
-  </div>
-  <div class="articleDescription">
-    <h3>{{game.gameName}}</h3>
-    <p>{{ game.gameDescr }}</p>
-  </div>
-
-  <div class="articleEnd">
-    <p>{{ game.editor.name }}</p>
-    <p>{{ game.type.name }}</p>
-    <p>{{ game.gamePrice }}&euro;</p>
-  </div>
-
+<div class="card" >
+  <img class="card-img-top img-fluid rounded" [src]="image" alt="{{ game.gameName }}" />
+  <div class="card-body">
+    <!-- <p>{{ game.gameDescr }}</p> -->
+      <p>{{ game.editor.name }}</p>
+      <p>{{ game.type.name }}</p>
+      <p>{{ game.gamePrice }}&euro;</p>
+    </div>
 </div>

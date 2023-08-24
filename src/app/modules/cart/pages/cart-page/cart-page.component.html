@@ -1,4 +1,4 @@
-<div class="cart-container">
+<!-- <div class="cart-container">
   <div class="title">
     <h1>Panier</h1>
   </div>
@@ -25,4 +25,34 @@
     <app-btn-component classBtn="btn btn-add app-btn-last" textBtn="Valider le panier" (click)="validateCart()"></app-btn-component>
   </ng-template>
 
+</div> -->
+
+<div class="container py-5 _cart">
+  <div class="row d-flex  my-4">
+    <div class="col-md-8 _cart-item ">
+      <div class="card mb-4">
+        <div class="card-header _cart-center">
+          <h1>Panier</h1>
+        </div>
+        <div *ngFor="let item of cartItems" class="cart-item">
+          <app-cart-item [item]="item"></app-cart-item>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="mb-0">Summary</h5>
+        </div>
+        <p>Prix total:</p>
+        <p>{{ totalPrice }}</p>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="((isEmptyCart() || !this.isAuth) ) ; else canPurchase">
+    <app-btn-component classBtn="btn btn-add app-btn-last" textBtn="Valider le panier" [disabled]="true"></app-btn-component>
+  </ng-container>
+  <ng-template #canPurchase>
+    <app-btn-component classBtn="btn btn-add app-btn-last" textBtn="Valider le panier" (click)="validateCart()"></app-btn-component>
+  </ng-template>
 </div>
